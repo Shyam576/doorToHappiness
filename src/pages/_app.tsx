@@ -13,11 +13,12 @@ import { AuthProvider } from '../store/auth'
 import { Footer } from '../components/Footer'
 import { store } from '../store/store'
 import { NavBar } from '../components/NavBar'
-
+import '../components/styles/global.css'
+import '../FontAwesomeConfig'
 
 const persistor = getPersistor()
 
-axios.defaults.baseURL = 'http://localhost:4000/api/v1'
+axios.defaults.baseURL = 'http://localhost:3000'
 axios.defaults.withCredentials = true
 
 const fetcher = async (url: string) => {

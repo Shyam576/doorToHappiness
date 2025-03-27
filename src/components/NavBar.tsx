@@ -63,35 +63,35 @@ export const NavBar: React.FC<NavBarProps> = () => {
 				{/* Middle Section */}
 				<div className="hidden lg:flex items-center space-x-6">
 					<Link
-						href="/login"
+						href="/home"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Home
 					</Link>
 					<Link
-						href="/login"
+						href="/package"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Packages
 					</Link>
 					<Link
-						href="/login"
+						href="/destination"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Destinations
 					</Link>
 					<Link
-						href="/login"
+						href="/contactus"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Contact Us
 					</Link>
-					<Link
+					{/* <Link
 						href="/login"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Register Now
-					</Link>
+					</Link> */}
 				</div>
 
 				{/* Right Section - Theme Dropdown */}
@@ -137,35 +137,35 @@ export const NavBar: React.FC<NavBarProps> = () => {
 			>
 				<ul className="flex flex-col space-y-2 p-4">
 					<Link
-						href="/login"
+						href="/home"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Home
 					</Link>
 					<Link
-						href="/login"
+						href="/package"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Packages
 					</Link>
 					<Link
-						href="/login"
+						href="/destination"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Destinations
 					</Link>
 					<Link
-						href="/login"
+						href="/contact"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Contact Us
 					</Link>
-					<Link
+					{/* <Link
 						href="/login"
 						className="hover:text-blue-500 text-gray-700"
 					>
 						Register Now
-					</Link>
+					</Link> */}
 				</ul>
 			</div>
 		</nav>
