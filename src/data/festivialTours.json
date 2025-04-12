@@ -1,0 +1,40 @@
+[
+  {
+    "id": "festival-1",
+    "title": "Paro Tsechu Festival Tour",
+    "dates": "24th - 29th March 2024",
+    "duration": "5N/6D",
+    "description": "Set off on an enthralling six-day expedition to the mystical realm of Bhutan, climaxing with the lively and spiritually enriching Paro Festival. This experience assures a fusion of cultural...",
+    "image": "https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/bhutan-tshechu-festivel-700-51.jpg",
+    "route": "Paro, Thimphu, Punakha",
+    "category": "festival",
+    "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+    "rating": "4.8",
+    "price": "Nu.0.00"
+  },
+  {
+    "id": "festival-2",
+    "title": "Royal Highland Festival Tour",
+    "dates": "20th - 29th October 2024",
+    "duration": "9N/10D",
+    "description": "The Royal Highlander Festival unveils the splendor and marvels of Gasa Dzongkhang, showcasing its natural beauty, historical significance, and timeless traditions. By embodying Gasa's vision..",
+    "image": "https://a.storyblok.com/f/171618/3936x2624/ec6a07dce9/lll05083.jpg",
+    "route": "Gasa, Thimphu, Paro",
+    "category": "festival",
+    "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+    "rating": "4.8",
+    "price": "Nu.0.00"
+  },
+  {
+    "id": "festival-3",
+    "title": "Thimphu Tsechu Festival Tour",
+    "dates": "12th - 18th Septemeber 2024",
+    "duration": "6N/7D",
+    "description": "Experience the vibrancy of Bhutan's culture at Thimphu Tsechu festival 2024, happening in Septemeber 12th to 18th. Delve into a week-long celebration featuring traditional masked dances...",
+    "image": "https://cdn.drukasia.com/content/images/media/drukasia_021617_dsc05249-1070x713.jpg",
+    "route": "Thimphu, Paro",
+    "category": "festival",
+    "rating": "4.8",
+    "price": "Nu.0.00"
+  }
+]

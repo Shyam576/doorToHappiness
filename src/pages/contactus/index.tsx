@@ -129,7 +129,7 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
                       placeholder="Your name"
                     />
                   </div>
@@ -149,7 +149,7 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -167,7 +167,7 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
                         placeholder="+975 12345678"
                       />
                     </div>
@@ -187,7 +187,7 @@ const ContactPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
                       placeholder="Tell us about your travel plans..."
                     ></textarea>
                   </div>
@@ -369,7 +369,7 @@ const ContactPage = () => {
                   </h2>
                   <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.99351037346!2d89.65843597577053!3d27.448072536878605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e193823782ad7f%3A0x84c565e55aac74f4!2s621%20Woluu%20Zur%20Lam%203%20Khaa%20SE%2C%20Thimphu!5e1!3m2!1sen!2sbt!4v1743055133018!5m2!1sen!2sbt"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2537.8487134921656!2d89.65937170621427!3d27.44790145665406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e193004c52f8a1%3A0xd72e2c186f98af0f!2sDoor%20To%20Happiness%20Holiday!5e1!3m2!1sen!2sbt!4v1743146273989!5m2!1sen!2sbt"
                       width="100%"
                       height="400"
                       style={{ border: 0 }}
@@ -383,7 +383,10 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-        <WhatsAppButton phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string} message="Hello! I have a question about"/>
+        <WhatsAppButton
+          phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string}
+          message="Hello! I have a question about"
+        />
       </div>
     </>
   );

@@ -8,13 +8,17 @@ import { models, RootModel } from './models'
 const persistConfig = {
     key: 'root',
     storage,
+    whitelist:['auth']
 }
 
 type FullModel = ExtraModelsFromLoading<RootModel, { type: 'full' }>
 
 export const store = init<RootModel, FullModel>({
     models,
-    plugins: [loadingPlugin({ type: 'full' }), persistPlugin(persistConfig)]
+    plugins: [
+        loadingPlugin({ type: 'full' }),
+        persistPlugin(persistConfig),
+    ],
 })
 
 export type Store = typeof store

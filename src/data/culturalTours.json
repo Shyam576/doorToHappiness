@@ -1,0 +1,42 @@
+[
+    {
+      "id": "cultural-1",
+      "title": "Classical Cultural Tour",
+      "description": "Experience Bhutan through a fresh lens with the Bhutan Classic Cultural Tour. Immerse yourself in the vibrant local culture as you journey through Thimphu, Paro, Punakha, and Gangtey. Beginning in Paro.",
+      "image": "https://bhutanoldmonktravels.com/wp-content/uploads/2018/02/Bhutan-East-West-Tours-1024x576.jpg",
+      "route": "Thimphu, Paro, Punakha, Gangtey",
+      "category": "cultural",
+      "rating": "4.8",
+      "duration": "6N/7D",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+      "dates":"",
+      "price":"Nu.0.00"
+
+    },
+    {
+      "id": "cultural-2",
+      "title": "Bhutan Cultural Tour with Bumdrak Trek",
+      "description": "Embark on an enlightening 8-day journey delving into Bhutan's ancient cultural treasures and its bountiful natural wonders across four western districts. Engage in nature hikes, marvel at the untouched wilderness.",
+      "image": "https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Trekking-1.jpg",
+      "route": "Paro, Thimphu, Punakha, Bumdrak",
+      "category": "cultural",
+      "rating": "4.8",
+      "duration": "7N/8D",
+      "dates":"",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+      "price":"Nu.0.00"
+    },
+    {
+      "id": "cultural-3",
+      "title": "Bhutan Cultural & Nature Travel",
+      "description": "Embark on a responsible and sustainable journey that directly supports local communities, promising authentic experiences while preserving the environment. Immerse yourself in Bhutan's remarkable cultural heritage.",
+      "image": "https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/gangtey-nature-trail-700-2.jpg",
+      "route": "Thimphu, Paro, Punakha, Gangtey",
+      "category": "cultural",
+      "rating": "4.8",
+      "duration": "9N/10D",
+      "dates":"",
+      "price":"Nu.0.00",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"]
+    }
+  ]

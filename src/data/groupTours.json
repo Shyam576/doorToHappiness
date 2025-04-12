@@ -1,0 +1,41 @@
+[
+    {
+      "id": "group-1",
+      "title": "Bhutan Group Tours From India",
+      "description": "Discover the world's happiest country with our Bhutan Group Tour Packages and experience the joyful vacation you've been yearning for. From scenic landscapes to serene monasteries, Bhutan group tours from India offer an ideal blend of relaxation for families...",
+      "image": "https://www.doortohappinessholiday.com/assets/images/bhutan-group-tours-from-india.webp",
+      "route": "Various destinations in Bhutan",
+      "category": "group",
+      "rating": "4.8",
+      "duration": "7N/8D",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+      "dates":"",
+      "price":"Nu.0.00"
+    },
+    {
+      "id": "group-2",
+      "title": "Women Only Bhutan Group Tour",
+      "description": "Discover Bhutan's beauty and culture on our exclusive Women's Tour. Dive into local traditions, explore breathtaking landscapes, and connect with fellow travelers in a supportive, empowering environment. Join us for an unforgettable adventure.",
+      "image": "https://www.doortohappinessholiday.com/assets/images/women-only-bhutan-group-tour.webp",
+      "route": "Various destinations in Bhutan",
+      "category": "group",
+      "rating": "4.8",
+      "duration": "7N/8D",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+      "dates":"",
+      "price":"Nu.0.00"
+    },
+    {
+      "id": "group-3",
+      "title": "Nepal and Bhutan Group Tour Packages",
+      "description": "Don't miss the chance to explore both Nepal and Bhutan in a single trip. Combine the enchanting beauty of these Himalayan Kingdoms into one unforgettable tour. Immerse yourself in the serenity and spirituality of Nepal and Bhutan with our combined tour packages.",
+      "image": "https://www.doortohappinessholiday.com/assets/images/nepal-bhutan-combined-tour-packages.webp",
+      "route": "Kathmandu, Paro, Thimphu",
+      "category": "group",
+      "rating": "4.8",
+      "duration": "7N/8D",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+      "dates":"",
+      "price":"Nu.0.00"
+    }
+  ]

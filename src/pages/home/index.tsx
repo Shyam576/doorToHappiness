@@ -2,623 +2,873 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Container } from "../../components/Container";
 import WhatsAppButton from "../../components/whatsAppButton";
-import majorCitiesPackage from "../../data/majorCitiesPackage.json"
-import CityPackageCard from "../../components/citiesPackageCard";
+import majorCitiesPackage from "../../data/majorCitiesPackage.json";
+import popularDestinations from "../../data/popularDestination.json";
 
-const keywords = [
-  "Bhutan",
-  "The Last Shangri-La",
-  "Himalayas",
-  "The Land of Happiness",
+import {
+  FiSearch,
+  FiArrowRight,
+  FiMapPin,
+  FiCalendar,
+  FiUsers,
+  FiFilter,
+} from "react-icons/fi";
+import festivalTours from "../../data/festivialTours.json";
+import culturalTours from "../../data/culturalTours.json";
+import trekkingAdventures from "../../data/trekkingAdventure.json";
+import groupTours from "../../data/groupTours.json";
+import beautifulMoutain from "../../../public/beautifulMoutain.jpeg";
+
+const SEO_KEYWORDS = [
+  "Bhutan tours",
+  "Bhutan travel packages",
+  "Himalayan vacations",
+  "Cultural tours Bhutan",
+  "Bhutan trekking adventures",
+  "Luxury Bhutan holidays",
+  "Bhutan festival tours",
+  "Best Bhutan tour operator",
+  "Sustainable tourism Bhutan",
+  "Gross National Happiness tours",
 ];
+
+// Helper function to convert duration string to days
+const getDurationInDays = (duration: any) => {
+  if (!duration) return 0;
+  const match = duration.match(/(\d+)/);
+  return match ? parseInt(match[0]) : 0;
+};
 
 const Index: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [randomWord, setRandomWord] = useState(keywords[0]);
-  const [fadeOut, setFadeOut] = useState(false);
+  const [destinationSearchTerm, setDestinationSearchTerm] = useState("");
+  const [packageSearchTerm, setPackageSearchTerm] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [showDestinationResults, setShowDestinationResults] = useState(false);
+  const [showPackageResults, setShowPackageResults] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [searchFilters, setSearchFilters] = useState({
+    date: "",
+    travelers: 1,
+    minDuration: "",
+    maxDuration: "",
+    rating: "",
+  });
+  const [sortOption, setSortOption] = useState("recommended");
 
-  const slides = [
+  // Combine all packages
+  const allPackages = [
+    ...majorCitiesPackage,
+    ...festivalTours,
+    ...culturalTours,
+    ...trekkingAdventures,
+    ...groupTours,
+  ];
+
+  // Filter destinations based on search
+  const filteredDestinations = popularDestinations.filter((dest) => {
+    const matchesSearch =
+      dest.title.toLowerCase().includes(destinationSearchTerm.toLowerCase()) ||
+      dest.description
+        .toLowerCase()
+        .includes(destinationSearchTerm.toLowerCase()) ||
+      dest.location.toLowerCase().includes(destinationSearchTerm.toLowerCase());
+
+    const matchesCategory =
+      activeCategory === "All" || dest.category === activeCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  // Filter packages based on search and filters
+  const filteredPackages = allPackages.filter((pkg) => {
+    // Search term matching
+    const matchesSearch =
+      pkg.title.toLowerCase().includes(packageSearchTerm.toLowerCase()) ||
+      pkg.description.toLowerCase().includes(packageSearchTerm.toLowerCase()) ||
+      (pkg.highlights &&
+        pkg.highlights.some((highlight) =>
+          highlight.toLowerCase().includes(packageSearchTerm.toLowerCase())
+        ));
+
+    // Duration filtering
+    const duration = getDurationInDays(pkg.duration || "0 days");
+    const minDuration = searchFilters.minDuration
+      ? parseInt(searchFilters.minDuration)
+      : 0;
+    const maxDuration = searchFilters.maxDuration
+      ? parseInt(searchFilters.maxDuration)
+      : Infinity;
+    const matchesDuration = duration >= minDuration && duration <= maxDuration;
+
+    // Rating filtering
+    const rating = pkg.rating ? parseFloat(pkg.rating) : 0;
+    const minRating = searchFilters.rating
+      ? parseFloat(searchFilters.rating)
+      : 0;
+    const matchesRating = rating >= minRating;
+
+    return matchesSearch && matchesDuration && matchesRating;
+  });
+
+  // Sort packages based on selected option
+  const sortedPackages = [...filteredPackages].sort((a, b) => {
+    switch (sortOption) {
+      case "duration-short":
+        return (
+          getDurationInDays(a.duration || "0 days") -
+          getDurationInDays(b.duration || "0 days")
+        );
+      case "duration-long":
+        return (
+          getDurationInDays(b.duration || "0 days") -
+          getDurationInDays(a.duration || "0 days")
+        );
+      case "rating":
+        return (
+          (b.rating ? parseFloat(b.rating) : 0) -
+          (a.rating ? parseFloat(a.rating) : 0)
+        );
+      case "recommended":
+      default:
+        // Default sorting (could be based on popularity or other metrics)
+        return (
+          (b.rating ? parseFloat(b.rating) : 0) -
+          (a.rating ? parseFloat(b.rating) : 0)
+        );
+    }
+  });
+
+  // Auto-rotate slides
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const heroSlides = [
     {
       id: 1,
-      src: "https://johnryle.com/wp-content/uploads/2016/06/RC-This-year-in-Bhutan-1.jpg",
-      title: "Welcome to Slide 1",
-      description: "Experience the beauty of stunning landscapes.",
+      src: "https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      alt: "Tiger's Nest Monastery Paro Bhutan",
+      title: "Discover the Last Shangri-La",
+      subtitle: "Experience Gross National Happiness",
     },
     {
       id: 2,
-      src: "https://www.andbeyond.com/wp-content/uploads/sites/5/padd-field-thimpu-bhutan.jpg",
-      title: "Welcome to Slide 2",
-      description: "Discover breathtaking views and experiences.",
+      src: beautifulMoutain.src,
+      alt: "Traditional Bhutanese festival with masked dancers",
+      title: "Vibrant Cultural Festivals",
+      subtitle: "Witness ancient traditions come alive",
     },
     {
       id: 3,
-      src: "https://www.olgafinearts.com/wp-content/gallery/bhutan-landscape/BTN-OL-850_1800.jpg",
-      title: "Welcome to Slide 3",
-      description: "Let your adventures begin here.",
-    },
-    {
-      id: 4,
-      src: "https://cms.travelnoire.com/wp-content/uploads/2024/04/GettyImages-157282251-1568x1045.jpg",
-      title: "Welcome to Slide 4",
-      description: "Explore the wonders of the world with us.",
+      src: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+      alt: "Himalayan mountain landscape in Bhutan",
+      title: "Epic Himalayan Treks",
+      subtitle: "Challenge yourself in pristine wilderness",
     },
   ];
 
-  // Auto-slide and animated keyword change
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFadeOut(true); // Trigger fade-out animation
-      setTimeout(() => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-        setRandomWord(keywords[Math.floor(Math.random() * keywords.length)]);
-        setFadeOut(false); // Trigger fade-in animation
-      }, 500); // Ensure fade-out completes before changing the word
-    }, 5000);
+  const categories = [
+    "All",
+    "Cultural",
+    "Adventure",
+    "Nature",
+    "Spiritual",
+    "Scenic",
+  ];
 
-    return () => clearInterval(interval);
-  }, [slides.length]);
+  const sortOptions = [
+    { value: "recommended", label: "Recommended" },
+    { value: "duration-short", label: "Duration (Shortest)" },
+    { value: "duration-long", label: "Duration (Longest)" },
+    { value: "rating", label: "Highest Rated" },
+  ];
+
+  const handleFilterChange = (e: any) => {
+    const { name, value } = e.target;
+    setSearchFilters({
+      ...searchFilters,
+      [name]: value,
+    });
+  };
+
+  const resetFilters = () => {
+    setSearchFilters({
+      date: "",
+      travelers: 1,
+      minDuration: "",
+      maxDuration: "",
+      rating: "",
+    });
+    setSortOption("recommended");
+  };
 
   return (
-    <div className="bg-[url('../../public/backgroundbanner.png')] bg-cover bg-fixed bg-center">
+    <>
       <Head>
-        <title>Door To Happiness</title>
-        <meta name="description" content="Welcome to Bhutan" />
+        <title>
+          Door To Happiness - Premier Bhutan Tour Operator | Cultural &
+          Adventure Tours
+        </title>
+        <meta
+          name="description"
+          content="Experience authentic Bhutan with our award-winning tours. Specializing in cultural journeys, Himalayan treks, and sustainable tourism in the Land of Happiness. Book your dream Bhutan vacation today."
+        />
+        <meta name="keywords" content={SEO_KEYWORDS.join(", ")} />
+        <meta
+          property="og:title"
+          content="Door To Happiness - Bhutan's Leading Tour Operator"
+        />
+        <meta
+          property="og:description"
+          content="Custom Bhutan tours featuring monasteries, festivals, and Himalayan adventures. Sustainable tourism with local experts."
+        />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.doortohappinessholiday.com" />
         <link rel="icon" href="/favicon.ico" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TravelAgency",
+            name: "Door To Happiness",
+            description:
+              "Premier tour operator specializing in Bhutan cultural and adventure tours",
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "Bhutan",
+            },
+            openingHours: "Mo,Tu,We,Th,Fr,Sa,Su 09:00-17:00",
+            telephone: "+975-XXXX-XXXX",
+          })}
+        </script>
       </Head>
-      <Container>
-        <div className="relative w-full h-[80vh] overflow-hidden mb-10 mt-10">
-          {/* Image Carousel */}
+
+      {/* Hero Section */}
+      <div className="relative h-screen max-h-[800px] overflow-hidden">
+        {heroSlides.map((slide, index) => (
           <div
-            className="flex w-full h-full transition-transform duration-700 ease-in-out"
-            style={{
-              transform: `translateX(${-100 * currentSlide}%)`,
-            }}
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
           >
-            {slides.map((slide) => (
-              <div
-                key={slide.id}
-                className="w-full flex-shrink-0 relative h-full"
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              className="w-full h-full object-cover"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-40" />
+          </div>
+        ))}
+
+        <Container className="relative z-10 h-full flex flex-col justify-center">
+          <div className="text-center text-white max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+              Discover Bhutan's Magic
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 drop-shadow-md">
+              Authentic Cultural Experiences • Sustainable Tourism •
+              Award-Winning Guides
+            </p>
+
+            <div className="inline-flex items-center bg-white bg-opacity-90 rounded-full px-6 py-2 mb-8">
+              <svg
+                className="w-8 h-8 text-yellow-500 mr-2"
+                fill="currentColor"
+                viewBox="0 0 24 24"
               >
-                <img
-                  src={slide.src}
-                  alt={`Slide ${slide.id}`}
-                  className="w-full h-full object-cover rounded-2xl"
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+              </svg>
+              <span className="text-gray-800 font-semibold">
+                Certified Excellence in Bhutan Tourism
+              </span>
+            </div>
+          </div>
+
+          {/* Enhanced Search Widget */}
+          <div className="mt-8 bg-white rounded-2xl shadow-xl p-6 transition-all duration-300">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Plan Your Bhutan Adventure
+            </h2>
+
+            <div className="flex flex-col md:flex-row gap-4 mb-4">
+              <div className="relative flex-grow">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiMapPin className="text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  placeholder="Where do you want to go?"
+                  value={destinationSearchTerm}
+                  onChange={(e) => {
+                    setDestinationSearchTerm(e.target.value);
+                    setShowDestinationResults(e.target.value.length > 0);
+                  }}
+                  onFocus={() =>
+                    setShowDestinationResults(destinationSearchTerm.length > 0)
+                  }
+                  onBlur={() =>
+                    setTimeout(() => setShowDestinationResults(false), 200)
+                  }
                 />
+                {showDestinationResults && (
+                  <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-auto">
+                    {filteredDestinations.length > 0 ? (
+                      filteredDestinations.map((dest) => (
+                        <div
+                          key={dest.id}
+                          className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center"
+                          onClick={() => {
+                            setDestinationSearchTerm(dest.title);
+                            setShowDestinationResults(false);
+                          }}
+                        >
+                          <img
+                            src={dest.image}
+                            alt={dest.title}
+                            className="w-10 h-10 rounded-md object-cover mr-3"
+                          />
+                          <div>
+                            <div className="font-medium">{dest.title}</div>
+                            <div className="text-sm text-gray-500">
+                              {dest.location}
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="p-4 text-center text-gray-500">
+                        No destinations found
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <div className="relative flex-grow">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiSearch className="text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  placeholder="Search for tours or activities"
+                  value={packageSearchTerm}
+                  onChange={(e) => {
+                    setPackageSearchTerm(e.target.value);
+                    setShowPackageResults(e.target.value.length > 0);
+                  }}
+                  onFocus={() =>
+                    setShowPackageResults(packageSearchTerm.length > 0)
+                  }
+                  onBlur={() =>
+                    setTimeout(() => setShowPackageResults(false), 200)
+                  }
+                />
+                {showPackageResults && (
+                  <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-auto">
+                    {filteredPackages.length > 0 ? (
+                      filteredPackages.map((pkg) => (
+                        <div
+                          key={pkg.id}
+                          className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center"
+                          onClick={() => {
+                            setPackageSearchTerm(pkg.title);
+                            setShowPackageResults(false);
+                          }}
+                        >
+                          <img
+                            src={pkg.image}
+                            alt={pkg.title}
+                            className="w-10 h-10 rounded-md object-cover mr-3"
+                          />
+                          <div>
+                            <div className="font-medium">{pkg.title}</div>
+                            <div className="text-sm text-gray-500">
+                              {pkg.duration || "Multi-day tour"}
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="p-4 text-center text-gray-500">
+                        No tours found
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiCalendar className="text-gray-400" />
+                </div>
+                <input
+                  type="date"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  placeholder="Select dates"
+                  value={searchFilters.date}
+                  onChange={(e) =>
+                    setSearchFilters({ ...searchFilters, date: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiUsers className="text-gray-400" />
+                </div>
+                <select
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 appearance-none"
+                  value={searchFilters.travelers}
+                  onChange={(e) =>
+                    setSearchFilters({
+                      ...searchFilters,
+                      travelers: parseInt(e.target.value),
+                    })
+                  }
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                    <option key={num} value={num}>
+                      {num} {num === 1 ? "Traveler" : "Travelers"}
+                    </option>
+                  ))}
+                  <option value="9+">9+ Travelers</option>
+                </select>
+              </div>
+
+              <button
+                className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center"
+                onClick={() => setShowFilters(!showFilters)}
+              >
+                <FiFilter className="mr-2" />
+                Filters
+              </button>
+            </div>
+
+            {/* Advanced Filters Panel */}
+            {showFilters && (
+              <div className="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1 ">
+                      Duration (days)
+                    </label>
+                    <div className="flex gap-2">
+                      <input
+                        type="number"
+                        name="minDuration"
+                        placeholder="Min"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        value={searchFilters.minDuration}
+                        onChange={handleFilterChange}
+                      />
+                      <span className="flex items-center">to</span>
+                      <input
+                        type="number"
+                        name="maxDuration"
+                        placeholder="Max"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        value={searchFilters.maxDuration}
+                        onChange={handleFilterChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Minimum Rating
+                    </label>
+                    <select
+                      name="rating"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      value={searchFilters.rating}
+                      onChange={handleFilterChange}
+                    >
+                      <option value="">Any rating</option>
+                      <option value="4">4+ stars</option>
+                      <option value="4.5">4.5+ stars</option>
+                      <option value="5">5 stars only</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="mt-4 flex justify-between">
+                  <button
+                    className="text-sm text-gray-600 hover:text-gray-800"
+                    onClick={resetFilters}
+                  >
+                    Reset all filters
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+                    onClick={() => setShowFilters(false)}
+                  >
+                    Apply Filters
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </Container>
+      </div>
+
+      {/* Trust Indicators */}
+      <div className="w-full bg-gradient-to-r from-orange-50 to-yellow-50">
+        <Container className="py-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[
+              {
+                icon: "🏆",
+                title: "Best Local Guides",
+                text: "Certified Bhutanese experts",
+              },
+              {
+                icon: "🌱",
+                title: "Sustainable Travel",
+                text: "Carbon-neutral tours",
+              },
+              {
+                icon: "💰",
+                title: "Transparent Pricing",
+                text: "Clear & fair costs",
+              },
+              {
+                icon: "🛡️",
+                title: "Flexible Booking",
+                text: "Free cancellations",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition"
+              >
+                <div className="text-4xl mb-3">{item.icon}</div>
+                <h3 className="font-bold text-lg mb-2 text-gray-800">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600">{item.text}</p>
               </div>
             ))}
           </div>
+        </Container>
+      </div>
 
-          {/* Text Content */}
-          <div className="absolute inset-0 flex justify-center items-center z-10">
-            <div className="text-white text-center">
-              <h2 className="text-3xl sm:text-7xl font-bold">
-                Welcome to{" "}
-                <span
-                  className={`text-yellow-400 transition-opacity duration-500 ${
-                    fadeOut ? "opacity-0" : "opacity-100"
-                  }`}
-                >
-                  {randomWord}
-                </span>
-              </h2>
-              <p className="mt-4 text-lg">
-                Experience the beauty of stunning landscapes.
-              </p>
-              {/* CTA Button */}
-              <div className="mt-6">
-                <button className="px-6 py-2 bg-yellow-500 text-white font-bold rounded-full shadow-md hover:bg-orange-400 transition">
-                  Connect Now
+      {/* Popular Destinations Section */}
+      <Container className="py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            Popular Bhutan Destinations
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Discover the most breathtaking places in the Land of the Thunder
+            Dragon
+          </p>
+
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-2 mt-6">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition ${
+                  activeCategory === category
+                    ? "bg-yellow-500 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredDestinations.slice(0, 6).map((destination) => (
+            <div
+              key={destination.id}
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
+            >
+              <div className="relative h-48">
+                <img
+                  src={destination.image}
+                  alt={destination.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h3 className="text-xl font-bold text-white">
+                    {destination.title}
+                  </h3>
+                  <p className="text-yellow-300 text-sm">
+                    {destination.location}
+                  </p>
+                </div>
+                <div className="absolute top-2 right-2 bg-white bg-opacity-90 px-2 py-1 rounded-full text-xs font-bold flex items-center">
+                  <svg
+                    className="w-3 h-3 text-yellow-500 mr-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  {destination.rating}
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-gray-600 mb-4 line-clamp-2">
+                  {destination.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {destination.highlights.slice(0, 3).map((highlight, i) => (
+                    <span
+                      key={i}
+                      className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                    >
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
+                <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center">
+                  Explore Tour Packages
+                  <FiArrowRight className="ml-2" />
                 </button>
               </div>
             </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Navigation Buttons */}
-          {/* Navigation Buttons */}
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-10">
-            <button
-              className="btn btn-circle hidden sm:block"
-              onClick={() => {
-                setFadeOut(true);
-                setTimeout(() => {
-                  setCurrentSlide(
-                    (currentSlide - 1 + slides.length) % slides.length
-                  );
-                  setRandomWord(
-                    keywords[Math.floor(Math.random() * keywords.length)]
-                  );
-                  setFadeOut(false);
-                }, 500);
-              }}
-            >
-              ❮
+        {filteredDestinations.length > 6 && (
+          <div className="text-center mt-12">
+            <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
+              View All {filteredDestinations.length} Destinations
+              <FiArrowRight className="ml-2" />
             </button>
-            <button
-              className="btn btn-circle hidden sm:block"
-              onClick={() => {
-                setFadeOut(true);
-                setTimeout(() => {
-                  setCurrentSlide((currentSlide + 1) % slides.length);
-                  setRandomWord(
-                    keywords[Math.floor(Math.random() * keywords.length)]
-                  );
-                  setFadeOut(false);
-                }, 500);
-              }}
-            >
-              ❯
-            </button>
-          </div>
-        </div>
-        <h2 className="text-4xl font-bold text-center my-6">Destinations</h2>
-        {/* Responsive Grid Section */}
-        <div className="grid py-10 grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Row 1 */}
-          <div className="flex flex-col lg:flex-row items-center">
-            <img
-              src="https://media.istockphoto.com/id/940114158/photo/bhutan.jpg?s=612x612&w=0&k=20&c=IGCji0usEyzwppKyXjMVTXapcU8XXDI9XLKSQkZ5o0M="
-              alt="Dummy Image"
-              className="w-full lg:w-1/2 rounded-xl shadow-lg"
-            />
-            <div className="mt-4 lg:mt-0 lg:ml-8">
-              <h3 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400">
-                Explore Stunning Destinations
-              </h3>
-              <p className="text-lg text-gray-500">
-                Discover a world of adventure, breathtaking landscapes, and
-                unique cultures. Your journey starts here!
-              </p>
-            </div>
-          </div>
-
-          {/* Row 2 */}
-          <div className="flex flex-col lg:flex-row items-center">
-            <img
-              src="https://media.istockphoto.com/id/1266380165/photo/village-under-the-mountain-with-trees-in-gangtey-in-bhutan.jpg?s=612x612&w=0&k=20&c=wlRRG86EwpG9Gs5-41GIYvvNmhMeDtp5lZBYSaLjtBo="
-              alt="Dummy Image"
-              className="w-full lg:w-1/2 rounded-xl shadow-lg"
-            />
-            <div className="mt-4 lg:mt-0 lg:ml-8">
-              <h3 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400">
-                Unleash Your Inner Explorer
-              </h3>
-              <p className="text-lg text-gray-500">
-                Whether you're seeking thrills or tranquility, we offer
-                experiences tailored to your desires.
-              </p>
-            </div>
-          </div>
-
-          {/* Row 3 */}
-          <div className="flex flex-col lg:flex-row items-center">
-            <img
-              src="https://johnryle.com/wp-content/uploads/2016/06/RC-This-year-in-Bhutan-1.jpg"
-              alt="Dummy Image"
-              className="w-full lg:w-1/2 rounded-xl shadow-lg"
-            />
-            <div className="mt-4 lg:mt-0 lg:ml-8">
-              <h3 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400">
-                Capture Memories That Last
-              </h3>
-              <p className="text-lg text-gray-500">
-                Let us guide you to unforgettable moments and breathtaking
-                scenes.
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col lg:flex-row items-center">
-            <img
-              src="https://thatwildidea.co.uk/wp-content/uploads/2019/02/Bhutan-Photo-Essay-8-1024x683.jpg"
-              alt="Dummy Image"
-              className="w-full lg:w-1/2 rounded-xl shadow-lg"
-            />
-            <div className="mt-4 lg:mt-0 lg:ml-8">
-              <h3 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400">
-                Explore Stunning Destinations
-              </h3>
-              <p className="text-lg text-gray-500">
-                Let us guide you to unforgettable moments and breathtaking
-                scenes.
-              </p>
-            </div>
-          </div>
-        </div>
-      </Container>
-      <Container>
-        {/* Header Section */}
-        <div className="text-center py-10">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
-            Bhutan Packages by Themes
-          </h2>
-          <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400 inline-block py-2 px-4 rounded-lg shadow-md">
-            Explore Bhutan Tour from Major Cities
-          </h3>
-        </div>
-
-        {majorCitiesPackage.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-            {majorCitiesPackage.map((tour) => (
-              <div key={tour.id} className="h-full">
-                <CityPackageCard tour={tour} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16">
-            <h3 className="text-xl font-medium text-gray-600 mb-6">
-               Loading ...
-            </h3>
           </div>
         )}
+      </Container>
 
-        {/* View All Section */}
-        <div className="flex justify-center py-8">
-          <button className="flex items-center py-2 px-6 text-white font-semibold bg-gradient-to-r from-yellow-500 to-orange-400 rounded-lg shadow-md hover:bg-orange-600 transition duration-300">
-            View All
-            <svg
-              className="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+      {/* Featured Tours Section */}
+      <Container className="py-12 ">
+        <div className="text-center mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-left mb-4 md:mb-0">
+              <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                Our Most Popular Bhutan Tours
+              </h2>
+              <p className="text-gray-600">
+                {filteredPackages.length} tours available
+              </p>
+            </div>
+
+            <div className="flex items-center">
+              <span className="mr-2 text-gray-700">Sort by:</span>
+              <select
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sortedPackages.slice(0, 6).map((tour) => (
+            <div
+              key={tour.id}
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col h-full" // Added flex flex-col h-full
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              ></path>
-            </svg>
-          </button>
+              {/* Image section with fixed height */}
+              <div className="relative h-48 flex-shrink-0">
+                {" "}
+                {/* Added flex-shrink-0 */}
+                <img
+                  src={tour.image}
+                  alt={tour.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                  {tour.rating || 4.8} ★
+                </div>
+              </div>
+
+              {/* Content section with flex-grow and fixed min-height */}
+              <div className="p-6 flex flex-col flex-grow">
+                {" "}
+                {/* Added flex flex-col flex-grow */}
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-bold">{tour.title}</h3>
+                  <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-sm whitespace-nowrap">
+                    {" "}
+                    {/* Added whitespace-nowrap */}
+                    {tour.duration || tour.dates}
+                  </span>
+                </div>
+                {/* Description with fixed height */}
+                <p className="text-gray-600 mb-4 line-clamp-2 min-h-[3rem]">
+                  {" "}
+                  {/* Added min-h */}
+                  {tour.description}
+                </p>
+                {/* Highlights with fixed height */}
+                <div className="flex flex-wrap gap-2 mb-4 min-h-[1.5rem]">
+                  {" "}
+                  {/* Added min-h */}
+                  {tour.highlights?.slice(0, 3).map((highlight, i) => (
+                    <span
+                      key={i}
+                      className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                    >
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
+                {/* Button at bottom */}
+                <div className="mt-auto">
+                  {" "}
+                  {/* Pushes button to bottom */}
+                  <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                    View Details
+                    <FiArrowRight className="ml-2" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {sortedPackages.length > 6 && (
+          <div className="text-center mt-12">
+            <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
+              View All {sortedPackages.length} Tour Packages
+              <FiArrowRight className="ml-2" />
+            </button>
+          </div>
+        )}
+      </Container>
+
+      {/* Testimonials Section */}
+      <Container className="py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            What Travelers Say About Us
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Don't just take our word for it - hear from our happy travelers
+            who've experienced Bhutan with us.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              quote:
+                "The cultural insights we gained from our Bhutanese guide were incredible. This wasn't just a tour - it was a life-changing experience.",
+              author: "Sarah K., Australia",
+              rating: 5,
+              avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+            },
+            {
+              quote:
+                "Perfectly organized from start to finish. Every detail was taken care of, allowing us to fully immerse in Bhutan's beauty.",
+              author: "Michael T., USA",
+              rating: 5,
+              avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+            },
+            {
+              quote:
+                "As a solo female traveler, I felt completely safe and welcomed. The women-only group tour was empowering and unforgettable.",
+              author: "Priya M., India",
+              rating: 5,
+              avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+            },
+          ].map((testimonial, index) => (
+            <div key={index} className="bg-white p-8 rounded-xl shadow-md">
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className={`w-5 h-5 ${
+                      i < testimonial.rating
+                        ? "text-yellow-500"
+                        : "text-gray-300"
+                    }`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <blockquote className="text-gray-700 italic mb-6 text-lg">
+                "{testimonial.quote}"
+              </blockquote>
+              <div className="flex items-center">
+                <img
+                  src={testimonial.avatar}
+                  alt={testimonial.author}
+                  className="w-12 h-12 rounded-full mr-4"
+                />
+                <p className="font-medium text-gray-800">
+                  — {testimonial.author}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
-      <Container>
-        {/* Header Section */}
-        <div className="text-center py-10">
-          <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400 inline-block py-2 px-4 rounded-lg shadow-md">
-            Bhutan Festivals Tours
-          </h3>
-        </div>
 
-        {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-          {/* Card 1 */}
-          <div className="relative bg-white  rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/bhutan-tshechu-festivel-700-51.jpg"
-              alt="Mumbai Package"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Paro Tsechu Festival Tour
-              </h3>
-              <p className="text-sm text-orange-500 mb-1">
-                24th - 29th March 2024
+      {/* Newsletter Signup */}
+      <Container className="py-16 bg-gradient-to-r from-orange-50 to-yellow-50">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden">
+          <div className="md:flex">
+            <div className="md:w-1/2 bg-yellow-500 p-8 flex flex-col justify-center">
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Get Bhutan Travel Inspiration
+              </h2>
+              <p className="text-yellow-100">
+                Sign up for exclusive offers, travel tips, and Bhutanese
+                cultural insights.
               </p>
-              <p className="text-sm text-gray-500 mb-4">5N/6D Trip</p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Set off on an enthralling six-day expedition to the mystical
-                realm of Bhutan, climaxing with the lively and spiritually
-                enriching Paro Festival. This experience assures a fusion of
-                cultural...
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
             </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://a.storyblok.com/f/171618/3936x2624/ec6a07dce9/lll05083.jpg"
-              alt="Bagdogra Package"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Royal Highland Festival Tour
-              </h3>
-              <p className="text-sm text-orange-500 mb-1">
-                20th - 29th October 2024
-              </p>
-              <p className="text-sm text-gray-500 mb-4">9N/10D Trip</p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                The Royal Highlander Festival unveils the splendor and marvels
-                of Gasa Dzongkhang, showcasing its natural beauty, historical
-                significance, and timeless traditions. By embodying Gasa's
-                vision..
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
+            <div className="md:w-1/2 p-8">
+              <div className="mb-4">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                />
+              </div>
+              <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-lg transition">
+                Subscribe
               </button>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://cdn.drukasia.com/content/images/media/drukasia_021617_dsc05249-1070x713.jpg"
-              alt="Kolkata Package"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Thimphu Tsechu Festival Tour
-              </h3>
-              <p className="text-sm text-orange-500 mb-1">
-                12th - 18th Septemeber 2024
+              <p className="text-xs text-gray-500 mt-3">
+                We respect your privacy. Unsubscribe at any time.
               </p>
-              <p className="text-sm text-gray-500 mb-4">6N/7D Trip</p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Experience the vibrancy of Bhutan's culture at Thimphu Tsechu
-                festival 2024, happening EditProfileForm Septemeber 12th to
-                18th. Delve into a week-long celebration featuring traditional
-                masked dances...
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </Container>
-      <Container>
-        {/* Header Section */}
-        <div className="text-center py-10">
-          <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400 inline-block py-2 px-4 rounded-lg shadow-md">
-            Bhutan Cultural Tours
-          </h3>
-        </div>
-
-        {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-          {/* Card 1 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://bhutanoldmonktravels.com/wp-content/uploads/2018/02/Bhutan-East-West-Tours-1024x576.jpg"
-              alt="Classical Cultural Tour"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Classical Cultural Tour
-              </h3>
-              <p className="text-sm text-orange-500 mb-1">
-                6 Nights / 7 Days Trip
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Experience Bhutan through a fresh lens with the Bhutan Classic
-                Cultural Tour. Immerse yourself in the vibrant local culture as
-                you journey through Thimphu, Paro, Punakha, and Gangtey.
-                Beginning in Paro.
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Trekking-1.jpg"
-              alt="Bhutan Cultural Tour with Bumdrak Trek"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Bhutan Cultural Tour with Bumdrak Trek
-              </h3>
-              <p className="text-sm text-orange-500 mb-1">
-                7 Nights / 8 Days Trip
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Embark on an enlightening 8-day journey delving into Bhutan's
-                ancient cultural treasures and its bountiful natural wonders
-                across four western districts. Engage in nature hikes, marvel at
-                the untouched wilderness.
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/gangtey-nature-trail-700-2.jpg"
-              alt="Bhutan Cultural & Nature Travel"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Bhutan Cultural & Nature Travel
-              </h3>
-              <p className="text-sm text-orange-500 mb-1">
-                9 Nights / 10 Days Trip
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Embark on a responsible and sustainable journey that directly
-                supports local communities, promising authentic experiences
-                while preserving the environment. Immerse yourself in Bhutan's
-                remarkable cultural heritage.
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
             </div>
           </div>
         </div>
       </Container>
-      <Container>
-        {/* Header Section */}
-        <div className="text-center py-10">
-          <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400 inline-block py-2 px-4 rounded-lg shadow-md">
-            Bhutan Treks & Adventures
-          </h3>
-        </div>
 
-        {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-          {/* Card 1 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://cdn.kimkim.com/files/a/content_articles/featured_photos/7cf1c8b6cedee7818de86db9512dda2ca3e52511/big-a797fcf55155849db0bce38693a3fbec.jpg"
-              alt="Jomolhari Trek"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Jomolhari Trek
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                The Jomolhari Trek stands as one of Bhutan's most challenging
-                and esteemed treks, often regarded as among the finest globally.
-                Mount Jomolhari, towering at 7,326 meters, straddles the border
-                between the Tibet Autonomous Region.
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://bhutanrides.com/wp-content/uploads/2018/06/Slider1-e1536816083795.jpg"
-              alt="Bhutan Biking Adventures"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Bhutan Biking Adventures
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Experience Bhutan's majestic landscapes on thrilling biking
-                adventures. Traverse rugged terrain, winding through picturesque
-                valleys and ancient villages. Discover the kingdom's natural
-                wonders and vibrant culture from...
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://pictures.altai-travel.com/1920x0/snowman-trek-in-bhutan-1595.jpg"
-              alt="Snowman Trek"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Snowman Trek
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Bhutan's Snowman Trek ranks among the toughest Himalayan treks
-                and is renowned as one of the most challenging treks globally.
-                It's often noted that more individuals have reached the summit
-                of Everest than have successfully...
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </Container>
-      <Container>
-        {/* Header Section */}
-        <div className="text-center py-10">
-          <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400 inline-block py-2 px-4 rounded-lg shadow-md">
-            Bhutan Group Tours
-          </h3>
-        </div>
-
-        {/* Cards Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-          {/* Card 1 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://www.doortohappinessholiday.com/assets/images/bhutan-group-tours-from-india.webp"
-              alt="Jomolhari Trek"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Bhutan Group Tours Form India
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Dicover the word;s happiest country with our Bhutan Group Tour
-                Packages and experience the joyful vacation you've been yearning
-                for. From scenic landsacpes to serence monastries, Bhutan group
-                toursfrom India offer and ideal blend of relaxation families...
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://www.doortohappinessholiday.com/assets/images/women-only-bhutan-group-tour.webp"
-              alt="Bhutan Biking Adventures"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Women Only Bhutan Group Tour
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Discoer Bhutan's beauty and culture on our exclusive Women's
-                Tour. Dive into local traditions, explore breathtaking
-                landsacpes, and connect with fellow travelers in a supportive,
-                empowering environment. Join us for an unforgettable adventure..
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-            <img
-              src="https://www.doortohappinessholiday.com/assets/images/nepal-bhutan-combined-tour-packages.webp"
-              alt="Snowman Trek"
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Nepal and Bhutan Group Tour Packages
-              </h3>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Don't miss the chance to explore both Nepal and Bhutan in a
-                single trip. Combine the enchanting beauty of these Himalayan
-                Kingdoms into one unforgettable tour. Immerse yourself in the
-                serenity and spirituality of Nepal and Bhutan with our combined
-                tour packages.
-              </p>
-              <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
-                Book Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </Container>
       <WhatsAppButton
         phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string}
-        message="Hello! I have a question about"
+        message="Hello! I have a question about your Bhutan tours"
       />
-    </div>
+    </>
   );
 };
 

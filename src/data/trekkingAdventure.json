@@ -1,0 +1,41 @@
+[
+    {
+      "id": "trek-1",
+      "title": "Jomolhari Trek",
+      "description": "The Jomolhari Trek stands as one of Bhutan's most challenging and esteemed treks, often regarded as among the finest globally. Mount Jomolhari, towering at 7,326 meters, straddles the border between the Tibet Autonomous Region.",
+      "image": "https://cdn.kimkim.com/files/a/content_articles/featured_photos/7cf1c8b6cedee7818de86db9512dda2ca3e52511/big-a797fcf55155849db0bce38693a3fbec.jpg",
+      "route": "Paro, Thimphu, Jomolhari",
+      "category": "trekking",
+      "rating": "4.8",
+      "duration": "7N/8D",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+      "dates":"",
+      "price":"Nu.0.00"
+    },
+    {
+      "id": "trek-2",
+      "title": "Bhutan Biking Adventures",
+      "description": "Experience Bhutan's majestic landscapes on thrilling biking adventures. Traverse rugged terrain, winding through picturesque valleys and ancient villages. Discover the kingdom's natural wonders and vibrant culture from...",
+      "image": "https://bhutanrides.com/wp-content/uploads/2018/06/Slider1-e1536816083795.jpg",
+      "route": "Various routes across Bhutan",
+      "category": "adventure",
+      "rating": "4.8",
+      "duration": "7N/8D",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+      "dates":"",
+      "price":"Nu.0.00"
+    },
+    {
+      "id": "trek-3",
+      "title": "Snowman Trek",
+      "description": "Bhutan's Snowman Trek ranks among the toughest Himalayan treks and is renowned as one of the most challenging treks globally. It's often noted that more individuals have reached the summit of Everest than have successfully...",
+      "image": "https://pictures.altai-travel.com/1920x0/snowman-trek-in-bhutan-1595.jpg",
+      "route": "Lunana region, Bhutan",
+      "category": "trekking",
+      "rating": "4.8",
+      "duration": "7N/8D",
+      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+      "dates":"",
+      "price":"Nu.0.00"
+    }
+  ]
