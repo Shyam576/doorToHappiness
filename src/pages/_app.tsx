@@ -32,7 +32,7 @@ const fetcher = async (url: string) => {
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { pathname } = useRouter();
-  const protectedRoutes = ["/admin", "/admin/dashboard", "/admin/settings"];
+  const protectedRoutes = ["/admin", "/admin/dashboard", "/admin/settings","/admin/majorCityPackage"];
   const isProtected = protectedRoutes.includes(pathname);
 
   return (

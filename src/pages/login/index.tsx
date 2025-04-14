@@ -69,7 +69,7 @@ const Login: React.FC<LoginProps> = ({}) => {
             }
             console.log('ApiErrors', ApiErrors)
             if(res.data.user) {
-                router.push('/home')
+                router.push('/admin/majorCityPackage')
             }
             console.log('ApiErrors', ApiErrors)
         } catch (err: any) {
