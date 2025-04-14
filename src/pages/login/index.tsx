@@ -13,6 +13,7 @@ import { Dispatch } from '../../store/store'
 import { AuthOption, withAuth } from '../../utils/withAuth'
 import { SERVER_URL } from '../../utils/constants'
 import { ErrorField } from '../../components/ErrorField'
+import axios from 'axios'
 
 
 interface LoginProps {
@@ -27,9 +28,7 @@ type LoginValues = {
 type RegisterValues = {
     email: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    displayName: string;
+    role: string;
 }
 
 
@@ -57,15 +56,20 @@ const Login: React.FC<LoginProps> = ({}) => {
         console.log(values)
         setTimeout(() => helpers.setSubmitting(false), 2000)
         try {
-            const res = await dispatch.user.localLoginAsync(values)
-            console.log(res)
-            if(res.errors) {
-                setAPIErrors(res.errors)
+            const res = await axios.post("/api/auth/login",values,{
+                // Use axios.post
+                headers: {
+                  "Content-Type": "application/json",
+                },})
+
+            console.log(res.data)
+            if(res.status ===500) {
+                setAPIErrors("Invalid credentials")
                 console.log('ApiErrors', ApiErrors)
             }
             console.log('ApiErrors', ApiErrors)
-            if(res.user) {
-                router.push('/me')
+            if(res.data.user) {
+                router.push('/home')
             }
             console.log('ApiErrors', ApiErrors)
         } catch (err: any) {
@@ -78,16 +82,12 @@ const Login: React.FC<LoginProps> = ({}) => {
     const registerValues: RegisterValues = {
         email: '',
         password: '',
-        firstName: '',
-        lastName: '',
-        displayName: ''
+        role: ''
     }
     const registerSchema = Yup.object().shape({
         email: Yup.string().email('Email should be email').required('Email cannot be empty or whitespace'),
         password: Yup.string().required('Password cannot be empty or whitespace').min(6, 'Password must be between 6 and 100 characters long').max(100, 'Password must be between 6 and 100 characters long'),
-        firstName: Yup.string().required('First name cannot be empty or whitespace').min(2, 'First name must be between 3 and 30 characters long').max(30, 'First name must be between 3 and 30 characters long'),
-        lastName: Yup.string().required('Last name cannot be empty or whitespace').min(3, 'Last name must be between 3 and 50 characters long').max(50, 'Last name must be between 3 and 50 characters long'),
-        displayName: Yup.string().required('Display name cannot be empty or whitespace').min(3, 'Display name must be between 3 and 30 characters long').max(50, 'Display name must be between 3 and 30 characters long')
+        role: Yup.string().required('Role must be a string')
     })
     const submitRegisterForm = async (values: RegisterValues, helpers: FormikHelpers<RegisterValues>) => {
         console.log(values)
@@ -122,7 +122,7 @@ const Login: React.FC<LoginProps> = ({}) => {
             </Head>
             <div className="flex w-full m-auto mt-0 shadow-xl lg:w-4/12 md:w-10/12 md:mt-28 bg-base-200 rounded-xl" >
                     <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+                    <p className="m-10 mx-auto text-lg font-bold text-center">Door To Happiness Holiday</p>
                     <div className="box-border flex flex-wrap">
                         <button onClick={() => changeForm('login')} className={`flex-1 w-64 p-4 mr-4 text-center rounded-lg uppercase font-bold ${FormType === 'login' ? 'bg-primary' : ''}`}>Sign in</button>
                         <button onClick={() => changeForm('register')} className={`flex-1 w-64 p-4 text-center rounded-lg uppercase font-bold ${FormType === 'register' ? 'bg-primary' : ''}`}>Sign up</button>
@@ -223,46 +223,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                                 {ApiErrors.password ? <ErrorField error={ApiErrors.password}/> : null}
                                             </label>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="font-semibold label-text">First name</span>
-                                                <span className="font-medium label-text-alt">e.g. John</span>
-                                            </label>
-                                            <Field placeholder="Enter your first name" type="text" name="firstName" className={`w-full p-3 transition duration-200 rounded input`}/>
-                                            <label className="label">
-                                                {errors.firstName && touched.firstName ? <ErrorField error={errors.firstName}/> : null}
-                                                {ApiErrors.firstName && touched.firstName ? <ErrorField error={ApiErrors.firstName}/> : null}
-                                            </label>                                            
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="font-semibold label-text">Last name</span>
-                                                <span className="font-medium label-text-alt">e.g. Kovalsky</span>
-                                            </label>
-                                            <Field placeholder="Enter your last name" type="text" name="lastName" className={`w-full p-3 transition duration-200 rounded input`}/>
-                                            <label className="label">
-                                                {errors.lastName && touched.lastName ? <ErrorField error={errors.lastName}/> : null}
-                                                {ApiErrors.lastName && touched.lastName ? <ErrorField error={ApiErrors.lastName}/> : null}
-                                            </label>                                            
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="font-semibold label-text">Display name</span>
-                                                <span className="font-medium label-text-alt">e.g. JohnKov1337</span>
-                                            </label>
-                                            <Field placeholder="Enter your nick name" type="text" name="displayName" className={`w-full p-3 transition duration-200 rounded input`}/>
-                                            <label className="label">
-                                                {errors.displayName && touched.displayName ? <ErrorField error={errors.displayName}/> : null}
-                                                {ApiErrors.nickName && touched.displayName ? <ErrorField error={ApiErrors.nickName}/> : null}
-                                            </label>                                            
-                                        </div>
-                                    </div>                                    
+                                    </div>                       
                                     <button type="submit" disabled={isSubmitting} className={`w-full btn ${isSubmitting ? 'btn loading' : ''}`}>
                                         Submit
                                     </button>

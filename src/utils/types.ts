@@ -22,14 +22,8 @@ export interface User {
     createdAt: string
     updatedAt: string
     provider: Providers
-    providerId: string | number
     email: string
-    firstName: string
-    lastName: string
-    displayName: string
-    image: string
     role: Role
-    accountStatus: AccountStatus
 }
 
 export interface Room {
