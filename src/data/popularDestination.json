@@ -1,135 +1,183 @@
 [
-    {
-      "id": 1,
-      "title": "Tashichodzong, Thimphu",
-      "image": "https://www.littlebhutan.com/wp-content/uploads/2013/04/Tashichho-Dzong-Fortress.jpg",
-      "description": "Embark on your Bhutan package tour from Mumbai with a visit to TrashiCho Dzong in Thimphu. This grand fortress-monastery, also known as the Fortress of the Glorious Religion, is a testament to Bhutanese architecture and serves as the seat of the government.",
-      "location": "Thimphu",
-      "category": "Cultural",
-      "highlights": ["Historic fortress", "Government seat", "Buddhist monastery"],
-      "rating": 4.8,
-      "duration": "2-3 hours",
-      "price":"Nu.0.00"
-    },
-    {
-      "id": 2,
-      "title": "Takin Zoo, Thimphu",
-      "image": "https://static.toiimg.com/photo/55724111.cms",
-      "description": "As part of your Bhutan tour from Mumbai, explore the unique fauna of Bhutan at Takin Zoo in Thimphu. Home to the national animal, the takin, this sanctuary offers a rare glimpse into Bhutan's diverse wildlife.",
-      "location": "Thimphu",
-      "category": "Wildlife",
-      "highlights": ["National animal", "Conservation center", "Nature trails"],
-      "rating": 4.2,
-      "duration": "1-2 hours"
-    },
-    {
-      "id": 3,
-      "title": "Weekend Market, Thimphu",
-      "image": "https://live.staticflickr.com/2791/4210054565_fd440d739d_b.jpg",
-      "description": "Dive into the vibrant culture of Bhutan by strolling through the bustling Weekend Market in Thimphu. This colorful market showcases local handicrafts, fresh produce, and traditional Bhutanese delicacies.",
-      "location": "Thimphu",
-      "category": "Shopping",
-      "highlights": ["Local crafts", "Fresh produce", "Cultural experience"],
-      "rating": 4.5,
-      "duration": "1-3 hours"
-    },
-    {
-      "id": 4,
-      "title": "Gangtey Monastery, Phobjika",
-      "image": "https://authenticbhutantours.com/wp-content/uploads/2016/11/gangatey-goenpa-lhakhang.jpg",
-      "description": "Gangtey Monastery in the Phobjikha Valley offers a serene escape into Bhutan's spiritual heritage. Surrounded by pristine landscapes, this monastery provides a tranquil setting for contemplation.",
-      "location": "Phobjikha",
-      "category": "Spiritual",
-      "highlights": ["Valley views", "Monastic life", "Peaceful setting"],
-      "rating": 4.7,
-      "duration": "2-4 hours"
-    },
-    {
-      "id": 5,
-      "title": "Buddha Point, Thimphu",
-      "image": "https://waybird.imgix.net/experiences/kodak_images/000/015/214/original/Visit_the_Shakyamuni_Buddha_statue_1.jpg?w=1420&h=946&crop=center%20center&fit=min&dpr=1&q=50&auto=format",
-      "description": "Marvel at the awe-inspiring statue of Buddha Dordenma. Situated atop a hill overlooking Thimphu Valley, this iconic landmark offers panoramic views and a sense of tranquillity.",
-      "location": "Thimphu",
-      "category": "Landmark",
-      "highlights": ["Giant Buddha statue", "City views", "Meditation spot"],
-      "rating": 4.6,
-      "duration": "1-2 hours"
-    },
-    {
-      "id": 6,
-      "title": "Tiger Nest Hiking, Paro",
-      "image": "https://cimages1.touristlink.com/data/cache/T/A/K/T/S/A/N/G/taktsang-monastery_2_640_480.jpg",
-      "description": "Experience the thrill of hiking to the legendary Tiger's Nest Monastery in Paro. Perched on a cliff side, this sacred site is a testament to Bhutan's rich spiritual heritage.",
-      "location": "Paro",
-      "category": "Adventure",
-      "highlights": ["Iconic monastery", "Challenging hike", "Spectacular views"],
-      "rating": 4.9,
-      "duration": "4-6 hours"
-    },
-    {
-      "id": 7,
-      "title": "River Rafting in Punakha River, Punakha",
-      "image": "https://i2.wp.com/www.bhutanmajestictravel.com/wp-content/uploads/2017/01/rafting.jpg?fit=2000%2C700&ssl=1",
-      "description": "Add an adventure element with exhilarating river rafting on the Punakha River. Surrounded by lush landscapes and towering mountains, this activity promises an adrenaline-filled experience.",
-      "location": "Punakha",
-      "category": "Adventure",
-      "highlights": ["White water rafting", "Scenic river", "Thrilling experience"],
-      "rating": 4.7,
-      "duration": "2-3 hours"
-    },
-    {
-      "id": 8,
-      "title": "Punakha Dzong, Punakha",
-      "image": "https://tour.rejoytours.com/wp-content/uploads/2024/10/Punakha-Dzong-e1574919168213-1.webp",
-      "description": "Explore the architectural marvel of Punakha Dzong. Situated at the confluence of two rivers, this fortress-monastery is steeped in history and offers insight into Bhutanese culture.",
-      "location": "Punakha",
-      "category": "Cultural",
-      "highlights": ["Riverside location", "Historic architecture", "Religious site"],
-      "rating": 4.8,
-      "duration": "2-3 hours"
-    },
-    {
-      "id": 9,
-      "title": "Phobjikha Valley, Phobjikha, Gangtey",
-      "image": "https://www.heavenlybhutan.com/wp-content/uploads/2020/08/Phobjikha-Valley.jpg",
-      "description": "Discover the unspoiled beauty of Phobjikha Valley, home to endangered black-necked cranes during the winter months. This valley is a haven for nature lovers and bird enthusiasts.",
-      "location": "Gangtey",
-      "category": "Nature",
-      "highlights": ["Crane sanctuary", "Scenic valley", "Nature walks"],
-      "rating": 4.7,
-      "duration": "Half day"
-    },
-    {
-      "id": 10,
-      "title": "Dochula Pass",
-      "image": "https://cdn.bookmytour.bt/uploads/attractions/dochula-1521539383_850_400.jpg",
-      "description": "Capture panoramic views of the Himalayas from Dochula Pass. Adorned with 108 memorial chortens, this mountain pass offers breath-taking vistas and photo opportunities.",
-      "location": "Between Thimphu & Punakha",
-      "category": "Scenic",
-      "highlights": ["Mountain views", "108 chortens", "Photo spot"],
-      "rating": 4.5,
-      "duration": "30-60 minutes"
-    },
-    {
-      "id": 11,
-      "title": "Punakha Suspension Bridge, Punakha",
-      "image": "https://live.staticflickr.com/65535/53881869194_66df39351d_b.jpg",
-      "description": "Dare to cross the Punakha Suspension Bridge, one of the longest of its kind in Bhutan. This bridge offers thrilling views of the Punakha Valley and its surrounding scenery.",
-      "location": "Punakha",
-      "category": "Adventure",
-      "highlights": ["Long suspension bridge", "River views", "Thrilling walk"],
-      "rating": 4.3,
-      "duration": "30-45 minutes"
-    },
-    {
-      "id": 12,
-      "title": "Chimi Lhakhang, Punakha",
-      "image": "https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/chimi-lhakhang-bhutan-700-1.jpg",
-      "description": "Visit Chimi Lhakhang, the fertility temple dedicated to the Divine Madman. Known for its unique phallus symbols believed to bring blessings and fertility.",
-      "location": "Punakha",
-      "category": "Cultural",
-      "highlights": ["Unique temple", "Fertility blessings", "Colorful art"],
-      "rating": 4.4,
-      "duration": "1-2 hours"
-    }
-  ]
+  {
+    "id": "f854900f-726b-4014-b902-c771df64bdd1",
+    "title": "Tashichodzong, Thimphu",
+    "image": "https://www.littlebhutan.com/wp-content/uploads/2013/04/Tashichho-Dzong-Fortress.jpg",
+    "description": "Embark on your Bhutan package tour from Mumbai with a visit to TrashiCho Dzong in Thimphu. This grand fortress-monastery, also known as the Fortress of the Glorious Religion, is a testament to Bhutanese architecture and serves as the seat of the government.",
+    "location": "Thimphu",
+    "category": "Cultural",
+    "highlights": [
+      "Historic fortress",
+      "Government seat",
+      "Buddhist monastery"
+    ],
+    "rating": 4.8,
+    "duration": "2-3 hours",
+    "price": "Nu.0.00"
+  },
+  {
+    "id": "aca5c703-fa54-4277-afd1-261d9b19ce07",
+    "title": "Takin Zoo, Thimphu",
+    "image": "https://static.toiimg.com/photo/55724111.cms",
+    "description": "As part of your Bhutan tour from Mumbai, explore the unique fauna of Bhutan at Takin Zoo in Thimphu. Home to the national animal, the takin, this sanctuary offers a rare glimpse into Bhutan's diverse wildlife.",
+    "location": "Thimphu",
+    "category": "Wildlife",
+    "highlights": [
+      "National animal",
+      "Conservation center",
+      "Nature trails"
+    ],
+    "rating": 4.2,
+    "duration": "1-2 hours"
+  },
+  {
+    "id": "0a344dee-587d-41c5-9e2b-4b3ff4627812",
+    "title": "Weekend Market, Thimphu",
+    "image": "https://live.staticflickr.com/2791/4210054565_fd440d739d_b.jpg",
+    "description": "Dive into the vibrant culture of Bhutan by strolling through the bustling Weekend Market in Thimphu. This colorful market showcases local handicrafts, fresh produce, and traditional Bhutanese delicacies.",
+    "location": "Thimphu",
+    "category": "Shopping",
+    "highlights": [
+      "Local crafts",
+      "Fresh produce",
+      "Cultural experience"
+    ],
+    "rating": 4.5,
+    "duration": "1-3 hours"
+  },
+  {
+    "id": "b96f550e-ca5e-4905-baf4-9e1604517fa1",
+    "title": "Gangtey Monastery, Phobjika",
+    "image": "https://authenticbhutantours.com/wp-content/uploads/2016/11/gangatey-goenpa-lhakhang.jpg",
+    "description": "Gangtey Monastery in the Phobjikha Valley offers a serene escape into Bhutan's spiritual heritage. Surrounded by pristine landscapes, this monastery provides a tranquil setting for contemplation.",
+    "location": "Phobjikha",
+    "category": "Spiritual",
+    "highlights": [
+      "Valley views",
+      "Monastic life",
+      "Peaceful setting"
+    ],
+    "rating": 4.7,
+    "duration": "2-4 hours"
+  },
+  {
+    "id": "0cb6eb55-91a0-460d-ae10-f95b70700d79",
+    "title": "Buddha Point, Thimphu",
+    "image": "https://waybird.imgix.net/experiences/kodak_images/000/015/214/original/Visit_the_Shakyamuni_Buddha_statue_1.jpg?w=1420&h=946&crop=center%20center&fit=min&dpr=1&q=50&auto=format",
+    "description": "Marvel at the awe-inspiring statue of Buddha Dordenma. Situated atop a hill overlooking Thimphu Valley, this iconic landmark offers panoramic views and a sense of tranquillity.",
+    "location": "Thimphu",
+    "category": "Landmark",
+    "highlights": [
+      "Giant Buddha statue",
+      "City views",
+      "Meditation spot"
+    ],
+    "rating": 4.6,
+    "duration": "1-2 hours"
+  },
+  {
+    "id": "e42dd7d0-2cd5-41ab-bc5a-b47e36174da1",
+    "title": "Tiger Nest Hiking, Paro",
+    "image": "https://cimages1.touristlink.com/data/cache/T/A/K/T/S/A/N/G/taktsang-monastery_2_640_480.jpg",
+    "description": "Experience the thrill of hiking to the legendary Tiger's Nest Monastery in Paro. Perched on a cliff side, this sacred site is a testament to Bhutan's rich spiritual heritage.",
+    "location": "Paro",
+    "category": "Adventure",
+    "highlights": [
+      "Iconic monastery",
+      "Challenging hike",
+      "Spectacular views"
+    ],
+    "rating": 4.9,
+    "duration": "4-6 hours"
+  },
+  {
+    "id": "573b12b1-7bf5-4271-946c-685ff6d797c3",
+    "title": "River Rafting in Punakha River, Punakha",
+    "image": "https://i2.wp.com/www.bhutanmajestictravel.com/wp-content/uploads/2017/01/rafting.jpg?fit=2000%2C700&ssl=1",
+    "description": "Add an adventure element with exhilarating river rafting on the Punakha River. Surrounded by lush landscapes and towering mountains, this activity promises an adrenaline-filled experience.",
+    "location": "Punakha",
+    "category": "Adventure",
+    "highlights": [
+      "White water rafting",
+      "Scenic river",
+      "Thrilling experience"
+    ],
+    "rating": 4.7,
+    "duration": "2-3 hours"
+  },
+  {
+    "id": "50311703-0eef-4d1c-9ada-dde2fab7a5df",
+    "title": "Punakha Dzong, Punakha",
+    "image": "https://tour.rejoytours.com/wp-content/uploads/2024/10/Punakha-Dzong-e1574919168213-1.webp",
+    "description": "Explore the architectural marvel of Punakha Dzong. Situated at the confluence of two rivers, this fortress-monastery is steeped in history and offers insight into Bhutanese culture.",
+    "location": "Punakha",
+    "category": "Cultural",
+    "highlights": [
+      "Riverside location",
+      "Historic architecture",
+      "Religious site"
+    ],
+    "rating": 4.8,
+    "duration": "2-3 hours"
+  },
+  {
+    "id": "391c48e0-6fca-48b1-8945-54dd9bd71428",
+    "title": "Phobjikha Valley, Phobjikha, Gangtey",
+    "image": "https://www.heavenlybhutan.com/wp-content/uploads/2020/08/Phobjikha-Valley.jpg",
+    "description": "Discover the unspoiled beauty of Phobjikha Valley, home to endangered black-necked cranes during the winter months. This valley is a haven for nature lovers and bird enthusiasts.",
+    "location": "Gangtey",
+    "category": "Nature",
+    "highlights": [
+      "Crane sanctuary",
+      "Scenic valley",
+      "Nature walks"
+    ],
+    "rating": 4.7,
+    "duration": "Half day"
+  },
+  {
+    "id": "e15097db-9095-40c1-bcbd-5f37a15ab652",
+    "title": "Dochula Pass",
+    "image": "https://cdn.bookmytour.bt/uploads/attractions/dochula-1521539383_850_400.jpg",
+    "description": "Capture panoramic views of the Himalayas from Dochula Pass. Adorned with 108 memorial chortens, this mountain pass offers breath-taking vistas and photo opportunities.",
+    "location": "Between Thimphu & Punakha",
+    "category": "Scenic",
+    "highlights": [
+      "Mountain views",
+      "108 chortens",
+      "Photo spot"
+    ],
+    "rating": 4.5,
+    "duration": "30-60 minutes"
+  },
+  {
+    "id": "38e8738b-5c41-451a-b2e9-0b4d59764c2b",
+    "title": "Punakha Suspension Bridge, Punakha",
+    "image": "https://live.staticflickr.com/65535/53881869194_66df39351d_b.jpg",
+    "description": "Dare to cross the Punakha Suspension Bridge, one of the longest of its kind in Bhutan. This bridge offers thrilling views of the Punakha Valley and its surrounding scenery.",
+    "location": "Punakha",
+    "category": "Adventure",
+    "highlights": [
+      "Long suspension bridge",
+      "River views",
+      "Thrilling walk"
+    ],
+    "rating": 4.3,
+    "duration": "30-45 minutes"
+  },
+  {
+    "id": "889f4e82-449e-4897-9da2-eb85e836fd94",
+    "title": "Chimi Lhakhang, Punakha",
+    "image": "https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/chimi-lhakhang-bhutan-700-1.jpg",
+    "description": "Visit Chimi Lhakhang, the fertility temple dedicated to the Divine Madman. Known for its unique phallus symbols believed to bring blessings and fertility.",
+    "location": "Punakha",
+    "category": "Cultural",
+    "highlights": [
+      "Unique temple",
+      "Fertility blessings",
+      "Colorful art"
+    ],
+    "rating": 4.4,
+    "duration": "1-2 hours"
+  }
+]

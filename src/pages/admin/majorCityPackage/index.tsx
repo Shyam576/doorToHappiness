@@ -21,30 +21,26 @@ interface PackageItem {
   inclusions: string[];
   exclusions: string[];
   bestSeason: string[];
+  [key: string]: any; // Allow dynamic properties
 }
 
-interface Destinations{
-    id:string;
-    title:string;
-    description:string;
-    image:string;
+interface FieldConfig {
+  name: string;
+  label: string;
+  type: 'text' | 'number' | 'textarea' | 'array' | 'itinerary';
+  required?: boolean;
 }
 
 const EditPackagesPage = () => {
   const { user, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
-  const [selectedFile, setSelectedFile] =
-    useState<string>("majorCitiesPackage");
+  const [selectedFile, setSelectedFile] = useState<string>("majorCitiesPackage");
   const [data, setData] = useState<PackageItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState<PackageItem | null>(null);
   const [formData, setFormData] = useState<Partial<PackageItem>>({});
-  const [newHighlight, setNewHighlight] = useState<string>("");
-  const [newInclusion, setNewInclusion] = useState<string>("");
-  const [newExclusion, setNewExclusion] = useState<string>("");
-  const [newDate, setNewDate] = useState<string>("");
-  const [newSeason, setNewSeason] = useState<string>("");
+  const [newArrayItem, setNewArrayItem] = useState<Record<string, string>>({});
   const [newItineraryItem, setNewItineraryItem] = useState({
     title: "",
     description: "",
@@ -59,6 +55,33 @@ const EditPackagesPage = () => {
     "trekkingAdventure",
     "groupTours",
   ];
+
+  // Define field configurations for each package type
+  const packageFieldConfigs: Record<string, FieldConfig[]> = {
+    majorCitiesPackage: [
+      { name: 'title', label: 'Title', type: 'text', required: true },
+      { name: 'description', label: 'Description', type: 'textarea' },
+      { name: 'image', label: 'Image URL', type: 'text' },
+      { name: 'alt', label: 'Alt Text', type: 'text' },
+      { name: 'duration', label: 'Duration', type: 'text' },
+      { name: 'route', label: 'Route', type: 'text' },
+      { name: 'rating', label: 'Rating', type: 'number' },
+      { name: 'price', label: 'Price', type: 'number' },
+      { name: 'full_description', label: 'Full Description', type: 'textarea' },
+      { name: 'highlights', label: 'Highlights', type: 'array' },
+      { name: 'inclusions', label: 'Inclusions', type: 'array' },
+      { name: 'exclusions', label: 'Exclusions', type: 'array' },
+      { name: 'dates', label: 'Dates', type: 'array' },
+      { name: 'bestSeason', label: 'Best Season', type: 'array' },
+      { name: 'itinerary', label: 'Itinerary', type: 'itinerary' },
+    ],
+    popularDestination: [
+        { name: 'title', label: 'Title', type: 'text', required: true },
+        { name: 'description', label: 'Description', type: 'textarea' },
+        { name: 'image', label: 'Image URL', type: 'text' },
+      ],
+    // Add configurations for other package types later
+  };
 
   useEffect(() => {
     if (!isLoading && (!isAuthenticated || user?.role !== "admin")) {
@@ -83,12 +106,11 @@ const EditPackagesPage = () => {
     }
   };
 
-  console.log("Data: ", data);
-
   const handleFileChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedFile(e.target.value);
     setIsEditing(null);
     setFormData({});
+    setNewArrayItem({});
   };
 
   const handleInputChange = (
@@ -103,18 +125,18 @@ const EditPackagesPage = () => {
     setFormData((prev) => ({ ...prev, [name]: Number(value) }));
   };
 
-  const handleArrayInputChange = (type: string, value: string) => {
+  const handleArrayInputChange = (fieldName: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      [type]: [...((prev[type as keyof PackageItem] as string[]) || []), value],
+      [fieldName]: [...((prev[fieldName] as string[]) || []), value],
     }));
   };
 
-  const handleRemoveArrayItem = (type: string, index: number) => {
+  const handleRemoveArrayItem = (fieldName: string, index: number) => {
     setFormData((prev) => {
-      const arr = [...((prev[type as keyof PackageItem] as string[]) || [])];
+      const arr = [...((prev[fieldName] as string[]) || [])];
       arr.splice(index, 1);
-      return { ...prev, [type]: arr };
+      return { ...prev, [fieldName]: arr };
     });
   };
 
@@ -124,10 +146,8 @@ const EditPackagesPage = () => {
       
       const newItinerary = [...prev.itinerary];
       if (direction === 'up' && index > 0) {
-        // Swap with previous item
         [newItinerary[index], newItinerary[index - 1]] = [newItinerary[index - 1], newItinerary[index]];
       } else if (direction === 'down' && index < newItinerary.length - 1) {
-        // Swap with next item
         [newItinerary[index], newItinerary[index + 1]] = [newItinerary[index + 1], newItinerary[index]];
       }
       
@@ -223,172 +243,71 @@ const EditPackagesPage = () => {
     setFormData({});
   };
 
-  if (isLoading || !isAuthenticated || user?.role !== "admin") {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Loading or not authorized...
-      </div>
-    );
-  }
-
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <Head>
-        <title>Edit Packages - Admin</title>
-      </Head>
-
-      <h1 className="text-3xl font-bold mb-6">Edit Package Data</h1>
-
-      <div className="mb-6">
-        <label htmlFor="file-select" className="block mb-2 font-medium">
-          Select Package File:
-        </label>
-        <select
-          id="file-select"
-          value={selectedFile}
-          onChange={handleFileChange}
-          className="w-full p-2 border rounded"
-        >
-          {availableFiles.map((file) => (
-            <option key={file} value={file}>
-              {file}.json
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">
-          {isEditing ? "Edit Package" : "Add New Package"}
-        </h2>
-
-        {error && (
-          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block mb-1 font-medium">Title:</label>
-              <input
-                type="text"
-                name="title"
-                value={formData.title || ""}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1 font-medium">Image URL:</label>
-              <input
-                type="text"
-                name="image"
-                value={formData.image || ""}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1 font-medium">Alt Text:</label>
-              <input
-                type="text"
-                name="alt"
-                value={formData.alt || ""}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1 font-medium">Duration:</label>
-              <input
-                type="text"
-                name="duration"
-                value={formData.duration || ""}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1 font-medium">Route:</label>
-              <input
-                type="text"
-                name="route"
-                value={formData.route || ""}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1 font-medium">Rating:</label>
-              <input
-                type="number"
-                name="rating"
-                min="1"
-                max="5"
-                value={formData.rating || ""}
-                onChange={handleNumberInputChange}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1 font-medium">Price:</label>
-              <input
-                type="number"
-                name="price"
-                value={formData.price || ""}
-                onChange={handleNumberInputChange}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Description:</label>
-            <textarea
-              name="description"
-              value={formData.description || ""}
+  const renderField = (field: FieldConfig) => {
+    switch (field.type) {
+      case 'text':
+        return (
+          <div key={field.name}>
+            <label className="block mb-1 font-medium">{field.label}:</label>
+            <input
+              type="text"
+              name={field.name}
+              value={(formData[field.name] as string) || ''}
               onChange={handleInputChange}
-              rows={3}
               className="w-full p-2 border rounded"
+              required={field.required}
             />
           </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Full Description:</label>
-            <textarea
-              name="full_description"
-              value={formData.full_description || ""}
-              onChange={handleInputChange}
-              rows={5}
+        );
+      case 'number':
+        return (
+          <div key={field.name}>
+            <label className="block mb-1 font-medium">{field.label}:</label>
+            <input
+              type="number"
+              name={field.name}
+              value={(formData[field.name] as number) || ''}
+              onChange={handleNumberInputChange}
               className="w-full p-2 border rounded"
+              required={field.required}
             />
           </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Highlights:</label>
+        );
+      case 'textarea':
+        return (
+          <div key={field.name}>
+            <label className="block mb-1 font-medium">{field.label}:</label>
+            <textarea
+              name={field.name}
+              value={(formData[field.name] as string) || ''}
+              onChange={handleInputChange}
+              rows={field.name === 'full_description' ? 5 : 3}
+              className="w-full p-2 border rounded"
+              required={field.required}
+            />
+          </div>
+        );
+      case 'array':
+        return (
+          <div key={field.name}>
+            <label className="block mb-1 font-medium">{field.label}:</label>
             <div className="flex mb-2">
               <input
                 type="text"
-                value={newHighlight}
-                onChange={(e) => setNewHighlight(e.target.value)}
+                value={newArrayItem[field.name] || ''}
+                onChange={(e) => setNewArrayItem({
+                  ...newArrayItem,
+                  [field.name]: e.target.value
+                })}
                 className="flex-1 p-2 border rounded-l"
-                placeholder="New highlight"
+                placeholder={`New ${field.label}`}
               />
               <button
                 type="button"
                 onClick={() => {
-                  if (newHighlight) {
-                    handleArrayInputChange("highlights", newHighlight);
-                    setNewHighlight("");
+                  if (newArrayItem[field.name]) {
+                    handleArrayInputChange(field.name, newArrayItem[field.name]);
+                    setNewArrayItem({ ...newArrayItem, [field.name]: '' });
                   }
                 }}
                 className="bg-blue-500 text-white px-4 rounded-r"
@@ -397,15 +316,12 @@ const EditPackagesPage = () => {
               </button>
             </div>
             <div className="flex flex-wrap gap-2">
-              {formData.highlights?.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-100 px-3 py-1 rounded-full flex items-center"
-                >
+              {(formData[field.name] as string[] || []).map((item, index) => (
+                <div key={index} className="bg-gray-100 px-3 py-1 rounded-full flex items-center">
                   {item}
                   <button
                     type="button"
-                    onClick={() => handleRemoveArrayItem("highlights", index)}
+                    onClick={() => handleRemoveArrayItem(field.name, index)}
                     className="ml-2 text-red-500"
                   >
                     ×
@@ -414,186 +330,14 @@ const EditPackagesPage = () => {
               ))}
             </div>
           </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Inclusions:</label>
-            <div className="flex mb-2">
-              <input
-                type="text"
-                value={newInclusion}
-                onChange={(e) => setNewInclusion(e.target.value)}
-                className="flex-1 p-2 border rounded-l"
-                placeholder="New Inclusion"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (newInclusion) {
-                    handleArrayInputChange("inclusions", newInclusion);
-                    setNewInclusion("");
-                  }
-                }}
-                className="bg-blue-500 text-white px-4 rounded-r"
-              >
-                Add
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {formData.inclusions?.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-100 px-3 py-1 rounded-full flex items-center"
-                >
-                  {item}
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveArrayItem("inclusions", index)}
-                    className="ml-2 text-red-500"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Exclusions:</label>
-            <div className="flex mb-2">
-              <input
-                type="text"
-                value={newExclusion}
-                onChange={(e) => setNewExclusion(e.target.value)}
-                className="flex-1 p-2 border rounded-l"
-                placeholder="New Exclusion"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (newExclusion) {
-                    handleArrayInputChange("exclusions", newExclusion);
-                    setNewExclusion("");
-                  }
-                }}
-                className="bg-blue-500 text-white px-4 rounded-r"
-              >
-                Add
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {formData.exclusions?.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-100 px-3 py-1 rounded-full flex items-center"
-                >
-                  {item}
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveArrayItem("exclusions", index)}
-                    className="ml-2 text-red-500"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Dates:</label>
-            <div className="flex mb-2">
-              <input
-                type="text"
-                value={newDate}
-                onChange={(e) => setNewDate(e.target.value)}
-                className="flex-1 p-2 border rounded-l"
-                placeholder="New date"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (newDate) {
-                    handleArrayInputChange("dates", newDate);
-                    setNewDate("");
-                  }
-                }}
-                className="bg-blue-500 text-white px-4 rounded-r"
-              >
-                Add
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {formData.dates?.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-100 px-3 py-1 rounded-full flex items-center"
-                >
-                  {item}
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveArrayItem("dates", index)}
-                    className="ml-2 text-red-500"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Best Season:</label>
-            <div className="flex mb-2">
-              <input
-                type="text"
-                value={newSeason}
-                onChange={(e) => setNewSeason(e.target.value)}
-                className="flex-1 p-2 border rounded-l"
-                placeholder="New Season"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (newSeason) {
-                    handleArrayInputChange("bestSeason", newSeason);
-                    setNewSeason("");
-                  }
-                }}
-                className="bg-blue-500 text-white px-4 rounded-r"
-              >
-                Add
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {formData.bestSeason?.map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-100 px-3 py-1 rounded-full flex items-center"
-                >
-                  {item}
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveArrayItem("bestSeason", index)}
-                    className="ml-2 text-red-500"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Similar sections for inclusions, exclusions, dates, and bestSeason */}
-
-          <div className="mt-8">
+        );
+      case 'itinerary':
+        return (
+          <div key={field.name} className="mt-8">
             <h3 className="text-xl font-semibold mb-4">Itinerary Details</h3>
-
-            {/* Existing Itinerary Items */}
             <div className="space-y-6 mb-8">
               {formData.itinerary?.map((item, index) => (
-                <div
-                  key={index}
-                  className="border border-gray-200 rounded-lg p-4 bg-gray-50"
-                >
+                <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
                   <div className="flex justify-between items-center mb-3">
                     <h4 className="font-medium text-lg">
                       Day {index + 1}: {item.title}
@@ -683,7 +427,6 @@ const EditPackagesPage = () => {
               ))}
             </div>
 
-            {/* Add New Itinerary Item */}
             <div className="border-2 border-dashed border-blue-200 rounded-lg p-6 bg-blue-50">
               <h4 className="text-lg font-medium text-blue-800 mb-4">
                 Add New Itinerary Day
@@ -764,6 +507,75 @@ const EditPackagesPage = () => {
               </button>
             </div>
           </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  if (isLoading || !isAuthenticated || user?.role !== "admin") {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        Loading or not authorized...
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <Head>
+        <title>Edit Packages - Admin</title>
+      </Head>
+
+      <h1 className="text-3xl font-bold mb-6">Edit Package Data</h1>
+
+      <div className="mb-6">
+        <label htmlFor="file-select" className="block mb-2 font-medium">
+          Select Package File:
+        </label>
+        <select
+          id="file-select"
+          value={selectedFile}
+          onChange={handleFileChange}
+          className="w-full p-2 border rounded"
+        >
+          {availableFiles.map((file) => (
+            <option key={file} value={file}>
+              {file}.json
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 className="text-xl font-semibold mb-4">
+          {isEditing ? "Edit Package" : "Add New Package"}
+        </h2>
+
+        {error && (
+          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {packageFieldConfigs[selectedFile]?.filter(f => 
+              ['text', 'number'].includes(f.type)
+            ).map(field => renderField(field))}
+          </div>
+
+          {packageFieldConfigs[selectedFile]?.filter(f => 
+            f.type === 'textarea'
+          ).map(field => renderField(field))}
+
+          {packageFieldConfigs[selectedFile]?.filter(f => 
+            f.type === 'array' && f.name !== 'itinerary'
+          ).map(field => renderField(field))}
+
+          {packageFieldConfigs[selectedFile]?.some(f => f.type === 'itinerary') && 
+            renderField({ name: 'itinerary', label: 'Itinerary', type: 'itinerary' })
+          }
 
           <div className="flex space-x-3 pt-4">
             <button

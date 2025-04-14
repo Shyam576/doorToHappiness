@@ -44,10 +44,10 @@ export const NavBar: React.FC<NavBarProps> = () => {
 						/>
 						<div className="hidden sm:flex flex-col">
                             <span className="font-bold text-lg text-gray-800 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
-                                Door To Happiness
+                                Your Happiness is our 
                             </span>
                             <span className="text-sm font-medium text-yellow-700 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
-                                Holidays
+								Priority
                             </span>
                         </div>
 					</Link>
