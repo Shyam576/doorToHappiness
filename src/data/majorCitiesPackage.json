@@ -56,69 +56,7 @@
     "price": 45000,
     "inclusions": ["Accommodation in double or twin sharing rooms", "Round-trip transfers from Paro Airport", "Meal plan including breakfast and dinner", "SDF Charges (Sustainable Development Fees)","All permits and E-Visa arrangements","Travel insurance coverage (applicable up to 60 years of age)","One tour guide provided from Phuentsholing to Phuentsholing","24/7 support from a local coordinator"],
     "exclusions": ["Air Fare, Train Fare", "Monuments Entrance Fees","Any item which is not mentioned in the 'Inclusion' section","Laundry, Tips, phone call or any such personal expenses","Snacks or any other meals","Jungle Safari on Extra Payment Basis"],
-    "bestSeason": ["March", "April", "May", "September", "October", "November"],
-    "topAttractionToVisit":[
-      {
-        "title":"Tashichodzong, Thimphu",
-        "description":"Embark on your Bhutan package tour from Mumbai with a visit to TrashiCho Dzong in Thimphu. This grand fortress-monastery, also known as the Fortress of the Glorious Religion, is a testament to Bhutanese architecture and serves as the seat of the government. It offers visitors a glimpse into the administrative and religious aspects of Bhutanese society."
-      },
-      {
-        "title":"Takin Zoo, Thimphu",
-        "description":"As part of your Bhutan tour from Mumbai, explore the unique fauna of Bhutan at Takin Zoo in Thimphu. Home to the national animal, the takin, this sanctuary offers a rare glimpse into Bhutan's diverse wildlife. Visitors can observe takins in their natural habitat and learn about conservation efforts in Bhutan."
-      },
-      {
-        "title":"Weekend Market, Thimphu",
-        "description":"Dive into the vibrant culture of Bhutan by strolling through the bustling Weekend Market in Thimphu. This colorful market, a must-visit during your Bhutan trip from Mumbai, showcases local handicrafts, fresh produce, and traditional Bhutanese delicacies. Visitors can interact with local vendors and experience the lively atmosphere of Bhutanese market culture."
-      },
-      {
-        "title":"Gangtey Monastery, Phobjika",
-        "description":"Included in Bhutan tour packages from Mumbai, Gangtey Monastery in the Phobjikha Valley offers a serene escape into Bhutan's spiritual heritage. Surrounded by pristine landscapes, this monastery provides a tranquil setting for contemplation and exploration. Visitors can participate in meditation sessions and learn about Buddhist teachings from resident monks."
-      },
-      {
-           "title":"Shopping in Handicrafts Village, Thimphu",
-        "description":"Enhance your Bhutan package from Mumbai with a shopping spree at the Handicrafts Village in Thimphu. Browse through exquisite Bhutanese handicrafts, textiles, and souvenirs crafted by local artisans, offering a unique glimpse into Bhutanese craftsmanship. Visitors can purchase handmade items such as textiles, woodwork, and pottery as mementos of their trip to Bhutan."
-      },
-      {
-        "title":"Buddha Point, Thimphu",
-        "description":"Marvel at the awe-inspiring statue of Buddha Dordenma during your Bhutan tour from Mumbai. Situated atop a hill overlooking Thimphu Valley, this iconic landmark offers panoramic views and a sense of tranquillity. Visitors can explore the surrounding gardens and enjoy breath-taking vistas of the surrounding mountains and valleys."
-      },
-      {
-        "title":"Tiger Nest Hiking, Paro",
-        "description":"Experience the thrill of hiking to the legendary Tiger's Nest Monastery in Paro as part of your Bhutan tour package from Mumbai Airport. Perched on a cliff side, this sacred site is a testament to Bhutan's rich spiritual heritage and offers breath-taking views of the valley below. Visitors can embark on a challenging trek through lush forests and rocky terrain to reach this iconic monastery, which is revered by Buddhists around the world."
-      },
-      {
-        "title":"River Rafting in Punakha River, Punakha",
-        "description":"Add an adventure element to your Bhutan package from Mumbai with exhilarating river rafting on the Punakha River. Surrounded by lush landscapes and towering mountains, this activity promises an adrenaline-filled experience. Visitors can navigate the rapids of the river and enjoy stunning views of the surrounding scenery while experiencing the thrill of white-water rafting."
-      },
-      {
-        "title":"Punakha Dzong, Punakha",
-        "description":"Explore the architectural marvel of Punakha Dzong, a highlight of Bhutan trip from Mumbai. Situated at the confluence of the Mo Chhu and Pho Chhu rivers, this fortress-monastery is steeped in history and offers insight into Bhutanese culture. Visitors can admire the intricate woodwork and paintings adorning the walls of the dzong and learn about its significance as a religious and administrative center in Bhutan."
-      },
-      {
-        "title":"Simply Bhutan Museum,Thimphu",
-        "description":"Indulge yourself in Bhutanese culture at the Simply Bhutan Museum during your Bhutan package tour from Mumbai. This living museum offers interactive exhibits, traditional performances, and insights into Bhutanese way of life. Visitors can participate in hands-on activities such as traditional dress-up and archery and learn about Bhutan's unique customs and traditions."
-      },
-      {
-        "title":"Phobjikha Valley, Phobjikha, Gangtey",
-        "description":"Discover the unspoiled beauty of Phobjikha Valley, home to endangered black-necked cranes during the winter months. This valley is a haven for nature lovers and bird enthusiasts, offering pristine landscapes and serene surroundings. Visitors can explore the valley on foot or bicycle and observe the cranes in their natural habitat, making it a must-visit destination during your Bhutan tour from Mumbai."
-      },
-      {
-        "title":"Haa Valley, Haa District",
-        "description":"Journey to the picturesque Haa Valley during your Mumbai to Bhutan tour. Tucked away in the western part of Bhutan, this valley offers pristine landscapes, ancient temples, and cultural immersion opportunities. Visitors can hike through verdant forests, visit traditional Bhutanese villages, and explore centuries-old monasteries, gaining insight into the rich cultural heritage of Bhutan."
-      },
-      {
-        "title": "Dochula Pass",
-        "description":"Capture panoramic views of the Himalayas from Dochula Pass, a must-visit during your Bhutan tour from Mumbai by road. Adorned with 108 memorial chortens, this mountain pass offers breath-taking vistas and photo opportunities. Visitors can enjoy a leisurely stroll along the pass and soak in the majestic scenery of snow-capped peaks and rolling hills, making it a memorable stop on your journey through Bhutan."
-      },
-      {
-        "title":"Punakha Suspension Bridge, Punakha",
-        "description":"Dare to cross the Punakha Suspension Bridge, one of the longest of its kind in Bhutan. As part of your Bhutan tour from Mumbai, this bridge offers thrilling views of the Punakha Valley and its surrounding scenery. Visitors can walk across the bridge and admire the rushing waters below, experiencing the beauty of Bhutan's natural landscapes firsthand."
-      },
-      {
-        "title":"Chimi Lhakhang, Punakha",
-        "description":"Conclude your Bhutan tour from Mumbai with a visit to Chimi Lhakhang, the fertility temple dedicated to the Divine Madman. Known for its unique phallus symbols believed to bring blessings and fertility, this temple offers a glimpse into Bhutan's colorful religious traditions. Visitors can explore the temple grounds and receive blessings from resident monks, making it a memorable end to your journey through Bhutan."
-      }
-    ]
+    "bestSeason": ["March", "April", "May", "September", "October", "November"]
   },
   {
     "id": 2,

@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import User from '../../../models/user'; // Your Mongoose User model
 import dbConnect from '../../../lib/dbConnect'; // Your DB connection helper
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { serialize, SerializeOptions } from 'cookie';
 import mongoose from 'mongoose';
