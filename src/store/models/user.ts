@@ -36,7 +36,7 @@ export const user = createModel<RootModel>()({
     effects: (dispatch) => ({
         async localLoginAsync({ email, password }) {
             try {
-                const { data } = await axios.post('/auth/local/login', {
+                const { data } = await axios.post('/auth/login', {
                     email,
                     password
                 })

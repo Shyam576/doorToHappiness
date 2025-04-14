@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import User from '../../../models/user'; // Your Mongoose User model
 import dbConnect from '../../../lib/dbConnect'; // Your DB connection helper
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken';
 import { serialize, SerializeOptions } from 'cookie';
 import mongoose from 'mongoose';
@@ -10,6 +10,7 @@ import mongoose from 'mongoose';
 const JWT_SECRET = process.env.JWT_SECRET; // MUST be set in environment variables!
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    console.log("Hello from Backend")
     if (req.method !== 'POST') {
         res.setHeader('Allow', ['POST']);
         return res.status(405).end(`Method ${req.method} Not Allowed`);
