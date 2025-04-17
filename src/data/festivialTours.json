@@ -9,7 +9,7 @@
     "route": "Paro, Thimphu, Punakha",
     "category": "festival",
     "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-    "rating": "4.8",
+    "rating": 4.8,
     "price": "Nu.0.00"
   },
   {
@@ -22,7 +22,7 @@
     "route": "Gasa, Thimphu, Paro",
     "category": "festival",
     "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-    "rating": "4.8",
+    "rating": 4.8,
     "price": "Nu.0.00"
   },
   {
@@ -33,8 +33,9 @@
     "description": "Experience the vibrancy of Bhutan's culture at Thimphu Tsechu festival 2024, happening in Septemeber 12th to 18th. Delve into a week-long celebration featuring traditional masked dances...",
     "image": "https://cdn.drukasia.com/content/images/media/drukasia_021617_dsc05249-1070x713.jpg",
     "route": "Thimphu, Paro",
+    "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
     "category": "festival",
-    "rating": "4.8",
+    "rating": 4.8,
     "price": "Nu.0.00"
   }
 ]

@@ -4,6 +4,7 @@
     "title": "Bhutan Tour Packages from Mumbai",
     "image": "https://www.heavenlybhutan.com/wp-content/uploads/2020/08/Dochula-Pass.jpg",
     "alt": "Mumbai Package",
+    "category": "city",
     "highlights": [
       "Thimphu",
       "Punakha",
@@ -91,7 +92,7 @@
     ]
   },
   {
-    "id": 2,
+    "id": "51aa80f0-dc76-4c8d-8559-9bb3a4fa8bee",
     "title": "Bhutan Tour Packages from Bagdogra",
     "image": "https://ucarecdn.com/0cd90602-b4ec-45a4-813c-f31eb4bab65a/",
     "alt": "Bagdogra Package",
@@ -107,7 +108,7 @@
       "",
       ""
     ],
-    "rating": "4.8",
+    "rating": 4.8,
     "description": "Seek happiness and peace of mind with a Bhutan package tour from Bagdogra, featuring scenic views and cultural experiences.",
     "full_description": "",
     "price": 42000,
@@ -118,6 +119,7 @@
         "details": "Welcome to Bhutan - the Land of the Thunder Dragon, for your exciting Bhutan package tour from Mumbai. Bhutan is a picturesque country nestled amidst the Himalayas, a serene paradise adorned with verdant valleys, captivating landscapes, rugged terrain, pristine rivers, and cheerful locals. As your aircraft descends into the Paro valley, you'll be greeted by the breath-taking sight of Paro Dzong perched on the hillside overlooking the meandering Paro Chu river, accompanied by Ta Dzong. Our representative will warmly welcome you in traditional Bhutanese style with Tashi Khada (white scarf) at the airport, marking the commencement of your Bhutan tour from Mumbai. You'll then be escorted to Thimphu (at an altitude of 2334 meters), Bhutan's vibrant capital city. Enjoy a comfortable overnight stay in Thimphu, brimming with anticipation for the adventures that lie ahead."
       }
     ],
+    "category": "city",
     "inclusions": [
       "Accommodation",
       "Meals",
@@ -138,7 +140,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": "b4f9263f-66d9-44bd-8b9b-5ec0ba3049ac",
     "title": "Bhutan Tour Packages from Kolkata",
     "image": "https://www.exoticmiles.com/bhutan/the-memorial-chorten/",
     "alt": "Kolkata Package",
@@ -151,7 +153,7 @@
     ],
     "duration": "7N/8D",
     "route": "Paro to Paro",
-    "rating": "4.8",
+    "rating": 4.8,
     "dates": [
       "",
       ""
@@ -172,6 +174,7 @@
       "Sightseeing",
       "Permits"
     ],
+    "category": "city",
     "exclusions": [
       "Airfare",
       "Personal Expenses"
@@ -186,7 +189,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": "8cd45e51-371a-4c36-ace4-0823e05dd535",
     "title": "Bhutan Tour Packages from Pune",
     "image": "https://www.heavenlybhutan.com/wp-content/uploads/2020/08/Dochula-Pass.jpg",
     "alt": "Pune Package",
@@ -200,7 +203,7 @@
     ],
     "duration": "8N/9D",
     "route": "",
-    "rating": "4.8",
+    "rating": 4.8,
     "dates": [
       "",
       ""
@@ -225,6 +228,7 @@
       "Airfare",
       "Personal Expenses"
     ],
+    "category": "city",
     "bestSeason": [
       "March",
       "April",
@@ -235,7 +239,7 @@
     ]
   },
   {
-    "id": 5,
+    "id": "a3ac260c-3460-41d2-b086-55cb5430c58e",
     "title": "Bhutan Tour Packages from Bangalore",
     "image": "https://ucarecdn.com/0cd90602-b4ec-45a4-813c-f31eb4bab65a/",
     "alt": "Bangalore Package",
@@ -248,7 +252,7 @@
     ],
     "duration": "7N/8D",
     "route": "",
-    "rating": "4.8",
+    "rating": 4.8,
     "dates": [
       "",
       ""
@@ -269,6 +273,7 @@
       "Sightseeing",
       "Permits"
     ],
+    "category": "city",
     "exclusions": [
       "Airfare",
       "Personal Expenses"
@@ -283,7 +288,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": "add75efd-668a-45b4-8526-008a30b884cf",
     "title": "Bhutan Tour Packages from Delhi",
     "image": "https://www.exoticmiles.com/bhutan/the-memorial-chorten/",
     "alt": "Delhi Package",
@@ -299,10 +304,11 @@
       "",
       ""
     ],
-    "rating": "4.8",
+    "rating": 4.8,
     "description": "Embark on an enchanting journey to the mystical land of Bhutan with our Bhutan package tour from Delhi.",
     "full_description": "",
     "price": 38000,
+    "category": "city",
     "itinerary": [
       {
         "title": "Day 1",
@@ -330,7 +336,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": "69be85cc-cf0f-472d-9330-6fbb0f881694",
     "title": "Bhutan Tour Packages from Surat",
     "image": "https://www.heavenlybhutan.com/wp-content/uploads/2020/08/Dochula-Pass.jpg",
     "alt": "Surat Package",
@@ -346,10 +352,11 @@
       "",
       ""
     ],
-    "rating": "4.8",
+    "rating": 4.8,
     "description": "Dive into enchanting realm of the Thunder Dragon as you embark on our meticulously crafted Bhutan tour from Surat. Amidst the cradle of the Himalayas, Bhutan unfolds..",
     "full_description": "",
     "price": 45000,
+    "category": "city",
     "itinerary": [
       {
         "title": "Day 1",
@@ -377,7 +384,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": "6b722261-d883-4274-b366-fc2d945412e6",
     "title": "Bhutan Tour Packages from Ahmedabad",
     "image": "https://ucarecdn.com/0cd90602-b4ec-45a4-813c-f31eb4bab65a/",
     "alt": "Ahmedabad Package",
@@ -390,7 +397,8 @@
     ],
     "duration": "7N/8D",
     "route": "",
-    "rating": "4.8",
+    "rating": 4.8,
+    "category": "city",
     "dates": [
       "",
       ""
@@ -425,7 +433,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": "e5e9685e-57ce-470e-a267-389facc83d7b",
     "title": "Bhutan Tour Packages from Chennai",
     "image": "https://www.exoticmiles.com/bhutan/the-memorial-chorten/",
     "alt": "Chennai Package",
@@ -438,7 +446,7 @@
     ],
     "duration": "7N/8D",
     "route": "",
-    "rating": "4.8",
+    "rating": 4.8,
     "dates": [
       "",
       ""
@@ -459,6 +467,7 @@
       "Sightseeing",
       "Permits"
     ],
+    "category": "city",
     "exclusions": [
       "Airfare",
       "Personal Expenses"

@@ -57,7 +57,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
 				{/* This div is the second direct child of the main flex container */}
 				<div className="hidden lg:flex items-center space-x-6 font-medium">
 					<Link
-						href="/home"
+						href="/"
 						className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
 					>
 						Home

@@ -1,183 +1,2040 @@
 [
   {
-    "id": "f854900f-726b-4014-b902-c771df64bdd1",
-    "title": "Tashichodzong, Thimphu",
-    "image": "https://www.littlebhutan.com/wp-content/uploads/2013/04/Tashichho-Dzong-Fortress.jpg",
-    "description": "Embark on your Bhutan package tour from Mumbai with a visit to TrashiCho Dzong in Thimphu. This grand fortress-monastery, also known as the Fortress of the Glorious Religion, is a testament to Bhutanese architecture and serves as the seat of the government.",
-    "location": "Thimphu",
-    "category": "Cultural",
-    "highlights": [
-      "Historic fortress",
-      "Government seat",
-      "Buddhist monastery"
-    ],
+    "id": "e64a25fc-f56c-4432-acc5-50e2c2ad1e2f",
+    "name": "Paro",
+    "slug": "paro",
     "rating": 4.8,
-    "duration": "2-3 hours",
-    "price": "Nu.0.00"
+    "tagline": "Gateway to the Himalayas",
+    "description": "Home to the iconic Tiger's Nest Monastery, Paro is Bhutan's cultural and historical gem nestled in a lush valley.",
+    "highlights": [
+      "Taktsang Monastery",
+      "Paro Tshechu Festival",
+      "Rinpung Dzong",
+      "National Museum"
+    ],
+    "location": {
+      "region": "Western Bhutan",
+      "coordinates": {
+        "lat": 27.4333,
+        "lng": 89.4167
+      },
+      "nearbyDzongkhags": [
+        "Thimphu",
+        "Haa"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Rinpung Dzong"
+      ],
+      "festivals": [
+        "Paro Tshechu"
+      ],
+      "localDish": "Ema Datshi"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Druk Path Trek"
+      ],
+      "wildlife": "Black-necked cranes",
+      "scenicSpots": [
+        "Paro Valley",
+        "Chele La Pass"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Monastery visits",
+          "Festival participation"
+        ]
+      },
+      {
+        "type": "Adventure",
+        "activities": [
+          "Hiking",
+          "Mountain biking"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "March-May",
+        "September-November"
+      ],
+      "accommodation": [
+        "Luxury hotels",
+        "Homestays"
+      ],
+      "transportation": [
+        "Paro International Airport"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://admin.bhutaninbound.com/public/uploads/places-sliders/Paro%20Rinpung%20Dzong.jpg",
+        "https://visitbhutan.com/cms/images/8354visit%20bhutan%20Paro%20(7).jpg"
+      ],
+      "video": "paro-overview.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/a1/42/75/photo4jpg.jpg?w=1400&h=-1&s=1",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      },
+      {
+        "name": "Tachog Lhakhang (temple)",
+        "description": "This 15th-century temple situated at the base of a mountain across the Pa Chu on the Paro- Thimphu highway. The only way to approach the Tachog Lhakhang is on foot, over the newly constructed cantilever bridge. In the 14th century, a renowned bridge builder named Duthob Thangtong Gyalpo had built Tachog Lhakhang (Temple). It houses the relics of the temple such as Guru Rinpoche, a statue of Lord Buddha Sakyamuni, a set of Kanjur (the translated words of Buddha) and Tenjur (the translated commentaries on word of Buddha), Chenrezig, Zhabdrung Ngawang Namgyal, Chana Dorji, Thugse Dewa Zangpo and walking sticks of Thangtong Gyalpo.\n",
+        "image": "https://www.gobhutantours.com/wp-content/uploads/2019/06/tachogang-lhakhang-history.jpg",
+        "rating": "4",
+        "distance": "2km"
+      },
+      {
+        "name": "Chuzom",
+        "description": "It is the confluence of Pa Chu- the river flowing through Paro valley & Wangchu-the river flowing through Thimphu valley. Chuzom is also a major road junction with the south road to Phuntsholing, northeast to Thimphu and southwest road leading to Haa district. Bhutanese traditions regard such a union of rivers as inauspicious, and there are three Chortens (stupa) here to ward off evil spells in this particular area. Each Chorten (stupa) is in a different style (Bhutanese, Tibetan and Nepali). You can stop to enjoy the beauty of Chuzom and to take the photographs.",
+        "image": "https://media-cdn.tripadvisor.com/media/photo-s/17/7a/75/63/chunzom-confluence-of.jpg",
+        "rating": "5",
+        "distance": "3km"
+      },
+      {
+        "name": "Ta Dzong (National Museum of Paro)",
+        "description": "Perched above Paro Dzong was built as a watchtower in 1649, which now houses National Museum of Bhutan. Today this museum houses the best collections of all time historical items like antique Thangkha paintings, textiles, weapons & household objects making worth for a visit.\n",
+        "image": "https://images.wanderon.in/blogs/new/2024/10/ta-dzong-in-bhutan.jpg",
+        "rating": "4",
+        "distance": "12km"
+      },
+      {
+        "name": "Rinpung Dzong",
+        "image": "https://cdn1.tripoto.com/media/filter/tst/img/2081138/SpotDocument/1615502504_1615502478572.jpg.webp",
+        "description": "Fortress on a Heap of Jewels- is ranked one of the best Bhutanese architecture. The massive buttressed walls that tower over the town are visible throughout the valley, especially when landing at Paro Airport. The Dzong also offers the administrative seat of the district of Paro. The Dzong was built-in 1644 under the order of Zhabdrung Ngawang Namgyal. The spring Paro Tshechu held in this courtyard of Rinpung Dzong. The views from the windows are breath-taking.",
+        "rating": "5",
+        "distance": "0km"
+      },
+      {
+        "name": "Nya Mey Zam Bridge",
+        "description": "It is a traditional covered cantilever bridge connecting the Paro town. Local people believe it is ill omen if one sees a fish in the river. The earlier bridge which could fold during the war was washed away by the flood in 1969.",
+        "image": "https://c8.alamy.com/comp/2H8DNXW/nyamai-zam-bridge-paro-bhutan-2H8DNXW.jpg",
+        "rating": "5",
+        "distance": "0km"
+      },
+      {
+        "name": "Kichu Lhakhang (Temple) ",
+        "description": "Kichu Lhakhang can reach within a ten-minute drive from Paro town; it is in the Lango Gewog. The temple is one of the oldest temples to have been built in Bhutan. In the 7th century, the Tibetan King Songtsen Gampo had built 108 temples in a day throughout the Himalayan regions, and Kichu Temple is one of them. \nThe temple has many relics which date from the 7th century being one of the oldest temples in Bhutan. It houses oldest statues of Lord Buddha Sakyamuni, and two of his disciples i.e. Sharibu (Sariputra), Mangalbu (Maudgalyana) and other relics that has been added in the Jokhang.\n",
+        "image": "https://cdn.bookmytour.bt/uploads/attractions/kyichu-lhakhang-1521540732_850_400.jpg",
+        "rating": "5",
+        "distance": "4km"
+      },
+      {
+        "name": " Traditional Hot Stone Bath",
+        "image": "https://www.aman.com/sites/default/files/styles/listing_teaser_slim_extra_large/public/2025-01/amankora_bhutan_-_gangtey_lodge_traditional_hot_stone_bath.jpg?itok=fpw8zPTO",
+        "description": "It is very nice to experience Bhutanese hot stone bath.  It is the perfect way to relax and wind down after a long day of sightseeing, and it considered for numerous health benefits. It admitted that the local herbs all combine to produce medicinal benefits for joint pains, hypertension, stomach disorders and arthritis.",
+        "distance": "2km",
+        "rating": "5"
+      },
+      {
+        "name": "Chele La Pass",
+        "image": "https://static7.drukasia.com/images/media/DrukAsia_102417_Chelelaparo.jpg",
+        "description": "It is highest motor-able road passes connecting two districts Paro and Haa, an elevation of 3988m above the sea level. On clear days, the Chele la pass provides stunning views of the sacred enjoy sacred Mt. Jomolhari (7314m). The Chele-la pass is marked by hundreds of prayer flags fluttering in the wind. The top of the pass bloom with rhododendrons in a variety of colours-pale pink, deep pink, white and burnt orange, in season. You can also plan to ride mountain biking from Pass to Paro valley with a stretch of 36-48km, mostly downhill and comfortable ride.",
+        "rating": "4",
+        "distance": "12km"
+      },
+      {
+        "name": "Paro Airport View Point",
+        "image": "https://www.esikkimtourism.in/bhutan/wp-content/uploads/2019/10/airpoint-view.jpg",
+        "description": "Paro Airport viewpoint is about 10-minute drive from the airport gate or Paro town. It situated on the hill overlooking the airport; this viewpoint offers the best view of the whole airport, many sacred sites and historical monuments. The viewpoint mark above the airport is the best place to watch planes landing and taking off. It strongly recommended making a detour here when you arrive in Bhutan or when you're just driving to catch your flight.",
+        "rating": "5",
+        "distance": "4km"
+      },
+      {
+        "name": "Kila Goemba Nunnery",
+        "image": "https://jimblockphoto.com/wp-content/gallery/kila-nunnery/26__BHU-1157.jpg",
+        "description": "Kila Goemba located below Chelela pass on the road to Haa Valley which is far away from the hustle and bustle of the towns. It is around 27km from Bondey, Paro. Kila Goemba Nunnery is also known as Chele la Gompa which is home to 100 nuns. There are seven small temples and retreat huts built on the Cliffside facing Paro. On a clear day, you can see the spectacular view of Jele Dzong, Paro Valley, Mt.Jomolhari and Jichu Drake. The hike up from the roadside takes around an hour each way through steep slopes and forest.",
+        "rating": "5",
+        "distance": "4km"
+      },
+      {
+        "name": "Paro Weekend Market",
+        "image": "https://www.holidify.com/images/cmsuploads/compressed/handi_20190705003303.jpg",
+        "description": "Paro weekend market is lively during the weekend. The market has small stalls and big shops selling the product at the best prices. The market offers a fashionable product. You will get authentic Bhutanese handicrafts, traditional boots and other souvenirs at the reasonable price.",
+        "rating": "5",
+        "distance": "4km"
+      },
+      {
+        "name": "Namgay Artisanal Brewery",
+        "image": "https://admin.bhutaninbound.com/public/uploads/places-sliders/NAB.jpg",
+        "description": "Namgay Artisanal Brewery located at Dumsibu, Paro. In Namgay Brewery they brew six types of beer and Apple cider in their brewery. The brewery offers Apple Cider and six variants of beer namely craft beers, red rice lagers, pilsners, pale and dark ales, milk stout and wheat beer to suit the different palates. The Bhutanese ingredients make the beer more enjoyable than ever before, with the unique local taste.",
+        "distance": "4km",
+        "rating": "5"
+      },
+      {
+        "name": "Dungtse Lhakhang",
+        "image": "https://www.orientalarchitecture.com/gallery/bhutan/paro/jangtsa-dumtseg_lhakhang/misc/jangtsa-dumtseg_lhakhang_BIG.jpg",
+        "description": "Dungtse Lhakhang located just next to the town and it is a five-minute drive from town. The three-storied Chorten-shaped temple was built in 1433 by the great bridge-builder Thangtong Gyalpo. Dungtse Lhakhang builds on the head of demons, which was causing illness to the inhabitants. The temple is unique in Bhutan as its paintings show the progressive stages of Tantric Buddhist philosophy. It houses relics in the temple such as two statues of the founder himself, Zhabdrung Ngawang Namgyel, Chana Dorji, Guru Rimpoche, Milarepa, the future Buddha Jowo Jampa and two statues of Lord Buddha Sakyamuni.",
+        "rating": "5",
+        "distance": "2km"
+      },
+      {
+        "name": "Drukgyel Dzong",
+        "image": "https://admin.bhutaninbound.com/public/uploads/places-sliders/Drukgyal%20Dzong%20Paro.jpg",
+        "description": "It is situated 14km north of Paro town. Drukgyel Dzong or The Fortress of the Victorious Bhutanese is one of the oldest Dzong in Bhutan. The Dzong was constructed in 1646 by Zhabdrung Ngawang Namgyal to commemorate the victory of the Bhutanese over the Tibetan and Mongolian armies. The Dzong was served solely for defensive purpose without religious functions and administrative due to threats from the border. The name of the Dzong Druk (is the local name for Bhutan), while Gyel refers to victory that is why it is known as the fortress of victory. The fort was destroyed by fire in 1951, the ruins remain impressive sightseeing, and one will enjoy the views from the top of the hill. Currently, only the ruins of charred gigantic wooden posts, beams and watchtowers, giant walls can see which an important fortress that repelled several invasions was once.\n",
+        "distance": "14km",
+        "rating": "5"
+      },
+      {
+        "name": "Dzongdrakha Gompa",
+        "description": "Dzongdrakha Gompa is also referred to as mini Taktshang due to its unique location on a cliff above Bondey village. The temples of Dzongdrakha Gompa were built in the 16th century. Four temples dedicated to Tsheringma, Guru, Buddhist deity Tara and Jowo Jampa. It believed that when Rinpoche first came to Bhutan, he landed at Dzongdrakha. The temples are on the cliff, so you have to hike through the forest to reach the Dzongdrakha Gompa. From the Bondey town, walk for about 30 minutes to Dzongdrakha, a group of the temple overlooking the Paro valley. You will be mesmerized by the breath-taking view of the valley its surrounding provides.",
+        "image": "https://bhutanpilgrimage.com/wp-content/uploads/2022/09/Dzongdrakha-Monastery.jpg",
+        "rating": "5",
+        "distance": "2km"
+      },
+      {
+        "name": "Chumphu Ney",
+        "description": "Chumphu Ney is situated about 3100m on a steep mountain slope. It is one of the most sacred pilgrimage places in the country. There are many unusual shaped caves and rocks formation associated with Guru Rinpoche, and each has its significance. The main relic in the temple is a statue of Dorji Phagmo (Vajravarahi), a form of Varja Yogini. From the road, it is about 4 hours hike through dense conifer, oak and bamboo forests.",
+        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/94/88/06/this-hike-offers-the.jpg?w=1200&h=-1&s=1",
+        "rating": "5",
+        "distance": "13km"
+      },
+      {
+        "description": "Druk Choeding Lhakhang is also known as Tshongdoe temple or Tshongdoe Naktsang. It was built by Lama Ngawang Chogyel in 1525. In 1616 Druk Choeding Lhakhang was visited by Zhabdrung Ngawang Namgyel, and it became his temporary residence. The main relic of this temple is of a seated statue of future Buddha known as Jampa.",
+        "name": "Druk Choeding Lhakhang",
+        "distance": "14km",
+        "image": "https://bayuel.com/static/photos/attraction/779383017.jpg",
+        "rating": "5"
+      },
+      {
+        "description": "It situated on the hilltop at an altitude of 6000 feet en route to Haa district which is approximately 37 km from Thimphu and 7km from the confluence. In 1531 the fort was built by Ngawang Chogyal, the brother of Drukpa Kuenley (Divine madman). The Dzong addressed with different names like Dogar, Dobdrek Dzong, Dokar and Dobji. It considered being the first model Dzong in the country. Today, the Dzong is home for religious relics like the statue of Zhabdrung Ngawang Namgyel, Jetsun Milarepa Ngawang Chogyal, and Dunsay Dewa Zangpo and the gonkhang houses the Goem-Chamdal sum (Mahakali, Mahakala and the Raven Crown).",
+        "name": "Dobji Dzong",
+        "image": "https://www.prayerflagstours.com/wp-content/uploads/2019/02/26597116557_54f11a92f9_b-800x800.jpg",
+        "rating": "5",
+        "distance": "37km"
+      },
+      {
+        "name": "Bumdra Goemba",
+        "description": "Bumdra Goemba is the temple of one lakh Dakinis (celestial female beings) situated in Paro above Tiger Nest Monastery and Sangchokor Monastery. To practice meditation, many monks and Buddhist religious people visit the peaceful monastery. In the morning, the views are breath-taking with a beautiful sunrise, and many birds greet the place. As you trek through the forest, the first landmark will be Chhoe Tse Lhakhang, and the trek further gets into a forestry ridge which is Bhutan’s untouched nature and its beauty. Finally, a breath-taking view of Paro, and Do chhu valley can see, and this is known as Bumdra.",
+        "image": "https://www.breakfreeadventures.com/wp-content/uploads/2024/09/bumdra-trek.webp",
+        "rating": "5",
+        "distance": "30km"
+      },
+      {
+        "description": "It is always an opportunity to experience a typical village life in Bhutan. The traditional Bhutanese houses are very colourful, decorative and follow the same architectural pattern. Most traditional houses built with stones and mud without any nails. The ground floor used as a shelter for cattle during the olden day, but now it is used as a store purpose. It was a move to improve a household’s hygiene and sanitation. Tourist can also eat with the host family and offers a good glimpse into the lifestyles of a farmer.",
+        "name": "Bhutanese Farmhouse",
+        "image": "https://cdn.ipernity.com/104/73/35/1337335.20dd769d.500.jpg?r2",
+        "rating": "5",
+        "distance": "12km"
+      },
+      {
+        "name": "Restaurant in Paro",
+        "description": "There are plenty of restaurants in Paro city, and almost all hotels have running restaurants. The restaurant in Paro serves cuisine like Indian, Chinese, Nepali, Bhutanese, South Indian, Continental etc. Most restaurants in Bhutan serve both vegetarian and non-vegetarian food. You can easily choose a restaurant to start your day with a delicious breakfast and elegant dinner after being tired of sightseeing.\nIn Paro, eating options are varied too as among budget restaurants, mid-range restaurants and upscale restaurants. Continental food is available in most restaurants and hotels in the main town. Indian dishes are also available in most restaurants and hotels. The best restaurants in Paro are Bhukari at Uma, The organic restaurant, Dagmar restaurant,  Yue-ling restaurant, lotus Bistro, Tou Zaiga restaurant, Mountain café, Taktshang cafeteria, Champaca coffee, Sonam trophel restaurant and city hotel",
+        "image": "https://visitbhutan.com/cms/images/7840visit%20bhutan%20Chinese%20Hotpot%20&%20Bar%20paro%205.png",
+        "rating": "5",
+        "distance": "0km"
+      },
+      {
+        "name": "Try Bhutanese Attire",
+        "description": "Bhutan is widely known for its deep-rooted tradition and cultural. In Bhutan, the traditional attire for women referred to as Kira and for men known as Gho, and it introduces in the 17th century to display their unique identity. To promote and preserve Bhutanese heritage, Bhutanese citizens must wear the traditional outfit. You can also try Bhutanese attire and take the photographs for memories.",
+        "image": "https://www.dailybhutan.com/pub_files/01070303559443/bhutanese-traditional-costumes-and-evolution-of-kira_7919.jpg",
+        "rating": "5",
+        "distance": "okm"
+      }
+    ],
+    "usps": [
+      "Home to Bhutan's only international airport",
+      "UNESCO tentative sites"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 5
+    },
+    "images": [
+      "https://www.andbeyond.com/wp-content/uploads/sites/5/Six-Senses-Paro.jpg",
+      "https://www.andbeyond.com/wp-content/uploads/sites/5/Six-Senses-Paro.jpg"
+    ]
   },
   {
-    "id": "aca5c703-fa54-4277-afd1-261d9b19ce07",
-    "title": "Takin Zoo, Thimphu",
-    "image": "https://static.toiimg.com/photo/55724111.cms",
-    "description": "As part of your Bhutan tour from Mumbai, explore the unique fauna of Bhutan at Takin Zoo in Thimphu. Home to the national animal, the takin, this sanctuary offers a rare glimpse into Bhutan's diverse wildlife.",
-    "location": "Thimphu",
-    "category": "Wildlife",
-    "highlights": [
-      "National animal",
-      "Conservation center",
-      "Nature trails"
-    ],
-    "rating": 4.2,
-    "duration": "1-2 hours"
-  },
-  {
-    "id": "0a344dee-587d-41c5-9e2b-4b3ff4627812",
-    "title": "Weekend Market, Thimphu",
-    "image": "https://live.staticflickr.com/2791/4210054565_fd440d739d_b.jpg",
-    "description": "Dive into the vibrant culture of Bhutan by strolling through the bustling Weekend Market in Thimphu. This colorful market showcases local handicrafts, fresh produce, and traditional Bhutanese delicacies.",
-    "location": "Thimphu",
-    "category": "Shopping",
-    "highlights": [
-      "Local crafts",
-      "Fresh produce",
-      "Cultural experience"
-    ],
-    "rating": 4.5,
-    "duration": "1-3 hours"
-  },
-  {
-    "id": "b96f550e-ca5e-4905-baf4-9e1604517fa1",
-    "title": "Gangtey Monastery, Phobjika",
-    "image": "https://authenticbhutantours.com/wp-content/uploads/2016/11/gangatey-goenpa-lhakhang.jpg",
-    "description": "Gangtey Monastery in the Phobjikha Valley offers a serene escape into Bhutan's spiritual heritage. Surrounded by pristine landscapes, this monastery provides a tranquil setting for contemplation.",
-    "location": "Phobjikha",
-    "category": "Spiritual",
-    "highlights": [
-      "Valley views",
-      "Monastic life",
-      "Peaceful setting"
-    ],
-    "rating": 4.7,
-    "duration": "2-4 hours"
-  },
-  {
-    "id": "0cb6eb55-91a0-460d-ae10-f95b70700d79",
-    "title": "Buddha Point, Thimphu",
-    "image": "https://waybird.imgix.net/experiences/kodak_images/000/015/214/original/Visit_the_Shakyamuni_Buddha_statue_1.jpg?w=1420&h=946&crop=center%20center&fit=min&dpr=1&q=50&auto=format",
-    "description": "Marvel at the awe-inspiring statue of Buddha Dordenma. Situated atop a hill overlooking Thimphu Valley, this iconic landmark offers panoramic views and a sense of tranquillity.",
-    "location": "Thimphu",
-    "category": "Landmark",
-    "highlights": [
-      "Giant Buddha statue",
-      "City views",
-      "Meditation spot"
-    ],
-    "rating": 4.6,
-    "duration": "1-2 hours"
-  },
-  {
-    "id": "e42dd7d0-2cd5-41ab-bc5a-b47e36174da1",
-    "title": "Tiger Nest Hiking, Paro",
-    "image": "https://cimages1.touristlink.com/data/cache/T/A/K/T/S/A/N/G/taktsang-monastery_2_640_480.jpg",
-    "description": "Experience the thrill of hiking to the legendary Tiger's Nest Monastery in Paro. Perched on a cliff side, this sacred site is a testament to Bhutan's rich spiritual heritage.",
-    "location": "Paro",
-    "category": "Adventure",
-    "highlights": [
-      "Iconic monastery",
-      "Challenging hike",
-      "Spectacular views"
-    ],
-    "rating": 4.9,
-    "duration": "4-6 hours"
-  },
-  {
-    "id": "573b12b1-7bf5-4271-946c-685ff6d797c3",
-    "title": "River Rafting in Punakha River, Punakha",
-    "image": "https://i2.wp.com/www.bhutanmajestictravel.com/wp-content/uploads/2017/01/rafting.jpg?fit=2000%2C700&ssl=1",
-    "description": "Add an adventure element with exhilarating river rafting on the Punakha River. Surrounded by lush landscapes and towering mountains, this activity promises an adrenaline-filled experience.",
-    "location": "Punakha",
-    "category": "Adventure",
-    "highlights": [
-      "White water rafting",
-      "Scenic river",
-      "Thrilling experience"
-    ],
-    "rating": 4.7,
-    "duration": "2-3 hours"
-  },
-  {
-    "id": "50311703-0eef-4d1c-9ada-dde2fab7a5df",
-    "title": "Punakha Dzong, Punakha",
-    "image": "https://tour.rejoytours.com/wp-content/uploads/2024/10/Punakha-Dzong-e1574919168213-1.webp",
-    "description": "Explore the architectural marvel of Punakha Dzong. Situated at the confluence of two rivers, this fortress-monastery is steeped in history and offers insight into Bhutanese culture.",
-    "location": "Punakha",
-    "category": "Cultural",
-    "highlights": [
-      "Riverside location",
-      "Historic architecture",
-      "Religious site"
-    ],
+    "id": "d055e808-eb0b-479f-a31b-091988f0c8bb",
+    "name": "Thimphu",
+    "slug": "thimphu",
     "rating": 4.8,
-    "duration": "2-3 hours"
+    "tagline": "Capital of Happiness",
+    "description": "Bhutan's capital city blends traditional culture with modern development in a unique Himalayan setting.",
+    "highlights": [
+      "Tashichho Dzong",
+      "Buddha Dordenma",
+      "National Memorial Chorten",
+      "Weekend Market"
+    ],
+    "location": {
+      "region": "Western Bhutan",
+      "coordinates": {
+        "lat": 27.4728,
+        "lng": 89.639
+      },
+      "nearbyDzongkhags": [
+        "Paro",
+        "Wangdue Phodrang"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Tashichho Dzong"
+      ],
+      "festivals": [
+        "Thimphu Tshechu"
+      ],
+      "localDish": "Suja (Butter tea)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Dochula Nature Trail"
+      ],
+      "wildlife": "Takin (national animal)",
+      "scenicSpots": [
+        "Dochula Pass",
+        "Wangditse"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Dzong visits",
+          "Handicraft shopping"
+        ]
+      },
+      {
+        "type": "Urban",
+        "activities": [
+          "Cafe hopping",
+          "Museum tours"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "September-November"
+      ],
+      "accommodation": [
+        "Boutique hotels",
+        "Guesthouses"
+      ],
+      "transportation": [
+        "Road from Paro (1 hour)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/3e/05/86/tashichho-dzong-it-was.jpg?w=900&h=500&s=1",
+        "buddha-statue.jpg"
+      ],
+      "video": "thimphu-city.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Political and economic center of Bhutan"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 5
+    }
   },
   {
-    "id": "391c48e0-6fca-48b1-8945-54dd9bd71428",
-    "title": "Phobjikha Valley, Phobjikha, Gangtey",
-    "image": "https://www.heavenlybhutan.com/wp-content/uploads/2020/08/Phobjikha-Valley.jpg",
-    "description": "Discover the unspoiled beauty of Phobjikha Valley, home to endangered black-necked cranes during the winter months. This valley is a haven for nature lovers and bird enthusiasts.",
-    "location": "Gangtey",
-    "category": "Nature",
+    "id": "86fa56f4-6d8c-4bb2-a5dd-1e703725f653",
+    "name": "Punakha",
+    "slug": "punakha",
+    "rating": 4.8,
+    "tagline": "Ancient Capital of Bhutan",
+    "description": "Punakha served as Bhutan's capital until 1955 and remains the winter residence of the central monk body.",
     "highlights": [
-      "Crane sanctuary",
-      "Scenic valley",
-      "Nature walks"
+      "Punakha Dzong",
+      "Chimi Lhakhang",
+      "Suspension Bridge",
+      "Khamsum Yulley Namgyal Chorten"
     ],
-    "rating": 4.7,
-    "duration": "Half day"
+    "location": {
+      "region": "Western Bhutan",
+      "coordinates": {
+        "lat": 27.6333,
+        "lng": 89.8333
+      },
+      "nearbyDzongkhags": [
+        "Wangdue Phodrang",
+        "Thimphu"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Punakha Dzong"
+      ],
+      "festivals": [
+        "Punakha Drubchen"
+      ],
+      "localDish": "Kewa Datshi"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Punakha Winter Trek"
+      ],
+      "wildlife": "Golden langurs",
+      "scenicSpots": [
+        "Pho Chhu River",
+        "Lobesa Valley"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Temple visits",
+          "Festivals"
+        ]
+      },
+      {
+        "type": "Adventure",
+        "activities": [
+          "Rafting",
+          "Hiking"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "March-May"
+      ],
+      "accommodation": [
+        "Riverside lodges",
+        "Farm stays"
+      ],
+      "transportation": [
+        "Road from Thimphu (3 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://ucarecdn.com/a53f39f4-f9ec-4cd9-9db7-1855a431927b/",
+        "suspension-bridge.jpg"
+      ],
+      "video": "punakha-drubchen.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Most beautiful dzong in Bhutan"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 4
+    }
   },
   {
-    "id": "e15097db-9095-40c1-bcbd-5f37a15ab652",
-    "title": "Dochula Pass",
-    "image": "https://cdn.bookmytour.bt/uploads/attractions/dochula-1521539383_850_400.jpg",
-    "description": "Capture panoramic views of the Himalayas from Dochula Pass. Adorned with 108 memorial chortens, this mountain pass offers breath-taking vistas and photo opportunities.",
-    "location": "Between Thimphu & Punakha",
-    "category": "Scenic",
+    "id": "f442a21f-244f-463e-9e47-7366e806d880",
+    "name": "Wangdue Phodrang",
+    "slug": "wangdue-phodrang",
+    "rating": 4.8,
+    "tagline": "Land of the Black-Necked Cranes",
+    "description": "This diverse district features everything from subtropical valleys to alpine highlands and is famous for its wildlife.",
     "highlights": [
-      "Mountain views",
-      "108 chortens",
-      "Photo spot"
+      "Gangtey Monastery",
+      "Phobjikha Valley",
+      "Wangdue Dzong",
+      "Black-necked Crane Center"
     ],
-    "rating": 4.5,
-    "duration": "30-60 minutes"
+    "location": {
+      "region": "Western Bhutan",
+      "coordinates": {
+        "lat": 27.4833,
+        "lng": 90.1167
+      },
+      "nearbyDzongkhags": [
+        "Punakha",
+        "Thimphu"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Wangdue Dzong"
+      ],
+      "festivals": [
+        "Wangdue Tshechu"
+      ],
+      "localDish": "Hoentay (Buckwheat dumplings)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Gangtey Nature Trail"
+      ],
+      "wildlife": "Black-necked cranes",
+      "scenicSpots": [
+        "Phobjikha Valley",
+        "Dochula Pass"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Wildlife",
+        "activities": [
+          "Crane viewing",
+          "Nature walks"
+        ]
+      },
+      {
+        "type": "Cultural",
+        "activities": [
+          "Monastery visits",
+          "Village tours"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "October-December"
+      ],
+      "accommodation": [
+        "Eco-lodges",
+        "Guesthouses"
+      ],
+      "transportation": [
+        "Road from Punakha (1.5 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://pbs.twimg.com/media/FQD7Vl0aMAcW8cm.jpg",
+        "gangtey-goenpa.jpg"
+      ],
+      "video": "black-necked-cranes.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Important conservation area for endangered cranes"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 4
+    }
   },
   {
-    "id": "38e8738b-5c41-451a-b2e9-0b4d59764c2b",
-    "title": "Punakha Suspension Bridge, Punakha",
-    "image": "https://live.staticflickr.com/65535/53881869194_66df39351d_b.jpg",
-    "description": "Dare to cross the Punakha Suspension Bridge, one of the longest of its kind in Bhutan. This bridge offers thrilling views of the Punakha Valley and its surrounding scenery.",
-    "location": "Punakha",
-    "category": "Adventure",
+    "id": "73463f12-6568-4858-8105-af058e86ad8d",
+    "name": "Bumthang",
+    "slug": "bumthang",
+    "rating": 4.8,
+    "tagline": "Spiritual Heartland of Bhutan",
+    "description": "Bumthang is considered Bhutan's most sacred region, with numerous ancient temples and monasteries dotting its four valleys.",
     "highlights": [
-      "Long suspension bridge",
-      "River views",
-      "Thrilling walk"
+      "Jakar Dzong",
+      "Kurjey Lhakhang",
+      "Jambay Lhakhang",
+      "Burning Lake"
     ],
-    "rating": 4.3,
-    "duration": "30-45 minutes"
+    "location": {
+      "region": "Central Bhutan",
+      "coordinates": {
+        "lat": 27.6667,
+        "lng": 90.7333
+      },
+      "nearbyDzongkhags": [
+        "Trongsa",
+        "Mongar"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Jakar Dzong"
+      ],
+      "festivals": [
+        "Jambay Lhakhang Drup"
+      ],
+      "localDish": "Puta (Buckwheat noodles)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Bumthang Cultural Trek"
+      ],
+      "wildlife": "Red pandas",
+      "scenicSpots": [
+        "Tang Valley",
+        "Ura Valley"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Spiritual",
+        "activities": [
+          "Temple pilgrimages",
+          "Meditation"
+        ]
+      },
+      {
+        "type": "Cultural",
+        "activities": [
+          "Farm visits",
+          "Local brewery tours"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "April-June",
+        "September-November"
+      ],
+      "accommodation": [
+        "Farm stays",
+        "Boutique hotels"
+      ],
+      "transportation": [
+        "Road from Trongsa (2.5 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://www.esikkimtourism.in/bhutan/wp-content/uploads/2019/10/jakar-dzong.jpg",
+        "bumthang-valley.jpg"
+      ],
+      "video": "bumthang-culture.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Highest concentration of sacred sites in Bhutan"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 3
+    }
   },
   {
-    "id": "889f4e82-449e-4897-9da2-eb85e836fd94",
-    "title": "Chimi Lhakhang, Punakha",
-    "image": "https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/chimi-lhakhang-bhutan-700-1.jpg",
-    "description": "Visit Chimi Lhakhang, the fertility temple dedicated to the Divine Madman. Known for its unique phallus symbols believed to bring blessings and fertility.",
-    "location": "Punakha",
-    "category": "Cultural",
+    "id": "baa5abb7-e667-4eb1-b93d-cc9cf88c105d",
+    "name": "Trongsa",
+    "slug": "trongsa",
+    "rating": 4.8,
+    "tagline": "Vanguard of the East",
+    "description": "Strategically located in central Bhutan, Trongsa has historically controlled east-west travel and was the seat of Bhutan's monarchy.",
     "highlights": [
-      "Unique temple",
-      "Fertility blessings",
-      "Colorful art"
+      "Trongsa Dzong",
+      "Tower of Trongsa",
+      "Chendebji Chorten",
+      "Ta Dzong Museum"
     ],
-    "rating": 4.4,
-    "duration": "1-2 hours"
+    "location": {
+      "region": "Central Bhutan",
+      "coordinates": {
+        "lat": 27.5,
+        "lng": 90.5
+      },
+      "nearbyDzongkhags": [
+        "Bumthang",
+        "Wangdue Phodrang"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Trongsa Dzong"
+      ],
+      "festivals": [
+        "Trongsa Tshechu"
+      ],
+      "localDish": "Jasha Maru (Spicy chicken stew)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Trongsa Cultural Trail"
+      ],
+      "wildlife": "Himalayan black bears",
+      "scenicSpots": [
+        "Mangde Chhu Valley",
+        "Pele La Pass"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Historical",
+        "activities": [
+          "Museum visits",
+          "Dzong exploration"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "Birdwatching",
+          "Nature walks"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "October-December"
+      ],
+      "accommodation": [
+        "Heritage hotels",
+        "Guesthouses"
+      ],
+      "transportation": [
+        "Road from Bumthang (2 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://live.staticflickr.com/7638/27757891616_dd1dec9884_b.jpg",
+        "tower-of-trongsa.jpg"
+      ],
+      "video": "trongsa-history.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Birthplace of Bhutan's monarchy"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 3
+    }
+  },
+  {
+    "id": "823f8ef9-f7e6-4a5f-956e-9052f00bf614",
+    "name": "Mongar",
+    "slug": "mongar",
+    "rating": 4.8,
+    "tagline": "Gateway to Eastern Bhutan",
+    "description": "Mongar serves as the cultural and administrative hub of eastern Bhutan, known for its dramatic landscapes and traditional weaving.",
+    "highlights": [
+      "Mongar Dzong",
+      "Drametse Monastery",
+      "Zhongar Dzong",
+      "Yadi weaving center"
+    ],
+    "location": {
+      "region": "Eastern Bhutan",
+      "coordinates": {
+        "lat": 27.25,
+        "lng": 91.2
+      },
+      "nearbyDzongkhags": [
+        "Trashigang",
+        "Lhuentse"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Mongar Dzong"
+      ],
+      "festivals": [
+        "Mongar Tshechu"
+      ],
+      "localDish": "Shakam Datshi (Dried beef with cheese)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Eastern Bhutan Cultural Trek"
+      ],
+      "wildlife": "Red pandas",
+      "scenicSpots": [
+        "Kori La Pass",
+        "Shertang Valley"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Weaving demonstrations",
+          "Monastery visits"
+        ]
+      },
+      {
+        "type": "Adventure",
+        "activities": [
+          "Hiking",
+          "Photography tours"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "March-May",
+        "October-November"
+      ],
+      "accommodation": [
+        "Local guesthouses",
+        "Hotels"
+      ],
+      "transportation": [
+        "Road from Bumthang (6 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://www.idealtravelcreations.bt/wp-content/uploads/2023/10/Mongar-Dzong.png-1024x576.jpeg",
+        "drametse-monastery.jpg"
+      ],
+      "video": "mongar-weaving.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Famous for high-quality textile production"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 2
+    }
+  },
+  {
+    "id": "5d0c6150-3a70-4d75-bfbb-4a5efe95a071",
+    "name": "Trashigang",
+    "slug": "trashigang",
+    "rating": 4.8,
+    "tagline": "Jewel of the East",
+    "description": "Bhutan's largest and most populous eastern district, known for its vibrant culture and important trade routes.",
+    "highlights": [
+      "Trashigang Dzong",
+      "Gom Kora",
+      "Radhi Village",
+      "Kanglung University"
+    ],
+    "location": {
+      "region": "Eastern Bhutan",
+      "coordinates": {
+        "lat": 27.3333,
+        "lng": 91.5667
+      },
+      "nearbyDzongkhags": [
+        "Mongar",
+        "Trashiyangtse"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Trashigang Dzong"
+      ],
+      "festivals": [
+        "Gom Kora Festival"
+      ],
+      "localDish": "Gondo Datshi (Egg and cheese curry)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Merak-Sakteng Trek"
+      ],
+      "wildlife": "Snow leopards",
+      "scenicSpots": [
+        "Dangme Chhu River",
+        "Bomdeling Wildlife Sanctuary"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Village tours",
+          "Textile workshops"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "Wildlife spotting",
+          "River rafting"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "October-December"
+      ],
+      "accommodation": [
+        "Hotels",
+        "Homestays"
+      ],
+      "transportation": [
+        "Road from Mongar (3 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://jonovernon-powell.com/wp-content/uploads/2019/10/trashigang-dzong-west-copyright-jono-vernon-powell.jpg",
+        "radhi-village.jpg"
+      ],
+      "video": "eastern-bhutan.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Commercial hub of eastern Bhutan"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 2
+    }
+  },
+  {
+    "id": "027b1669-ebe9-44ac-a313-04bf169d149d",
+    "name": "Samdrup Jongkhar",
+    "slug": "samdrup-jongkhar",
+    "rating": 4.8,
+    "tagline": "Gateway to the South",
+    "description": "Bhutan's southeastern frontier town bordering India, known for its tropical climate and commercial importance.",
+    "highlights": [
+      "Zangdo Pelri Lhakhang",
+      "Dewathang",
+      "Orang National Park",
+      "Border market"
+    ],
+    "location": {
+      "region": "Eastern Bhutan",
+      "coordinates": {
+        "lat": 26.8,
+        "lng": 91.5
+      },
+      "nearbyDzongkhags": [
+        "Pemagatshel",
+        "Trashigang"
+      ]
+    },
+    "culture": {
+      "dzongs": [],
+      "festivals": [
+        "Local harvest festivals"
+      ],
+      "localDish": "Paksha Paa (Pork with radish)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Southern Bhutan Trek"
+      ],
+      "wildlife": "Asian elephants",
+      "scenicSpots": [
+        "Jomotsangkha Wildlife Sanctuary",
+        "Manas River"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Market visits",
+          "Temple tours"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "Jungle safaris",
+          "Birdwatching"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "November-February"
+      ],
+      "accommodation": [
+        "Hotels",
+        "Guesthouses"
+      ],
+      "transportation": [
+        "Road from Trashigang (5 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://cdn.bookmytour.bt/uploads/attractions/samdrup-jongkhar-dzong-1527232041_850_400.jpg",
+        "zangdo-pelri.jpg"
+      ],
+      "video": "southern-bhutan.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Main trading hub with India"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 1
+    }
+  },
+  {
+    "id": "7843ccf2-a916-4a59-8c3f-6f9e84f9e0b8",
+    "name": "Pemagatshel",
+    "slug": "pemagatshel",
+    "rating": 4.8,
+    "tagline": "Land of Lotus Flowers",
+    "description": "A small eastern district known for its pristine forests and traditional Buddhist culture.",
+    "highlights": [
+      "Pemagatshel Dzong",
+      "Yurung village",
+      "Kharungla Pass",
+      "Nganglam town"
+    ],
+    "location": {
+      "region": "Eastern Bhutan",
+      "coordinates": {
+        "lat": 27.0333,
+        "lng": 91.4
+      },
+      "nearbyDzongkhags": [
+        "Samdrup Jongkhar",
+        "Trashigang"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Pemagatshel Dzong"
+      ],
+      "festivals": [
+        "Pemagatshel Tshechu"
+      ],
+      "localDish": "Sikam Datshi (Dried pork with cheese)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Eastern Forest Trail"
+      ],
+      "wildlife": "Clouded leopards",
+      "scenicSpots": [
+        "Kheri River Valley",
+        "Dechenpelri Nature Park"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Village homestays",
+          "Monastery visits"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "Forest walks",
+          "Wildlife photography"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "October-December"
+      ],
+      "accommodation": [
+        "Guesthouses",
+        "Eco-lodges"
+      ],
+      "transportation": [
+        "Road from Trashigang (4 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://doc.gov.bt/wp-content/uploads/2023/09/Screenshot-2023-09-22-175825.png",
+        "yurung-village.jpg"
+      ],
+      "video": "pemagatshel-nature.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Least visited district with pristine nature"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 1
+    }
+  },
+  {
+    "id": "1dbf0631-0e71-4dbe-81fd-176633c29912",
+    "name": "Haa",
+    "slug": "haa",
+    "rating": 4.8,
+    "tagline": "Hidden Valley of Rice",
+    "description": "Bhutan's westernmost valley bordering Tibet, known for its sacred sites and traditional way of life.",
+    "highlights": [
+      "Lhakhang Karpo",
+      "Lhakhang Nagpo",
+      "Haa Valley",
+      "Dochula Pass"
+    ],
+    "location": {
+      "region": "Western Bhutan",
+      "coordinates": {
+        "lat": 27.3667,
+        "lng": 89.2833
+      },
+      "nearbyDzongkhags": [
+        "Paro",
+        "Samtse"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Haa Dzong"
+      ],
+      "festivals": [
+        "Haa Summer Festival"
+      ],
+      "localDish": "Hogay (Buckwheat pancakes)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Haa Cultural Trek"
+      ],
+      "wildlife": "Himalayan blue sheep",
+      "scenicSpots": [
+        "Haa Valley",
+        "Chele La Pass"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Temple visits",
+          "Local festivals"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "Hiking",
+          "Photography"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "May-October"
+      ],
+      "accommodation": [
+        "Farm stays",
+        "Guesthouses"
+      ],
+      "transportation": [
+        "Road from Paro (2 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://images.wanderon.in/blogs/new/2024/10/haa-dzong-bhutan.jpg",
+        "lhakhang-karpo.jpg"
+      ],
+      "video": "haa-culture.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Most remote western valley with Tibetan influence"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 3
+    }
+  },
+  {
+    "id": "d780008f-e384-4cec-9eb9-bb615a0630c0",
+    "name": "Samtse",
+    "slug": "samtse",
+    "rating": 4.8,
+    "tagline": "Southern Gateway",
+    "description": "Bhutan's southwestern border district with a diverse ethnic population and subtropical climate.",
+    "highlights": [
+      "Tendu Monastery",
+      "Torsa Strict Nature Reserve",
+      "Samtse town",
+      "Border markets"
+    ],
+    "location": {
+      "region": "Southern Bhutan",
+      "coordinates": {
+        "lat": 26.9,
+        "lng": 89.1
+      },
+      "nearbyDzongkhags": [
+        "Chhukha",
+        "Haa"
+      ]
+    },
+    "culture": {
+      "dzongs": [],
+      "festivals": [
+        "Local harvest festivals"
+      ],
+      "localDish": "Jaju (Leafy vegetable soup)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Southern Foothills Trek"
+      ],
+      "wildlife": "Bengal tigers",
+      "scenicSpots": [
+        "Torsa River",
+        "Phuentsholing border"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Market visits",
+          "Village tours"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "Jungle walks",
+          "Birdwatching"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "November-February"
+      ],
+      "accommodation": [
+        "Guesthouses",
+        "Hotels"
+      ],
+      "transportation": [
+        "Road from Phuentsholing (1 hour)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://www.orogtravel.com/wp-content/uploads/2021/08/bg-37-800x533.jpg",
+        "tendu-monastery.jpg"
+      ],
+      "video": "southern-culture.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Most ethnically diverse district in Bhutan"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 2
+    }
+  },
+  {
+    "id": "97a378f1-7488-4ec0-b267-1b8ce3dd086c",
+    "name": "Chhukha",
+    "rating": 4.8,
+    "slug": "chhukha",
+    "tagline": "Powerhouse of Bhutan",
+    "description": "Bhutan's industrial and hydropower hub located along the main highway to India.",
+    "highlights": [
+      "Tala Hydroelectric Project",
+      "Chhukha town",
+      "Dala Power Plant",
+      "Border trading points"
+    ],
+    "location": {
+      "region": "Western Bhutan",
+      "coordinates": {
+        "lat": 27.05,
+        "lng": 89.55
+      },
+      "nearbyDzongkhags": [
+        "Thimphu",
+        "Samtse"
+      ]
+    },
+    "culture": {
+      "dzongs": [],
+      "festivals": [
+        "Local industrial festivals"
+      ],
+      "localDish": "Phaksha Paa (Pork with red rice)"
+    },
+    "nature": {
+      "trekkingRoutes": [],
+      "wildlife": "Golden langurs",
+      "scenicSpots": [
+        "Wangchhu River",
+        "Industrial areas"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Industrial",
+        "activities": [
+          "Hydropower plant tours"
+        ]
+      },
+      {
+        "type": "Cultural",
+        "activities": [
+          "Market visits"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "October-March"
+      ],
+      "accommodation": [
+        "Hotels",
+        "Guesthouses"
+      ],
+      "transportation": [
+        "Road from Thimphu (2 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://pbs.twimg.com/media/CXr7NdhUoAAWW05.jpg:large",
+        "tala-hydro.jpg"
+      ],
+      "video": "chhukha-industry.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Produces most of Bhutan's electricity"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 1
+    }
+  },
+  {
+    "id": "2c6f0ccb-d92b-4e47-a3a2-c4f1c318ba54",
+    "name": "Dagana",
+    "slug": "dagana",
+    "rating": 4.8,
+    "tagline": "Land of Bamboo",
+    "description": "A central district known for its bamboo forests and traditional crafts.",
+    "highlights": [
+      "Daga Dzong",
+      "Dagapela town",
+      "Bamboo forests",
+      "Kana village"
+    ],
+    "location": {
+      "region": "Central Bhutan",
+      "coordinates": {
+        "lat": 27.0667,
+        "lng": 89.8833
+      },
+      "nearbyDzongkhags": [
+        "Tsirang",
+        "Sarpang"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Daga Dzong"
+      ],
+      "festivals": [
+        "Daga Tshechu"
+      ],
+      "localDish": "Bamboo shoot curry"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Bamboo Forest Walk"
+      ],
+      "wildlife": "Himalayan black bears",
+      "scenicSpots": [
+        "Daga River",
+        "Bamboo groves"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Bamboo craft workshops"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "Forest walks"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "October-December"
+      ],
+      "accommodation": [
+        "Guesthouses",
+        "Homestays"
+      ],
+      "transportation": [
+        "Road from Tsirang (1 hour)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsghyxw7kxjWdAcA3UNGNJURT8SHtkJsxKMFYg0xL4JauWd2HRSoJs4Uc98L2gsaXtPtc&usqp=CAU",
+        "bamboo-forest.jpg"
+      ],
+      "video": "dagana-crafts.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Center for bamboo production and crafts"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 1
+    }
+  },
+  {
+    "id": "6ccc771f-39b4-4177-9525-04c0adcb0fc8",
+    "name": "Tsirang",
+    "slug": "tsirang",
+    "rating": 4.8,
+    "tagline": "Rice Bowl of Bhutan",
+    "description": "A fertile agricultural district in central Bhutan known for its rice production and mild climate.",
+    "highlights": [
+      "Tsirang town",
+      "Patala village",
+      "Rice terraces",
+      "Orange orchards"
+    ],
+    "location": {
+      "region": "Central Bhutan",
+      "coordinates": {
+        "lat": 27.0167,
+        "lng": 90.1
+      },
+      "nearbyDzongkhags": [
+        "Dagana",
+        "Sarpang"
+      ]
+    },
+    "culture": {
+      "dzongs": [],
+      "festivals": [
+        "Local harvest festivals"
+      ],
+      "localDish": "Red rice with curry"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Farmland Walks"
+      ],
+      "wildlife": "Pheasants",
+      "scenicSpots": [
+        "Rice terraces",
+        "Orange groves"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Agricultural",
+        "activities": [
+          "Farm visits",
+          "Fruit picking"
+        ]
+      },
+      {
+        "type": "Cultural",
+        "activities": [
+          "Village tours"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "September-November"
+      ],
+      "accommodation": [
+        "Farm stays",
+        "Guesthouses"
+      ],
+      "transportation": [
+        "Road from Damphu (1 hour)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://www.firefoxtours.com/sites/default/files/styles/red_panda_watermark/public/media/bhutan_gallery/1169.jpg",
+        "orange-orchards.jpg"
+      ],
+      "video": "tsirang-agriculture.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Major rice and citrus fruit producer"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 1
+    }
+  },
+  {
+    "id": "500047f6-71f8-43c1-8092-62d63cdfc2fb",
+    "name": "Sarpang",
+    "slug": "sarpang",
+    "rating": 4.8,
+    "tagline": "Southern Crossroads",
+    "description": "A tropical southern district serving as an important transit point between Bhutan and India.",
+    "highlights": [
+      "Gelephu town",
+      "Royal Manas National Park",
+      "Sarpang market",
+      "Border trading points"
+    ],
+    "location": {
+      "region": "Southern Bhutan",
+      "coordinates": {
+        "lat": 26.8667,
+        "lng": 90.2667
+      },
+      "nearbyDzongkhags": [
+        "Tsirang",
+        "Dagana"
+      ]
+    },
+    "culture": {
+      "dzongs": [],
+      "festivals": [
+        "Local harvest festivals"
+      ],
+      "localDish": "Masur Datshi (Lentil and cheese curry)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Manas Jungle Trek"
+      ],
+      "wildlife": "One-horned rhinos",
+      "scenicSpots": [
+        "Manas River",
+        "Tropical forests"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Wildlife",
+        "activities": [
+          "Jungle safaris"
+        ]
+      },
+      {
+        "type": "Cultural",
+        "activities": [
+          "Market visits"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "November-February"
+      ],
+      "accommodation": [
+        "Guesthouses",
+        "Jungle lodges"
+      ],
+      "transportation": [
+        "Road from Gelephu (30 minutes)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://www.heavenlybhutan.com/wp-content/uploads/2020/07/Sarpang-Dzong.jpg",
+        "manas-river.jpg"
+      ],
+      "video": "sarpang-wildlife.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Gateway to Royal Manas National Park"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 2
+    }
+  },
+  {
+    "id": "7d8652fe-d55e-4bf5-9443-0881edfad6b4",
+    "name": "Zhemgang",
+    "slug": "zhemgang",
+    "rating": 4.8,
+    "tagline": "Nature's Last Stronghold",
+    "description": "A remote central district known for its pristine forests and rich biodiversity.",
+    "highlights": [
+      "Zhemgang Dzong",
+      "Royal Manas National Park",
+      "Kheng villages",
+      "Buli village"
+    ],
+    "location": {
+      "region": "Central Bhutan",
+      "coordinates": {
+        "lat": 27.2,
+        "lng": 90.7
+      },
+      "nearbyDzongkhags": [
+        "Trongsa",
+        "Bumthang"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Zhemgang Dzong"
+      ],
+      "festivals": [
+        "Zhemgang Tshechu"
+      ],
+      "localDish": "Lom (Fern curry)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Manas Nature Trek"
+      ],
+      "wildlife": "Golden langurs",
+      "scenicSpots": [
+        "Mangde Chhu River",
+        "Kheng villages"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Wildlife",
+        "activities": [
+          "Nature walks",
+          "Birdwatching"
+        ]
+      },
+      {
+        "type": "Cultural",
+        "activities": [
+          "Village homestays"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "October-December"
+      ],
+      "accommodation": [
+        "Eco-lodges",
+        "Homestays"
+      ],
+      "transportation": [
+        "Road from Trongsa (4 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK6JE-wPzvLq3itVKl53Q7iBd6hV_4RcbLAqXXNPSKMg13JA5kGJYUnmxdlIU7YtIy7ok&usqp=CAU",
+        "kheng-village.jpg"
+      ],
+      "video": "zhemgang-nature.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Most biodiverse district in Bhutan"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 1
+    }
+  },
+  {
+    "id": "89d49970-99fb-4fc7-88b1-c813b1891e35",
+    "name": "Lhuentse",
+    "slug": "lhuentse",
+    "rating": 4.8,
+    "tagline": "Weavers' Paradise",
+    "description": "A remote eastern district famous for producing Bhutan's finest textiles and traditional weaving.",
+    "highlights": [
+      "Lhuentse Dzong",
+      "Khoma village",
+      "Singye Dzong",
+      "Kurtoe region"
+    ],
+    "location": {
+      "region": "Eastern Bhutan",
+      "coordinates": {
+        "lat": 27.6667,
+        "lng": 91.1833
+      },
+      "nearbyDzongkhags": [
+        "Mongar",
+        "Trashiyangtse"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Lhuentse Dzong"
+      ],
+      "festivals": [
+        "Lhuentse Tshechu"
+      ],
+      "localDish": "Zow Shungo (Rice with vegetables)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Eastern Textile Trail"
+      ],
+      "wildlife": "Red pandas",
+      "scenicSpots": [
+        "Kuri Chhu River",
+        "Weaving villages"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Weaving workshops",
+          "Textile tours"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "River walks"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "October-December"
+      ],
+      "accommodation": [
+        "Homestays",
+        "Guesthouses"
+      ],
+      "transportation": [
+        "Road from Mongar (3 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/34/d6/52/lhuntse-dzong.jpg?w=900&h=500&s=1",
+        "khoma-weavers.jpg"
+      ],
+      "video": "lhuentse-textiles.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Produces Bhutan's most expensive textiles"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 2
+    }
+  },
+  {
+    "id": "3c1ab5d0-be1a-4312-b911-dd354e5b217b",
+    "name": "Trashiyangtse",
+    "slug": "trashiyangtse",
+    "rating": 4.8,
+    "tagline": "Artisans' Valley",
+    "description": "A small eastern district known for its traditional woodcraft and sacred pilgrimage sites.",
+    "highlights": [
+      "Trashiyangtse Dzong",
+      "Chorten Kora",
+      "Bomdeling Wildlife Sanctuary",
+      "Woodcraft workshops"
+    ],
+    "location": {
+      "region": "Eastern Bhutan",
+      "coordinates": {
+        "lat": 27.6,
+        "lng": 91.5
+      },
+      "nearbyDzongkhags": [
+        "Trashigang",
+        "Lhuentse"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Trashiyangtse Dzong"
+      ],
+      "festivals": [
+        "Chorten Kora Festival"
+      ],
+      "localDish": "Goep (Tripe curry)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Bomdeling Nature Walk"
+      ],
+      "wildlife": "Black-necked cranes",
+      "scenicSpots": [
+        "Kholong Chhu River",
+        "Bomdeling Valley"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Cultural",
+        "activities": [
+          "Woodcraft demonstrations",
+          "Temple visits"
+        ]
+      },
+      {
+        "type": "Nature",
+        "activities": [
+          "Crane viewing"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "November-February"
+      ],
+      "accommodation": [
+        "Guesthouses",
+        "Homestays"
+      ],
+      "transportation": [
+        "Road from Trashigang (2 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://thebhutanese.bt/wp-content/uploads/2021/01/DqQK9bHWkAEK3AmS.jpg",
+        "woodcraft-workshop.jpg"
+      ],
+      "video": "trashiyangtse-arts.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Center for traditional Bhutanese woodcraft"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 1
+    }
+  },
+  {
+    "id": "3332cea7-a821-4a03-b630-94961f20f910",
+    "name": "Gasa",
+    "slug": "gasa",
+    "rating": 4.8,
+    "tagline": "Hot Springs Haven",
+    "description": "Bhutan's northernmost and least populated district, famous for its therapeutic hot springs and high-altitude villages.",
+    "highlights": [
+      "Gasa Dzong",
+      "Gasa Tshachu",
+      "Laya village",
+      "Snowman Trek"
+    ],
+    "location": {
+      "region": "Western Bhutan",
+      "coordinates": {
+        "lat": 27.9,
+        "lng": 89.7333
+      },
+      "nearbyDzongkhags": [
+        "Punakha",
+        "Thimphu"
+      ]
+    },
+    "culture": {
+      "dzongs": [
+        "Gasa Dzong"
+      ],
+      "festivals": [
+        "Gasa Tshechu"
+      ],
+      "localDish": "Sikam Paa (Dried pork)"
+    },
+    "nature": {
+      "trekkingRoutes": [
+        "Snowman Trek"
+      ],
+      "wildlife": "Snow leopards",
+      "scenicSpots": [
+        "Gasa Hot Springs",
+        "Laya Valley"
+      ]
+    },
+    "experiences": [
+      {
+        "type": "Wellness",
+        "activities": [
+          "Hot spring baths"
+        ]
+      },
+      {
+        "type": "Adventure",
+        "activities": [
+          "High-altitude trekking"
+        ]
+      }
+    ],
+    "practicalInfo": {
+      "bestTimeToVisit": [
+        "April-October"
+      ],
+      "accommodation": [
+        "Hot spring lodges",
+        "Camping"
+      ],
+      "transportation": [
+        "Road from Punakha (4 hours)"
+      ]
+    },
+    "media": {
+      "images": [
+        "https://www.heavenlybhutan.com/wp-content/uploads/2018/06/gasa-dzong.jpg",
+        "laya-village.jpg"
+      ],
+      "video": "gasa-trekking.mp4"
+    },
+    "placesToVisit": [
+      {
+        "name": "Taktshang Monastery (Temple)",
+        "image": "",
+        "description": "Taktshang Monastery is also known as Tiger Nest. The most famous landmark, Taktshang Monastery (Tiger Nest), stands on a granite cliff about 1000 m above the valley. It admitted that Guru Rinpoche, a famous Buddhist saint, flew to Paro on a tigress and meditated at Taktshang. Taktshang monastery is recognising as being a national treasure of Bhutan.\nDepending upon your fitness, it will take about 1.5 hours to reach the viewpoint, and from there, you will experience a spectacular view of the monastery clinging to the side of the cliff. Then hike further up to the monastery which will take about 1 hour. After visiting the Taktshang monastery, stop for lunch at the viewpoint cafeteria and then walk further downhill to the road point.",
+        "rating": 4.8,
+        "distance": "4km"
+      }
+    ],
+    "usps": [
+      "Starting point for Bhutan's most challenging treks"
+    ],
+    "meta": {
+      "lastUpdated": "2023-11-15",
+      "popularity": 2
+    }
   }
 ]

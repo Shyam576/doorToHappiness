@@ -13,6 +13,7 @@ import { AuthProvider } from "../context/AuthContext";
 import { Footer } from "../components/Footer";
 import { store } from "../store/store";
 import { NavBar } from "../components/NavBar";
+import { AdminNav } from "../components/AdminNav";
 import "../components/styles/global.css";
 import "../FontAwesomeConfig";
 
@@ -32,7 +33,7 @@ const fetcher = async (url: string) => {
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { pathname } = useRouter();
-  const protectedRoutes = ["/admin", "/admin/dashboard", "/admin/settings","/admin/majorCityPackage"];
+  const protectedRoutes = ["/admin", "/admin/dashboard", "/admin/destination","/admin/majorCityPackage"];
   const isProtected = protectedRoutes.includes(pathname);
 
   return (
@@ -48,7 +49,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             {isProtected ? (
               <AuthProvider>
                 <IoProvider>
-                  <NavBar />
+                  <AdminNav />
                   <Component {...pageProps} />
                   <Footer />
                 </IoProvider>

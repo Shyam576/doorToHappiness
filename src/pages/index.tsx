@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { Container } from "../../components/Container";
-import WhatsAppButton from "../../components/whatsAppButton";
-import majorCitiesPackage from "../../data/majorCitiesPackage.json";
-import popularDestinations from "../../data/popularDestination.json";
+import { Container } from "../components/Container";
+import WhatsAppButton from "../components/whatsAppButton";
+import majorCitiesPackage from "../data/majorCitiesPackage.json";
+import popularDestination from "../data/popularDestination.json";
+import { FaUmbrellaBeach, FaMountain, FaCity, FaTree, FaPager } from "react-icons/fa";
+
 
 import {
   FiSearch,
@@ -13,11 +15,11 @@ import {
   FiUsers,
   FiFilter,
 } from "react-icons/fi";
-import festivalTours from "../../data/festivialTours.json";
-import culturalTours from "../../data/culturalTours.json";
-import trekkingAdventures from "../../data/trekkingAdventure.json";
-import groupTours from "../../data/groupTours.json";
-import beautifulMoutain from "../../../public/beautifulMoutain.jpeg";
+import festivalTours from "../data/festivialTours.json";
+import culturalTours from "../data/culturalTours.json";
+import trekkingAdventures from "../data/trekkingAdventure.json";
+import groupTours from "../data/groupTours.json";
+import beautifulMoutain from "../../public/beautifulMoutain.jpeg";
 
 const SEO_KEYWORDS = [
   "Bhutan tours",
@@ -43,7 +45,7 @@ const Index: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [destinationSearchTerm, setDestinationSearchTerm] = useState("");
   const [packageSearchTerm, setPackageSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("all");
   const [showDestinationResults, setShowDestinationResults] = useState(false);
   const [showPackageResults, setShowPackageResults] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
@@ -66,17 +68,19 @@ const Index: React.FC = () => {
   ];
 
   // Filter destinations based on search
-  const filteredDestinations = popularDestinations.filter((dest) => {
+  const filteredDestinations = popularDestination.filter((dest) => {
+    // Search term matching
     const matchesSearch =
-      dest.title.toLowerCase().includes(destinationSearchTerm.toLowerCase()) ||
-      dest.description
-        .toLowerCase()
-        .includes(destinationSearchTerm.toLowerCase()) ||
-      dest.location.toLowerCase().includes(destinationSearchTerm.toLowerCase());
-
+      dest.name.toLowerCase().includes(destinationSearchTerm.toLowerCase()) ||
+      dest.description.toLowerCase().includes(destinationSearchTerm.toLowerCase()) ||
+      dest.location.region.toLowerCase().includes(destinationSearchTerm.toLowerCase()) ||
+      dest.highlights.some(h => h.toLowerCase().includes(destinationSearchTerm.toLowerCase()));
+  
+    // Category filtering based on experiences
     const matchesCategory =
-      activeCategory === "All" || dest.category === activeCategory;
-
+      activeCategory === "all" ||
+      dest.experiences.some(exp => exp.type.toLowerCase() === activeCategory);
+  
     return matchesSearch && matchesCategory;
   });
 
@@ -90,7 +94,7 @@ const Index: React.FC = () => {
         pkg.highlights.some((highlight) =>
           highlight.toLowerCase().includes(packageSearchTerm.toLowerCase())
         ));
-
+  
     // Duration filtering
     const duration = getDurationInDays(pkg.duration || "0 days");
     const minDuration = searchFilters.minDuration
@@ -100,14 +104,14 @@ const Index: React.FC = () => {
       ? parseInt(searchFilters.maxDuration)
       : Infinity;
     const matchesDuration = duration >= minDuration && duration <= maxDuration;
-
-    // Rating filtering
-    const rating = pkg.rating ? parseFloat(pkg.rating) : 0;
+  
+    // Rating filtering - fixed type issue
+    const rating = pkg.rating ? parseFloat(pkg.rating.toString()) : 0;
     const minRating = searchFilters.rating
       ? parseFloat(searchFilters.rating)
       : 0;
     const matchesRating = rating >= minRating;
-
+  
     return matchesSearch && matchesDuration && matchesRating;
   });
 
@@ -126,15 +130,15 @@ const Index: React.FC = () => {
         );
       case "rating":
         return (
-          (b.rating ? parseFloat(b.rating) : 0) -
-          (a.rating ? parseFloat(a.rating) : 0)
+          (b.rating ? parseFloat(b.rating.toString()) : 0) -
+          (a.rating ? parseFloat(a.rating.toString()) : 0)
         );
       case "recommended":
       default:
         // Default sorting (could be based on popularity or other metrics)
         return (
-          (b.rating ? parseFloat(b.rating) : 0) -
-          (a.rating ? parseFloat(b.rating) : 0)
+          (b.rating ? parseFloat(b.rating.toString()) : 0) -
+          (a.rating ? parseFloat(b.rating.toString()) : 0)
         );
     }
   });
@@ -172,12 +176,12 @@ const Index: React.FC = () => {
   ];
 
   const categories = [
-    "All",
-    "Cultural",
-    "Adventure",
-    "Nature",
-    "Spiritual",
-    "Scenic",
+    { id: "all", name: "All", icon: null },
+    { id: "cultural", name: "Cultural", icon: <FaPager className="inline mr-1" /> },
+    { id: "adventure", name: "Adventure", icon: <FaMountain className="inline mr-1" /> },
+    { id: "nature", name: "Nature", icon: <FaTree className="inline mr-1" /> },
+    { id: "spiritual", name: "Spiritual", icon: "🕉️" },
+    { id: "scenic", name: "Scenic", icon: "🏞️" },
   ];
 
   const sortOptions = [
@@ -324,19 +328,19 @@ const Index: React.FC = () => {
                           key={dest.id}
                           className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center"
                           onClick={() => {
-                            setDestinationSearchTerm(dest.title);
+                            setDestinationSearchTerm(dest.name);
                             setShowDestinationResults(false);
                           }}
                         >
                           <img
-                            src={dest.image}
-                            alt={dest.title}
+                            src={dest.media.images[0]}
+                            alt={dest.name}
                             className="w-10 h-10 rounded-md object-cover mr-3"
                           />
                           <div>
-                            <div className="font-medium">{dest.title}</div>
+                            <div className="font-medium">{dest.name}</div>
                             <div className="text-sm text-gray-500">
-                              {dest.location}
+                              {dest.location.region}
                             </div>
                           </div>
                         </div>
@@ -563,97 +567,107 @@ const Index: React.FC = () => {
 
       {/* Popular Destinations Section */}
       <Container className="py-12">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
-            Popular Bhutan Destinations
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Discover the most breathtaking places in the Land of the Thunder
-            Dragon
-          </p>
+  <div className="text-center mb-12">
+    <h2 className="text-3xl font-bold text-gray-800 mb-2">
+      Explore Bhutan's Destinations
+    </h2>
+    <p className="text-gray-600 max-w-2xl mx-auto">
+      Discover the 20 unique districts of Bhutan, each with its own cultural identity
+    </p>
 
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-2 mt-6">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                  activeCategory === category
-                    ? "bg-yellow-500 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
+    {/* Updated Category Filters */}
+    <div className="flex flex-wrap justify-center gap-2 mt-6">
+      {categories.map((category) => (
+        <button
+          key={category.id}
+          onClick={() => setActiveCategory(category.id)}
+          className={`px-4 py-2 rounded-full text-sm font-medium transition flex items-center ${
+            activeCategory === category.id
+              ? "bg-yellow-500 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          {category.icon && <span className="mr-1">{category.icon}</span>}
+          {category.name}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {filteredDestinations.slice(0, 6).map((destination) => (
+      <div
+        key={destination.id}
+        className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
+      >
+        <div className="relative h-48">
+          <img
+            src={destination.media.images[0]}
+            alt={destination.name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+            <h3 className="text-xl font-bold text-white">
+              {destination.name}
+            </h3>
+            <p className="text-yellow-300 text-sm">
+              {destination.location.region}
+            </p>
+          </div>
+          <div className="absolute top-2 right-2 bg-white bg-opacity-90 px-2 py-1 rounded-full text-xs font-bold flex items-center">
+            <svg
+              className="w-3 h-3 text-yellow-500 mr-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            Popularity: {destination.meta.popularity}/5
+          </div>
+        </div>
+        <div className="p-6">
+          <p className="text-gray-600 mb-4 line-clamp-2">
+            {destination.tagline}
+          </p>
+          
+          {/* Experience Tags */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {destination.experiences.slice(0, 3).map((exp, i) => (
+              <span
+                key={i}
+                className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
               >
-                {category}
-              </button>
+                {exp.type}
+              </span>
             ))}
           </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredDestinations.slice(0, 6).map((destination) => (
-            <div
-              key={destination.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
-            >
-              <div className="relative h-48">
-                <img
-                  src={destination.image}
-                  alt={destination.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                  <h3 className="text-xl font-bold text-white">
-                    {destination.title}
-                  </h3>
-                  <p className="text-yellow-300 text-sm">
-                    {destination.location}
-                  </p>
-                </div>
-                <div className="absolute top-2 right-2 bg-white bg-opacity-90 px-2 py-1 rounded-full text-xs font-bold flex items-center">
-                  <svg
-                    className="w-3 h-3 text-yellow-500 mr-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  {destination.rating}
-                </div>
-              </div>
-              <div className="p-6">
-                <p className="text-gray-600 mb-4 line-clamp-2">
-                  {destination.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {destination.highlights.slice(0, 3).map((highlight, i) => (
-                    <span
-                      key={i}
-                      className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
-                    >
-                      {highlight}
-                    </span>
-                  ))}
-                </div>
-                <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center">
-                  Explore Tour Packages
-                  <FiArrowRight className="ml-2" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {filteredDestinations.length > 6 && (
-          <div className="text-center mt-12">
-            <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
-              View All {filteredDestinations.length} Destinations
-              <FiArrowRight className="ml-2" />
-            </button>
+          
+          {/* Best Time to Visit */}
+          <div className="mb-4">
+            <p className="text-sm text-gray-500">
+              <span className="font-medium">Best Time:</span> {destination.practicalInfo.bestTimeToVisit.join(", ")}
+            </p>
           </div>
-        )}
-      </Container>
+          
+          <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center">
+            Discover {destination.name}
+            <FiArrowRight className="ml-2" />
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {filteredDestinations.length > 6 && (
+    <div className="text-center mt-12">
+      <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
+        View All {filteredDestinations.length} Destinations
+        <FiArrowRight className="ml-2" />
+      </button>
+    </div>
+  )}
+</Container>
 
       {/* Featured Tours Section */}
       <Container className="py-12 ">

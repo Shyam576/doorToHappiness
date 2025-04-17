@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 interface TourPackage {
-  id: number;
+  id: string;
   title: string;
   image: string;
   alt: string;
