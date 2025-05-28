@@ -154,7 +154,7 @@ const Index: React.FC = () => {
   const heroSlides = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://www.bhutanpeacefultour.com/wp-content/uploads/2018/11/Thimphu-City-Image-Main.jpg",
       alt: "Tiger's Nest Monastery Paro Bhutan",
       title: "Discover the Last Shangri-La",
       subtitle: "Experience Gross National Happiness",
