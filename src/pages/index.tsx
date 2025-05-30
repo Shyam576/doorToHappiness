@@ -211,7 +211,7 @@ const Index: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="bg-gradient-to-b from-gray-50 to-white">
       <Head>
         <title>
           Door To Happiness - Premier Bhutan Tour Operator | Cultural &
@@ -251,7 +251,7 @@ const Index: React.FC = () => {
       </Head>
 
       {/* Hero Section */}
-      <div className="relative h-screen max-h-[800px] overflow-hidden">
+      <div className="relative h-screen max-h-[800px] overflow-hidden  ">
         {heroSlides.map((slide, index) => (
           <div
             key={slide.id}
@@ -882,7 +882,7 @@ const Index: React.FC = () => {
         phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string}
         message="Hello! I have a question about your Bhutan tours"
       />
-    </>
+    </div>
   );
 };
 

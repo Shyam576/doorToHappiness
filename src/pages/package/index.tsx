@@ -93,7 +93,7 @@ function Index() {
     if (tours.length === 0 && !searchTerm) return null;
     
     return (
-      <Container className="py-8">
+      <Container className="py-8 ">
         <div className="text-center mb-8">
           <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400 inline-block py-2 px-4 rounded-lg shadow-md">
             {category}
@@ -136,7 +136,7 @@ function Index() {
   }
 
   return (
-    <>
+    <div className="bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section with Search */}
       <div className="relative bg-gradient-to-r from-orange-500 to-yellow-400 py-20 px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
@@ -232,7 +232,7 @@ function Index() {
         phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string}
         message="Hello! I have a question about Bhutan tours"
       />
-    </>
+    </div>
   );
 }
 
