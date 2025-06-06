@@ -208,7 +208,7 @@ const Index: React.FC = () => {
               <input
                 type="text"
                 placeholder="Search destinations..."
-                className="w-full py-4 px-6 pl-10 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full py-4 px-6 pl-10 bg-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

@@ -150,7 +150,7 @@ function Index() {
             <input
               type="text"
               placeholder="Search all packages..."
-              className="w-full py-4 px-6 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 pr-12"
+              className="w-full py-4 px-6 bg-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 pr-12"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
