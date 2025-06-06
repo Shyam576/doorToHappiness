@@ -294,7 +294,7 @@ const Index: React.FC = () => {
           </div>
 
           {/* Enhanced Search Widget */}
-          <div className="mt-8 bg-white rounded-2xl shadow-xl p-6 transition-all duration-300">
+          <div className="mt-8 bg-white rounded-2xl shadow-xl p-6 transition-all duration-300 bg-opacity-75">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               Plan Your Bhutan Adventure
             </h2>
@@ -306,7 +306,7 @@ const Index: React.FC = () => {
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                   placeholder="Where do you want to go?"
                   value={destinationSearchTerm}
                   onChange={(e) => {
@@ -360,7 +360,7 @@ const Index: React.FC = () => {
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                   placeholder="Search for tours or activities"
                   value={packageSearchTerm}
                   onChange={(e) => {
@@ -416,7 +416,7 @@ const Index: React.FC = () => {
                 </div>
                 <input
                   type="date"
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                   placeholder="Select dates"
                   value={searchFilters.date}
                   onChange={(e) =>
@@ -430,7 +430,7 @@ const Index: React.FC = () => {
                   <FiUsers className="text-gray-400" />
                 </div>
                 <select
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 appearance-none"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 appearance-none"
                   value={searchFilters.travelers}
                   onChange={(e) =>
                     setSearchFilters({
@@ -470,7 +470,7 @@ const Index: React.FC = () => {
                         type="number"
                         name="minDuration"
                         placeholder="Min"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                         value={searchFilters.minDuration}
                         onChange={handleFilterChange}
                       />
@@ -479,7 +479,7 @@ const Index: React.FC = () => {
                         type="number"
                         name="maxDuration"
                         placeholder="Max"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                         value={searchFilters.maxDuration}
                         onChange={handleFilterChange}
                       />
@@ -492,7 +492,7 @@ const Index: React.FC = () => {
                     </label>
                     <select
                       name="rating"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                       value={searchFilters.rating}
                       onChange={handleFilterChange}
                     >
