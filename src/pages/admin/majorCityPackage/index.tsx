@@ -269,7 +269,7 @@ const EditPackagesPage = () => {
               name={field.name}
               value={(formData[field.name] as string) || ""}
               onChange={handleInputChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded bg-white"
               required={field.required}
             />
           </div>
@@ -283,7 +283,7 @@ const EditPackagesPage = () => {
               name={field.name}
               value={(formData[field.name] as number) || ""}
               onChange={handleNumberInputChange}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded bg-white"
               required={field.required}
             />
           </div>
@@ -297,7 +297,7 @@ const EditPackagesPage = () => {
               value={(formData[field.name] as string) || ""}
               onChange={handleInputChange}
               rows={field.name === "full_description" ? 5 : 3}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded bg-white"
               required={field.required}
             />
           </div>
@@ -316,7 +316,7 @@ const EditPackagesPage = () => {
                     [field.name]: e.target.value,
                   })
                 }
-                className="flex-1 p-2 border rounded-l"
+                className="flex-1 p-2 border rounded-l bg-white"
                 placeholder={`New ${field.label}`}
               />
               <button
@@ -479,7 +479,7 @@ const EditPackagesPage = () => {
                         title: e.target.value,
                       })
                     }
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded bg-white"
                     placeholder="Day title"
                   />
                 </div>
@@ -496,7 +496,7 @@ const EditPackagesPage = () => {
                         description: e.target.value,
                       })
                     }
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded bg-white"
                     placeholder="Brief description"
                   />
                 </div>
@@ -514,7 +514,7 @@ const EditPackagesPage = () => {
                       details: e.target.value,
                     })
                   }
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded bg-white"
                   rows={4}
                   placeholder="Detailed description of the day's activities"
                 />
@@ -570,7 +570,7 @@ const EditPackagesPage = () => {
           id="file-select"
           value={selectedFile}
           onChange={handleFileChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-white"
         >
           {availableFiles.map((file) => (
             <option key={file} value={file}>
