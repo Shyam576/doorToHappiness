@@ -294,8 +294,8 @@ const Index: React.FC = () => {
           </div>
 
           {/* Enhanced Search Widget */}
-          <div className="mt-8 bg-white rounded-2xl shadow-xl p-6 transition-all duration-300 bg-opacity-75">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <div className="mt-8 bg-white rounded-2xl shadow-xl p-6 transition-all duration-300 bg-opacity-30">
+            <h2 className="text-2xl font-bold text-white mb-4">
               Plan Your Bhutan Adventure
             </h2>
 
@@ -864,7 +864,7 @@ const Index: React.FC = () => {
                 <input
                   type="email"
                   placeholder="Your email address"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 />
               </div>
               <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-lg transition">

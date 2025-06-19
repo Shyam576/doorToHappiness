@@ -196,8 +196,7 @@ const Index: React.FC = () => {
             </h1>
             <p className="text-xl text-white opacity-90 mb-8">
               Explore the Land of the Thunder Dragon through its most
-              breathtaking destinations, rich culture, and unforgettable
-              experiences.
+              breathtaking destinations, and rich culture.
             </p>
             
             {/* Search Bar */}
@@ -452,7 +451,7 @@ const Index: React.FC = () => {
             <h2 className="text-3xl font-bold text-center mb-12">
               Explore by Region
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               {regions.map((region) => (
                 <div
                   key={region}
