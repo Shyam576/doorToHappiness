@@ -1,252 +1,202 @@
-import { Formik, Form, Field, FormikState, FormikHelpers } from 'formik'
+import { Formik, Form, Field, FormikHelpers } from 'formik'
 import Head from 'next/head'
 import * as Yup from 'yup'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import Link from 'next/link'
+import Image from 'next/image'
 import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
 import { FiArrowLeft } from 'react-icons/fi'
-
-import { SocialLogin } from '../../components/SocialLogin'
-import { Dispatch } from '../../store/store'
-import { AuthOption, withAuth } from '../../utils/withAuth'
-import { SERVER_URL } from '../../utils/constants'
-import { ErrorField } from '../../components/ErrorField'
 import axios from 'axios'
+import beautifulMoutain from "../../../public/beautifulMoutain.jpeg";
 
 
-interface LoginProps {
+interface LoginProps {}
 
-}
-
-type LoginValues = {
-    email: string;
-    password: string;
-}
-
-type RegisterValues = {
-    email: string;
-    password: string;
-    role: string;
-}
-
+type LoginValues = { email: string; password: string }
+type RegisterValues = { email: string; password: string; role: string }
 
 const Login: React.FC<LoginProps> = ({}) => {
-
-    const [FormType, setFormType] = useState<'login' | 'register'>('login')
-    const [open, setOpen] = useState<boolean>(false)
-    const [ApiErrors, setAPIErrors] = useState<any>({})
-    const dispatch = useDispatch<Dispatch>()
+    const [formType, setFormType] = useState<'login' | 'register'>('login')
+    const [showPassword, setShowPassword] = useState(false)
+    const [apiErrors, setApiErrors] = useState<any>({})
     const router = useRouter()
 
-
-    const toggle = () =>{
-        setOpen(!open)
-    }
-
-
-
-    const loginValues: LoginValues = { email: '', password: '' }
+    // Form configurations
     const loginSchema = Yup.object().shape({
-        email: Yup.string().email('Email should be email').required('Email cannot be empty or whitespace'),
-        password: Yup.string().required('Password cannot be empty or whitespace').min(6, 'Password must be between 6 and 100 characters long').max(100, 'Password must be between 6 and 100 characters long')
+        email: Yup.string().email('Invalid email').required('Required'),
+        password: Yup.string().required('Required').min(6, 'Too short')
     })
-    const submitLoginForm = async (values: LoginValues, helpers: FormikHelpers<LoginValues>) => {
-        console.log(values)
-        setTimeout(() => helpers.setSubmitting(false), 2000)
-        try {
-            const res = await axios.post("/api/auth/login",values,{
-                // Use axios.post
-                headers: {
-                  "Content-Type": "application/json",
-                },})
 
-            console.log(res.data)
-            if(res.status ===500) {
-                setAPIErrors("Invalid credentials")
-                console.log('ApiErrors', ApiErrors)
-            }
-            console.log('ApiErrors', ApiErrors)
-            if(res.data.user) {
-                router.push('/admin/majorCityPackage')
-            }
-            console.log('ApiErrors', ApiErrors)
-        } catch (err: any) {
-            console.log('ERROR', err)
-        }
-    }
-
-
-
-    const registerValues: RegisterValues = {
-        email: '',
-        password: '',
-        role: ''
-    }
     const registerSchema = Yup.object().shape({
-        email: Yup.string().email('Email should be email').required('Email cannot be empty or whitespace'),
-        password: Yup.string().required('Password cannot be empty or whitespace').min(6, 'Password must be between 6 and 100 characters long').max(100, 'Password must be between 6 and 100 characters long'),
-        role: Yup.string().required('Role must be a string')
+        email: Yup.string().email('Invalid email').required('Required'),
+        password: Yup.string().required('Required').min(6, 'Too short'),
+        role: Yup.string().required('Required')
     })
-    const submitRegisterForm = async (values: RegisterValues, helpers: FormikHelpers<RegisterValues>) => {
-        console.log(values)
-        setTimeout(() => helpers.setSubmitting(false), 2000)
-        try {
-            const res = await dispatch.user.localRegisterAsync(values)
-            if(res.errors) {
-                setAPIErrors(res.errors)
-                console.log(ApiErrors)
-            }
 
-            if(res.user) {
-                router.push('/me')
+    const handleSubmit = async (values: LoginValues | RegisterValues) => {
+        try {
+            const endpoint = formType === 'login' ? '/api/auth/login' : '/api/auth/register'
+            const res = await axios.post(endpoint, values)
+            
+            if (res.data.user) {
+                router.push(formType === 'login' ? '/admin/majorCityPackage' : '/me')
             }
         } catch (err: any) {
-            console.log('ERROR', err)
+            setApiErrors(err.response?.data?.errors || {})
         }
-    }
-
-
-    const changeForm = (formType: 'login' | 'register') => {
-        setAPIErrors({})
-        setFormType(formType)
     }
 
     return (
         <>
             <Head>
-                <title>Login</title>
-                <meta name="description" content="Login or create account" />
-                <link rel="icon" href="/favicon.ico" />
+                <title>{formType === 'login' ? 'Sign In' : 'Create Account'} | Bhutan Tourism</title>
+                <meta name="description" content="Access your Bhutan travel account" />
             </Head>
-            <div className="flex w-full m-auto mt-0 shadow-xl lg:w-4/12 md:w-10/12 md:mt-28 bg-base-200 rounded-xl" >
-                    <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">Door To Happiness Holiday</p>
-                    <div className="box-border flex flex-wrap">
-                        <button onClick={() => changeForm('login')} className={`flex-1 w-64 p-4 mr-4 text-center rounded-lg uppercase font-bold ${FormType === 'login' ? 'bg-primary' : ''}`}>Sign in</button>
-                        <button onClick={() => changeForm('register')} className={`flex-1 w-64 p-4 text-center rounded-lg uppercase font-bold ${FormType === 'register' ? 'bg-primary' : ''}`}>Sign up</button>
+
+            <div className="min-h-screen bg-gray-50">
+                {/* Hero Section with Bhutanese imagery */}
+                <div className="relative h-64 bg-blue-600 overflow-hidden">
+                    <Image 
+                        src={beautifulMoutain.src}
+                        alt="Beautiful Dagana, Bhutan"
+                        layout="fill"
+                        objectFit="cover"
+                        className="opacity-70"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <h1 className="text-4xl font-bold text-white">
+                            Discover Bhutan's Magic
+                        </h1>
                     </div>
-                    {FormType && FormType === 'login' ?
-                        <Formik
-                            initialValues={loginValues} 
-                            onSubmit={submitLoginForm}
-                            validationSchema={loginSchema}
+                </div>
+
+                {/* Auth Container */}
+                <div className="max-w-md mx-auto -mt-16 bg-white rounded-xl shadow-lg overflow-hidden">
+                    {/* Form Toggle */}
+                    <div className="flex border-b">
+                        <button
+                            onClick={() => setFormType('login')}
+                            className={`flex-1 py-4 font-medium ${formType === 'login' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'}`}
                         >
-                            {({ isSubmitting, errors, touched }: FormikState<LoginValues>) => (
-                                <Form>
+                            Sign In
+                        </button>
+                        <button
+                            onClick={() => setFormType('register')}
+                            className={`flex-1 py-4 font-medium ${formType === 'register' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'}`}
+                        >
+                            Create Account
+                        </button>
+                    </div>
+
+                    {/* Form Content */}
+                    <div className="p-8">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                            {formType === 'login' ? 'Welcome Back' : 'Join Our Journey'}
+                        </h2>
+
+                        <Formik
+                            initialValues={formType === 'login' ? 
+                                { email: '', password: '' } : 
+                                { email: '', password: '', role: '' }}
+                            validationSchema={formType === 'login' ? loginSchema : registerSchema}
+                            onSubmit={handleSubmit}
+                        >
+                            {({ isSubmitting, errors, touched }) => (
+                                <Form className="space-y-4">
                                     <div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="font-semibold label-text">Email</span>
-                                                <span className="font-medium label-text-alt">e.g. john@gmail.com</span>
-                                            </label>
-                                            <Field placeholder="Enter your email" type="email" name="email" className={`w-full p-3 transition duration-200 rounded input`}/>
-                                            <label className="label">
-                                                {errors.email && touched.email ? <ErrorField error={errors.email}/>  : null}
-                                                {ApiErrors.email && touched.email ? <ErrorField error={ApiErrors.email}/>: null}
-                                            </label>    
-                                        </div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            Email address
+                                        </label>
+                                        <Field
+                                            name="email"
+                                            type="email"
+                                            className="w-full px-4 py-2 border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="your@email.com"
+                                        />
+                                        {errors.email && touched.email && (
+                                            <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                                        )}
                                     </div>
+
                                     <div>
-                                        <div className="form-control">
-                                            <label className="relative label">
-                                                <span className="font-semibold label-text">Password</span>
-                                                <span className="font-medium label-text-alt">e.g. K3ybo@rdC@t</span>
-                                                <div className='absolute text-2xl top-12 right-5'>
-                                                    {
-                                                        (open === false) ? <AiFillEye onClick={toggle}/> :
-                                                        <AiFillEyeInvisible onClick={toggle}/>
-                                                    }
-                                                </div>
+                                        <div className="flex justify-between items-center mb-1">
+                                            <label className="block text-sm font-medium text-gray-700">
+                                                Password
                                             </label>
-                                            <Field placeholder="Enter your password" type={(open === false)? 'password' :'text'} name="password" className={`w-full p-3 transition duration-200 rounded input`}/>
-                                            
-                                            <label className="label">
-                                                {errors.password ? <ErrorField error={errors.password}/> : null}
-                                                {ApiErrors.password ? <ErrorField error={ApiErrors.password}/> : null}
-                                            </label>
+                                            {formType === 'login' && (
+                                                <a href="/account/password/reset" className="text-sm text-blue-600 hover:underline">
+                                                    Forgot password?
+                                                </a>
+                                            )}
                                         </div>
+                                        <div className="relative">
+                                            <Field
+                                                name="password"
+                                                type={showPassword ? 'text' : 'password'}
+                                                className="w-full px-4 py-2 border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                                                placeholder="••••••••"
+                                            />
+                                            <button
+                                                type="button"
+                                                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                            >
+                                                {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                                            </button>
+                                        </div>
+                                        {errors.password && touched.password && (
+                                            <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+                                        )}
                                     </div>
-                                    <div className="flex justify-between mb-5">
-                                        <Link href="/account/password/reset">
-                                            <div className="form-control">
-                                                <label className="cursor-pointer hover:underline">
-                                                    <p>Forgot password?</p>
-                                                </label>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                    <button type="submit" disabled={isSubmitting} className="w-full btn">
-                                        Submit
+
+                                    {formType === 'register' && (
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                                Account Type
+                                            </label>
+                                            <Field
+                                                as="select"
+                                                name="role"
+                                                className="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                            >
+                                                <option value="">Select role</option>
+                                                <option value="traveler">Traveler</option>
+                                                <option value="guide">Tour Guide</option>
+                                                <option value="vendor">Local Vendor</option>
+                                            </Field>
+                                            {errors.role && touched.role && (
+                                                <p className="mt-1 text-sm text-red-600">{errors.role}</p>
+                                            )}
+                                        </div>
+                                    )}
+
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200"
+                                    >
+                                        {isSubmitting ? 'Processing...' : 
+                                         formType === 'login' ? 'Sign In' : 'Create Account'}
                                     </button>
                                 </Form>
                             )}
-                        </Formik> : null
-                        }
-                        {FormType && FormType === 'register' ?
-                        <Formik
-                            initialValues={registerValues} 
-                            onSubmit={submitRegisterForm}
-                            validationSchema={registerSchema}
-                        >
-                            {({ isSubmitting, errors, touched }: FormikState<RegisterValues>) => (
-                                <Form>
-                                    <div>
-                                        <div className="form-control">
-                                            <label className="label">
-                                                <span className="font-semibold label-text">Email</span>
-                                                <span className="font-medium label-text-alt">e.g. john@gmail.com</span>
-                                            </label>
-                                            <Field placeholder="Enter your email" type="email" name="email" className={`w-full p-3 transition duration-200 rounded input`}/>
-                                            <label className="label">
-                                                {errors.email && touched.email ? <ErrorField error={errors.email}/> : null}
-                                                {ApiErrors.email && touched.email ? <ErrorField error={ApiErrors.email}/> : null}
-                                            </label>                                           
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div className="form-control">
-                                            <label className="relative label">
-                                                <span className="font-semibold label-text">Password</span>
-                                                <span className="font-medium label-text-alt">e.g. K3ybo@rdC@t</span>
-                                                <div className='absolute text-2xl top-12 right-5'>
-                                                    {
-                                                        (open === false) ? <AiFillEye onClick={toggle}/> :
-                                                        <AiFillEyeInvisible onClick={toggle}/>
-                                                    }
-                                                </div>
-                                            </label>
-                                            <Field placeholder="Enter your password" type={(open === false)? 'password' :'text'} name="password" className={`w-full p-3 transition duration-200 rounded input`}/>                                           
-                                            <label className="label">
-                                                {errors.password ? <ErrorField error={errors.password}/> : null}
-                                                {ApiErrors.password ? <ErrorField error={ApiErrors.password}/> : null}
-                                            </label>
-                                        </div>
-                                    </div>                       
-                                    <button type="submit" disabled={isSubmitting} className={`w-full btn ${isSubmitting ? 'btn loading' : ''}`}>
-                                        Submit
-                                    </button>
-                                </Form>
-                            )}
-                        </Formik> : null
-                        }
-                        <div className="my-10 divider">OR</div>
-                        <section className="box-border flex flex-wrap">
-                            <SocialLogin className="w-64 mr-4" provider="Google" url={`${SERVER_URL}/auth/google`}/>
-                            <SocialLogin className="w-64" provider="Facebook" url={`${SERVER_URL}/auth/facebook`}/>
-                        </section>
+                        </Formik>
+
                     </div>
-            </div>    
-            <div className="flex w-full m-auto mt-8 lg:w-4/12 md:w-10/12">
-                <Link href="/" className="m-auto mb-10 text-xl shadow-xl btn btn-ghost btn-sm rounded-btn lg:m-0 btn-primary btn-outline">
-                    <>
-                        <FiArrowLeft/> Back to main site
-                    </>
-                </Link>
+                </div>
+
+                <div className="mt-8 text-center">
+                    <a 
+                        href="/" 
+                        className="inline-flex items-center text-blue-600 hover:underline"
+                    >
+                        <FiArrowLeft className="mr-1" />
+                        Back to Bhutan Tourism
+                    </a>
+                </div>
             </div>
         </>
     )
 }
 
-export default withAuth(AuthOption.FORBIDDEN, Login)
+export default Login

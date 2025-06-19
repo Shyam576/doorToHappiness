@@ -10,7 +10,7 @@
       "Taktsang Monastery",
       "Paro Tshechu Festival",
       "Rinpung Dzong",
-      "National Museum" 
+      "National Museum"
     ],
     "location": {
       "region": "Western Bhutan",
@@ -716,7 +716,7 @@
         "name": "Tabiting Village",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Tabiting-Village.jpg",
         "description": "Tabiting is a traditional village located on the slopes above the Phobjikha Valley. The village offers stunning views of the valley below and is known for its traditional architecture and farming practices. Visitors can explore the village, interact with locals, and learn about traditional Bhutanese culture. The village is also a good starting point for hiking trails in the area.",
-        "rating": 4.0,
+        "rating": 4,
         "distance": "6km"
       }
     ],
@@ -864,7 +864,7 @@
         "rating": 4.6,
         "distance": "15km"
       },
-         {
+      {
         "name": "Tang Valley",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Tang-Valley.jpg",
         "description": "Tang Valley is the most remote of Bumthang's four valleys and is known for its pristine natural beauty and traditional way of life. The valley is home to several important temples and offers excellent trekking opportunities. The valley is also famous for its yak herding communities and traditional architecture. Visitors can experience authentic rural Bhutanese culture and enjoy spectacular mountain views.",
@@ -1164,7 +1164,7 @@
         "name": "Kuri Chhu River",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Kuri-Chhu.jpg",
         "description": "The Kuri Chhu River flows through Mongar and provides beautiful scenery and opportunities for nature walks. The river is surrounded by lush forests and agricultural fields. Visitors can enjoy peaceful walks along the riverbank, observe local wildlife, and experience the natural beauty of eastern Bhutan. The river also provides opportunities for fishing and picnicking.",
-        "rating": 4.0,
+        "rating": 4,
         "distance": "2km"
       }
     ],
@@ -1443,7 +1443,7 @@
         "name": "Martshala",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Martshala.jpg",
         "description": "Martshala is a border checkpoint and small town that serves as an entry point to Bhutan from India. The town offers insights into border life and the movement of people and goods between the two countries. Visitors can observe the customs and immigration procedures and experience the unique atmosphere of border towns.",
-        "rating": 4.0,
+        "rating": 4,
         "distance": "8km"
       }
     ],
@@ -1852,7 +1852,7 @@
         "name": "Sipsu Village",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Sipsu-Village.jpg",
         "description": "Sipsu is a small village known for its traditional architecture and cultural practices. The village offers visitors a chance to experience authentic rural Bhutanese culture and traditional way of life. The area is surrounded by beautiful natural landscapes and offers opportunities for nature walks and cultural immersion.",
-        "rating": 4.0,
+        "rating": 4,
         "distance": "25km"
       }
     ],
@@ -1976,7 +1976,7 @@
         "name": "Chapcha Town",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Chapcha-Town.jpg",
         "description": "Chapcha is a small town that serves as an administrative center in Chhukha district. The town offers insights into local governance and administration in Bhutan. Visitors can explore the town, interact with local officials, and learn about district-level administration in Bhutan.",
-        "rating": 4.0,
+        "rating": 4,
         "distance": "18km"
       }
     ],
@@ -2096,7 +2096,7 @@
       {
         "name": "Bamboo Forest Trail",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Bamboo-Forest-Trail.jpg",
-                "description": "The Bamboo Forest Trail is a beautiful walking trail that winds through extensive bamboo groves in Dagana. The trail offers visitors a unique opportunity to experience one of Bhutan's most important natural resources up close. The trail is suitable for all fitness levels and provides excellent opportunities for photography and nature observation.",
+        "description": "The Bamboo Forest Trail is a beautiful walking trail that winds through extensive bamboo groves in Dagana. The trail offers visitors a unique opportunity to experience one of Bhutan's most important natural resources up close. The trail is suitable for all fitness levels and provides excellent opportunities for photography and nature observation.",
         "rating": 4.5,
         "distance": "5km"
       },
