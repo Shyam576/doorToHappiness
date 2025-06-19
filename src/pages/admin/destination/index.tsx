@@ -434,7 +434,7 @@ const EditPopularDestinationsPage = () => {
                         [subField.name]: e.target.value,
                       })
                     }
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded bg-white"
                     placeholder={subField.label}
                   />
                 )}
@@ -448,7 +448,7 @@ const EditPopularDestinationsPage = () => {
                         [subField.name]: e.target.value,
                       })
                     }
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded bg-white"
                     placeholder={subField.label}
                   />
                 )}
@@ -461,7 +461,7 @@ const EditPopularDestinationsPage = () => {
                         [subField.name]: e.target.value,
                       })
                     }
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded bg-white"
                     rows={3}
                     placeholder={subField.label}
                   />
@@ -478,7 +478,7 @@ const EditPopularDestinationsPage = () => {
                             [subField.name]: [e.target.value],
                           })
                         }
-                        className="flex-1 p-2 border rounded"
+                        className="flex-1 p-2 border rounded bg-white"
                         placeholder={`New ${subField.label}`}
                       />
                     </div>
@@ -565,7 +565,7 @@ const EditPopularDestinationsPage = () => {
                   handleInputChange(e);
                 }
               }}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded bg-white"
               required={field.required}
             />
           </div>
@@ -605,7 +605,7 @@ const EditPopularDestinationsPage = () => {
                   handleNumberInputChange(e);
                 }
               }}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded bg-white"
               required={field.required}
             />
           </div>
@@ -645,7 +645,7 @@ const EditPopularDestinationsPage = () => {
                 }
               }}
               rows={field.name === "description" ? 4 : 3}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded bg-white"
               required={field.required}
             />
           </div>
@@ -664,7 +664,7 @@ const EditPopularDestinationsPage = () => {
                     [fullName]: e.target.value,
                   })
                 }
-                className="flex-1 p-2 border rounded-l"
+                className="flex-1 p-2 border rounded-l bg-white"
                 placeholder={`New ${field.label}`}
               />
               <button
