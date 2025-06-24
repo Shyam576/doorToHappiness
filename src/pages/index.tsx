@@ -20,6 +20,7 @@ import culturalTours from "../data/culturalTours.json";
 import trekkingAdventures from "../data/trekkingAdventure.json";
 import groupTours from "../data/groupTours.json";
 import beautifulMoutain from "../../public/beautifulMoutain.jpeg";
+import Link from "next/link";
 
 const SEO_KEYWORDS = [
   "Bhutan tours",
@@ -627,7 +628,7 @@ const Index: React.FC = () => {
           </div>
         </div>
         <div className="p-6">
-          <p className="text-gray-600 mb-4 line-clamp-2">
+          <p className="text-gray-800 text-xl font-bold mb-4 line-clamp-2">
             {destination.tagline}
           </p>
           
@@ -649,11 +650,12 @@ const Index: React.FC = () => {
               <span className="font-medium">Best Time:</span> {destination.practicalInfo.bestTimeToVisit.join(", ")}
             </p>
           </div>
-          
+          <Link href={`/destination/explore/${destination.id}`}>
           <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center">
             Discover {destination.name}
             <FiArrowRight className="ml-2" />
           </button>
+          </Link>
         </div>
       </div>
     ))}
@@ -725,7 +727,7 @@ const Index: React.FC = () => {
                 {" "}
                 {/* Added flex flex-col flex-grow */}
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold">{tour.title}</h3>
+                  <h3 className="text-xl text-gray-800 font-bold">{tour.title}</h3>
                   <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-sm whitespace-nowrap">
                     {" "}
                     {/* Added whitespace-nowrap */}

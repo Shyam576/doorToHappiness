@@ -499,7 +499,7 @@
         "distance": "1km"
       },
       {
-        "name": "Chimi Lhakhang (Fertility Temple)",
+        "name": "Chimi Lhakhang (Fertility and Name Giving Temple)",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Chimi-Lhakhang.jpg",
         "description": "Chimi Lhakhang, also known as Chime Lhakhang or Fertility Temple, is a Buddhist monastery in Punakha District, Bhutan. Located on a hillock in the centre of the valley, the temple is dedicated to Drukpa Kunley, who in the late 15th century used humor, songs and outrageous behavior to dramatize his teachings and due to this also known as 'Divine Madman'. Childless women from around the world come here seeking blessings to conceive.",
         "rating": 4.7,
@@ -520,7 +520,7 @@
         "distance": "5km"
       },
       {
-        "name": "Sangchhen Dorji Lhuendrup Lhakhang Nunnery",
+        "name": "Sangchhen Dorji Lhuendrup Nunnery",
         "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Sangchhen-Dorji-Lhuendrup-Lhakhang.jpg",
         "description": "Sangchhen Dorji Lhuendrup Lhakhang is a nunnery located on a ridge overlooking Punakha and Wangdue valleys. The nunnery houses a 14-foot bronze statue of Avalokiteshvara (Chenrezig) with 1000 eyes and 1000 hands. The temple also contains beautiful wall paintings and offers stunning views of the surrounding valleys. It's one of the few nunneries in Bhutan where visitors can interact with the nuns and learn about their daily life.",
         "rating": 4.5,
@@ -1185,7 +1185,6 @@
     "description": "Bhutan's largest and most populous eastern district, known for its vibrant culture and important trade routes.",
     "highlights": [
       "Trashigang Dzong",
-      "Gom Kora",
       "Radhi Village",
       "Kanglung University"
     ],
@@ -1263,11 +1262,11 @@
         "distance": "0km"
       },
       {
-        "name": "Gom Kora Temple",
-        "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Gom-Kora.jpg",
-        "description": "Gom Kora is a sacred temple located on the banks of the Dangme Chhu river. The temple is built around a large rock where Guru Rinpoche meditated and subdued a demon. The temple is famous for its annual Gom Kora festival where thousands of pilgrims from Bhutan and Arunachal Pradesh gather to receive blessings. The temple houses important religious relics and offers a peaceful environment for meditation.",
-        "rating": 4.9,
-        "distance": "23km"
+        "name": "Merak and Sakteng Villages",
+        "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Merak-Sakteng.jpg",
+        "description": "Merak and Sakteng are remote villages inhabited by the Brokpa people, a semi-nomadic community with unique culture and traditions. The villages are located in the Sakteng Wildlife Sanctuary and offer opportunities to experience a unique way of life. The Brokpa people have their own language, dress, and customs distinct from other Bhutanese communities. The area also offers excellent trekking opportunities and wildlife viewing.",
+        "rating": 4.8,
+        "distance": "60km"
       },
       {
         "name": "Radhi Village",
@@ -1296,20 +1295,6 @@
         "description": "Trashigang Market is the largest market in eastern Bhutan and serves as a trading hub for the region. The market offers a wide variety of goods including fresh produce, traditional handicrafts, textiles, and imported goods from India. It's an excellent place to experience local life, interact with traders from different regions, and purchase authentic eastern Bhutanese products.",
         "rating": 4.3,
         "distance": "0.5km"
-      },
-      {
-        "name": "Chorten Kora (Trashiyangtse)",
-        "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Chorten-Kora-Trashigang.jpg",
-        "description": "Chorten Kora is a large stupa built in the 18th century, modeled after the Boudhanath stupa in Nepal. The chorten is an important pilgrimage site and hosts an annual festival that attracts thousands of devotees. The chorten is surrounded by prayer wheels and offers a peaceful environment for meditation and prayer. The site provides beautiful views of the Kulong Chhu river valley.",
-        "rating": 4.6,
-        "distance": "35km"
-      },
-      {
-        "name": "Merak and Sakteng Villages",
-        "image": "https://www.bhutanpilgrimage.com/wp-content/uploads/2022/09/Merak-Sakteng.jpg",
-        "description": "Merak and Sakteng are remote villages inhabited by the Brokpa people, a semi-nomadic community with unique culture and traditions. The villages are located in the Sakteng Wildlife Sanctuary and offer opportunities to experience a unique way of life. The Brokpa people have their own language, dress, and customs distinct from other Bhutanese communities. The area also offers excellent trekking opportunities and wildlife viewing.",
-        "rating": 4.8,
-        "distance": "60km"
       }
     ],
     "usps": [

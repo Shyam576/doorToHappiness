@@ -105,8 +105,8 @@
     "duration": "7N/8D",
     "route": "IXB to IXB",
     "dates": [
-      "",
-      ""
+      "2025-01-12",
+      "2025-01-12"
     ],
     "rating": 4.8,
     "description": "Seek happiness and peace of mind with a Bhutan package tour from Bagdogra, featuring scenic views and cultural experiences.",
@@ -117,6 +117,11 @@
         "title": "Day 1",
         "description": "Arrival at Paro Airport, Transfer to Thimphu",
         "details": "Welcome to Bhutan - the Land of the Thunder Dragon, for your exciting Bhutan package tour from Mumbai. Bhutan is a picturesque country nestled amidst the Himalayas, a serene paradise adorned with verdant valleys, captivating landscapes, rugged terrain, pristine rivers, and cheerful locals. As your aircraft descends into the Paro valley, you'll be greeted by the breath-taking sight of Paro Dzong perched on the hillside overlooking the meandering Paro Chu river, accompanied by Ta Dzong. Our representative will warmly welcome you in traditional Bhutanese style with Tashi Khada (white scarf) at the airport, marking the commencement of your Bhutan tour from Mumbai. You'll then be escorted to Thimphu (at an altitude of 2334 meters), Bhutan's vibrant capital city. Enjoy a comfortable overnight stay in Thimphu, brimming with anticipation for the adventures that lie ahead."
+      },
+      {
+        "title": "Day 2",
+        "description": "Travel to Paro",
+        "details": "TEst"
       }
     ],
     "category": "city",

@@ -115,7 +115,7 @@ const PackageDetailsPage = () => {
               <section className="mb-12">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">Detailed Itinerary</h2>
                 <div className="space-y-6">
-                  {(packageData.itenary)?packageData.itenary.map((day, index) => (
+                  {(packageData.itinerary)?packageData.itinerary.map((day, index) => (
                     <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -126,23 +126,6 @@ const PackageDetailsPage = () => {
                             <ReactMarkdown key={i}>{paragraph}</ReactMarkdown>
                           ))}
                         </div>
-                      </div>
-                    </div>
-                  )):<p>Loading ...</p>}
-                </div>
-              </section>
-
-              {/* Top Attractions */}
-              <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Top Attractions</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {(packageData.topAttractionToVisit)?packageData.topAttractionToVisit.map((attraction, index) => (
-                    <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-                      <div className="p-6">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                          {attraction.title}
-                        </h3>
-                        <p className="text-gray-700">{attraction.description}</p>
                       </div>
                     </div>
                   )):<p>Loading ...</p>}
