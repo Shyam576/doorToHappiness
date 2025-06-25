@@ -114,7 +114,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
         <ul className="flex flex-col space-y-1 p-4">
           {/* Mobile links remain the same */}
           <Link
-            href="/home"
+            href="/"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
           >
             Home

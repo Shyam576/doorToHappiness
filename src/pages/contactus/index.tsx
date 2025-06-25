@@ -75,46 +75,46 @@ const ContactPage = () => {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-        {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 py-20 px-4 sm:px-6 lg:px-8 text-center">
+        {/* Hero Section - Mobile Optimized */}
+        <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 whitespace-nowrap">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
               Contact Door to Happiness Holiday
             </h2>
-            <p className="text-xl text-white opacity-90 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-white opacity-90 max-w-2xl mx-auto px-4">
               Have questions about your Bhutan adventure? We're here to help!
             </p>
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
+        {/* Main Content - Mobile Optimized */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+            {/* Contact Form - Mobile Optimized */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-              <div className="p-8">
-                <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              <div className="p-6 sm:p-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                   Send us a message
                 </h2>
-                <p className="text-gray-600 mb-8">
+                <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
                   Fill out the form below and our team will get back to you
                   within 24 hours.
                 </p>
 
                 {submitStatus === "success" && (
-                  <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg">
+                  <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg text-sm sm:text-base">
                     Thank you for your message! We'll get back to you soon.
                   </div>
                 )}
 
                 {submitStatus === "error" && (
-                  <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+                  <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg text-sm sm:text-base">
                     There was an error submitting your message. Please try again
                     later.
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div>
                     <label
                       htmlFor="name"
@@ -129,12 +129,12 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
+                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 text-base"
                       placeholder="Your name"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label
                         htmlFor="email"
@@ -149,7 +149,7 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
+                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 text-base"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -167,7 +167,7 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
+                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 text-base"
                         placeholder="+975 12345678"
                       />
                     </div>
@@ -187,7 +187,7 @@ const ContactPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200"
+                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 text-base resize-none"
                       placeholder="Tell us about your travel plans..."
                     ></textarea>
                   </div>
@@ -196,7 +196,7 @@ const ContactPage = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 hover:from-orange-600 hover:to-yellow-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${
+                      className={`w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 hover:from-orange-600 hover:to-yellow-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 text-base ${
                         isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                       }`}
                     >
@@ -233,19 +233,19 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* Contact Info & Map */}
-            <div className="space-y-8">
+            {/* Contact Info & Map - Mobile Optimized */}
+            <div className="space-y-6 sm:space-y-8">
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-                <div className="p-8">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                <div className="p-6 sm:p-8">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
                     Our Information
                   </h2>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 bg-orange-100 p-3 rounded-lg">
+                      <div className="flex-shrink-0 bg-orange-100 p-2 sm:p-3 rounded-lg">
                         <svg
-                          className="h-6 w-6 text-orange-500"
+                          className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -265,20 +265,20 @@ const ContactPage = () => {
                           ></path>
                         </svg>
                       </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-medium text-gray-800">
+                      <div className="ml-3 sm:ml-4">
+                        <h3 className="text-base sm:text-lg font-medium text-gray-800">
                           Our Address
                         </h3>
-                        <p className="mt-1 text-gray-600">
+                        <p className="mt-1 text-gray-600 text-sm sm:text-base">
                           Olokha, Thimphu, Bhutan
                         </p>
                       </div>
                     </div>
 
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 bg-orange-100 p-3 rounded-lg">
+                      <div className="flex-shrink-0 bg-orange-100 p-2 sm:p-3 rounded-lg">
                         <svg
-                          className="h-6 w-6 text-orange-500"
+                          className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -292,18 +292,18 @@ const ContactPage = () => {
                           ></path>
                         </svg>
                       </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-medium text-gray-800">
+                      <div className="ml-3 sm:ml-4">
+                        <h3 className="text-base sm:text-lg font-medium text-gray-800">
                           Phone Number
                         </h3>
-                        <p className="mt-1 text-gray-600">+975 1234 5678</p>
+                        <p className="mt-1 text-gray-600 text-sm sm:text-base">+975 1234 5678</p>
                       </div>
                     </div>
 
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 bg-orange-100 p-3 rounded-lg">
+                      <div className="flex-shrink-0 bg-orange-100 p-2 sm:p-3 rounded-lg">
                         <svg
-                          className="h-6 w-6 text-orange-500"
+                          className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -317,20 +317,20 @@ const ContactPage = () => {
                           ></path>
                         </svg>
                       </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-medium text-gray-800">
+                      <div className="ml-3 sm:ml-4">
+                        <h3 className="text-base sm:text-lg font-medium text-gray-800">
                           Email Address
                         </h3>
-                        <p className="mt-1 text-gray-600">
+                        <p className="mt-1 text-gray-600 text-sm sm:text-base">
                           info@doortohappiness.com
                         </p>
                       </div>
                     </div>
 
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 bg-orange-100 p-3 rounded-lg">
+                      <div className="flex-shrink-0 bg-orange-100 p-2 sm:p-3 rounded-lg">
                         <svg
-                          className="h-6 w-6 text-orange-500"
+                          className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -344,11 +344,11 @@ const ContactPage = () => {
                           ></path>
                         </svg>
                       </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-medium text-gray-800">
+                      <div className="ml-3 sm:ml-4">
+                        <h3 className="text-base sm:text-lg font-medium text-gray-800">
                           Working Hours
                         </h3>
-                        <p className="mt-1 text-gray-600">
+                        <p className="mt-1 text-gray-600 text-sm sm:text-base">
                           Monday - Friday: 9:00 AM - 5:00 PM
                           <br />
                           Saturday: 9:00 AM - 1:00 PM
@@ -361,21 +361,22 @@ const ContactPage = () => {
                 </div>
               </div>
 
-              {/* Map */}
+              {/* Map - Mobile Optimized */}
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                <div className="p-4 sm:p-6">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
                     Our Location
                   </h2>
                   <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2537.8487134921656!2d89.65937170621427!3d27.44790145665406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e193004c52f8a1%3A0xd72e2c186f98af0f!2sDoor%20To%20Happiness%20Holiday!5e1!3m2!1sen!2sbt!4v1743146273989!5m2!1sen!2sbt"
                       width="100%"
-                      height="400"
+                      height="300"
                       style={{ border: 0 }}
                       allowFullScreen
                       loading="lazy"
                       title="Door to Happiness Holiday Location"
+                      className="w-full h-64 sm:h-80 lg:h-96"
                     ></iframe>
                   </div>
                 </div>

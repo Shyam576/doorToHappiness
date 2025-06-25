@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Head from "next/head";
 import { Container } from "../components/Container";
 import WhatsAppButton from "../components/whatsAppButton";
@@ -59,7 +59,12 @@ const Index: React.FC = () => {
   });
   const [sortOption, setSortOption] = useState("recommended");
   const [isLoading, setIsLoading] = useState(false);
+  const [filtersApplied, setFiltersApplied] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Refs for scrolling
+  const destinationsRef = useRef<HTMLDivElement>(null);
+  const toursRef = useRef<HTMLDivElement>(null);
 
   // Detect mobile device
   useEffect(() => {
@@ -175,6 +180,37 @@ const Index: React.FC = () => {
     setPackageSearchTerm(value);
     setShowPackageResults(value.length > 0);
   }, []);
+
+  // Scroll to section function
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
+  };
+
+  // Handle filter application with scroll
+  const handleApplyFilters = () => {
+    setShowFilters(false);
+    setFiltersApplied(true);
+    
+    // Determine which section to scroll to based on search terms
+    if (destinationSearchTerm && !packageSearchTerm) {
+      // If only destination is searched, scroll to destinations
+      setTimeout(() => scrollToSection(destinationsRef), 100);
+    } else if (packageSearchTerm || searchFilters.minDuration || searchFilters.maxDuration || searchFilters.rating) {
+      // If package search or filters are applied, scroll to tours
+      setTimeout(() => scrollToSection(toursRef), 100);
+    } else {
+      // Default to destinations if no specific search
+      setTimeout(() => scrollToSection(destinationsRef), 100);
+    }
+    
+    // Reset the applied state after a delay
+    setTimeout(() => setFiltersApplied(false), 3000);
+  };
 
   const heroSlides = [
     {
@@ -476,24 +512,40 @@ const Index: React.FC = () => {
                 </select>
               </div>
 
-              <button
-                className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center text-base"
-                onClick={() => setShowFilters(!showFilters)}
-              >
-                <FiFilter className="mr-2" />
-                Filters
-              </button>
+              <div className="flex gap-2">
+                <button
+                  className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base"
+                  onClick={() => setShowFilters(!showFilters)}
+                >
+                  <FiFilter className="mr-2" />
+                  <span className="hidden sm:inline">Filters</span>
+                  <span className="sm:hidden">Filter</span>
+                </button>
+                
+                <button
+                  className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base"
+                  onClick={() => {
+                    if (destinationSearchTerm || packageSearchTerm || searchFilters.minDuration || searchFilters.maxDuration || searchFilters.rating) {
+                      handleApplyFilters();
+                    }
+                  }}
+                >
+                  <FiSearch className="mr-2" />
+                  <span className="hidden sm:inline">Search</span>
+                  <span className="sm:hidden">Go</span>
+                </button>
+              </div>
             </div>
 
-            {/* Advanced Filters Panel */}
+            {/* Advanced Filters Panel - Mobile Optimized */}
             {showFilters && (
-              <div className="mt-6 p-4 sm:p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+              <div className="mt-6 p-4 sm:p-6 bg-gray-50 rounded-lg border border-gray-200 max-h-96 sm:max-h-none overflow-y-auto">
+                <div className="grid grid-cols-1 gap-4 sm:gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Duration (days)
                     </label>
-                    <div className="flex gap-2">
+                    <div className="grid grid-cols-3 gap-2 items-center">
                       <input
                         type="number"
                         name="minDuration"
@@ -502,7 +554,7 @@ const Index: React.FC = () => {
                         value={searchFilters.minDuration}
                         onChange={handleFilterChange}
                       />
-                      <span className="flex items-center">to</span>
+                      <span className="text-center text-sm text-gray-600">to</span>
                       <input
                         type="number"
                         name="maxDuration"
@@ -515,7 +567,7 @@ const Index: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Minimum Rating
                     </label>
                     <select
@@ -532,16 +584,16 @@ const Index: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 flex flex-col sm:flex-row justify-between gap-4">
+                <div className="mt-6 flex flex-col sm:flex-row justify-between gap-3">
                   <button
-                    className="text-sm text-gray-600 hover:text-gray-800"
+                    className="text-sm text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md hover:bg-gray-100 transition"
                     onClick={resetFilters}
                   >
                     Reset all filters
                   </button>
                   <button
-                    className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 text-base"
-                    onClick={() => setShowFilters(false)}
+                    className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 text-base font-medium transition"
+                    onClick={handleApplyFilters}
                   >
                     Apply Filters
                   </button>
@@ -555,6 +607,18 @@ const Index: React.FC = () => {
       {/* Trust Indicators */}
       <div className="w-full bg-gradient-to-r from-orange-50 to-yellow-50">
         <Container className="py-8 sm:py-12">
+          {/* Filter Applied Indicator */}
+          {filtersApplied && (
+            <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg text-center animate-fade-in">
+              <div className="flex items-center justify-center">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                Filters applied! Scroll to see results below.
+              </div>
+            </div>
+          )}
+          
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
             {[
               {
@@ -594,7 +658,7 @@ const Index: React.FC = () => {
       </div>
 
       {/* Popular Destinations Section */}
-      <Container className="py-8 sm:py-12">
+      <Container className="py-8 sm:py-12" ref={destinationsRef}>
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
             Explore Bhutan's Destinations
@@ -699,7 +763,7 @@ const Index: React.FC = () => {
       </Container>
 
       {/* Featured Tours Section */}
-      <Container className="py-8 sm:py-12">
+      <Container className="py-8 sm:py-12" ref={toursRef}>
         <div className="text-center mb-8 sm:mb-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-left mb-4 md:mb-0">

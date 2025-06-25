@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, forwardRef } from 'react';
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -6,17 +6,20 @@ interface ContainerProps {
   className?: string;
 }
 
-export const Container: React.FC<ContainerProps> = ({
+export const Container = forwardRef<HTMLDivElement, ContainerProps>(({
   children,
   style,
   className,
-}) => {
+}, ref) => {
   return (
     <div
+      ref={ref}
       className={`w-full px-4 sm:px-6 lg:px-8 xl:px-12 mx-auto ${className}`}
       style={style}
     >
       {children}
     </div>
   );
-};
+});
+
+Container.displayName = 'Container';
