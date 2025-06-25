@@ -13,7 +13,7 @@ export const Container: React.FC<ContainerProps> = ({
 }) => {
   return (
     <div
-      className={`w-[90%] h-[90%] mx-auto flex flex-col mb-10  ${className}`}
+      className={`w-full px-4 sm:px-6 lg:px-8 xl:px-12 mx-auto ${className}`}
       style={style}
     >
       {children}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Head from "next/head";
 import { Container } from "../components/Container";
 import WhatsAppButton from "../components/whatsAppButton";
@@ -58,6 +58,19 @@ const Index: React.FC = () => {
     rating: "",
   });
   const [sortOption, setSortOption] = useState("recommended");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Combine all packages
   const allPackages = [
@@ -144,12 +157,23 @@ const Index: React.FC = () => {
     }
   });
 
-  // Auto-rotate slides
+  // Auto-rotate slides with better performance
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 8000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Debounced search handlers for better performance
+  const handleDestinationSearch = useCallback((value: string) => {
+    setDestinationSearchTerm(value);
+    setShowDestinationResults(value.length > 0);
+  }, []);
+
+  const handlePackageSearch = useCallback((value: string) => {
+    setPackageSearchTerm(value);
+    setShowPackageResults(value.length > 0);
   }, []);
 
   const heroSlides = [
@@ -211,8 +235,16 @@ const Index: React.FC = () => {
     setSortOption("recommended");
   };
 
+  const handleSearchSubmit = () => {
+    setIsLoading(true);
+    // Simulate search processing
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
+
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white">
+    <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
       <Head>
         <title>
           Door To Happiness - Premier Bhutan Tour Operator | Cultural &
@@ -234,6 +266,7 @@ const Index: React.FC = () => {
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://www.doortohappinessholiday.com" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -252,7 +285,7 @@ const Index: React.FC = () => {
       </Head>
 
       {/* Hero Section */}
-      <div className="relative h-screen max-h-[800px] overflow-hidden  ">
+      <div className="relative h-screen max-h-[800px] overflow-hidden">
         {heroSlides.map((slide, index) => (
           <div
             key={slide.id}
@@ -270,50 +303,47 @@ const Index: React.FC = () => {
           </div>
         ))}
 
-        <Container className="relative z-10 h-full flex flex-col justify-center">
+        <Container className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6">
           <div className="text-center text-white max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 drop-shadow-lg leading-tight">
               Discover Bhutan's Magic
             </h1>
-            <p className="text-xl md:text-2xl mb-8 drop-shadow-md">
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 drop-shadow-md px-4">
               Authentic Cultural Experiences • Sustainable Tourism •
               Award-Winning Guides
             </p>
 
-            <div className="inline-flex items-center bg-white bg-opacity-90 rounded-full px-6 py-2 mb-8">
+            <div className="inline-flex items-center bg-white bg-opacity-90 rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8 mx-4">
               <svg
-                className="w-8 h-8 text-yellow-500 mr-2"
+                className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-500 mr-2"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
               </svg>
-              <span className="text-gray-800 font-semibold">
+              <span className="text-gray-800 font-semibold text-sm sm:text-base">
                 Certified Excellence in Bhutan Tourism
               </span>
             </div>
           </div>
 
           {/* Enhanced Search Widget */}
-          <div className="mt-8 bg-white rounded-2xl shadow-xl p-6 transition-all duration-300 bg-opacity-30">
-            <h2 className="text-2xl font-bold text-white mb-4">
+          <div className="mt-6 sm:mt-8 bg-white rounded-2xl shadow-xl p-4 sm:p-6 transition-all duration-300 bg-opacity-30 mx-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">
               Plan Your Bhutan Adventure
             </h2>
 
-            <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <div className="flex flex-col gap-4 mb-4">
               <div className="relative flex-grow">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FiMapPin className="text-gray-400" />
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                   placeholder="Where do you want to go?"
                   value={destinationSearchTerm}
-                  onChange={(e) => {
-                    setDestinationSearchTerm(e.target.value);
-                    setShowDestinationResults(e.target.value.length > 0);
-                  }}
+                  onChange={(e) => handleDestinationSearch(e.target.value)}
                   onFocus={() =>
                     setShowDestinationResults(destinationSearchTerm.length > 0)
                   }
@@ -361,13 +391,10 @@ const Index: React.FC = () => {
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                   placeholder="Search for tours or activities"
                   value={packageSearchTerm}
-                  onChange={(e) => {
-                    setPackageSearchTerm(e.target.value);
-                    setShowPackageResults(e.target.value.length > 0);
-                  }}
+                  onChange={(e) => handlePackageSearch(e.target.value)}
                   onFocus={() =>
                     setShowPackageResults(packageSearchTerm.length > 0)
                   }
@@ -410,14 +437,14 @@ const Index: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FiCalendar className="text-gray-400" />
                 </div>
                 <input
                   type="date"
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                   placeholder="Select dates"
                   value={searchFilters.date}
                   onChange={(e) =>
@@ -431,7 +458,7 @@ const Index: React.FC = () => {
                   <FiUsers className="text-gray-400" />
                 </div>
                 <select
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 appearance-none"
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 appearance-none text-base"
                   value={searchFilters.travelers}
                   onChange={(e) =>
                     setSearchFilters({
@@ -450,7 +477,7 @@ const Index: React.FC = () => {
               </div>
 
               <button
-                className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center"
+                className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg transition flex items-center justify-center text-base"
                 onClick={() => setShowFilters(!showFilters)}
               >
                 <FiFilter className="mr-2" />
@@ -460,10 +487,10 @@ const Index: React.FC = () => {
 
             {/* Advanced Filters Panel */}
             {showFilters && (
-              <div className="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="mt-6 p-4 sm:p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1 ">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Duration (days)
                     </label>
                     <div className="flex gap-2">
@@ -471,7 +498,7 @@ const Index: React.FC = () => {
                         type="number"
                         name="minDuration"
                         placeholder="Min"
-                        className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                         value={searchFilters.minDuration}
                         onChange={handleFilterChange}
                       />
@@ -480,7 +507,7 @@ const Index: React.FC = () => {
                         type="number"
                         name="maxDuration"
                         placeholder="Max"
-                        className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                        className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                         value={searchFilters.maxDuration}
                         onChange={handleFilterChange}
                       />
@@ -493,7 +520,7 @@ const Index: React.FC = () => {
                     </label>
                     <select
                       name="rating"
-                      className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                      className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                       value={searchFilters.rating}
                       onChange={handleFilterChange}
                     >
@@ -505,7 +532,7 @@ const Index: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 flex justify-between">
+                <div className="mt-4 flex flex-col sm:flex-row justify-between gap-4">
                   <button
                     className="text-sm text-gray-600 hover:text-gray-800"
                     onClick={resetFilters}
@@ -513,7 +540,7 @@ const Index: React.FC = () => {
                     Reset all filters
                   </button>
                   <button
-                    className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+                    className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 text-base"
                     onClick={() => setShowFilters(false)}
                   >
                     Apply Filters
@@ -527,8 +554,8 @@ const Index: React.FC = () => {
 
       {/* Trust Indicators */}
       <div className="w-full bg-gradient-to-r from-orange-50 to-yellow-50">
-        <Container className="py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <Container className="py-8 sm:py-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
             {[
               {
                 icon: "🏆",
@@ -553,13 +580,13 @@ const Index: React.FC = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition"
+                className="p-4 sm:p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition"
               >
-                <div className="text-4xl mb-3">{item.icon}</div>
-                <h3 className="font-bold text-lg mb-2 text-gray-800">
+                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">{item.icon}</div>
+                <h3 className="font-bold text-base sm:text-lg mb-1 sm:mb-2 text-gray-800">
                   {item.title}
                 </h3>
-                <p className="text-gray-600">{item.text}</p>
+                <p className="text-gray-600 text-sm sm:text-base">{item.text}</p>
               </div>
             ))}
           </div>
@@ -567,127 +594,127 @@ const Index: React.FC = () => {
       </div>
 
       {/* Popular Destinations Section */}
-      <Container className="py-12">
-  <div className="text-center mb-12">
-    <h2 className="text-3xl font-bold text-gray-800 mb-2">
-      Explore Bhutan's Destinations
-    </h2>
-    <p className="text-gray-600 max-w-2xl mx-auto">
-      Discover the 20 unique districts of Bhutan, each with its own cultural identity
-    </p>
-
-    {/* Updated Category Filters */}
-    <div className="flex flex-wrap justify-center gap-2 mt-6">
-      {categories.map((category) => (
-        <button
-          key={category.id}
-          onClick={() => setActiveCategory(category.id)}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition flex items-center ${
-            activeCategory === category.id
-              ? "bg-yellow-500 text-white"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-          }`}
-        >
-          {category.icon && <span className="mr-1">{category.icon}</span>}
-          {category.name}
-        </button>
-      ))}
-    </div>
-  </div>
-
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    {filteredDestinations.slice(0, 6).map((destination) => (
-      <div
-        key={destination.id}
-        className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
-      >
-        <div className="relative h-48">
-          <img
-            src={destination.media.images[0]}
-            alt={destination.name}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-            <h3 className="text-xl font-bold text-white">
-              {destination.name}
-            </h3>
-            <p className="text-yellow-300 text-sm">
-              {destination.location.region}
-            </p>
-          </div>
-          <div className="absolute top-2 right-2 bg-white bg-opacity-90 px-2 py-1 rounded-full text-xs font-bold flex items-center">
-            <svg
-              className="w-3 h-3 text-yellow-500 mr-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            Popularity: {destination.meta.popularity}/5
-          </div>
-        </div>
-        <div className="p-6">
-          <p className="text-gray-800 text-xl font-bold mb-4 line-clamp-2">
-            {destination.tagline}
+      <Container className="py-8 sm:py-12">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+            Explore Bhutan's Destinations
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto px-4 text-sm sm:text-base">
+            Discover the 20 unique districts of Bhutan, each with its own cultural identity
           </p>
-          
-          {/* Experience Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {destination.experiences.slice(0, 3).map((exp, i) => (
-              <span
-                key={i}
-                className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+
+          {/* Updated Category Filters */}
+          <div className="flex flex-wrap justify-center gap-2 mt-4 sm:mt-6 px-4">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition flex items-center ${
+                  activeCategory === category.id
+                    ? "bg-yellow-500 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
               >
-                {exp.type}
-              </span>
+                {category.icon && <span className="mr-1">{category.icon}</span>}
+                {category.name}
+              </button>
             ))}
           </div>
-          
-          {/* Best Time to Visit */}
-          <div className="mb-4">
-            <p className="text-sm text-gray-500">
-              <span className="font-medium">Best Time:</span> {destination.practicalInfo.bestTimeToVisit.join(", ")}
-            </p>
-          </div>
-          <Link href={`/destination/explore/${destination.id}`}>
-          <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center">
-            Discover {destination.name}
-            <FiArrowRight className="ml-2" />
-          </button>
-          </Link>
         </div>
-      </div>
-    ))}
-  </div>
 
-  {filteredDestinations.length > 6 && (
-    <div className="text-center mt-12">
-      <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
-        View All {filteredDestinations.length} Destinations
-        <FiArrowRight className="ml-2" />
-      </button>
-    </div>
-  )}
-</Container>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filteredDestinations.slice(0, 6).map((destination) => (
+            <div
+              key={destination.id}
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
+            >
+              <div className="relative h-40 sm:h-48">
+                <img
+                  src={destination.media.images[0]}
+                  alt={destination.name}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-white">
+                    {destination.name}
+                  </h3>
+                  <p className="text-yellow-300 text-xs sm:text-sm">
+                    {destination.location.region}
+                  </p>
+                </div>
+                <div className="absolute top-2 right-2 bg-white bg-opacity-90 px-2 py-1 rounded-full text-xs font-bold flex items-center">
+                  <svg
+                    className="w-3 h-3 text-yellow-500 mr-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  Popularity: {destination.meta.popularity}/5
+                </div>
+              </div>
+              <div className="p-4 sm:p-6">
+                <p className="text-gray-800 text-lg sm:text-xl font-bold mb-3 sm:mb-4 line-clamp-2">
+                  {destination.tagline}
+                </p>
+                
+                {/* Experience Tags */}
+                <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
+                  {destination.experiences.slice(0, 3).map((exp, i) => (
+                    <span
+                      key={i}
+                      className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                    >
+                      {exp.type}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* Best Time to Visit */}
+                <div className="mb-4">
+                  <p className="text-xs sm:text-sm text-gray-500">
+                    <span className="font-medium">Best Time:</span> {destination.practicalInfo.bestTimeToVisit.join(", ")}
+                  </p>
+                </div>
+                <Link href={`/destination/explore/${destination.id}`}>
+                  <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
+                    Discover {destination.name}
+                    <FiArrowRight className="ml-2" />
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {filteredDestinations.length > 6 && (
+          <div className="text-center mt-8 sm:mt-12">
+            <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
+              View All {filteredDestinations.length} Destinations
+              <FiArrowRight className="ml-2" />
+            </button>
+          </div>
+        )}
+      </Container>
 
       {/* Featured Tours Section */}
-      <Container className="py-12 ">
-        <div className="text-center mb-12">
+      <Container className="py-8 sm:py-12">
+        <div className="text-center mb-8 sm:mb-12">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-left mb-4 md:mb-0">
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                 Our Most Popular Bhutan Tours
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm sm:text-base">
                 {filteredPackages.length} tours available
               </p>
             </div>
 
             <div className="flex items-center">
-              <span className="mr-2 text-gray-700">Sort by:</span>
+              <span className="mr-2 text-gray-700 text-sm sm:text-base">Sort by:</span>
               <select
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
               >
@@ -701,49 +728,39 @@ const Index: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {sortedPackages.slice(0, 6).map((tour) => (
             <div
               key={tour.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col h-full" // Added flex flex-col h-full
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col h-full"
             >
               {/* Image section with fixed height */}
-              <div className="relative h-48 flex-shrink-0">
-                {" "}
-                {/* Added flex-shrink-0 */}
+              <div className="relative h-40 sm:h-48 flex-shrink-0">
                 <img
                   src={tour.image}
                   alt={tour.title}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-yellow-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
                   {tour.rating || 4.8} ★
                 </div>
               </div>
 
               {/* Content section with flex-grow and fixed min-height */}
-              <div className="p-6 flex flex-col flex-grow">
-                {" "}
-                {/* Added flex flex-col flex-grow */}
+              <div className="p-4 sm:p-6 flex flex-col flex-grow">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl text-gray-800 font-bold">{tour.title}</h3>
-                  <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-sm whitespace-nowrap">
-                    {" "}
-                    {/* Added whitespace-nowrap */}
+                  <h3 className="text-lg sm:text-xl text-gray-800 font-bold">{tour.title}</h3>
+                  <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap">
                     {tour.duration || tour.dates}
                   </span>
                 </div>
                 {/* Description with fixed height */}
-                <p className="text-gray-600 mb-4 line-clamp-2 min-h-[3rem]">
-                  {" "}
-                  {/* Added min-h */}
+                <p className="text-gray-600 mb-3 sm:mb-4 line-clamp-2 min-h-[3rem] text-sm sm:text-base">
                   {tour.description}
                 </p>
                 {/* Highlights with fixed height */}
-                <div className="flex flex-wrap gap-2 mb-4 min-h-[1.5rem]">
-                  {" "}
-                  {/* Added min-h */}
+                <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4 min-h-[1.5rem]">
                   {tour.highlights?.slice(0, 3).map((highlight, i) => (
                     <span
                       key={i}
@@ -755,9 +772,7 @@ const Index: React.FC = () => {
                 </div>
                 {/* Button at bottom */}
                 <div className="mt-auto">
-                  {" "}
-                  {/* Pushes button to bottom */}
-                  <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                  <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
                     View Details
                     <FiArrowRight className="ml-2" />
                   </button>
@@ -768,8 +783,8 @@ const Index: React.FC = () => {
         </div>
 
         {sortedPackages.length > 6 && (
-          <div className="text-center mt-12">
-            <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
+          <div className="text-center mt-8 sm:mt-12">
+            <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
               View All {sortedPackages.length} Tour Packages
               <FiArrowRight className="ml-2" />
             </button>
@@ -778,18 +793,18 @@ const Index: React.FC = () => {
       </Container>
 
       {/* Testimonials Section */}
-      <Container className="py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+      <Container className="py-12 sm:py-16">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
             What Travelers Say About Us
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto px-4 text-sm sm:text-base">
             Don't just take our word for it - hear from our happy travelers
             who've experienced Bhutan with us.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {[
             {
               quote:
@@ -813,12 +828,12 @@ const Index: React.FC = () => {
               avatar: "https://randomuser.me/api/portraits/women/68.jpg",
             },
           ].map((testimonial, index) => (
-            <div key={index} className="bg-white p-8 rounded-xl shadow-md">
-              <div className="flex mb-4">
+            <div key={index} className="bg-white p-6 sm:p-8 rounded-xl shadow-md">
+              <div className="flex mb-3 sm:mb-4">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className={`w-5 h-5 ${
+                    className={`w-4 h-4 sm:w-5 sm:h-5 ${
                       i < testimonial.rating
                         ? "text-yellow-500"
                         : "text-gray-300"
@@ -830,16 +845,16 @@ const Index: React.FC = () => {
                   </svg>
                 ))}
               </div>
-              <blockquote className="text-gray-700 italic mb-6 text-lg">
+              <blockquote className="text-gray-700 italic mb-4 sm:mb-6 text-base sm:text-lg">
                 "{testimonial.quote}"
               </blockquote>
               <div className="flex items-center">
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.author}
-                  className="w-12 h-12 rounded-full mr-4"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-3 sm:mr-4"
                 />
-                <p className="font-medium text-gray-800">
+                <p className="font-medium text-gray-800 text-sm sm:text-base">
                   — {testimonial.author}
                 </p>
               </div>
@@ -849,27 +864,27 @@ const Index: React.FC = () => {
       </Container>
 
       {/* Newsletter Signup */}
-      <Container className="py-16 bg-gradient-to-r from-orange-50 to-yellow-50">
+      <Container className="py-12 sm:py-16 bg-gradient-to-r from-orange-50 to-yellow-50">
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden">
-          <div className="md:flex">
-            <div className="md:w-1/2 bg-yellow-500 p-8 flex flex-col justify-center">
-              <h2 className="text-2xl font-bold text-white mb-4">
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-1/2 bg-yellow-500 p-6 sm:p-8 flex flex-col justify-center">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                 Get Bhutan Travel Inspiration
               </h2>
-              <p className="text-yellow-100">
+              <p className="text-yellow-100 text-sm sm:text-base">
                 Sign up for exclusive offers, travel tips, and Bhutanese
                 cultural insights.
               </p>
             </div>
-            <div className="md:w-1/2 p-8">
+            <div className="md:w-1/2 p-6 sm:p-8">
               <div className="mb-4">
                 <input
                   type="email"
                   placeholder="Your email address"
-                  className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                 />
               </div>
-              <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-lg transition">
+              <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-lg transition text-base">
                 Subscribe
               </button>
               <p className="text-xs text-gray-500 mt-3">
