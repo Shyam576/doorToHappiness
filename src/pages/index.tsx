@@ -11,9 +11,6 @@ import {
   FiSearch,
   FiArrowRight,
   FiMapPin,
-  FiCalendar,
-  FiUsers,
-  FiFilter,
 } from "react-icons/fi";
 import festivalTours from "../data/festivialTours.json";
 import culturalTours from "../data/culturalTours.json";
@@ -49,17 +46,8 @@ const Index: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [showDestinationResults, setShowDestinationResults] = useState(false);
   const [showPackageResults, setShowPackageResults] = useState(false);
-  const [showFilters, setShowFilters] = useState(false);
-  const [searchFilters, setSearchFilters] = useState({
-    date: "",
-    travelers: 1,
-    minDuration: "",
-    maxDuration: "",
-    rating: "",
-  });
   const [sortOption, setSortOption] = useState("recommended");
   const [isLoading, setIsLoading] = useState(false);
-  const [filtersApplied, setFiltersApplied] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   // Refs for scrolling
@@ -103,7 +91,7 @@ const Index: React.FC = () => {
     return matchesSearch && matchesCategory;
   });
 
-  // Filter packages based on search and filters
+  // Filter packages based on search
   const filteredPackages = allPackages.filter((pkg) => {
     // Search term matching
     const matchesSearch =
@@ -114,24 +102,7 @@ const Index: React.FC = () => {
           highlight.toLowerCase().includes(packageSearchTerm.toLowerCase())
         ));
   
-    // Duration filtering
-    const duration = getDurationInDays(pkg.duration || "0 days");
-    const minDuration = searchFilters.minDuration
-      ? parseInt(searchFilters.minDuration)
-      : 0;
-    const maxDuration = searchFilters.maxDuration
-      ? parseInt(searchFilters.maxDuration)
-      : Infinity;
-    const matchesDuration = duration >= minDuration && duration <= maxDuration;
-  
-    // Rating filtering - fixed type issue
-    const rating = pkg.rating ? parseFloat(pkg.rating.toString()) : 0;
-    const minRating = searchFilters.rating
-      ? parseFloat(searchFilters.rating)
-      : 0;
-    const matchesRating = rating >= minRating;
-  
-    return matchesSearch && matchesDuration && matchesRating;
+    return matchesSearch;
   });
 
   // Sort packages based on selected option
@@ -174,11 +145,21 @@ const Index: React.FC = () => {
   const handleDestinationSearch = useCallback((value: string) => {
     setDestinationSearchTerm(value);
     setShowDestinationResults(value.length > 0);
+    
+    // Auto-scroll to destinations if user is actively searching
+    if (value.length > 2) {
+      setTimeout(() => scrollToSection(destinationsRef), 500);
+    }
   }, []);
 
   const handlePackageSearch = useCallback((value: string) => {
     setPackageSearchTerm(value);
     setShowPackageResults(value.length > 0);
+    
+    // Auto-scroll to tours if user is actively searching
+    if (value.length > 2) {
+      setTimeout(() => scrollToSection(toursRef), 500);
+    }
   }, []);
 
   // Scroll to section function
@@ -191,25 +172,34 @@ const Index: React.FC = () => {
     }
   };
 
-  // Handle filter application with scroll
-  const handleApplyFilters = () => {
-    setShowFilters(false);
-    setFiltersApplied(true);
+  // Handle search application with scroll
+  const handleSearch = () => {
+    setIsLoading(true);
     
     // Determine which section to scroll to based on search terms
     if (destinationSearchTerm && !packageSearchTerm) {
       // If only destination is searched, scroll to destinations
       setTimeout(() => scrollToSection(destinationsRef), 100);
-    } else if (packageSearchTerm || searchFilters.minDuration || searchFilters.maxDuration || searchFilters.rating) {
-      // If package search or filters are applied, scroll to tours
+    } else if (packageSearchTerm) {
+      // If package search is applied, scroll to tours
       setTimeout(() => scrollToSection(toursRef), 100);
     } else {
       // Default to destinations if no specific search
       setTimeout(() => scrollToSection(destinationsRef), 100);
     }
     
-    // Reset the applied state after a delay
-    setTimeout(() => setFiltersApplied(false), 3000);
+    // Reset loading state
+    setTimeout(() => setIsLoading(false), 1000);
+  };
+
+  // Clear search function
+  const clearSearch = () => {
+    setDestinationSearchTerm("");
+    setPackageSearchTerm("");
+    setShowDestinationResults(false);
+    setShowPackageResults(false);
+    setActiveCategory("all");
+    setSortOption("recommended");
   };
 
   const heroSlides = [
@@ -251,33 +241,6 @@ const Index: React.FC = () => {
     { value: "duration-long", label: "Duration (Longest)" },
     { value: "rating", label: "Highest Rated" },
   ];
-
-  const handleFilterChange = (e: any) => {
-    const { name, value } = e.target;
-    setSearchFilters({
-      ...searchFilters,
-      [name]: value,
-    });
-  };
-
-  const resetFilters = () => {
-    setSearchFilters({
-      date: "",
-      travelers: 1,
-      minDuration: "",
-      maxDuration: "",
-      rating: "",
-    });
-    setSortOption("recommended");
-  };
-
-  const handleSearchSubmit = () => {
-    setIsLoading(true);
-    // Simulate search processing
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  };
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
@@ -376,7 +339,7 @@ const Index: React.FC = () => {
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
+                  className="w-full pl-10 pr-12 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                   placeholder="Where do you want to go?"
                   value={destinationSearchTerm}
                   onChange={(e) => handleDestinationSearch(e.target.value)}
@@ -387,6 +350,19 @@ const Index: React.FC = () => {
                     setTimeout(() => setShowDestinationResults(false), 200)
                   }
                 />
+                {destinationSearchTerm && (
+                  <button
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    onClick={() => {
+                      setDestinationSearchTerm("");
+                      setShowDestinationResults(false);
+                    }}
+                  >
+                    <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
                 {showDestinationResults && (
                   <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-auto">
                     {filteredDestinations.length > 0 ? (
@@ -427,7 +403,7 @@ const Index: React.FC = () => {
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
+                  className="w-full pl-10 pr-12 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                   placeholder="Search for tours or activities"
                   value={packageSearchTerm}
                   onChange={(e) => handlePackageSearch(e.target.value)}
@@ -438,6 +414,19 @@ const Index: React.FC = () => {
                     setTimeout(() => setShowPackageResults(false), 200)
                   }
                 />
+                {packageSearchTerm && (
+                  <button
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    onClick={() => {
+                      setPackageSearchTerm("");
+                      setShowPackageResults(false);
+                    }}
+                  >
+                    <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
                 {showPackageResults && (
                   <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-auto">
                     {filteredPackages.length > 0 ? (
@@ -473,132 +462,58 @@ const Index: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiCalendar className="text-gray-400" />
-                </div>
-                <input
-                  type="date"
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
-                  placeholder="Select dates"
-                  value={searchFilters.date}
-                  onChange={(e) =>
-                    setSearchFilters({ ...searchFilters, date: e.target.value })
-                  }
-                />
-              </div>
-
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiUsers className="text-gray-400" />
-                </div>
-                <select
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 appearance-none text-base"
-                  value={searchFilters.travelers}
-                  onChange={(e) =>
-                    setSearchFilters({
-                      ...searchFilters,
-                      travelers: parseInt(e.target.value),
-                    })
-                  }
-                >
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                    <option key={num} value={num}>
-                      {num} {num === 1 ? "Traveler" : "Travelers"}
-                    </option>
-                  ))}
-                  <option value="9+">9+ Travelers</option>
-                </select>
-              </div>
-
-              <div className="flex gap-2">
+            <div className="grid grid-cols-2 gap-2">
+              {(destinationSearchTerm || packageSearchTerm) && (
                 <button
-                  className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base"
-                  onClick={() => setShowFilters(!showFilters)}
+                  className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base"
+                  onClick={clearSearch}
                 >
-                  <FiFilter className="mr-2" />
-                  <span className="hidden sm:inline">Filters</span>
-                  <span className="sm:hidden">Filter</span>
+                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  Clear
                 </button>
-                
-                <button
-                  className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base"
-                  onClick={() => {
-                    if (destinationSearchTerm || packageSearchTerm || searchFilters.minDuration || searchFilters.maxDuration || searchFilters.rating) {
-                      handleApplyFilters();
-                    }
-                  }}
-                >
-                  <FiSearch className="mr-2" />
-                  <span className="hidden sm:inline">Search</span>
-                  <span className="sm:hidden">Go</span>
-                </button>
-              </div>
+              )}
+              <button
+                className={`${
+                  (destinationSearchTerm || packageSearchTerm) ? 'col-span-1' : 'col-span-2'
+                } ${
+                  isLoading 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-orange-500 hover:bg-orange-600'
+                } text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base`}
+                onClick={() => {
+                  if (!isLoading && (destinationSearchTerm || packageSearchTerm)) {
+                    handleSearch();
+                  }
+                }}
+                disabled={isLoading || (!destinationSearchTerm && !packageSearchTerm)}
+              >
+                {isLoading ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Searching...
+                  </>
+                ) : (
+                  <>
+                    <FiSearch className="mr-2" />
+                    Search
+                  </>
+                )}
+              </button>
             </div>
-
-            {/* Advanced Filters Panel - Mobile Optimized */}
-            {showFilters && (
-              <div className="mt-6 p-4 sm:p-6 bg-gray-50 rounded-lg border border-gray-200 max-h-96 sm:max-h-none overflow-y-auto">
-                <div className="grid grid-cols-1 gap-4 sm:gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Duration (days)
-                    </label>
-                    <div className="grid grid-cols-3 gap-2 items-center">
-                      <input
-                        type="number"
-                        name="minDuration"
-                        placeholder="Min"
-                        className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
-                        value={searchFilters.minDuration}
-                        onChange={handleFilterChange}
-                      />
-                      <span className="text-center text-sm text-gray-600">to</span>
-                      <input
-                        type="number"
-                        name="maxDuration"
-                        placeholder="Max"
-                        className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
-                        value={searchFilters.maxDuration}
-                        onChange={handleFilterChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Minimum Rating
-                    </label>
-                    <select
-                      name="rating"
-                      className="w-full px-3 py-2 bg-white border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
-                      value={searchFilters.rating}
-                      onChange={handleFilterChange}
-                    >
-                      <option value="">Any rating</option>
-                      <option value="4">4+ stars</option>
-                      <option value="4.5">4.5+ stars</option>
-                      <option value="5">5 stars only</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="mt-6 flex flex-col sm:flex-row justify-between gap-3">
-                  <button
-                    className="text-sm text-gray-600 hover:text-gray-800 px-3 py-2 rounded-md hover:bg-gray-100 transition"
-                    onClick={resetFilters}
-                  >
-                    Reset all filters
-                  </button>
-                  <button
-                    className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 text-base font-medium transition"
-                    onClick={handleApplyFilters}
-                  >
-                    Apply Filters
-                  </button>
-                </div>
-              </div>
+            {(destinationSearchTerm || packageSearchTerm) && (
+              <p className="text-xs text-white text-center mt-2">
+                {destinationSearchTerm && packageSearchTerm 
+                  ? `Searching for "${destinationSearchTerm}" in destinations and "${packageSearchTerm}" in tours`
+                  : destinationSearchTerm 
+                    ? `Searching for "${destinationSearchTerm}" in destinations`
+                    : `Searching for "${packageSearchTerm}" in tours`
+                }
+              </p>
             )}
           </div>
         </Container>
@@ -607,18 +522,6 @@ const Index: React.FC = () => {
       {/* Trust Indicators */}
       <div className="w-full bg-gradient-to-r from-orange-50 to-yellow-50">
         <Container className="py-8 sm:py-12">
-          {/* Filter Applied Indicator */}
-          {filtersApplied && (
-            <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg text-center animate-fade-in">
-              <div className="flex items-center justify-center">
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Filters applied! Scroll to see results below.
-              </div>
-            </div>
-          )}
-          
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
             {[
               {
@@ -664,7 +567,14 @@ const Index: React.FC = () => {
             Explore Bhutan's Destinations
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto px-4 text-sm sm:text-base">
-            Discover the 20 unique districts of Bhutan, each with its own cultural identity
+            {destinationSearchTerm ? (
+              <>
+                Found {filteredDestinations.length} destination{filteredDestinations.length !== 1 ? 's' : ''} 
+                {destinationSearchTerm && ` matching "${destinationSearchTerm}"`}
+              </>
+            ) : (
+              "Discover the 20 unique districts of Bhutan, each with its own cultural identity"
+            )}
           </p>
 
           {/* Updated Category Filters */}
@@ -687,72 +597,91 @@ const Index: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredDestinations.slice(0, 6).map((destination) => (
-            <div
-              key={destination.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
-            >
-              <div className="relative h-40 sm:h-48">
-                <img
-                  src={destination.media.images[0]}
-                  alt={destination.name}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
-                  <h3 className="text-lg sm:text-xl font-bold text-white">
-                    {destination.name}
-                  </h3>
-                  <p className="text-yellow-300 text-xs sm:text-sm">
-                    {destination.location.region}
-                  </p>
-                </div>
-                <div className="absolute top-2 right-2 bg-white bg-opacity-90 px-2 py-1 rounded-full text-xs font-bold flex items-center">
-                  <svg
-                    className="w-3 h-3 text-yellow-500 mr-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  Popularity: {destination.meta.popularity}/5
-                </div>
-              </div>
-              <div className="p-4 sm:p-6">
-                <p className="text-gray-800 text-lg sm:text-xl font-bold mb-3 sm:mb-4 line-clamp-2">
-                  {destination.tagline}
-                </p>
-                
-                {/* Experience Tags */}
-                <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
-                  {destination.experiences.slice(0, 3).map((exp, i) => (
-                    <span
-                      key={i}
-                      className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+          {filteredDestinations.length > 0 ? (
+            filteredDestinations.slice(0, 6).map((destination) => (
+              <div
+                key={destination.id}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
+              >
+                <div className="relative h-40 sm:h-48">
+                  <img
+                    src={destination.media.images[0]}
+                    alt={destination.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
+                    <h3 className="text-lg sm:text-xl font-bold text-white">
+                      {destination.name}
+                    </h3>
+                    <p className="text-yellow-300 text-xs sm:text-sm">
+                      {destination.location.region}
+                    </p>
+                  </div>
+                  <div className="absolute top-2 right-2 bg-white bg-opacity-90 px-2 py-1 rounded-full text-xs font-bold flex items-center">
+                    <svg
+                      className="w-3 h-3 text-yellow-500 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
                     >
-                      {exp.type}
-                    </span>
-                  ))}
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    Popularity: {destination.meta.popularity}/5
+                  </div>
                 </div>
-                
-                {/* Best Time to Visit */}
-                <div className="mb-4">
-                  <p className="text-xs sm:text-sm text-gray-500">
-                    <span className="font-medium">Best Time:</span> {destination.practicalInfo.bestTimeToVisit.join(", ")}
+                <div className="p-4 sm:p-6">
+                  <p className="text-gray-800 text-lg sm:text-xl font-bold mb-3 sm:mb-4 line-clamp-2">
+                    {destination.tagline}
                   </p>
+                  
+                  {/* Experience Tags */}
+                  <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
+                    {destination.experiences.slice(0, 3).map((exp, i) => (
+                      <span
+                        key={i}
+                        className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                      >
+                        {exp.type}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  {/* Best Time to Visit */}
+                  <div className="mb-4">
+                    <p className="text-xs sm:text-sm text-gray-500">
+                      <span className="font-medium">Best Time:</span> {destination.practicalInfo.bestTimeToVisit.join(", ")}
+                    </p>
+                  </div>
+                  <Link href={`/destination/explore/${destination.id}`}>
+                    <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
+                      Discover {destination.name}
+                      <FiArrowRight className="ml-2" />
+                    </button>
+                  </Link>
                 </div>
-                <Link href={`/destination/explore/${destination.id}`}>
-                  <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
-                    Discover {destination.name}
-                    <FiArrowRight className="ml-2" />
-                  </button>
-                </Link>
               </div>
+            ))
+          ) : destinationSearchTerm ? (
+            <div className="col-span-full text-center py-12">
+              <div className="text-gray-400 mb-4">
+                <FiMapPin className="mx-auto h-12 w-12" />
+              </div>
+              <h3 className="text-xl font-medium text-gray-900 mb-2">No destinations found</h3>
+              <p className="text-gray-500 mb-4">
+                We couldn't find any destinations matching "{destinationSearchTerm}". 
+                Try adjusting your search or browse all destinations.
+              </p>
+              <button
+                onClick={clearSearch}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600"
+              >
+                Clear search and browse all
+              </button>
             </div>
-          ))}
+          ) : null}
         </div>
 
-        {filteredDestinations.length > 6 && (
+        {filteredDestinations.length > 6 && !destinationSearchTerm && (
           <div className="text-center mt-8 sm:mt-12">
             <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
               View All {filteredDestinations.length} Destinations
@@ -771,7 +700,14 @@ const Index: React.FC = () => {
                 Our Most Popular Bhutan Tours
               </h2>
               <p className="text-gray-600 text-sm sm:text-base">
-                {filteredPackages.length} tours available
+                {packageSearchTerm ? (
+                  <>
+                    Found {filteredPackages.length} tour{filteredPackages.length !== 1 ? 's' : ''} 
+                    {packageSearchTerm && ` matching "${packageSearchTerm}"`}
+                  </>
+                ) : (
+                  `${filteredPackages.length} tours available`
+                )}
               </p>
             </div>
 
@@ -793,60 +729,79 @@ const Index: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {sortedPackages.slice(0, 6).map((tour) => (
-            <div
-              key={tour.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col h-full"
-            >
-              {/* Image section with fixed height */}
-              <div className="relative h-40 sm:h-48 flex-shrink-0">
-                <img
-                  src={tour.image}
-                  alt={tour.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-yellow-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
-                  {tour.rating || 4.8} ★
+          {sortedPackages.length > 0 ? (
+            sortedPackages.slice(0, 6).map((tour) => (
+              <div
+                key={tour.id}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col h-full"
+              >
+                {/* Image section with fixed height */}
+                <div className="relative h-40 sm:h-48 flex-shrink-0">
+                  <img
+                    src={tour.image}
+                    alt={tour.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-yellow-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
+                    {tour.rating || 4.8} ★
+                  </div>
                 </div>
-              </div>
 
-              {/* Content section with flex-grow and fixed min-height */}
-              <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg sm:text-xl text-gray-800 font-bold">{tour.title}</h3>
-                  <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap">
-                    {tour.duration || tour.dates}
-                  </span>
-                </div>
-                {/* Description with fixed height */}
-                <p className="text-gray-600 mb-3 sm:mb-4 line-clamp-2 min-h-[3rem] text-sm sm:text-base">
-                  {tour.description}
-                </p>
-                {/* Highlights with fixed height */}
-                <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4 min-h-[1.5rem]">
-                  {tour.highlights?.slice(0, 3).map((highlight, i) => (
-                    <span
-                      key={i}
-                      className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
-                    >
-                      {highlight}
+                {/* Content section with flex-grow and fixed min-height */}
+                <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-lg sm:text-xl text-gray-800 font-bold">{tour.title}</h3>
+                    <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap">
+                      {tour.duration || tour.dates}
                     </span>
-                  ))}
-                </div>
-                {/* Button at bottom */}
-                <div className="mt-auto">
-                  <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
-                    View Details
-                    <FiArrowRight className="ml-2" />
-                  </button>
+                  </div>
+                  {/* Description with fixed height */}
+                  <p className="text-gray-600 mb-3 sm:mb-4 line-clamp-2 min-h-[3rem] text-sm sm:text-base">
+                    {tour.description}
+                  </p>
+                  {/* Highlights with fixed height */}
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4 min-h-[1.5rem]">
+                    {tour.highlights?.slice(0, 3).map((highlight, i) => (
+                      <span
+                        key={i}
+                        className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                      >
+                        {highlight}
+                      </span>
+                    ))}
+                  </div>
+                  {/* Button at bottom */}
+                  <div className="mt-auto">
+                    <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
+                      View Details
+                      <FiArrowRight className="ml-2" />
+                    </button>
+                  </div>
                 </div>
               </div>
+            ))
+          ) : packageSearchTerm ? (
+            <div className="col-span-full text-center py-12">
+              <div className="text-gray-400 mb-4">
+                <FiSearch className="mx-auto h-12 w-12" />
+              </div>
+              <h3 className="text-xl font-medium text-gray-900 mb-2">No tours found</h3>
+              <p className="text-gray-500 mb-4">
+                We couldn't find any tours matching "{packageSearchTerm}". 
+                Try adjusting your search or browse all tours.
+              </p>
+              <button
+                onClick={clearSearch}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600"
+              >
+                Clear search and browse all
+              </button>
             </div>
-          ))}
+          ) : null}
         </div>
 
-        {sortedPackages.length > 6 && (
+        {sortedPackages.length > 6 && !packageSearchTerm && (
           <div className="text-center mt-8 sm:mt-12">
             <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
               View All {sortedPackages.length} Tour Packages
