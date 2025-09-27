@@ -258,7 +258,7 @@ const PackageDetailsPage = () => {
             {/* Right Column - Enhanced Booking & Info */}
             <div className="space-y-8">
               {/* Enhanced Booking Card */}
-              <div className="bg-gradient-to-br from-white to-orange-50 rounded-2xl shadow-2xl p-8 sticky top-8">
+              <div className="bg-gradient-to-br from-white to-orange-50 rounded-2xl shadow-2xl p-8">
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-full text-sm font-medium mb-4">
                     <HiOutlineSparkles className="w-4 h-4 mr-2" />

@@ -65,6 +65,24 @@ const Index: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Determine the correct route based on the tour category
+  const getRouteForTour = (tour: any) => {
+    switch (tour.category) {
+      case 'cultural':
+        return `/package/cultural/${tour.id}`;
+      case 'festival':
+        return `/package/festival/${tour.id}`;
+      case 'group':
+        return `/package/group/${tour.id}`;
+      case 'trekking':
+      case 'adventure':  // Adventure tours also use trekking pages
+        return `/package/trekking/${tour.id}`;
+      case 'city':
+      default:
+        return `/package/majorcitytour/${tour.id}`;
+    }
+  };
+
   // Combine all packages
   const allPackages = [
     ...majorCitiesPackage,
@@ -431,26 +449,21 @@ const Index: React.FC = () => {
                   <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-auto">
                     {filteredPackages.length > 0 ? (
                       filteredPackages.map((pkg) => (
-                        <div
-                          key={pkg.id}
-                          className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center"
-                          onClick={() => {
-                            setPackageSearchTerm(pkg.title);
-                            setShowPackageResults(false);
-                          }}
-                        >
-                          <img
-                            src={pkg.image}
-                            alt={pkg.title}
-                            className="w-10 h-10 rounded-md object-cover mr-3"
-                          />
-                          <div>
-                            <div className="font-medium">{pkg.title}</div>
-                            <div className="text-sm text-gray-500">
-                              {pkg.duration || "Multi-day tour"}
+                        <Link key={pkg.id} href={getRouteForTour(pkg)} passHref>
+                          <div className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center">
+                            <img
+                              src={pkg.image}
+                              alt={pkg.title}
+                              className="w-10 h-10 rounded-md object-cover mr-3"
+                            />
+                            <div>
+                              <div className="font-medium">{pkg.title}</div>
+                              <div className="text-sm text-gray-500">
+                                {pkg.duration || "Multi-day tour"}
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       ))
                     ) : (
                       <div className="p-4 text-center text-gray-500">
@@ -771,12 +784,14 @@ const Index: React.FC = () => {
                       </span>
                     ))}
                   </div>
-                  {/* Button at bottom */}
+                  {/* Button at bottom with proper Link */}
                   <div className="mt-auto">
-                    <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
-                      View Details
-                      <FiArrowRight className="ml-2" />
-                    </button>
+                    <Link href={getRouteForTour(tour)} passHref>
+                      <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
+                        View Details
+                        <FiArrowRight className="ml-2" />
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -803,10 +818,12 @@ const Index: React.FC = () => {
 
         {sortedPackages.length > 6 && !packageSearchTerm && (
           <div className="text-center mt-8 sm:mt-12">
-            <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
-              View All {sortedPackages.length} Tour Packages
-              <FiArrowRight className="ml-2" />
-            </button>
+            <Link href="/package" passHref>
+              <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
+                View All {sortedPackages.length} Tour Packages
+                <FiArrowRight className="ml-2" />
+              </button>
+            </Link>
           </div>
         )}
       </Container>
