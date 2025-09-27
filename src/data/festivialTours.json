@@ -2,40 +2,312 @@
   {
     "id": "festival-1",
     "title": "Paro Tsechu Festival Tour",
-    "dates": "24th - 29th March 2024",
+    "dates": "21st - 25th March 2025",
     "duration": "5N/6D",
-    "description": "Set off on an enthralling six-day expedition to the mystical realm of Bhutan, climaxing with the lively and spiritually enriching Paro Festival. This experience assures a fusion of cultural...",
+    "description": "Experience the most sacred and vibrant festival in Bhutan, dating back to the 17th century. Witness the spectacular Cham dances performed by monks in elaborate silk robes and masks, depicting stories from Buddhist mythology. The highlight is the unfurling of the giant Thongdroel (sacred thangka) of Guru Rinpoche, believed to cleanse sins upon viewing.",
     "image": "https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/bhutan-tshechu-festivel-700-51.jpg",
     "route": "Paro, Thimphu, Punakha",
     "category": "festival",
-    "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+    "highlights": [
+      "Sacred Cham masked dances by monks",
+      "Thongdroel unfurling ceremony at dawn",
+      "Tiger's Nest Monastery (Paro Taktsang)",
+      "Punakha Dzong - Palace of Great Bliss",
+      "Traditional Bhutanese archery demonstration",
+      "Local handicraft markets in Thimphu"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Paro",
+        "activities": [
+          "Airport pickup",
+          "Visit Paro Rinpung Dzong",
+          "Acclimatization walk",
+          "Welcome dinner with traditional Bhutanese cuisine"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Paro Tsechu Festival Day 1",
+        "activities": [
+          "Early morning Thongdroel ceremony",
+          "Sacred Cham dances",
+          "Blessing ceremonies",
+          "Cultural performances by local artists"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Tiger's Nest & Festival",
+        "activities": [
+          "Hike to Tiger's Nest Monastery (3 hours)",
+          "Festival continuation",
+          "Atsara (clown) performances",
+          "Traditional mask dance workshops"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Thimphu Exploration",
+        "activities": [
+          "Drive to Thimphu (1.5 hours)",
+          "Tashichho Dzong visit",
+          "Weekend market",
+          "Traditional arts & crafts school"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Punakha Valley",
+        "activities": [
+          "Dochula Pass (108 stupas)",
+          "Punakha Dzong tour",
+          "Suspension bridge walk",
+          "Chimi Lhakhang fertility temple"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Departure",
+        "activities": ["Return to Paro", "Last-minute shopping", "Airport transfer"]
+      }
+    ],
+    "festival_details": {
+      "significance": "Honors Guru Rinpoche's deeds and introduction of Tantric Buddhism to Bhutan",
+      "established": "17th century by Zhabdrung Ngawang Namgyal",
+      "meaning": "Tsechu means 'tenth day' - the auspicious tenth day of lunar month",
+      "main_dances": [
+        "Shinje Yab Yum (Lord of Death)",
+        "Guru Tshengye (Eight Manifestations of Guru)",
+        "Raksha Mangcham (Dance of the Judgement of the Dead)"
+      ],
+      "dress_code": "Traditional Bhutanese attire recommended (Gho for men, Kira for women)"
+    },
     "rating": 4.8,
-    "price": "Nu.0.00"
+    "inclusions": [
+      "Accommodation",
+      "All meals",
+      "English-speaking guide",
+      "Transportation",
+      "Festival entrance",
+      "Monument fees"
+    ],
+    "best_time": "March-April (spring season with clear mountain views)",
+    "difficulty": "Easy to moderate (some walking and high altitude)",
+    "group_size": "2-12 people",
+    "accommodation": "3-star hotels and traditional guesthouses"
   },
   {
     "id": "festival-2",
     "title": "Royal Highland Festival Tour",
     "dates": "20th - 29th October 2024",
     "duration": "9N/10D",
-    "description": "The Royal Highlander Festival unveils the splendor and marvels of Gasa Dzongkhang, showcasing its natural beauty, historical significance, and timeless traditions. By embodying Gasa's vision..",
+    "description": "Experience the unique highland culture of Gasa Dzongkhag at this exclusive festival showcasing the traditions of Bhutan's most remote regions. Witness yak herding demonstrations, highland folk dances, and traditional crafts while surrounded by pristine Himalayan wilderness.",
     "image": "https://a.storyblok.com/f/171618/3936x2624/ec6a07dce9/lll05083.jpg",
-    "route": "Gasa, Thimphu, Paro",
+    "route": "Gasa, Thimphu, Paro, Punakha",
     "category": "festival",
-    "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+    "highlights": [
+      "Exclusive Royal Highland Festival in Gasa",
+      "Yak herding and highland farming demonstrations",
+      "Traditional highland folk dances and music",
+      "Gasa Dzong - northernmost fortress",
+      "Hot springs at Gasa Tshachu",
+      "Pristine Himalayan wilderness experience"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Paro",
+        "activities": ["Airport arrival", "Paro town exploration", "Traditional welcome ceremony"]
+      },
+      {
+        "day": 2,
+        "title": "Paro to Thimphu",
+        "activities": [
+          "Drive to Thimphu",
+          "Tashichho Dzong visit",
+          "National Memorial Chorten",
+          "Traditional arts school"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Journey to Gasa",
+        "activities": ["Early departure to Gasa (6-7 hours)", "Dochula Pass", "Wangdue town", "Arrival in Gasa"]
+      },
+      {
+        "day": 4,
+        "title": "Royal Highland Festival Day 1",
+        "activities": [
+          "Festival opening ceremony",
+          "Highland cultural performances",
+          "Traditional games",
+          "Yak product exhibitions"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Royal Highland Festival Day 2",
+        "activities": [
+          "Folk dance competitions",
+          "Traditional crafts demonstrations",
+          "Highland cuisine tasting",
+          "Bonfire evening"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Gasa Exploration",
+        "activities": [
+          "Gasa Dzong visit",
+          "Hot springs relaxation",
+          "Highland village visit",
+          "Traditional weaving workshop"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Return to Punakha",
+        "activities": ["Drive to Punakha", "Punakha Dzong tour", "Suspension bridge walk", "Riverside camping"]
+      },
+      {
+        "day": 8,
+        "title": "Punakha to Paro",
+        "activities": ["Return journey to Paro", "Chele La Pass (highest motorable pass)", "Evening in Paro town"]
+      },
+      {
+        "day": 9,
+        "title": "Tiger's Nest Monastery",
+        "activities": ["Hike to Tiger's Nest", "Meditation session", "Traditional lunch", "Farewell dinner"]
+      },
+      {
+        "day": 10,
+        "title": "Departure",
+        "activities": ["Last-minute shopping", "Airport transfer"]
+      }
+    ],
+    "festival_details": {
+      "significance": "Celebrates highland culture and promotes Gasa region's natural beauty",
+      "unique_features": [
+        "Yak herding competitions",
+        "Highland folk music",
+        "Traditional highland cuisine",
+        "Cordyceps harvesting demonstrations"
+      ],
+      "altitude": "2,800m - 3,200m",
+      "weather": "Cool mountain climate, warm clothing essential"
+    },
     "rating": 4.8,
-    "price": "Nu.0.00"
+    "inclusions": [
+      "Accommodation",
+      "All meals",
+      "Festival passes",
+      "Transportation",
+      "English guide",
+      "Camping equipment"
+    ],
+    "best_time": "October (clear skies and pleasant weather)",
+    "difficulty": "Moderate (high altitude and some walking)",
+    "group_size": "4-10 people",
+    "accommodation": "Hotels, guesthouses, and camping"
   },
   {
     "id": "festival-3",
     "title": "Thimphu Tsechu Festival Tour",
-    "dates": "12th - 18th Septemeber 2024",
+    "dates": "12th - 18th September 2024",
     "duration": "6N/7D",
-    "description": "Experience the vibrancy of Bhutan's culture at Thimphu Tsechu festival 2024, happening in Septemeber 12th to 18th. Delve into a week-long celebration featuring traditional masked dances...",
+    "description": "Join Bhutan's largest and most spectacular festival in the capital city. Experience the grandeur of Tashichho Dzong as it comes alive with sacred masked dances, religious ceremonies, and thousands of devotees from across the kingdom gathering for this auspicious celebration.",
     "image": "https://cdn.drukasia.com/content/images/media/drukasia_021617_dsc05249-1070x713.jpg",
-    "route": "Thimphu, Paro",
-    "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
+    "route": "Thimphu, Paro, Punakha",
+    "highlights": [
+      "Bhutan's largest festival at Tashichho Dzong",
+      "Sacred Cham dances in the main courtyard",
+      "Giant Thongdroel unfurling ceremony",
+      "Traditional Bhutanese cultural performances",
+      "Weekend market and handicraft shopping",
+      "Buddha Dordenma statue visit"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Thimphu",
+        "activities": ["Airport pickup from Paro", "Drive to Thimphu (1 hour)", "City orientation", "Welcome dinner"]
+      },
+      {
+        "day": 2,
+        "title": "Thimphu Tsechu Day 1",
+        "activities": [
+          "Early morning Thongdroel ceremony",
+          "Sacred mask dances",
+          "Religious ceremonies",
+          "Cultural exhibitions"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Thimphu Tsechu Day 2",
+        "activities": ["Festival continuation", "Atsara performances", "Traditional music", "Blessing ceremonies"]
+      },
+      {
+        "day": 4,
+        "title": "Thimphu Exploration",
+        "activities": [
+          "Buddha Dordenma statue",
+          "National Memorial Chorten",
+          "Traditional arts school",
+          "Weekend market"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Punakha Excursion",
+        "activities": ["Day trip to Punakha", "Punakha Dzong tour", "Chimi Lhakhang temple", "Return to Thimphu"]
+      },
+      {
+        "day": 6,
+        "title": "Paro Valley",
+        "activities": [
+          "Drive to Paro",
+          "Tiger's Nest Monastery hike",
+          "Paro Dzong visit",
+          "Traditional farmhouse dinner"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Departure",
+        "activities": ["Last-minute shopping", "Airport transfer"]
+      }
+    ],
+    "festival_details": {
+      "significance": "Largest festival in Bhutan, held at the seat of government",
+      "venue": "Tashichho Dzong - fortress of the glorious religion",
+      "attendance": "Over 30,000 devotees and tourists",
+      "main_dances": [
+        "Zhana Nga Cham (Black Hat Dance)",
+        "Durdag (Dance of the Lords of the Cremation Ground)",
+        "Guru Tshengye"
+      ],
+      "special_features": [
+        "Government officials participate",
+        "Largest Thongdroel in Bhutan",
+        "Traditional archery competitions"
+      ]
+    },
     "category": "festival",
     "rating": 4.8,
-    "price": "Nu.0.00"
+    "inclusions": [
+      "Accommodation",
+      "All meals",
+      "Transportation",
+      "Festival entrance",
+      "English guide",
+      "Monument fees"
+    ],
+    "best_time": "September (post-monsoon clear weather)",
+    "difficulty": "Easy (minimal walking required)",
+    "group_size": "2-15 people",
+    "accommodation": "3-4 star hotels in Thimphu and Paro"
   }
 ]

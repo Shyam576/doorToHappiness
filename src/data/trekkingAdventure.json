@@ -1,41 +1,302 @@
 [
-    {
-      "id": "trek-1",
-      "title": "Jomolhari Trek",
-      "description": "The Jomolhari Trek stands as one of Bhutan's most challenging and esteemed treks, often regarded as among the finest globally. Mount Jomolhari, towering at 7,326 meters, straddles the border between the Tibet Autonomous Region.",
-      "image": "https://cdn.kimkim.com/files/a/content_articles/featured_photos/7cf1c8b6cedee7818de86db9512dda2ca3e52511/big-a797fcf55155849db0bce38693a3fbec.jpg",
-      "route": "Paro, Thimphu, Jomolhari",
-      "category": "trekking",
-      "rating": 4.8,
-      "duration": "7N/8D",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-      "dates":"",
-      "price":"Nu.0.00"
+  {
+    "id": "trek-1",
+    "title": "Jomolhari Trek",
+    "description": "Embark on Bhutan's most popular classic trek to the base of sacred Mount Jomolhari (7,326m). This moderate difficulty trek takes you through pristine alpine meadows, yak herding villages, and offers spectacular views of the Himalayan giants while experiencing authentic Bhutanese highland culture.",
+    "image": "https://cdn.kimkim.com/files/a/content_articles/featured_photos/7cf1c8b6cedee7818de86db9512dda2ca3e52511/big-a797fcf55155849db0bce38693a3fbec.jpg",
+    "route": "Paro - Sharna - Jangothang - Lingshi - Thimphu",
+    "category": "trekking",
+    "rating": 4.8,
+    "duration": "11N/12D",
+    "highlights": [
+      "Jomolhari Base Camp (4,050m) with mountain views",
+      "Crossing Nyile La Pass (4,900m)",
+      "Yak herding villages and nomadic culture",
+      "Jigme Dorji National Park wildlife",
+      "Alpine lakes and rhododendron forests",
+      "Traditional yak hair tents camping"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Paro",
+        "activities": ["Airport pickup", "Acclimatization", "Gear check", "Tiger's Nest Monastery visit"]
+      },
+      {
+        "day": 2,
+        "title": "Paro to Sharna (2,870m)",
+        "activities": ["Drive to Sharna (1 hour)", "Trek preparation", "Short acclimatization hike", "Camp setup"]
+      },
+      {
+        "day": 3,
+        "title": "Sharna to Thangthangkha (3,610m)",
+        "activities": [
+          "Trek through pine forests",
+          "Cross Paro Chhu river",
+          "Yak herder settlements",
+          "6 hours trekking"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Thangthangkha to Jangothang (4,050m)",
+        "activities": ["Gradual ascent to base camp", "First views of Jomolhari", "Alpine meadows", "5 hours trekking"]
+      },
+      {
+        "day": 5,
+        "title": "Jangothang Rest Day",
+        "activities": [
+          "Acclimatization day",
+          "Explore base camp area",
+          "Optional hike to higher viewpoints",
+          "Photography"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Jangothang to Lingshi (4,010m)",
+        "activities": [
+          "Cross Nyile La Pass (4,900m)",
+          "Spectacular mountain views",
+          "Descent to Lingshi village",
+          "8 hours trekking"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Lingshi to Shodu (4,100m)",
+        "activities": ["Cross Yeli La Pass (4,820m)", "Remote valleys", "Yak grazing grounds", "7 hours trekking"]
+      },
+      {
+        "day": 8,
+        "title": "Shodu to Barshong (3,600m)",
+        "activities": [
+          "Descent through rhododendron forests",
+          "Cross Thimphu Chhu",
+          "Traditional villages",
+          "6 hours trekking"
+        ]
+      },
+      {
+        "day": 9,
+        "title": "Barshong to Dolam Kencho (3,400m)",
+        "activities": ["Forest trails", "Wildlife spotting", "River crossings", "5 hours trekking"]
+      },
+      {
+        "day": 10,
+        "title": "Dolam Kencho to Dodina",
+        "activities": ["Final descent", "Drive to Thimphu", "Celebration dinner", "4 hours trek + 1 hour drive"]
+      },
+      {
+        "day": 11,
+        "title": "Thimphu Exploration",
+        "activities": ["Rest day", "Thimphu sightseeing", "Traditional markets", "Cultural sites"]
+      },
+      {
+        "day": 12,
+        "title": "Departure",
+        "activities": ["Drive to Paro airport", "Departure"]
+      }
+    ],
+    "trek_details": {
+      "difficulty": "Moderate to challenging",
+      "max_altitude": "4,900m (Nyile La Pass)",
+      "total_distance": "135 km",
+      "daily_walking": "5-8 hours",
+      "accommodation": "Camping in tents",
+      "best_months": ["April", "May", "September", "October"],
+      "permits_required": "Restricted area permit needed"
     },
-    {
-      "id": "trek-2",
-      "title": "Bhutan Biking Adventures",
-      "description": "Experience Bhutan's majestic landscapes on thrilling biking adventures. Traverse rugged terrain, winding through picturesque valleys and ancient villages. Discover the kingdom's natural wonders and vibrant culture from...",
-      "image": "https://bhutanrides.com/wp-content/uploads/2018/06/Slider1-e1536816083795.jpg",
-      "route": "Various routes across Bhutan",
-      "category": "adventure",
-      "rating": 4.8,
-      "duration": "7N/8D",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-      "dates":"",
-      "price":"Nu.0.00"
+    "dates": "April-May, September-October",
+    "inclusions": ["Camping equipment", "All meals", "Porters and guides", "Permits", "Transportation"],
+    "fitness_level": "Good physical condition required",
+    "group_size": "2-8 people"
+  },
+  {
+    "id": "trek-2",
+    "title": "Bhutan Mountain Biking Adventures",
+    "description": "Experience Bhutan's diverse landscapes on two wheels, from valley floors to mountain passes. Cycle through traditional villages, ancient forests, and alongside pristine rivers while enjoying the freedom to explore at your own pace with support vehicle backup.",
+    "image": "https://bhutanrides.com/wp-content/uploads/2018/06/Slider1-e1536816083795.jpg",
+    "route": "Paro - Thimphu - Punakha - Wangdue - Bumthang",
+    "category": "adventure",
+    "rating": 4.8,
+    "duration": "8N/9D",
+    "highlights": [
+      "Cycle through Dochula Pass (3,100m)",
+      "Traditional village interactions",
+      "Punakha valley riverside cycling",
+      "Bumthang cultural heartland",
+      "Support vehicle for challenging sections",
+      "Mix of paved and dirt trail cycling"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival and Bike Fitting",
+        "activities": [
+          "Airport pickup",
+          "Bike fitting and safety briefing",
+          "Short test ride around Paro",
+          "Equipment check"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Paro to Thimphu Cycle (55km)",
+        "activities": ["Cycle to Thimphu via Chuzom", "Gradual ascent", "Traditional villages", "4-5 hours cycling"]
+      },
+      {
+        "day": 3,
+        "title": "Thimphu Exploration",
+        "activities": ["Rest day", "City cycling tour", "Weekend market", "Tashichho Dzong visit"]
+      },
+      {
+        "day": 4,
+        "title": "Thimphu to Punakha (77km)",
+        "activities": [
+          "Cycle over Dochula Pass",
+          "108 stupas viewpoint",
+          "Descent to Punakha valley",
+          "6-7 hours cycling"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Punakha Valley Cycling",
+        "activities": ["Riverside cycling", "Punakha Dzong visit", "Chimi Lhakhang temple", "Suspension bridge"]
+      },
+      {
+        "day": 6,
+        "title": "Punakha to Wangdue (45km)",
+        "activities": ["Mo Chhu river cycling", "Traditional farmhouses", "Wangdue Dzong", "3-4 hours cycling"]
+      },
+      {
+        "day": 7,
+        "title": "Wangdue to Bumthang (68km)",
+        "activities": [
+          "Pele La Pass (3,300m)",
+          "Scenic mountain cycling",
+          "Cultural heartland arrival",
+          "5-6 hours cycling"
+        ]
+      },
+      {
+        "day": 8,
+        "title": "Bumthang Valley Cycling",
+        "activities": ["Valley floor cycling", "Ancient temples", "Traditional villages", "Jakar Dzong visit"]
+      },
+      {
+        "day": 9,
+        "title": "Return and Departure",
+        "activities": ["Drive back to Paro", "Airport transfer"]
+      }
+    ],
+    "cycling_details": {
+      "difficulty": "Moderate to challenging",
+      "total_distance": "300+ km",
+      "daily_cycling": "3-7 hours",
+      "bike_type": "Mountain bikes provided",
+      "support": "Full support vehicle",
+      "terrain": "Mixed paved roads and trails"
     },
-    {
-      "id": "trek-3",
-      "title": "Snowman Trek",
-      "description": "Bhutan's Snowman Trek ranks among the toughest Himalayan treks and is renowned as one of the most challenging treks globally. It's often noted that more individuals have reached the summit of Everest than have successfully...",
-      "image": "https://pictures.altai-travel.com/1920x0/snowman-trek-in-bhutan-1595.jpg",
-      "route": "Lunana region, Bhutan",
-      "category": "trekking",
-      "rating": 4.8,
-      "duration": "7N/8D",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-      "dates":"",
-      "price":"Nu.0.00"
-    }
-  ]
+    "dates": "March-May, September-November",
+    "inclusions": ["Mountain bike rental", "Helmet and safety gear", "Support vehicle", "All meals", "Accommodation"],
+    "fitness_level": "Good cycling experience required",
+    "group_size": "2-10 people"
+  },
+  {
+    "id": "trek-3",
+    "title": "Snowman Trek",
+    "description": "Undertake one of the world's most challenging and remote treks through Bhutan's pristine Lunana region. This epic 25-day journey crosses 11 high-altitude passes, including three over 5,000m, offering unparalleled Himalayan wilderness experience and encounters with nomadic yak herders.",
+    "image": "https://pictures.altai-travel.com/1920x0/snowman-trek-in-bhutan-1595.jpg",
+    "route": "Paro - Laya - Lunana - Table Mountain - Bumthang",
+    "category": "trekking",
+    "rating": 4.9,
+    "duration": "25N/26D",
+    "highlights": [
+      "Cross 11 high-altitude passes (3 over 5,000m)",
+      "Remote Lunana region - Bhutan's last Shangri-La",
+      "Rinchen Zoe La Pass (5,326m) - highest point",
+      "Nomadic yak herder communities",
+      "Pristine glacial lakes and valleys",
+      "Table Mountain base camp experience"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": "1-3",
+        "title": "Preparation and Acclimatization",
+        "activities": [
+          "Arrival in Paro",
+          "Gear preparation",
+          "Haa Valley acclimatization (2,700m)",
+          "Final preparations"
+        ]
+      },
+      {
+        "day": "4-8",
+        "title": "Paro to Jangothang",
+        "activities": ["Trek to Jomolhari Base Camp", "Acclimatization days", "Cross Nyile La Pass", "Reach Lingshi"]
+      },
+      {
+        "day": "9-15",
+        "title": "Lingshi to Laya",
+        "activities": [
+          "Cross Rinchen Zoe La (5,326m)",
+          "Highest point of trek",
+          "Descent to Laya village",
+          "Rest and resupply"
+        ]
+      },
+      {
+        "day": "16-20",
+        "title": "Laya to Lunana",
+        "activities": [
+          "Enter restricted Lunana region",
+          "Cross Karakachu La (5,165m)",
+          "Thanza village",
+          "Nomadic encounters"
+        ]
+      },
+      {
+        "day": "21-23",
+        "title": "Lunana Exploration",
+        "activities": [
+          "Table Mountain base camp",
+          "Glacial lake visits",
+          "Yak herder interactions",
+          "Remote valley exploration"
+        ]
+      },
+      {
+        "day": "24-25",
+        "title": "Exit via Bumthang",
+        "activities": ["Cross final passes", "Descent to Bumthang", "Cultural valley exploration"]
+      },
+      {
+        "day": 26,
+        "title": "Return to Paro",
+        "activities": ["Drive to Paro", "Celebration dinner", "Departure preparation"]
+      }
+    ],
+    "trek_details": {
+      "difficulty": "Extremely challenging",
+      "max_altitude": "5,326m (Rinchen Zoe La)",
+      "total_distance": "350+ km",
+      "daily_walking": "6-10 hours",
+      "accommodation": "High-altitude camping",
+      "success_rate": "Less than 40%",
+      "weather_dependent": "Highly weather dependent"
+    },
+    "dates": "September-October only",
+    "inclusions": [
+      "All camping equipment",
+      "Experienced guides",
+      "Porters and yaks",
+      "Emergency evacuation insurance",
+      "All permits"
+    ],
+    "fitness_level": "Excellent physical condition essential",
+    "group_size": "2-6 people maximum",
+    "special_requirements": ["Previous high-altitude experience", "Medical clearance", "Comprehensive insurance"]
+  }
+]

@@ -5,21 +5,39 @@ interface TourPackage {
   id: string;
   title: string;
   image: string;
-  alt: string;
+  alt?: string;
   highlights: string[];
   duration: string;
   route: string;
   description: string;
   price?: number;
+  category?: string;
 }
 
 const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
+  // Determine the correct route based on the tour category
+  const getRouteForTour = (tour: TourPackage) => {
+    switch (tour.category) {
+      case 'cultural':
+        return `/package/cultural/${tour.id}`;
+      case 'festival':
+        return `/package/festival/${tour.id}`;
+      case 'group':
+        return `/package/group/${tour.id}`;
+      case 'trekking':
+      case 'adventure':  // Adventure tours also use trekking pages
+        return `/package/trekking/${tour.id}`;
+      case 'city':
+      default:
+        return `/package/majorcitytour/${tour.id}`;
+    }
+  };
   return (
     <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col h-full">
       <div className="h-52 overflow-hidden">
         <img
           src={tour.image}
-          alt={tour.alt}
+          alt={tour.alt || tour.title}
           className="w-full h-full object-cover"
         />
       </div>
@@ -44,7 +62,7 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
         </div>
 
         <div className="mt-auto pt-4">
-          <Link href={`/package/majorcitytour/${tour.id}`} passHref>
+          <Link href={getRouteForTour(tour)} passHref>
             <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
               View Details
             </button>

@@ -1,42 +1,378 @@
 [
-    {
-      "id": "cultural-1",
-      "title": "Classical Cultural Tour",
-      "description": "Experience Bhutan through a fresh lens with the Bhutan Classic Cultural Tour. Immerse yourself in the vibrant local culture as you journey through Thimphu, Paro, Punakha, and Gangtey. Beginning in Paro.",
-      "image": "https://bhutanoldmonktravels.com/wp-content/uploads/2018/02/Bhutan-East-West-Tours-1024x576.jpg",
-      "route": "Thimphu, Paro, Punakha, Gangtey",
-      "category": "cultural",
-      "rating": 4.8,
-      "duration": "6N/7D",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-      "dates":"",
-      "price":"Nu.0.00"
-
+  {
+    "id": "cultural-1",
+    "title": "Classical Cultural Tour",
+    "description": "Immerse yourself in Bhutan's living Buddhist culture through this comprehensive journey across the kingdom's most significant valleys. Experience ancient dzongs, sacred monasteries, traditional crafts, and the warm hospitality of Bhutanese people while learning about Gross National Happiness philosophy.",
+    "image": "https://bhutanoldmonktravels.com/wp-content/uploads/2018/02/Bhutan-East-West-Tours-1024x576.jpg",
+    "route": "Paro - Thimphu - Punakha - Gangtey - Bumthang",
+    "category": "cultural",
+    "rating": 4.8,
+    "duration": "8N/9D",
+    "highlights": [
+      "Tiger's Nest Monastery - Bhutan's most iconic site",
+      "Punakha Dzong - architectural masterpiece",
+      "Gangtey Valley - winter home of black-necked cranes",
+      "Traditional arts and crafts workshops",
+      "Authentic farmhouse dining experiences",
+      "Buddhist philosophy and meditation sessions"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival in Paro",
+        "activities": [
+          "Airport welcome",
+          "Paro Rinpung Dzong visit",
+          "Traditional welcome dinner",
+          "Cultural orientation"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Tiger's Nest Monastery",
+        "activities": [
+          "Hike to Tiger's Nest (3 hours)",
+          "Meditation session",
+          "Kyichu Lhakhang temple",
+          "Traditional archery demonstration"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Paro to Thimphu",
+        "activities": [
+          "Drive to Thimphu",
+          "Tashichho Dzong tour",
+          "National Memorial Chorten",
+          "Traditional arts school visit"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Thimphu Cultural Immersion",
+        "activities": [
+          "Weekend market exploration",
+          "Traditional medicine institute",
+          "Textile museum",
+          "Buddha Dordenma statue"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Thimphu to Punakha",
+        "activities": [
+          "Dochula Pass (108 stupas)",
+          "Punakha Dzong tour",
+          "Chimi Lhakhang fertility temple",
+          "Traditional farmhouse lunch"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Punakha to Gangtey",
+        "activities": [
+          "Drive to Gangtey Valley",
+          "Gangtey Monastery visit",
+          "Nature trail walk",
+          "Black-necked crane information center"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Gangtey to Bumthang",
+        "activities": [
+          "Cross Pele La Pass",
+          "Bumthang cultural heartland",
+          "Jakar Dzong visit",
+          "Traditional weaving demonstration"
+        ]
+      },
+      {
+        "day": 8,
+        "title": "Bumthang Valley Exploration",
+        "activities": [
+          "Jambay Lhakhang temple",
+          "Kurjey Lhakhang monastery",
+          "Traditional cheese and honey tasting",
+          "Cultural evening program"
+        ]
+      },
+      {
+        "day": 9,
+        "title": "Return to Paro",
+        "activities": ["Scenic drive back", "Last-minute shopping", "Farewell dinner", "Airport transfer"]
+      }
+    ],
+    "cultural_experiences": {
+      "monasteries": ["Tiger's Nest", "Gangtey Gompa", "Jambay Lhakhang", "Kurjey Lhakhang"],
+      "dzongs": ["Paro Rinpung", "Tashichho", "Punakha", "Jakar"],
+      "traditional_crafts": ["Thangka painting", "Wood carving", "Textile weaving", "Traditional architecture"],
+      "local_interactions": ["Farmhouse visits", "Traditional meals", "Archery lessons", "Meditation sessions"]
     },
-    {
-      "id": "cultural-2",
-      "title": "Bhutan Cultural Tour with Bumdrak Trek",
-      "description": "Embark on an enlightening 8-day journey delving into Bhutan's ancient cultural treasures and its bountiful natural wonders across four western districts. Engage in nature hikes, marvel at the untouched wilderness.",
-      "image": "https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Trekking-1.jpg",
-      "route": "Paro, Thimphu, Punakha, Bumdrak",
-      "category": "cultural",
-      "rating": 4.8,
-      "duration": "7N/8D",
-      "dates":"",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-      "price":"Nu.0.00"
+    "dates": "Year-round (best March-May, September-November)",
+    "inclusions": ["3-4 star accommodation", "All meals", "Cultural guide", "Transportation", "Monument fees"],
+    "group_size": "2-12 people",
+    "accommodation": "Traditional hotels and heritage properties"
+  },
+  {
+    "id": "cultural-2",
+    "title": "Bhutan Cultural Tour with Bumdrak Trek",
+    "description": "Combine cultural exploration with a moderate trek to Bumdrak Monastery, offering spectacular views of Tiger's Nest from above. This unique journey blends spiritual discovery with adventure, providing insights into monastic life and Bhutanese Buddhist traditions.",
+    "image": "https://www.bhutanpeacefultour.com/wp-content/uploads/2019/02/Trekking-1.jpg",
+    "route": "Paro - Bumdrak - Thimphu - Punakha - Paro",
+    "category": "cultural",
+    "rating": 4.8,
+    "duration": "7N/8D",
+    "dates": "March-May, September-November",
+    "highlights": [
+      "Bumdrak Monastery trek with Tiger's Nest views",
+      "Overnight camping near sacred sites",
+      "Traditional monastic lifestyle experience",
+      "Punakha Dzong architectural tour",
+      "Traditional Bhutanese cooking class",
+      "Meditation and prayer wheel sessions"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Arrival and Preparation",
+        "activities": ["Airport pickup", "Trek preparation", "Paro town exploration", "Traditional dinner"]
+      },
+      {
+        "day": 2,
+        "title": "Bumdrak Trek Day 1",
+        "activities": [
+          "Trek to Bumdrak Monastery",
+          "Spectacular Tiger's Nest views",
+          "Camping near monastery",
+          "Evening prayers with monks"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Bumdrak to Paro",
+        "activities": [
+          "Morning meditation",
+          "Descent to Paro",
+          "Tiger's Nest Monastery visit",
+          "Traditional hot stone bath"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Paro to Thimphu",
+        "activities": ["Drive to Thimphu", "Tashichho Dzong visit", "Traditional arts school", "Craft market shopping"]
+      },
+      {
+        "day": 5,
+        "title": "Thimphu Cultural Day",
+        "activities": [
+          "Buddha Dordenma statue",
+          "Traditional medicine institute",
+          "Cooking class with local family",
+          "Folk heritage museum"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Thimphu to Punakha",
+        "activities": [
+          "Dochula Pass visit",
+          "Punakha Dzong detailed tour",
+          "Traditional architecture workshop",
+          "Riverside camping"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Punakha to Paro",
+        "activities": ["Chimi Lhakhang temple", "Traditional village walk", "Return to Paro", "Cultural evening show"]
+      },
+      {
+        "day": 8,
+        "title": "Departure",
+        "activities": ["Final shopping", "Airport transfer"]
+      }
+    ],
+    "trek_details": {
+      "difficulty": "Moderate",
+      "max_altitude": "3,800m",
+      "camping_nights": 1,
+      "daily_walking": "4-6 hours",
+      "special_features": ["Monastery overnight", "Monk interactions", "Meditation sessions"]
     },
-    {
-      "id": "cultural-3",
-      "title": "Bhutan Cultural & Nature Travel",
-      "description": "Embark on a responsible and sustainable journey that directly supports local communities, promising authentic experiences while preserving the environment. Immerse yourself in Bhutan's remarkable cultural heritage.",
-      "image": "https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/gangtey-nature-trail-700-2.jpg",
-      "route": "Thimphu, Paro, Punakha, Gangtey",
-      "category": "cultural",
-      "rating": 4.8,
-      "duration": "9N/10D",
-      "dates":"",
-      "price":"Nu.0.00",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"]
-    }
-  ]
+    "inclusions": ["Camping equipment", "Cultural guide", "All meals", "Monastery permissions", "Transportation"],
+    "fitness_level": "Moderate fitness required",
+    "group_size": "2-8 people"
+  },
+  {
+    "id": "cultural-3",
+    "title": "Bhutan Cultural & Nature Travel",
+    "description": "Experience sustainable and responsible tourism that directly benefits local communities while exploring Bhutan's remarkable cultural heritage and pristine natural environment. This eco-friendly journey emphasizes conservation, community engagement, and authentic cultural exchange.",
+    "image": "https://www.asiaodysseytravel.com/images/asia-tours/bhutan-tours/gangtey-nature-trail-700-2.jpg",
+    "route": "Paro - Thimphu - Punakha - Gangtey - Bumthang - Mongar",
+    "category": "cultural",
+    "rating": 4.9,
+    "duration": "12N/13D",
+    "dates": "March-May, September-November",
+    "highlights": [
+      "Community-based tourism experiences",
+      "Traditional sustainable farming practices",
+      "Gangtey Valley conservation project",
+      "Eastern Bhutan cultural diversity",
+      "Traditional handicraft workshops",
+      "Organic farm-to-table dining"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Sustainable Tourism Orientation",
+        "activities": [
+          "Arrival in Paro",
+          "Sustainable tourism briefing",
+          "Local community introduction",
+          "Traditional welcome ceremony"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Paro Cultural Heritage",
+        "activities": [
+          "Tiger's Nest Monastery",
+          "Traditional architecture study",
+          "Local artisan workshops",
+          "Organic farm visit"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Paro to Thimphu",
+        "activities": [
+          "Drive to Thimphu",
+          "Urban conservation projects",
+          "Traditional markets",
+          "Waste management initiatives"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Thimphu Sustainable Practices",
+        "activities": [
+          "Traditional medicine institute",
+          "Renewable energy projects",
+          "Community development programs",
+          "Cultural preservation efforts"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Thimphu to Punakha",
+        "activities": [
+          "Dochula environmental center",
+          "Punakha organic farming",
+          "Traditional water management",
+          "Community homestay"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Punakha Valley Conservation",
+        "activities": [
+          "River conservation project",
+          "Traditional fishing methods",
+          "Sustainable agriculture",
+          "Village development tour"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Punakha to Gangtey",
+        "activities": [
+          "Black-necked crane conservation",
+          "Gangtey nature trail",
+          "Community-based tourism",
+          "Traditional yak herding"
+        ]
+      },
+      {
+        "day": 8,
+        "title": "Gangtey Conservation Experience",
+        "activities": [
+          "Crane research center",
+          "Wetland conservation",
+          "Traditional grazing practices",
+          "Community forest management"
+        ]
+      },
+      {
+        "day": 9,
+        "title": "Gangtey to Bumthang",
+        "activities": [
+          "Traditional cheese making",
+          "Bumthang cultural heartland",
+          "Heritage preservation",
+          "Traditional brewing"
+        ]
+      },
+      {
+        "day": 10,
+        "title": "Bumthang Cultural Immersion",
+        "activities": [
+          "Ancient temple restoration",
+          "Traditional weaving cooperative",
+          "Organic honey production",
+          "Cultural documentation"
+        ]
+      },
+      {
+        "day": 11,
+        "title": "Bumthang to Mongar",
+        "activities": [
+          "Eastern Bhutan journey",
+          "Diverse ethnic communities",
+          "Traditional crafts",
+          "Sustainable development"
+        ]
+      },
+      {
+        "day": 12,
+        "title": "Eastern Bhutan Culture",
+        "activities": ["Mongar Dzong", "Traditional textiles", "Community projects", "Cultural exchange"]
+      },
+      {
+        "day": 13,
+        "title": "Return and Departure",
+        "activities": ["Return journey to Paro", "Project reflection", "Airport transfer"]
+      }
+    ],
+    "sustainability_features": {
+      "community_benefits": [
+        "Direct payments to communities",
+        "Local guide employment",
+        "Handicraft purchases",
+        "Homestay programs"
+      ],
+      "conservation_focus": [
+        "Wildlife protection",
+        "Forest conservation",
+        "Water resource management",
+        "Traditional knowledge preservation"
+      ],
+      "cultural_preservation": [
+        "Traditional craft support",
+        "Language documentation",
+        "Heritage site maintenance",
+        "Cultural practice continuation"
+      ]
+    },
+    "inclusions": [
+      "Eco-friendly accommodation",
+      "Community homestays",
+      "Organic meals",
+      "Conservation project visits",
+      "Cultural workshops"
+    ],
+    "group_size": "2-8 people",
+    "special_focus": "Carbon-neutral travel with community impact"
+  }
+]

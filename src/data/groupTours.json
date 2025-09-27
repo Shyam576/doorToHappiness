@@ -1,41 +1,329 @@
 [
-    {
-      "id": "group-1",
-      "title": "Bhutan Group Tours From India",
-      "description": "Discover the world's happiest country with our Bhutan Group Tour Packages and experience the joyful vacation you've been yearning for. From scenic landscapes to serene monasteries, Bhutan group tours from India offer an ideal blend of relaxation for families...",
-      "image": "https://www.doortohappinessholiday.com/assets/images/bhutan-group-tours-from-india.webp",
-      "route": "Various destinations in Bhutan",
-      "category": "group",
-      "rating": 4.8,
-      "duration": "7N/8D",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-      "dates":"",
-      "price":"Nu.0.00"
+  {
+    "id": "group-1",
+    "title": "Bhutan Group Tours From India",
+    "description": "Discover the Last Shangri-La with fellow travelers from India on this comprehensive group journey. Experience Bhutan's unique Gross National Happiness philosophy, pristine landscapes, and rich Buddhist culture while enjoying the camaraderie of group travel and cost-effective pricing.",
+    "image": "https://www.doortohappinessholiday.com/assets/images/bhutan-group-tours-from-india.webp",
+    "route": "Phuentsholing - Thimphu - Punakha - Paro",
+    "category": "group",
+    "rating": 4.8,
+    "duration": "6N/7D",
+    "highlights": [
+      "Overland entry from India via Phuentsholing",
+      "Tiger's Nest Monastery group pilgrimage",
+      "Traditional Bhutanese cultural performances",
+      "Group meditation and spiritual sessions",
+      "Shared authentic dining experiences",
+      "Cost-effective group pricing"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Border Crossing and Thimphu",
+        "activities": [
+          "Meet at Phuentsholing border",
+          "Immigration formalities",
+          "Drive to Thimphu (6 hours)",
+          "Group welcome dinner"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Thimphu Capital Exploration",
+        "activities": [
+          "Tashichho Dzong group tour",
+          "Buddha Dordenma statue",
+          "Traditional arts school",
+          "Weekend market visit"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Thimphu to Punakha",
+        "activities": [
+          "Dochula Pass group photos",
+          "Punakha Dzong tour",
+          "Group lunch at traditional restaurant",
+          "Chimi Lhakhang temple"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Punakha to Paro",
+        "activities": [
+          "Scenic drive to Paro",
+          "Paro Rinpung Dzong",
+          "Traditional archery group activity",
+          "Cultural evening program"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Tiger's Nest Monastery",
+        "activities": [
+          "Group hike to Tiger's Nest",
+          "Shared spiritual experience",
+          "Group photos at viewpoints",
+          "Traditional lunch"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Paro Valley Exploration",
+        "activities": ["Kyichu Lhakhang temple", "Traditional farmhouse visit", "Group shopping", "Farewell dinner"]
+      },
+      {
+        "day": 7,
+        "title": "Departure",
+        "activities": ["Airport transfer", "Group farewell"]
+      }
+    ],
+    "group_benefits": {
+      "cost_savings": "20-30% savings compared to individual tours",
+      "social_experience": "Meet like-minded travelers",
+      "shared_activities": "Group meditation, cultural shows, dining",
+      "group_size": "12-20 people maximum",
+      "indian_specific": "Familiar cuisine options, Hindi-speaking guides available"
     },
-    {
-      "id": "group-2",
-      "title": "Women Only Bhutan Group Tour",
-      "description": "Discover Bhutan's beauty and culture on our exclusive Women's Tour. Dive into local traditions, explore breathtaking landscapes, and connect with fellow travelers in a supportive, empowering environment. Join us for an unforgettable adventure.",
-      "image": "https://www.doortohappinessholiday.com/assets/images/women-only-bhutan-group-tour.webp",
-      "route": "Various destinations in Bhutan",
-      "category": "group",
-      "rating": 4.8,
-      "duration": "7N/8D",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-      "dates":"",
-      "price":"Nu.0.00"
+    "dates": "Monthly departures year-round",
+    "inclusions": ["Accommodation", "All meals", "Transportation", "Group guide", "Cultural activities"],
+    "special_features": ["Indian group leader", "Vegetarian meal options", "Cultural bridge programs"],
+    "booking_requirements": "Minimum 8 people to confirm departure"
+  },
+  {
+    "id": "group-2",
+    "title": "Women Only Bhutan Group Tour",
+    "description": "Embark on an empowering journey designed exclusively for women travelers. Explore Bhutan's culture through a feminine lens, engage with local women artisans and entrepreneurs, and enjoy the safety and camaraderie of all-female group travel in the Land of the Thunder Dragon.",
+    "image": "https://www.doortohappinessholiday.com/assets/images/women-only-bhutan-group-tour.webp",
+    "route": "Paro - Thimphu - Punakha - Gangtey - Paro",
+    "category": "group",
+    "rating": 4.9,
+    "duration": "8N/9D",
+    "highlights": [
+      "Women-only group with female guide",
+      "Interactions with Bhutanese women entrepreneurs",
+      "Traditional textile and weaving workshops",
+      "Women's empowerment discussions",
+      "Safe and supportive travel environment",
+      "Focus on women's roles in Bhutanese society"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": 1,
+        "title": "Women's Welcome Circle",
+        "activities": [
+          "Airport pickup",
+          "Group introduction circle",
+          "Women's travel safety briefing",
+          "Welcome dinner with local women"
+        ]
+      },
+      {
+        "day": 2,
+        "title": "Paro Women's Heritage",
+        "activities": [
+          "Tiger's Nest Monastery",
+          "Women's spiritual practices",
+          "Female monastery visit",
+          "Traditional dress fitting"
+        ]
+      },
+      {
+        "day": 3,
+        "title": "Paro to Thimphu",
+        "activities": [
+          "Drive to Thimphu",
+          "Women entrepreneurs meeting",
+          "Traditional textile museum",
+          "Female artisan workshops"
+        ]
+      },
+      {
+        "day": 4,
+        "title": "Thimphu Women's Empowerment",
+        "activities": [
+          "Women's cooperative visits",
+          "Traditional weaving center",
+          "Female leadership discussions",
+          "Cooking class with local women"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Thimphu to Punakha",
+        "activities": [
+          "Dochula Pass",
+          "Women's meditation session",
+          "Punakha Dzong",
+          "Female guide historical perspectives"
+        ]
+      },
+      {
+        "day": 6,
+        "title": "Punakha Women's Culture",
+        "activities": [
+          "Chimi Lhakhang fertility temple",
+          "Women's traditional roles discussion",
+          "Village women interactions",
+          "Traditional crafts workshop"
+        ]
+      },
+      {
+        "day": 7,
+        "title": "Punakha to Gangtey",
+        "activities": ["Gangtey Valley", "Women in conservation", "Nature walk", "Female monastery visit"]
+      },
+      {
+        "day": 8,
+        "title": "Gangtey to Paro",
+        "activities": [
+          "Return to Paro",
+          "Women's reflection circle",
+          "Shopping for female artisan products",
+          "Farewell dinner"
+        ]
+      },
+      {
+        "day": 9,
+        "title": "Departure",
+        "activities": ["Final group sharing", "Airport transfer"]
+      }
+    ],
+    "women_focused_experiences": {
+      "cultural_interactions": ["Female artisans", "Women entrepreneurs", "Traditional weavers", "Female monks"],
+      "empowerment_activities": [
+        "Leadership discussions",
+        "Traditional skills learning",
+        "Women's history tours",
+        "Confidence building"
+      ],
+      "safety_features": [
+        "Female guide",
+        "Women-only accommodation options",
+        "Safe group environment",
+        "24/7 female support"
+      ]
     },
-    {
-      "id": "group-3",
-      "title": "Nepal and Bhutan Group Tour Packages",
-      "description": "Don't miss the chance to explore both Nepal and Bhutan in a single trip. Combine the enchanting beauty of these Himalayan Kingdoms into one unforgettable tour. Immerse yourself in the serenity and spirituality of Nepal and Bhutan with our combined tour packages.",
-      "image": "https://www.doortohappinessholiday.com/assets/images/nepal-bhutan-combined-tour-packages.webp",
-      "route": "Kathmandu, Paro, Thimphu",
-      "category": "group",
-      "rating": 4.8,
-      "duration": "7N/8D",
-      "highlights": ["Thimphu", "Punakha", "Paro", "Phobjikha", "Wangdue", "Haa"],
-      "dates":"",
-      "price":"Nu.0.00"
-    }
-  ]
+    "dates": "Quarterly departures (March, June, September, December)",
+    "inclusions": [
+      "Female guide",
+      "Women-focused activities",
+      "Traditional craft workshops",
+      "All standard inclusions"
+    ],
+    "group_size": "6-12 women only",
+    "special_features": ["Female empowerment focus", "Cultural exchange with local women", "Safe travel environment"]
+  },
+  {
+    "id": "group-3",
+    "title": "Nepal and Bhutan Group Tour Packages",
+    "description": "Experience two Himalayan kingdoms in one incredible journey. This combined tour offers the perfect contrast between Nepal's diverse landscapes and ancient heritage with Bhutan's pristine culture and Gross National Happiness philosophy, providing exceptional value for group travelers.",
+    "image": "https://www.doortohappinessholiday.com/assets/images/nepal-bhutan-combined-tour-packages.webp",
+    "route": "Kathmandu - Pokhara - Paro - Thimphu - Punakha - Kathmandu",
+    "category": "group",
+    "rating": 4.8,
+    "duration": "12N/13D",
+    "highlights": [
+      "Two Himalayan kingdoms in one tour",
+      "Kathmandu UNESCO World Heritage sites",
+      "Pokhara Himalayan views and lakes",
+      "Bhutan's unique cultural preservation",
+      "Tiger's Nest Monastery pilgrimage",
+      "Cost-effective combined package"
+    ],
+    "detailed_itinerary": [
+      {
+        "day": "1-2",
+        "title": "Kathmandu Heritage",
+        "activities": [
+          "Arrival in Kathmandu",
+          "Pashupatinath temple",
+          "Boudhanath stupa",
+          "Kathmandu Durbar Square",
+          "Group cultural dinner"
+        ]
+      },
+      {
+        "day": "3-4",
+        "title": "Pokhara Lakes and Mountains",
+        "activities": [
+          "Fly to Pokhara",
+          "Phewa Lake boating",
+          "Sarangkot sunrise",
+          "Peace Pagoda visit",
+          "Mountain views"
+        ]
+      },
+      {
+        "day": 5,
+        "title": "Nepal to Bhutan",
+        "activities": ["Return to Kathmandu", "Fly to Paro, Bhutan", "Cultural orientation", "Traditional welcome"]
+      },
+      {
+        "day": "6-7",
+        "title": "Paro Valley Exploration",
+        "activities": [
+          "Tiger's Nest Monastery hike",
+          "Paro Rinpung Dzong",
+          "Traditional archery",
+          "Cultural comparison discussions"
+        ]
+      },
+      {
+        "day": "8-9",
+        "title": "Thimphu Capital Experience",
+        "activities": [
+          "Drive to Thimphu",
+          "Tashichho Dzong",
+          "Buddha Dordenma",
+          "Traditional arts school",
+          "Weekend market"
+        ]
+      },
+      {
+        "day": "10-11",
+        "title": "Punakha Ancient Capital",
+        "activities": [
+          "Dochula Pass",
+          "Punakha Dzong",
+          "Chimi Lhakhang",
+          "Traditional village visit",
+          "Cultural evening"
+        ]
+      },
+      {
+        "day": 12,
+        "title": "Return to Paro",
+        "activities": [
+          "Return to Paro",
+          "Last-minute shopping",
+          "Group reflection dinner",
+          "Cultural comparison discussion"
+        ]
+      },
+      {
+        "day": 13,
+        "title": "Departure",
+        "activities": ["Fly to Kathmandu", "International connections or extend stay"]
+      }
+    ],
+    "combined_tour_benefits": {
+      "cultural_contrast": "Experience Hindu and Buddhist cultures",
+      "landscape_diversity": "From Nepal's diversity to Bhutan's pristine nature",
+      "cost_efficiency": "Better value than separate tours",
+      "comprehensive_experience": "Two countries, multiple UNESCO sites",
+      "group_dynamics": "Shared experiences across cultures"
+    },
+    "dates": "Monthly departures (March-May, September-November)",
+    "inclusions": [
+      "All flights",
+      "Accommodation in both countries",
+      "All meals in Bhutan",
+      "Cultural guides",
+      "Transportation"
+    ],
+    "group_size": "8-16 people",
+    "special_features": ["Dual country experience", "Cultural comparison insights", "Comprehensive Himalayan journey"],
+    "visa_requirements": "Nepal visa on arrival, Bhutan visa included"
+  }
+]
