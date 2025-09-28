@@ -105,7 +105,6 @@ const SacredPlacesIndex = () => {
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
         <div className="relative bg-gradient-to-r from-orange-500 to-yellow-400 py-24">
-          <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Heritage Places of Bhutan
