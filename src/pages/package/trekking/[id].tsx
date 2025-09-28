@@ -459,7 +459,7 @@ const TrekkingTourDetails = () => {
           </div>
 
           {/* Call to Action */}
-          <div className="mt-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-8 text-center text-white">
+          {/* <div className="mt-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-8 text-center text-white">
             <h2 className="text-2xl font-bold mb-4">Ready for the Adventure of a Lifetime?</h2>
             <p className="text-lg opacity-90 mb-2">Conquer the Himalayas and create unforgettable memories</p>
             <p className="text-sm opacity-80 mb-6">Professional guides • Safety equipment • Unforgettable experience</p>
@@ -471,7 +471,7 @@ const TrekkingTourDetails = () => {
                 Download Trek Guide
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

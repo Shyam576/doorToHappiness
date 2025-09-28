@@ -364,7 +364,7 @@ const CulturalTourDetails = () => {
             </div>
           </div>
 
-          {/* Call to Action */}
+          {/* Call to Action
           <div className="mt-8 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-center text-white">
             <h2 className="text-2xl font-bold mb-4">Ready to Experience Bhutan's Rich Culture?</h2>
             <p className="text-lg opacity-90 mb-6">Join us on this transformative journey through the Heart of the Himalayas</p>
@@ -375,8 +375,8 @@ const CulturalTourDetails = () => {
               <button className="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">
                 Request Information
               </button>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
       </div>
     </>

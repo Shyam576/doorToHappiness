@@ -398,7 +398,7 @@ const FestivalTourDetails = () => {
           </div>
 
           {/* Call to Action */}
-          <div className="mt-8 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-center text-white">
+          {/* <div className="mt-8 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-center text-white">
             <h2 className="text-2xl font-bold mb-4">Don't Miss This Sacred Festival Experience!</h2>
             <p className="text-lg opacity-90 mb-2">Join us for {tourData.dates}</p>
             <p className="text-sm opacity-80 mb-6">Secure your spot for this once-in-a-lifetime cultural celebration</p>
@@ -410,7 +410,7 @@ const FestivalTourDetails = () => {
                 Download Festival Guide
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

@@ -430,7 +430,7 @@ const GroupTourDetails = () => {
           </div>
 
           {/* Call to Action */}
-          <div className="mt-8 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-center text-white">
+          {/* <div className="mt-8 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-center text-white">
             <h2 className="text-2xl font-bold mb-4">Join Fellow Travelers on This Amazing Journey!</h2>
             <p className="text-lg opacity-90 mb-2">Share the adventure, split the costs, multiply the memories</p>
             <p className="text-sm opacity-80 mb-6">Groups forming now - secure your spot today!</p>
@@ -442,7 +442,7 @@ const GroupTourDetails = () => {
                 Create Private Group
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
