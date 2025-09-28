@@ -10,8 +10,9 @@ interface TourPackage {
   duration: string;
   route: string;
   description: string;
-  price?: number;
+  price?: string | number;
   category?: string;
+  [key: string]: any; // Allow additional properties
 }
 
 const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {

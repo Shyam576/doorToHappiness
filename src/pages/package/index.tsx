@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container } from "../../components/Container";
 import WhatsAppButton from "../../components/whatsAppButton";
 import majorCitiesPackage from "../../data/majorCitiesPackage.json";
 import CityPackageCard from "../../components/citiesPackageCard";
-import { FiArrowRight, FiSearch } from "react-icons/fi";
+import { FiArrowRight, FiSearch, FiMapPin, FiCalendar, FiUsers, FiTrendingUp, FiCamera } from "react-icons/fi";
 
 
 interface Tour {
@@ -16,8 +16,8 @@ interface Tour {
   rating: number;
   duration: string;
   highlights: string[];
-  dates: string | string[];
-  price: string | number;
+  dates?: string | string[];
+  price?: string | number;
 }
 
 interface AllTours {
@@ -31,6 +31,7 @@ interface AllTours {
 
 function Index() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeCategory, setActiveCategory] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
   const [allTours, setAllTours] = useState<AllTours>({
     cityTours: [],
@@ -39,6 +40,14 @@ function Index() {
     adventureTours: [],
     groupTours: []
   });
+
+  // Refs for scrolling to categories
+  const cityToursRef = useRef<HTMLDivElement>(null);
+  const festivalToursRef = useRef<HTMLDivElement>(null);
+  const culturalToursRef = useRef<HTMLDivElement>(null);
+  const adventureToursRef = useRef<HTMLDivElement>(null);
+  const groupToursRef = useRef<HTMLDivElement>(null);
+  const filteredToursRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Simulate loading data from multiple JSON files
@@ -67,6 +76,38 @@ function Index() {
     loadData();
   }, []);
 
+  // Scroll to category function
+  const scrollToCategory = (categoryName: string) => {
+    setActiveCategory(categoryName);
+    
+    // Scroll to filtered content
+    setTimeout(() => {
+      if (filteredToursRef.current) {
+        filteredToursRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
+  };
+
+  // Get filtered tours based on active category
+  const getFilteredTours = () => {
+    const allToursArray = [
+      ...allTours.cityTours.map(tour => ({ ...tour, categoryType: 'city' })),
+      ...allTours.festivalTours.map(tour => ({ ...tour, categoryType: 'festival' })),
+      ...allTours.culturalTours.map(tour => ({ ...tour, categoryType: 'cultural' })),
+      ...allTours.adventureTours.map(tour => ({ ...tour, categoryType: 'adventure' })),
+      ...allTours.groupTours.map(tour => ({ ...tour, categoryType: 'group' })),
+    ];
+
+    if (activeCategory === 'all') {
+      return allToursArray;
+    }
+
+    return allToursArray.filter(tour => tour.categoryType === activeCategory);
+  };
+
   const filterTours = (tours:any) => {
     if (!searchTerm) return tours;
     
@@ -89,11 +130,11 @@ function Index() {
     ...filterTours(allTours.groupTours)
   ];
 
-  const renderTourCards = (tours:any, category:any) => {
+  const renderTourCards = (tours:any, category:any, ref?: React.RefObject<HTMLDivElement>) => {
     if (tours.length === 0 && !searchTerm) return null;
     
     return (
-      <Container className="py-8 ">
+      <Container className="py-8" ref={ref}>
         <div className="text-center mb-8">
           <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400 inline-block py-2 px-4 rounded-lg shadow-md">
             {category}
@@ -159,6 +200,145 @@ function Index() {
         </div>
       </div>
 
+      {/* Category Overview Section */}
+      {!searchTerm && (
+        <Container className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Choose Your Perfect Bhutan Experience
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              From cultural immersion to mountain adventures, discover our carefully curated tour categories designed for every type of traveler.
+            </p>
+          </div>
+
+          {/* Category Navigation Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-12">
+            {[
+              {
+                id: 'all',
+                title: 'All Tours',
+                count: allTours.cityTours.length + allTours.festivalTours.length + allTours.culturalTours.length + allTours.adventureTours.length + allTours.groupTours.length,
+                icon: FiSearch,
+                description: 'Browse everything'
+              },
+              {
+                id: 'city',
+                title: 'City Tours',
+                count: allTours.cityTours.length,
+                icon: FiMapPin,
+                description: 'From major cities'
+              },
+              {
+                id: 'festival',
+                title: 'Festivals',
+                count: allTours.festivalTours.length,
+                icon: FiCalendar,
+                description: 'Cultural celebrations'
+              },
+              {
+                id: 'cultural',
+                title: 'Cultural',
+                count: allTours.culturalTours.length,
+                icon: FiCamera,
+                description: 'Heritage & traditions'
+              },
+              {
+                id: 'adventure',
+                title: 'Adventures',
+                count: allTours.adventureTours.length,
+                icon: FiTrendingUp,
+                description: 'Treks & outdoor'
+              },
+              {
+                id: 'group',
+                title: 'Group Tours',
+                count: allTours.groupTours.length,
+                icon: FiUsers,
+                description: 'Travel together'
+              }
+            ].map((category) => (
+              <div
+                key={category.id}
+                onClick={() => scrollToCategory(category.id)}
+                className={`cursor-pointer transform hover:scale-105 transition-all duration-300 rounded-2xl p-6 text-white bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 ${
+                  activeCategory === category.id ? 'ring-4 ring-yellow-300 shadow-2xl scale-105 from-orange-600 to-yellow-600' : 'hover:shadow-xl'
+                }`}
+              >
+                <div className="text-center">
+                  <category.icon className="w-8 h-8 mx-auto mb-3" />
+                  <h3 className="font-bold text-lg mb-1">{category.title}</h3>
+                  <p className="text-sm opacity-90 mb-2">{category.description}</p>
+                  <div className="bg-white bg-opacity-20 rounded-full px-3 py-1 text-sm font-medium">
+                    {category.count} tours
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Quick Stats */}
+          <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+              <div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">
+                  {allTours.cityTours.length + allTours.festivalTours.length + allTours.culturalTours.length + allTours.adventureTours.length + allTours.groupTours.length}
+                </div>
+                <div className="text-gray-600 font-medium">Total Packages</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">5</div>
+                <div className="text-gray-600 font-medium">Tour Categories</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">3-15</div>
+                <div className="text-gray-600 font-medium">Days Duration</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">4.8★</div>
+                <div className="text-gray-600 font-medium">Average Rating</div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      )}
+
+      {/* Filtered Tours View - Shows when category is selected */}
+      {!searchTerm && activeCategory !== 'all' && (
+        <Container className="py-8" ref={filteredToursRef}>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-800 rounded-full text-sm font-medium mb-4">
+              <FiCamera className="w-4 h-4 mr-2" />
+              Category Filter Active
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">
+              {activeCategory === 'city' && 'Bhutan Tour Packages from Major Cities'}
+              {activeCategory === 'festival' && 'Bhutan Festival Tours'}
+              {activeCategory === 'cultural' && 'Bhutan Cultural Tours'}
+              {activeCategory === 'adventure' && 'Bhutan Treks & Adventures'}
+              {activeCategory === 'group' && 'Bhutan Group Tours'}
+            </h2>
+            <button
+              onClick={() => {
+                setActiveCategory('all');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-orange-600 hover:text-orange-800 font-medium underline"
+            >
+              ← Back to all categories
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
+            {getFilteredTours().map((tour) => (
+              <div key={`${tour.id}-${tour.categoryType}`} className="h-full">
+                <CityPackageCard tour={tour} />
+              </div>
+            ))}
+          </div>
+        </Container>
+      )}
+
       {/* Search Results View */}
       {searchTerm && (
         <Container className="py-8">
@@ -195,23 +375,23 @@ function Index() {
         </Container>
       )}
 
-      {/* Category Views (hidden when searching) */}
-      {!searchTerm && (
+      {/* Category Views (hidden when searching or filtering) */}
+      {!searchTerm && activeCategory === 'all' && (
         <>
           {/* Major Cities Packages */}
-          {renderTourCards(allTours.cityTours, "Bhutan Tour Packages from Major Cities")}
+          {renderTourCards(allTours.cityTours, "Bhutan Tour Packages from Major Cities", cityToursRef)}
 
           {/* Festival Tours */}
-          {renderTourCards(allTours.festivalTours, "Bhutan Festivals Tours")}
+          {renderTourCards(allTours.festivalTours, "Bhutan Festival Tours", festivalToursRef)}
 
           {/* Cultural Tours */}
-          {renderTourCards(allTours.culturalTours, "Bhutan Cultural Tours")}
+          {renderTourCards(allTours.culturalTours, "Bhutan Cultural Tours", culturalToursRef)}
 
           {/* Adventure Tours */}
-          {renderTourCards(allTours.adventureTours, "Bhutan Treks & Adventures")}
+          {renderTourCards(allTours.adventureTours, "Bhutan Treks & Adventures", adventureToursRef)}
 
           {/* Group Tours */}
-          {renderTourCards(allTours.groupTours, "Bhutan Group Tours")}
+          {renderTourCards(allTours.groupTours, "Bhutan Group Tours", groupToursRef)}
         </>
       )}
 
