@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { FiMapPin, FiCalendar, FiStar, FiCheck, FiX, FiImage, FiMap, FiInfo, FiUsers, FiClock, FiTrendingUp } from 'react-icons/fi';
-import { HiOutlineSparkles, HiOutlineLocationMarker, HiOutlineCalendar } from 'react-icons/hi';
-import majorCitiesPackage from '../../../data/majorCitiesPackage.json';
-import ReactMarkdown from 'react-markdown';
+import React, { useState, useEffect } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import {
+  FiMapPin,
+  FiCalendar,
+  FiStar,
+  FiCheck,
+  FiX,
+  FiImage,
+  FiMap,
+  FiInfo,
+  FiUsers,
+  FiClock,
+  FiTrendingUp,
+} from "react-icons/fi";
+import {
+  HiOutlineSparkles,
+  HiOutlineLocationMarker,
+  HiOutlineCalendar,
+} from "react-icons/hi";
+import majorCitiesPackage from "../../../data/majorCitiesPackage.json";
+import ReactMarkdown from "react-markdown";
 interface DayItinerary {
   title: string;
   description: string;
@@ -21,6 +37,7 @@ interface TourPackage {
   duration: string;
   route: string;
   dates: string[];
+  images: string[];
   rating: number;
   description: string;
   full_description: string;
@@ -33,19 +50,23 @@ interface TourPackage {
 const PackageDetailsPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [activeTab, setActiveTab] = useState('overview');
-  const [selectedImage, setSelectedImage] = useState(0);
+  const [activeTab, setActiveTab] = useState("overview");
+  const [selectedImage, setSelectedImage] = useState(0); // Start with first image from images array
 
   // Find the package with matching ID
-  const packageData = majorCitiesPackage.find(pkg => pkg.id.toString() === id);
+  const packageData = majorCitiesPackage.find(
+    (pkg) => pkg.id && pkg.id.toString() === id
+  );
 
   if (!packageData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-800">Package not found</h1>
-          <button 
-            onClick={() => router.push('/')}
+          <h1 className="text-2xl font-bold text-gray-800">
+            Package not found
+          </h1>
+          <button
+            onClick={() => router.push("/")}
             className="mt-4 px-4 py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-lg"
           >
             Back to Home
@@ -98,21 +119,27 @@ const PackageDetailsPage = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FiUsers className="w-8 h-8 text-orange-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-orange-600 mb-2">10,000+</h3>
+                <h3 className="text-3xl font-bold text-orange-600 mb-2">
+                  10,000+
+                </h3>
                 <p className="text-gray-600 font-medium">Happy Travelers</p>
               </div>
               <div className="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-all duration-300">
                 <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FiClock className="w-8 h-8 text-orange-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-orange-600 mb-2">{packageData.duration}</h3>
+                <h3 className="text-3xl font-bold text-orange-600 mb-2">
+                  {packageData.duration}
+                </h3>
                 <p className="text-gray-600 font-medium">Adventure Duration</p>
               </div>
               <div className="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-all duration-300">
                 <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FiStar className="w-8 h-8 text-orange-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-orange-600 mb-2">4.9/5</h3>
+                <h3 className="text-3xl font-bold text-orange-600 mb-2">
+                  4.9/5
+                </h3>
                 <p className="text-gray-600 font-medium">Average Rating</p>
               </div>
             </div>
@@ -128,50 +155,78 @@ const PackageDetailsPage = () => {
               <div className="mb-12">
                 <div className="rounded-2xl overflow-hidden shadow-2xl mb-6">
                   <img
-                    src={packageData.image}
+                    src={
+                      packageData.images && packageData.images.length > 0 && selectedImage >= 0 && selectedImage < packageData.images.length
+                        ? packageData.images[selectedImage]
+                        : packageData.image
+                    }
                     alt={packageData.alt}
                     className="w-full h-96 sm:h-[500px] object-cover"
+                    onError={(e) => {
+                      // Fallback to main image if selected image fails to load
+                      e.currentTarget.src = packageData.image;
+                    }}
                   />
                 </div>
-                
-                {/* Thumbnail Gallery */}
-                <div className="grid grid-cols-4 gap-4">
-                  {[packageData.image, packageData.image, packageData.image, packageData.image].map((img, index) => (
-                    <div
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
-                        selectedImage === index 
-                          ? 'ring-4 ring-orange-500 transform scale-105' 
-                          : 'opacity-70 hover:opacity-100'
-                      }`}
-                    >
-                      <img
-                        src={img}
-                        alt={`View ${index + 1}`}
-                        className="w-full h-20 sm:h-24 object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
+
+                {/* Thumbnail Gallery - Only show first 4 images from images array */}
+                {packageData.images && packageData.images.length > 0 && (
+                  <div className={`grid gap-4 ${packageData.images.length > 4 ? 'grid-cols-5' : 'grid-cols-4'}`}>
+                    {packageData.images.slice(0, 4).map((img, index) => (
+                      <div
+                        key={index}
+                        onClick={() => setSelectedImage(index)}
+                        className={`rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
+                          selectedImage === index
+                            ? "ring-4 ring-orange-500 transform scale-105"
+                            : "opacity-70 hover:opacity-100"
+                        }`}
+                      >
+                        <img
+                          src={img}
+                          alt={`Gallery image ${index + 1}`}
+                          className="w-full h-20 sm:h-24 object-cover"
+                          onError={(e) => {
+                            // Hide broken images
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    ))}
+                    {/* Show indicator if there are more images */}
+                    {packageData.images.length > 4 && (
+                      <div 
+                        onClick={() => setActiveTab("gallery")}
+                        className="rounded-xl overflow-hidden cursor-pointer transition-all duration-300 opacity-70 hover:opacity-100 bg-gradient-to-br from-orange-100 to-yellow-100 flex flex-col items-center justify-center text-center p-2"
+                      >
+                        <span className="text-orange-600 text-xs font-medium">
+                          +{packageData.images.length - 4} more
+                        </span>
+                        <span className="text-orange-500 text-xs">
+                          View Gallery
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Enhanced Navigation Tabs */}
               <div className="mb-8">
                 <div className="flex flex-wrap gap-2 p-2 bg-gray-100 rounded-xl">
                   {[
-                    { id: 'overview', label: 'Overview', icon: FiInfo },
-                    { id: 'itinerary', label: 'Itinerary', icon: FiMap },
-                    { id: 'highlights', label: 'Highlights', icon: FiStar },
-                    { id: 'gallery', label: 'Gallery', icon: FiImage }
+                    { id: "overview", label: "Overview", icon: FiInfo },
+                    { id: "itinerary", label: "Itinerary", icon: FiMap },
+                    { id: "highlights", label: "Highlights", icon: FiStar },
+                    { id: "gallery", label: "Gallery", icon: FiImage },
                   ].map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                         activeTab === tab.id
-                          ? 'bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-lg'
-                          : 'text-gray-600 hover:text-orange-600 hover:bg-white'
+                          ? "bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-lg"
+                          : "text-gray-600 hover:text-orange-600 hover:bg-white"
                       }`}
                     >
                       <tab.icon className="w-4 h-4" />
@@ -182,74 +237,116 @@ const PackageDetailsPage = () => {
               </div>
 
               {/* Tab Content */}
-              {activeTab === 'overview' && (
+              {activeTab === "overview" && (
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-6">Package Overview</h2>
+                  <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                    Package Overview
+                  </h2>
                   <div className="prose prose-lg max-w-none text-gray-700">
-                    {packageData.full_description ? 
-                      packageData.full_description.split('\n').map((paragraph, i) => (
-                        <p key={i} className="mb-6 leading-relaxed">{paragraph}</p>
-                      )) : 
+                    {packageData.full_description ? (
+                      packageData.full_description
+                        .split("\n")
+                        .map((paragraph, i) => (
+                          <p key={i} className="mb-6 leading-relaxed">
+                            {paragraph}
+                          </p>
+                        ))
+                    ) : (
                       <p>Loading...</p>
-                    }
+                    )}
                   </div>
                 </section>
               )}
 
-              {activeTab === 'itinerary' && (
+              {activeTab === "itinerary" && (
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-8">Detailed Itinerary</h2>
+                  <h2 className="text-3xl font-bold text-gray-800 mb-8">
+                    Detailed Itinerary
+                  </h2>
                   <div className="space-y-6">
-                    {packageData.itinerary ? packageData.itinerary.map((day, index) => (
-                      <div key={index} className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                        <div className="p-8">
-                          <div className="flex items-center space-x-4 mb-6">
-                            <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                              {index + 1}
+                    {packageData.itinerary ? (
+                      packageData.itinerary.map((day, index) => (
+                        <div
+                          key={index}
+                          className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                        >
+                          <div className="p-8">
+                            <div className="flex items-center space-x-4 mb-6">
+                              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                {index + 1}
+                              </div>
+                              <h3 className="text-2xl font-bold text-gray-800">
+                                {day.title}: {day.description}
+                              </h3>
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-800">
-                              {day.title}: {day.description}
-                            </h3>
-                          </div>
-                          <div className="prose prose-lg max-w-none text-gray-700 ml-16">
-                            {day.details.split('\n').map((paragraph, i) => (
-                              <ReactMarkdown key={i}>{paragraph}</ReactMarkdown>
-                            ))}
+                            <div className="prose prose-lg max-w-none text-gray-700 ml-16">
+                              {day.details.split("\n").map((paragraph, i) => (
+                                <ReactMarkdown key={i}>
+                                  {paragraph}
+                                </ReactMarkdown>
+                              ))}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )) : <p>Loading...</p>}
+                      ))
+                    ) : (
+                      <p>Loading...</p>
+                    )}
                   </div>
                 </section>
               )}
 
-              {activeTab === 'highlights' && (
+              {activeTab === "highlights" && (
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-8">Package Highlights</h2>
+                  <h2 className="text-3xl font-bold text-gray-800 mb-8">
+                    Package Highlights
+                  </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {packageData.highlights.map((highlight, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-6 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl hover:from-orange-100 hover:to-yellow-100 transition-all duration-300 shadow-lg hover:shadow-xl">
+                      <div
+                        key={index}
+                        className="flex items-start space-x-3 p-6 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl hover:from-orange-100 hover:to-yellow-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+                      >
                         <FiTrendingUp className="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" />
-                        <span className="text-gray-800 font-medium text-lg">{highlight}</span>
+                        <span className="text-gray-800 font-medium text-lg">
+                          {highlight}
+                        </span>
                       </div>
                     ))}
                   </div>
                 </section>
               )}
 
-              {activeTab === 'gallery' && (
+              {activeTab === "gallery" && (
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-8">Photo Gallery</h2>
+                  <h2 className="text-3xl font-bold text-gray-800 mb-8">
+                    Photo Gallery ({packageData.images?.length || 0} images)
+                  </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[...Array(6)].map((_, index) => (
-                      <div key={index} className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                        <img
-                          src={packageData.image}
-                          alt={`Gallery ${index + 1}`}
-                          className="w-full h-64 object-cover"
-                        />
+                    {packageData.images && packageData.images.length > 0 ? (
+                      packageData.images.map((img, index) => (
+                        <div
+                          key={index}
+                          onClick={() => setSelectedImage(index)}
+                          className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                        >
+                          <img
+                            src={img}
+                            alt={`Gallery image ${index + 1}`}
+                            className="w-full h-64 object-cover"
+                            onError={(e) => {
+                              // Use a placeholder image instead of hiding
+                              e.currentTarget.src = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300';
+                              console.log(`Image ${index + 1} failed to load: ${img}`);
+                            }}
+                          />
+                        </div>
+                      ))
+                    ) : (
+                      <div className="col-span-full text-center text-gray-500 py-12">
+                        <p>No gallery images available</p>
                       </div>
-                    ))}
+                    )}
                   </div>
                 </section>
               )}
@@ -264,10 +361,14 @@ const PackageDetailsPage = () => {
                     <HiOutlineSparkles className="w-4 h-4 mr-2" />
                     Premium Experience
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2">Book This Journey</h2>
-                  <p className="text-gray-600">Experience the magic of Bhutan</p>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                    Book This Journey
+                  </h2>
+                  <p className="text-gray-600">
+                    Experience the magic of Bhutan
+                  </p>
                 </div>
-                
+
                 <div className="space-y-4 mb-8">
                   <button className="w-full py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-bold rounded-xl shadow-lg transition duration-300 hover:from-orange-600 hover:to-yellow-600 transform hover:scale-105">
                     <span className="flex items-center justify-center">
@@ -287,13 +388,19 @@ const PackageDetailsPage = () => {
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl">
                     <FiClock className="w-6 h-6 text-orange-600 mx-auto mb-2" />
-                    <p className="text-sm text-gray-600 font-medium">Duration</p>
-                    <p className="text-lg font-bold text-gray-800">{packageData.duration}</p>
+                    <p className="text-sm text-gray-600 font-medium">
+                      Duration
+                    </p>
+                    <p className="text-lg font-bold text-gray-800">
+                      {packageData.duration}
+                    </p>
                   </div>
                   <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl">
                     <FiStar className="w-6 h-6 text-orange-600 mx-auto mb-2" />
                     <p className="text-sm text-gray-600 font-medium">Rating</p>
-                    <p className="text-lg font-bold text-gray-800">{packageData.rating}/5</p>
+                    <p className="text-lg font-bold text-gray-800">
+                      {packageData.rating}/5
+                    </p>
                   </div>
                 </div>
               </div>
@@ -307,12 +414,19 @@ const PackageDetailsPage = () => {
                   Key Highlights
                 </h2>
                 <div className="space-y-4">
-                  {packageData.highlights.slice(0, 5).map((highlight, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200">
-                      <div className="w-2 h-2 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700 font-medium">{highlight}</span>
-                    </div>
-                  ))}
+                  {packageData.highlights
+                    .slice(0, 5)
+                    .map((highlight, index) => (
+                      <div
+                        key={index}
+                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200"
+                      >
+                        <div className="w-2 h-2 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-gray-700 font-medium">
+                          {highlight}
+                        </span>
+                      </div>
+                    ))}
                 </div>
               </div>
 

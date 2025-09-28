@@ -10,7 +10,6 @@ import { FaUmbrellaBeach, FaMountain, FaCity, FaTree, FaPager } from "react-icon
 import {
   FiSearch,
   FiArrowRight,
-  FiMapPin,
 } from "react-icons/fi";
 import festivalTours from "../data/festivialTours.json";
 import culturalTours from "../data/culturalTours.json";
@@ -21,15 +20,29 @@ import Link from "next/link";
 
 const SEO_KEYWORDS = [
   "Bhutan tours",
-  "Bhutan travel packages",
+  "Bhutan travel packages", 
+  "Bhutan dzongkhags",
+  "sacred places Bhutan",
+  "dzongs Bhutan",
+  "monasteries Bhutan",
   "Himalayan vacations",
   "Cultural tours Bhutan",
   "Bhutan trekking adventures",
-  "Luxury Bhutan holidays",
+  "Tiger's Nest Monastery",
+  "Paro Taktsang",
+  "Thimphu dzongkhag",
+  "Punakha dzong",
   "Bhutan festival tours",
+  "Buddhist temples Bhutan",
+  "Bhutanese culture",
+  "Thunder Dragon Kingdom",
+  "Gross National Happiness",
   "Best Bhutan tour operator",
   "Sustainable tourism Bhutan",
-  "Gross National Happiness tours",
+  "Bhutan spiritual journey",
+  "Lhakhangs Bhutan",
+  "Chortens Bhutan",
+  "traditional architecture Bhutan"
 ];
 
 // Helper function to convert duration string to days
@@ -41,10 +54,7 @@ const getDurationInDays = (duration: any) => {
 
 const Index: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [destinationSearchTerm, setDestinationSearchTerm] = useState("");
   const [packageSearchTerm, setPackageSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [showDestinationResults, setShowDestinationResults] = useState(false);
   const [showPackageResults, setShowPackageResults] = useState(false);
   const [sortOption, setSortOption] = useState("recommended");
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +67,6 @@ const Index: React.FC = () => {
   const [subscriptionStatus, setSubscriptionStatus] = useState<"idle" | "success" | "error">("idle");
 
   // Refs for scrolling
-  const destinationsRef = useRef<HTMLDivElement>(null);
   const toursRef = useRef<HTMLDivElement>(null);
 
   // Detect mobile device
@@ -154,23 +163,6 @@ const Index: React.FC = () => {
     ...groupTours,
   ];
 
-  // Filter destinations based on search
-  const filteredDestinations = popularDestination.filter((dest) => {
-    // Search term matching
-    const matchesSearch =
-      dest.name.toLowerCase().includes(destinationSearchTerm.toLowerCase()) ||
-      dest.description.toLowerCase().includes(destinationSearchTerm.toLowerCase()) ||
-      dest.location.region.toLowerCase().includes(destinationSearchTerm.toLowerCase()) ||
-      dest.highlights.some(h => h.toLowerCase().includes(destinationSearchTerm.toLowerCase()));
-  
-    // Category filtering based on experiences
-    const matchesCategory =
-      activeCategory === "all" ||
-      dest.experiences.some(exp => exp.type.toLowerCase() === activeCategory);
-  
-    return matchesSearch && matchesCategory;
-  });
-
   // Filter packages based on search
   const filteredPackages = allPackages.filter((pkg) => {
     // Search term matching
@@ -222,16 +214,6 @@ const Index: React.FC = () => {
   }, []);
 
   // Debounced search handlers for better performance
-  const handleDestinationSearch = useCallback((value: string) => {
-    setDestinationSearchTerm(value);
-    setShowDestinationResults(value.length > 0);
-    
-    // Auto-scroll to destinations if user is actively searching
-    if (value.length > 2) {
-      setTimeout(() => scrollToSection(destinationsRef), 500);
-    }
-  }, []);
-
   const handlePackageSearch = useCallback((value: string) => {
     setPackageSearchTerm(value);
     setShowPackageResults(value.length > 0);
@@ -256,17 +238,8 @@ const Index: React.FC = () => {
   const handleSearch = () => {
     setIsLoading(true);
     
-    // Determine which section to scroll to based on search terms
-    if (destinationSearchTerm && !packageSearchTerm) {
-      // If only destination is searched, scroll to destinations
-      setTimeout(() => scrollToSection(destinationsRef), 100);
-    } else if (packageSearchTerm) {
-      // If package search is applied, scroll to tours
-      setTimeout(() => scrollToSection(toursRef), 100);
-    } else {
-      // Default to destinations if no specific search
-      setTimeout(() => scrollToSection(destinationsRef), 100);
-    }
+    // Scroll to tours section
+    setTimeout(() => scrollToSection(toursRef), 100);
     
     // Reset loading state
     setTimeout(() => setIsLoading(false), 1000);
@@ -274,11 +247,8 @@ const Index: React.FC = () => {
 
   // Clear search function
   const clearSearch = () => {
-    setDestinationSearchTerm("");
     setPackageSearchTerm("");
-    setShowDestinationResults(false);
     setShowPackageResults(false);
-    setActiveCategory("all");
     setSortOption("recommended");
   };
 
@@ -326,12 +296,11 @@ const Index: React.FC = () => {
     <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
       <Head>
         <title>
-          Door To Happiness - Premier Bhutan Tour Operator | Cultural &
-          Adventure Tours
+          Bhutan's #1 Tour Operator | Dzongkhag & Sacred Places Expert | Door To Happiness
         </title>
         <meta
           name="description"
-          content="Experience authentic Bhutan with our award-winning tours. Specializing in cultural journeys, Himalayan treks, and sustainable tourism in the Land of Happiness. Book your dream Bhutan vacation today."
+          content="Discover Bhutan's 20 dzongkhags and sacred places with our expert tours. Visit ancient dzongs, monasteries, and lhakhangs across Thimphu, Paro, Punakha. Authentic cultural experiences with certified guides specializing in Bhutanese heritage and spiritual sites."
         />
         <meta name="keywords" content={SEO_KEYWORDS.join(", ")} />
         <meta
@@ -415,70 +384,6 @@ const Index: React.FC = () => {
             <div className="flex flex-col gap-4 mb-4">
               <div className="relative flex-grow">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiMapPin className="text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  className="w-full pl-10 pr-12 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
-                  placeholder="Where do you want to go?"
-                  value={destinationSearchTerm}
-                  onChange={(e) => handleDestinationSearch(e.target.value)}
-                  onFocus={() =>
-                    setShowDestinationResults(destinationSearchTerm.length > 0)
-                  }
-                  onBlur={() =>
-                    setTimeout(() => setShowDestinationResults(false), 200)
-                  }
-                />
-                {destinationSearchTerm && (
-                  <button
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                    onClick={() => {
-                      setDestinationSearchTerm("");
-                      setShowDestinationResults(false);
-                    }}
-                  >
-                    <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
-                {showDestinationResults && (
-                  <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-auto">
-                    {filteredDestinations.length > 0 ? (
-                      filteredDestinations.map((dest) => (
-                        <div
-                          key={dest.id}
-                          className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center"
-                          onClick={() => {
-                            setDestinationSearchTerm(dest.name);
-                            setShowDestinationResults(false);
-                          }}
-                        >
-                          <img
-                            src={dest.media.images[0]}
-                            alt={dest.name}
-                            className="w-10 h-10 rounded-md object-cover mr-3"
-                          />
-                          <div>
-                            <div className="font-medium">{dest.name}</div>
-                            <div className="text-sm text-gray-500">
-                              {dest.location.region}
-                            </div>
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="p-4 text-center text-gray-500">
-                        No destinations found
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <div className="relative flex-grow">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <FiSearch className="text-gray-400" />
                 </div>
                 <input
@@ -538,7 +443,7 @@ const Index: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-2">
-              {(destinationSearchTerm || packageSearchTerm) && (
+              {packageSearchTerm && (
                 <button
                   className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base"
                   onClick={clearSearch}
@@ -551,18 +456,18 @@ const Index: React.FC = () => {
               )}
               <button
                 className={`${
-                  (destinationSearchTerm || packageSearchTerm) ? 'col-span-1' : 'col-span-2'
+                  packageSearchTerm ? 'col-span-1' : 'col-span-2'
                 } ${
                   isLoading 
                     ? 'bg-gray-400 cursor-not-allowed' 
                     : 'bg-orange-500 hover:bg-orange-600'
                 } text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base`}
                 onClick={() => {
-                  if (!isLoading && (destinationSearchTerm || packageSearchTerm)) {
+                  if (!isLoading && packageSearchTerm) {
                     handleSearch();
                   }
                 }}
-                disabled={isLoading || (!destinationSearchTerm && !packageSearchTerm)}
+                disabled={isLoading || !packageSearchTerm}
               >
                 {isLoading ? (
                   <>
@@ -580,14 +485,9 @@ const Index: React.FC = () => {
                 )}
               </button>
             </div>
-            {(destinationSearchTerm || packageSearchTerm) && (
+            {packageSearchTerm && (
               <p className="text-xs text-white text-center mt-2">
-                {destinationSearchTerm && packageSearchTerm 
-                  ? `Searching for "${destinationSearchTerm}" in destinations and "${packageSearchTerm}" in tours`
-                  : destinationSearchTerm 
-                    ? `Searching for "${destinationSearchTerm}" in destinations`
-                    : `Searching for "${packageSearchTerm}" in tours`
-                }
+                Searching for "{packageSearchTerm}" in tours
               </p>
             )}
           </div>
@@ -634,137 +534,6 @@ const Index: React.FC = () => {
           </div>
         </Container>
       </div>
-
-      {/* Popular Destinations Section */}
-      <Container className="py-8 sm:py-12" ref={destinationsRef}>
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-            Explore Bhutan's Destinations
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto px-4 text-sm sm:text-base">
-            {destinationSearchTerm ? (
-              <>
-                Found {filteredDestinations.length} destination{filteredDestinations.length !== 1 ? 's' : ''} 
-                {destinationSearchTerm && ` matching "${destinationSearchTerm}"`}
-              </>
-            ) : (
-              "Discover the 20 unique districts of Bhutan, each with its own cultural identity"
-            )}
-          </p>
-
-          {/* Updated Category Filters */}
-          <div className="flex flex-wrap justify-center gap-2 mt-4 sm:mt-6 px-4">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition flex items-center ${
-                  activeCategory === category.id
-                    ? "bg-yellow-500 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
-                {category.icon && <span className="mr-1">{category.icon}</span>}
-                {category.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredDestinations.length > 0 ? (
-            filteredDestinations.slice(0, 6).map((destination) => (
-              <div
-                key={destination.id}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
-              >
-                <div className="relative h-40 sm:h-48">
-                  <img
-                    src={destination.media.images[0]}
-                    alt={destination.name}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3 sm:p-4">
-                    <h3 className="text-lg sm:text-xl font-bold text-white">
-                      {destination.name}
-                    </h3>
-                    <p className="text-yellow-300 text-xs sm:text-sm">
-                      {destination.location.region}
-                    </p>
-                  </div>
-                  <div className="absolute top-2 right-2 bg-white bg-opacity-90 px-2 py-1 rounded-full text-xs font-bold flex items-center">
-                    <svg
-                      className="w-3 h-3 text-yellow-500 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    Popularity: {destination.meta.popularity}/5
-                  </div>
-                </div>
-                <div className="p-4 sm:p-6">
-                  <p className="text-gray-800 text-lg sm:text-xl font-bold mb-3 sm:mb-4 line-clamp-2">
-                    {destination.tagline}
-                  </p>
-                  
-                  {/* Experience Tags */}
-                  <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
-                    {destination.experiences.slice(0, 3).map((exp, i) => (
-                      <span
-                        key={i}
-                        className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
-                      >
-                        {exp.type}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  {/* Best Time to Visit */}
-                  <div className="mb-4">
-                    <p className="text-xs sm:text-sm text-gray-500">
-                      <span className="font-medium">Best Time:</span> {destination.practicalInfo.bestTimeToVisit.join(", ")}
-                    </p>
-                  </div>
-                  <Link href={`/destination/explore/${destination.id}`}>
-                    <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
-                      Discover {destination.name}
-                      <FiArrowRight className="ml-2" />
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            ))
-          ) : destinationSearchTerm ? (
-            <div className="col-span-full text-center py-12">
-              <div className="text-gray-400 mb-4">
-                <FiMapPin className="mx-auto h-12 w-12" />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">No destinations found</h3>
-              <p className="text-gray-500 mb-4">
-                We couldn't find any destinations matching "{destinationSearchTerm}". 
-                Try adjusting your search or browse all destinations.
-              </p>
-              <button
-                onClick={clearSearch}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600"
-              >
-                Clear search and browse all
-              </button>
-            </div>
-          ) : null}
-        </div>
-
-        {filteredDestinations.length > 6 && !destinationSearchTerm && (
-          <div className="text-center mt-8 sm:mt-12">
-            <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
-              View All {filteredDestinations.length} Destinations
-              <FiArrowRight className="ml-2" />
-            </button>
-          </div>
-        )}
-      </Container>
 
       {/* Featured Tours Section */}
       <Container className="py-8 sm:py-12" ref={toursRef}>
@@ -958,6 +727,101 @@ const Index: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+      </Container>
+
+      {/* Dzongkhags & Heritage Places Section */}
+      <Container className="py-12 sm:py-16 bg-gradient-to-b from-blue-50 to-orange-50">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+            Explore Bhutan's Historic Dzongkhags
+          </h2>
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+            Discover the cultural heart of Bhutan through its 20 dzongkhags, each home to ancient dzongs, monasteries, and timeless Buddhist traditions.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div className="text-5xl text-red-600 mb-4">🏰</div>
+            <h3 className="text-2xl font-bold mb-3 text-gray-800">Historic Dzongs</h3>
+            <p className="text-gray-600 mb-6">
+              Explore over 50 fortress-monasteries that serve as both administrative centers and spiritual sanctuaries across all 20 dzongkhags.
+            </p>
+            <Link href="/dzongkhag">
+              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                Explore Dzongkhags
+              </button>
+            </Link>
+          </div>
+
+          <div className="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div className="text-5xl text-orange-600 mb-4">🙏</div>
+            <h3 className="text-2xl font-bold mb-3 text-gray-800">Monasteries & Temples</h3>
+            <p className="text-gray-600 mb-6">
+              Visit ancient lhakhangs, gompas, and temples that preserve 1,000+ years of Buddhist wisdom and serve as centers of cultural practice.
+            </p>
+            <Link href="/sacred-places">
+              <button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                Heritage Places Guide
+              </button>
+            </Link>
+          </div>
+
+          <div className="text-center bg-white rounded-xl p-8 shadow-lg">
+            <div className="text-5xl text-blue-600 mb-4">⛰️</div>
+            <h3 className="text-2xl font-bold mb-3 text-gray-800">Cultural Heritage</h3>
+            <p className="text-gray-600 mb-6">
+              Experience living traditions through tsechu festivals, traditional architecture, and time-honored customs preserved in each dzongkhag.
+            </p>
+            <Link href="/guides/dzong-architecture">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                Architecture Guide
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Featured Dzongkhags */}
+        <div className="bg-white rounded-2xl shadow-lg p-8">
+          <h3 className="text-2xl font-bold text-center mb-8 text-gray-800">
+            Most Visited Dzongkhags
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {popularDestination.slice(0, 4).map((dzongkhag: any) => (
+              <Link key={dzongkhag.id} href={`/dzongkhag/${dzongkhag.slug}`}>
+                <div className="group cursor-pointer">
+                  <div className="relative h-32 rounded-lg overflow-hidden mb-3">
+                    <img
+                      src={dzongkhag.images?.[0] || '/backgroundbanner.png'}
+                      alt={`${dzongkhag.name} dzongkhag`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-opacity"></div>
+                    <div className="absolute bottom-2 left-2 right-2">
+                      <h4 className="font-bold text-white text-sm">{dzongkhag.name}</h4>
+                      <p className="text-xs text-gray-200">{dzongkhag.tagline}</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-600">{dzongkhag.culture.dzongs.length} Historic Dzongs</span>
+                    <div className="flex items-center">
+                      <span className="text-yellow-400 text-sm">⭐</span>
+                      <span className="text-sm text-gray-600 ml-1">{dzongkhag.rating}</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link href="/dzongkhag">
+              <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+                Explore All 20 Dzongkhags
+              </button>
+            </Link>
+          </div>
         </div>
       </Container>
 

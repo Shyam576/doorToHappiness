@@ -80,10 +80,16 @@ export const NavBar: React.FC<NavBarProps> = () => {
             Packages
           </Link>
           <Link
-            href="/destination"
+            href="/dzongkhag"
             className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
           >
-            Destinations
+            Dzongkhags
+          </Link>
+          <Link
+            href="/sacred-places"
+            className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
+          >
+            Heritage Places
           </Link>
           <Link
             href="/contactus"
@@ -126,10 +132,16 @@ export const NavBar: React.FC<NavBarProps> = () => {
             Packages
           </Link>
           <Link
-            href="/destination"
+            href="/dzongkhag"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
           >
-            Destinations
+            Dzongkhags
+          </Link>
+          <Link
+            href="/sacred-places"
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
+          >
+            Heritage Places
           </Link>
           <Link
             href="/contactus"

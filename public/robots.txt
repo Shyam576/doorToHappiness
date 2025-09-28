@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Priority crawl paths
+Allow: /destination/
+Allow: /package/
+Allow: /dzongkhag/
+Allow: /sacred-places/
+
+# Sitemap location
+Sitemap: https://www.doortohappinessholiday.com/sitemap.xml
+Sitemap: https://www.doortohappinessholiday.com/dzongkhag-sitemap.xml
+Sitemap: https://www.doortohappinessholiday.com/sacred-places-sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /api/auth/
+Disallow: /_next/
+Disallow: /node_modules/
+
+Host: https://www.doortohappinessholiday.com

@@ -77,8 +77,45 @@ const DestinationPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       <Head>
-        <title>{destinationData.name} | Bhutan Travel</title>
-        <meta name="description" content={destinationData.description} />
+        <title>{destinationData.name} Dzongkhag Travel Guide | Sacred Places & Cultural Heritage | Bhutan</title>
+        <meta 
+          name="description" 
+          content={`Complete travel guide to ${destinationData.name} dzongkhag. Discover ${destinationData.culture.dzongs.join(', ')} and other sacred places in ${destinationData.location.region}. ${destinationData.description}`}
+        />
+        <meta 
+          name="keywords" 
+          content={`${destinationData.name} Bhutan, ${destinationData.name} dzongkhag, ${destinationData.culture.dzongs.join(', ')}, ${destinationData.highlights.join(', ')}, Bhutan travel guide, ${destinationData.location.region}`}
+        />
+        <meta property="og:title" content={`${destinationData.name} - ${destinationData.tagline} | Bhutan Travel Guide`} />
+        <meta property="og:description" content={`${destinationData.description} Explore sacred dzongs, monasteries and cultural heritage sites.`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={destinationData.media.images[0]} />
+        <link rel="canonical" href={`https://www.doortohappinessholiday.com/destination/explore/${destinationData.slug}`} />
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TouristDestination",
+            "name": destinationData.name,
+            "description": destinationData.description,
+            "image": destinationData.media.images,
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": destinationData.location.coordinates.lat,
+              "longitude": destinationData.location.coordinates.lng
+            },
+            "containedInPlace": {
+              "@type": "Country",
+              "name": "Bhutan"
+            },
+            "touristType": ["Cultural Tourism", "Religious Tourism"],
+            "aggregateRating": {
+              "@type": "AggregateRating", 
+              "ratingValue": destinationData.rating,
+              "bestRating": "5"
+            }
+          })}
+        </script>
       </Head>
 
       {/* Hero Section with Image Gallery */}
