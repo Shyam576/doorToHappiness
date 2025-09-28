@@ -2,6 +2,7 @@ import Link from "next/link";
 // Removed unused imports: useTheme, useDispatch, useSelector, themes, authRoutes, Dispatch, RootState, useAuthenticatedSocket
 import { useRouter } from "next/router";
 import { AiOutlineMenu } from "react-icons/ai";
+import { getTheme } from "../styles/themes";
 
 import logo from "../../public/logo.png"; // Assuming logo is correctly imported
 
@@ -9,6 +10,9 @@ interface NavBarProps {}
 
 export const NavBar: React.FC<NavBarProps> = () => {
   const router = useRouter(); // Keep router if needed for active link styling later
+  
+  // Get unified theme
+  const theme = getTheme();
 
   // Removed Redux/Auth/Theme logic as it wasn't used in the provided snippet for layout
   // const { theme, setTheme } = useTheme();
@@ -69,37 +73,61 @@ export const NavBar: React.FC<NavBarProps> = () => {
         <div className="hidden lg:flex items-center space-x-6 font-medium">
           <Link
             href="/"
-            className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
+            className={`transition-colors duration-200 ${
+              router.pathname === '/' 
+                ? `${theme.primaryText} font-semibold` 
+                : `${theme.neutral} ${theme.primaryTextHover}`
+            }`}
           >
             Home
           </Link>
           <Link
             href="/package"
-            className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
+            className={`transition-colors duration-200 ${
+              router.pathname.startsWith('/package') 
+                ? `${theme.primaryText} font-semibold` 
+                : `${theme.neutral} ${theme.primaryTextHover}`
+            }`}
           >
             Packages
           </Link>
           <Link
             href="/dzongkhag"
-            className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
+            className={`transition-colors duration-200 ${
+              router.pathname.startsWith('/dzongkhag') 
+                ? `${theme.primaryText} font-semibold` 
+                : `${theme.neutral} ${theme.primaryTextHover}`
+            }`}
           >
             Dzongkhags
           </Link>
           <Link
             href="/sacred-places"
-            className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
+            className={`transition-colors duration-200 ${
+              router.pathname.startsWith('/sacred-places') 
+                ? `${theme.primaryText} font-semibold` 
+                : `${theme.neutral} ${theme.primaryTextHover}`
+            }`}
           >
             Heritage Places
           </Link>
           <Link
             href="/contactus"
-            className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
+            className={`transition-colors duration-200 ${
+              router.pathname.startsWith('/contactus') 
+                ? `${theme.primaryText} font-semibold` 
+                : `${theme.neutral} ${theme.primaryTextHover}`
+            }`}
           >
             Contact Us
           </Link>
           <Link
             href="/faq"
-            className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
+            className={`transition-colors duration-200 ${
+              router.pathname.startsWith('/faq') 
+                ? `${theme.primaryText} font-semibold` 
+                : `${theme.neutral} ${theme.primaryTextHover}`
+            }`}
           >
             FAQ
           </Link>
@@ -118,40 +146,64 @@ export const NavBar: React.FC<NavBarProps> = () => {
         id="mobile-menu"
       >
         <ul className="flex flex-col space-y-1 p-4">
-          {/* Mobile links remain the same */}
+          {/* Mobile links with unified orange theme */}
           <Link
             href="/"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              router.pathname === '/' 
+                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+            }`}
           >
             Home
           </Link>
           <Link
             href="/package"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              router.pathname.startsWith('/package') 
+                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+            }`}
           >
             Packages
           </Link>
           <Link
             href="/dzongkhag"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              router.pathname.startsWith('/dzongkhag') 
+                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+            }`}
           >
             Dzongkhags
           </Link>
           <Link
             href="/sacred-places"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              router.pathname.startsWith('/sacred-places') 
+                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+            }`}
           >
             Heritage Places
           </Link>
           <Link
             href="/contactus"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              router.pathname.startsWith('/contactus') 
+                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+            }`}
           >
             Contact Us
           </Link>
           <Link
             href="/faq"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              router.pathname.startsWith('/faq') 
+                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+            }`}
           >
             FAQ
           </Link>

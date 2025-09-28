@@ -1,11 +1,15 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import popularDestination from '../../data/popularDestination.json';
-import { FiMapPin, FiUsers, FiCompass, FiChevronRight } from 'react-icons/fi';
-import { FaMountain } from 'react-icons/fa';
+import React from "react";
+import Head from "next/head";
+import Link from "next/link";
+import { Container } from "../../components/Container";
+import popularDestination from "../../data/popularDestination.json";
+import { FiMapPin, FiUsers, FiCompass, FiChevronRight } from "react-icons/fi";
+import { FaMountain } from "react-icons/fa";
+import { getTheme } from "../../styles/themes";
 
 const DzongkhagIndex = () => {
+  // Get unified theme
+  const theme = getTheme();
   const dzongkhags = popularDestination;
 
   const regions = {
@@ -50,21 +54,21 @@ const DzongkhagIndex = () => {
         </script>
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-blue-600 to-blue-800 py-24">
+        <div className="relative bg-gradient-to-r from-orange-500 to-yellow-400 py-24">
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Bhutan's 20 Dzongkhags
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
+            <p className="text-xl text-white opacity-90 mb-8">
               Discover the cultural heart of the Thunder Dragon Kingdom through its 20 administrative districts, each home to ancient dzongs, monasteries, and timeless traditions.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-              <span className="bg-blue-500 bg-opacity-50 px-4 py-2 rounded-full">20 Dzongkhags</span>
-              <span className="bg-blue-500 bg-opacity-50 px-4 py-2 rounded-full">200+ Heritage Sites</span>
-              <span className="bg-blue-500 bg-opacity-50 px-4 py-2 rounded-full">Traditional Architecture</span>
+              <span className="bg-orange-500 bg-opacity-50 px-4 py-2 rounded-full">20 Dzongkhags</span>
+              <span className="bg-orange-500 bg-opacity-50 px-4 py-2 rounded-full">200+ Heritage Sites</span>
+              <span className="bg-orange-500 bg-opacity-50 px-4 py-2 rounded-full">Traditional Architecture</span>
             </div>
           </div>
         </div>
@@ -100,7 +104,7 @@ const DzongkhagIndex = () => {
                       />
                     )}
                     <div className="absolute top-4 left-4">
-                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                         {dzongkhag.tagline}
                       </span>
                     </div>
@@ -139,7 +143,7 @@ const DzongkhagIndex = () => {
                       <h4 className="font-semibold text-gray-900 mb-2">Top Highlights:</h4>
                       <div className="flex flex-wrap gap-1">
                         {dzongkhag.highlights.slice(0, 3).map((highlight: string) => (
-                          <span key={highlight} className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">
+                          <span key={highlight} className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">
                             {highlight}
                           </span>
                         ))}
@@ -152,7 +156,7 @@ const DzongkhagIndex = () => {
                     </div>
 
                     <Link href={`/dzongkhag/${dzongkhag.slug}`} className="mt-auto">
-                      <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                      <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center">
                         Explore District
                         <FiChevronRight className="ml-2" />
                       </button>

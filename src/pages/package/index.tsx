@@ -3,8 +3,16 @@ import { Container } from "../../components/Container";
 import WhatsAppButton from "../../components/whatsAppButton";
 import majorCitiesPackage from "../../data/majorCitiesPackage.json";
 import CityPackageCard from "../../components/citiesPackageCard";
-import { FiArrowRight, FiSearch, FiMapPin, FiCalendar, FiUsers, FiTrendingUp, FiCamera } from "react-icons/fi";
-
+import {
+  FiArrowRight,
+  FiSearch,
+  FiMapPin,
+  FiCalendar,
+  FiUsers,
+  FiTrendingUp,
+  FiCamera,
+} from "react-icons/fi";
+import { getTheme } from "../../styles/themes";
 
 interface Tour {
   id: string;
@@ -28,8 +36,10 @@ interface AllTours {
   groupTours: Tour[];
 }
 
-
 function Index() {
+  // Get unified theme
+  const theme = getTheme();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +48,7 @@ function Index() {
     festivalTours: [],
     culturalTours: [],
     adventureTours: [],
-    groupTours: []
+    groupTours: [],
   });
 
   // Refs for scrolling to categories
@@ -56,7 +66,9 @@ function Index() {
         // In a real app, you would use fetch or axios to load these JSON files
         const festivalTours = await import("../../data/festivialTours.json");
         const culturalTours = await import("../../data/culturalTours.json");
-        const trekkingAdventure = await import("../../data/trekkingAdventure.json");
+        const trekkingAdventure = await import(
+          "../../data/trekkingAdventure.json"
+        );
         const groupTours = await import("../../data/groupTours.json");
 
         setAllTours({
@@ -64,7 +76,7 @@ function Index() {
           festivalTours: festivalTours.default,
           culturalTours: culturalTours.default,
           adventureTours: trekkingAdventure.default,
-          groupTours: groupTours.default
+          groupTours: groupTours.default,
         });
       } catch (error) {
         console.error("Error loading tour data:", error);
@@ -79,13 +91,13 @@ function Index() {
   // Scroll to category function
   const scrollToCategory = (categoryName: string) => {
     setActiveCategory(categoryName);
-    
+
     // Scroll to filtered content
     setTimeout(() => {
       if (filteredToursRef.current) {
-        filteredToursRef.current.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
+        filteredToursRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
         });
       }
     }, 100);
@@ -94,28 +106,41 @@ function Index() {
   // Get filtered tours based on active category
   const getFilteredTours = () => {
     const allToursArray = [
-      ...allTours.cityTours.map(tour => ({ ...tour, categoryType: 'city' })),
-      ...allTours.festivalTours.map(tour => ({ ...tour, categoryType: 'festival' })),
-      ...allTours.culturalTours.map(tour => ({ ...tour, categoryType: 'cultural' })),
-      ...allTours.adventureTours.map(tour => ({ ...tour, categoryType: 'adventure' })),
-      ...allTours.groupTours.map(tour => ({ ...tour, categoryType: 'group' })),
+      ...allTours.cityTours.map((tour) => ({ ...tour, categoryType: "city" })),
+      ...allTours.festivalTours.map((tour) => ({
+        ...tour,
+        categoryType: "festival",
+      })),
+      ...allTours.culturalTours.map((tour) => ({
+        ...tour,
+        categoryType: "cultural",
+      })),
+      ...allTours.adventureTours.map((tour) => ({
+        ...tour,
+        categoryType: "adventure",
+      })),
+      ...allTours.groupTours.map((tour) => ({
+        ...tour,
+        categoryType: "group",
+      })),
     ];
 
-    if (activeCategory === 'all') {
+    if (activeCategory === "all") {
       return allToursArray;
     }
 
-    return allToursArray.filter(tour => tour.categoryType === activeCategory);
+    return allToursArray.filter((tour) => tour.categoryType === activeCategory);
   };
 
-  const filterTours = (tours:any) => {
+  const filterTours = (tours: any) => {
     if (!searchTerm) return tours;
-    
+
     const searchLower = searchTerm.toLowerCase();
-    return tours.filter((tour:any) => {
+    return tours.filter((tour: any) => {
       return (
         (tour.title && tour.title.toLowerCase().includes(searchLower)) ||
-        (tour.description && tour.description.toLowerCase().includes(searchLower)) ||
+        (tour.description &&
+          tour.description.toLowerCase().includes(searchLower)) ||
         (tour.route && tour.route.toLowerCase().includes(searchLower)) ||
         (tour.duration && tour.duration.toLowerCase().includes(searchLower))
       );
@@ -127,12 +152,16 @@ function Index() {
     ...filterTours(allTours.festivalTours),
     ...filterTours(allTours.culturalTours),
     ...filterTours(allTours.adventureTours),
-    ...filterTours(allTours.groupTours)
+    ...filterTours(allTours.groupTours),
   ];
 
-  const renderTourCards = (tours:any, category:any, ref?: React.RefObject<HTMLDivElement>) => {
+  const renderTourCards = (
+    tours: any,
+    category: any,
+    ref?: React.RefObject<HTMLDivElement>
+  ) => {
     if (tours.length === 0 && !searchTerm) return null;
-    
+
     return (
       <Container className="py-8" ref={ref}>
         <div className="text-center mb-8">
@@ -141,14 +170,15 @@ function Index() {
           </h3>
           {searchTerm && tours.length > 0 && (
             <p className="text-lg text-gray-600 mt-2">
-              Showing {tours.length} {category.toLowerCase()} matching "{searchTerm}"
+              Showing {tours.length} {category.toLowerCase()} matching "
+              {searchTerm}"
             </p>
           )}
         </div>
 
         {tours.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-            {tours.map((tour:any) => (
+            {tours.map((tour: any) => (
               <div key={tour.id} className="h-full">
                 <CityPackageCard tour={tour} />
               </div>
@@ -170,7 +200,9 @@ function Index() {
       <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-orange-50 to-yellow-50">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-lg text-orange-600 font-medium">Loading amazing tours...</p>
+          <p className="mt-4 text-lg text-orange-600 font-medium">
+            Loading amazing tours...
+          </p>
         </div>
       </div>
     );
@@ -179,13 +211,14 @@ function Index() {
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section with Search */}
-      <div className="relative bg-gradient-to-r from-orange-500 to-yellow-400 py-20 px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative bg-gradient-to-r from-orange-500 to-yellow-400 py-24">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Bhutan Tour Packages
           </h1>
           <p className="text-xl text-white opacity-90 mb-8">
-            Discover curated travel experiences to the Land of the Thunder Dragon
+            Discover curated travel experiences to the Land of the Thunder
+            Dragon
           </p>
           <div className="relative max-w-md mx-auto">
             <input
@@ -208,7 +241,9 @@ function Index() {
               Choose Your Perfect Bhutan Experience
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              From cultural immersion to mountain adventures, discover our carefully curated tour categories designed for every type of traveler.
+              From cultural immersion to mountain adventures, discover our
+              carefully curated tour categories designed for every type of
+              traveler.
             </p>
           </div>
 
@@ -216,59 +251,68 @@ function Index() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-12">
             {[
               {
-                id: 'all',
-                title: 'All Tours',
-                count: allTours.cityTours.length + allTours.festivalTours.length + allTours.culturalTours.length + allTours.adventureTours.length + allTours.groupTours.length,
+                id: "all",
+                title: "All Tours",
+                count:
+                  allTours.cityTours.length +
+                  allTours.festivalTours.length +
+                  allTours.culturalTours.length +
+                  allTours.adventureTours.length +
+                  allTours.groupTours.length,
                 icon: FiSearch,
-                description: 'Browse everything'
+                description: "Browse everything",
               },
               {
-                id: 'city',
-                title: 'City Tours',
+                id: "city",
+                title: "City Tours",
                 count: allTours.cityTours.length,
                 icon: FiMapPin,
-                description: 'From major cities'
+                description: "From major cities",
               },
               {
-                id: 'festival',
-                title: 'Festivals',
+                id: "festival",
+                title: "Festivals",
                 count: allTours.festivalTours.length,
                 icon: FiCalendar,
-                description: 'Cultural celebrations'
+                description: "Cultural celebrations",
               },
               {
-                id: 'cultural',
-                title: 'Cultural',
+                id: "cultural",
+                title: "Cultural",
                 count: allTours.culturalTours.length,
                 icon: FiCamera,
-                description: 'Heritage & traditions'
+                description: "Heritage & traditions",
               },
               {
-                id: 'adventure',
-                title: 'Adventures',
+                id: "adventure",
+                title: "Adventures",
                 count: allTours.adventureTours.length,
                 icon: FiTrendingUp,
-                description: 'Treks & outdoor'
+                description: "Treks & outdoor",
               },
               {
-                id: 'group',
-                title: 'Group Tours',
+                id: "group",
+                title: "Group Tours",
                 count: allTours.groupTours.length,
                 icon: FiUsers,
-                description: 'Travel together'
-              }
+                description: "Travel together",
+              },
             ].map((category) => (
               <div
                 key={category.id}
                 onClick={() => scrollToCategory(category.id)}
                 className={`cursor-pointer transform hover:scale-105 transition-all duration-300 rounded-2xl p-6 text-white bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 ${
-                  activeCategory === category.id ? 'ring-4 ring-yellow-300 shadow-2xl scale-105 from-orange-600 to-yellow-600' : 'hover:shadow-xl'
+                  activeCategory === category.id
+                    ? "ring-4 ring-yellow-300 shadow-2xl scale-105 from-orange-600 to-yellow-600"
+                    : "hover:shadow-xl"
                 }`}
               >
                 <div className="text-center">
                   <category.icon className="w-8 h-8 mx-auto mb-3" />
                   <h3 className="font-bold text-lg mb-1">{category.title}</h3>
-                  <p className="text-sm opacity-90 mb-2">{category.description}</p>
+                  <p className="text-sm opacity-90 mb-2">
+                    {category.description}
+                  </p>
                   <div className="bg-white bg-opacity-20 rounded-full px-3 py-1 text-sm font-medium">
                     {category.count} tours
                   </div>
@@ -282,7 +326,11 @@ function Index() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
               <div>
                 <div className="text-3xl font-bold text-orange-600 mb-2">
-                  {allTours.cityTours.length + allTours.festivalTours.length + allTours.culturalTours.length + allTours.adventureTours.length + allTours.groupTours.length}
+                  {allTours.cityTours.length +
+                    allTours.festivalTours.length +
+                    allTours.culturalTours.length +
+                    allTours.adventureTours.length +
+                    allTours.groupTours.length}
                 </div>
                 <div className="text-gray-600 font-medium">Total Packages</div>
               </div>
@@ -291,11 +339,15 @@ function Index() {
                 <div className="text-gray-600 font-medium">Tour Categories</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-orange-600 mb-2">3-15</div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">
+                  3-15
+                </div>
                 <div className="text-gray-600 font-medium">Days Duration</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-orange-600 mb-2">4.8★</div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">
+                  4.8★
+                </div>
                 <div className="text-gray-600 font-medium">Average Rating</div>
               </div>
             </div>
@@ -304,7 +356,7 @@ function Index() {
       )}
 
       {/* Filtered Tours View - Shows when category is selected */}
-      {!searchTerm && activeCategory !== 'all' && (
+      {!searchTerm && activeCategory !== "all" && (
         <Container className="py-8" ref={filteredToursRef}>
           <div className="text-center mb-8">
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-800 rounded-full text-sm font-medium mb-4">
@@ -312,11 +364,12 @@ function Index() {
               Category Filter Active
             </div>
             <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">
-              {activeCategory === 'city' && 'Bhutan Tour Packages from Major Cities'}
-              {activeCategory === 'festival' && 'Bhutan Festival Tours'}
-              {activeCategory === 'cultural' && 'Bhutan Cultural Tours'}
-              {activeCategory === 'adventure' && 'Bhutan Treks & Adventures'}
-              {activeCategory === 'group' && 'Bhutan Group Tours'}
+              {activeCategory === "city" &&
+                "Bhutan Tour Packages from Major Cities"}
+              {activeCategory === "festival" && "Bhutan Festival Tours"}
+              {activeCategory === "cultural" && "Bhutan Cultural Tours"}
+              {activeCategory === "adventure" && "Bhutan Treks & Adventures"}
+              {activeCategory === "group" && "Bhutan Group Tours"}
             </h2>
             {/* <button
               onClick={() => {
@@ -366,7 +419,7 @@ function Index() {
               </h3>
               <button
                 onClick={() => setSearchTerm("")}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-lg hover:from-orange-600 hover:to-yellow-600 transition-colors shadow-md"
+                className={`px-6 py-3 ${theme.primary} ${theme.primaryHover} text-white rounded-lg transition-all shadow-md`}
               >
                 Clear Search
               </button>
@@ -376,22 +429,42 @@ function Index() {
       )}
 
       {/* Category Views (hidden when searching or filtering) */}
-      {!searchTerm && activeCategory === 'all' && (
+      {!searchTerm && activeCategory === "all" && (
         <>
           {/* Major Cities Packages */}
-          {renderTourCards(allTours.cityTours, "Bhutan Tour Packages from Major Cities", cityToursRef)}
+          {renderTourCards(
+            allTours.cityTours,
+            "Bhutan Tour Packages from Major Cities",
+            cityToursRef
+          )}
 
           {/* Festival Tours */}
-          {renderTourCards(allTours.festivalTours, "Bhutan Festival Tours", festivalToursRef)}
+          {renderTourCards(
+            allTours.festivalTours,
+            "Bhutan Festival Tours",
+            festivalToursRef
+          )}
 
           {/* Cultural Tours */}
-          {renderTourCards(allTours.culturalTours, "Bhutan Cultural Tours", culturalToursRef)}
+          {renderTourCards(
+            allTours.culturalTours,
+            "Bhutan Cultural Tours",
+            culturalToursRef
+          )}
 
           {/* Adventure Tours */}
-          {renderTourCards(allTours.adventureTours, "Bhutan Treks & Adventures", adventureToursRef)}
+          {renderTourCards(
+            allTours.adventureTours,
+            "Bhutan Treks & Adventures",
+            adventureToursRef
+          )}
 
           {/* Group Tours */}
-          {renderTourCards(allTours.groupTours, "Bhutan Group Tours", groupToursRef)}
+          {renderTourCards(
+            allTours.groupTours,
+            "Bhutan Group Tours",
+            groupToursRef
+          )}
         </>
       )}
 
@@ -399,9 +472,15 @@ function Index() {
       {!searchTerm && (
         <div className="bg-gradient-to-r from-orange-500 to-yellow-400 py-12 px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-6">Ready for Your Bhutan Adventure?</h2>
-            <p className="text-xl text-white mb-8">Contact our travel experts to customize your perfect trip</p>
-            <button className="bg-white text-orange-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors">
+            <h2 className="text-3xl font-bold text-white mb-6">
+              Ready for Your Bhutan Adventure?
+            </h2>
+            <p className="text-xl text-white mb-8">
+              Contact our travel experts to customize your perfect trip
+            </p>
+            <button
+              className={`bg-white ${theme.primaryText} font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors`}
+            >
               Get a Custom Quote
             </button>
           </div>

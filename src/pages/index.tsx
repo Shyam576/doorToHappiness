@@ -5,7 +5,7 @@ import WhatsAppButton from "../components/whatsAppButton";
 import majorCitiesPackage from "../data/majorCitiesPackage.json";
 import popularDestination from "../data/popularDestination.json";
 import { FaUmbrellaBeach, FaMountain, FaCity, FaTree, FaPager } from "react-icons/fa";
-
+import { getTheme } from "../styles/themes";
 
 import {
   FiSearch,
@@ -53,6 +53,9 @@ const getDurationInDays = (duration: any) => {
 };
 
 const Index: React.FC = () => {
+  // Get unified theme
+  const theme = getTheme();
+  
   const [currentSlide, setCurrentSlide] = useState(0);
   const [packageSearchTerm, setPackageSearchTerm] = useState("");
   const [showPackageResults, setShowPackageResults] = useState(false);
@@ -460,7 +463,7 @@ const Index: React.FC = () => {
                 } ${
                   isLoading 
                     ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-orange-500 hover:bg-orange-600'
+                    : `${theme.primary} ${theme.primaryHover}`
                 } text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base`}
                 onClick={() => {
                   if (!isLoading && packageSearchTerm) {

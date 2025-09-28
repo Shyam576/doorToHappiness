@@ -4,8 +4,12 @@ import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
 import { FiMapPin, FiSearch, FiFilter, FiStar } from 'react-icons/fi';
 import { FaPrayingHands, FaMountain, FaBuilding } from 'react-icons/fa';
+import { getTheme } from '../../styles/themes';
 
 const SacredPlacesIndex = () => {
+  // Get unified theme
+  const theme = getTheme();
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedRegion, setSelectedRegion] = useState('all');
@@ -54,15 +58,16 @@ const SacredPlacesIndex = () => {
   const regions = Array.from(new Set(popularDestination.map((d: any) => d.location.region)));
   const types = Array.from(new Set(allSacredPlaces.map((p: any) => p.type)));
 
-  const typeIcons: any = {
-    dzong: <FaMountain className="text-red-500" />,
-    temple: <FaBuilding className="text-blue-500" />,
-    monastery: <FaPrayingHands className="text-orange-500" />,
-    chorten: <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>,
-    other: <FaPrayingHands className="text-purple-500" />
-  };
-
-  return (
+  const typeIcons = {
+    dzong: <FaBuilding className="text-lg text-gray-600" />,
+    monastery: <FaPrayingHands className="text-lg text-gray-600" />,
+    temple: <FaPrayingHands className="text-lg text-gray-600" />,
+    lhakhang: <FaPrayingHands className="text-lg text-gray-600" />,
+    chorten: <div className="w-4 h-4 bg-orange-500 rounded-full"></div>,
+    stupa: <div className="w-4 h-4 bg-orange-500 rounded-full"></div>,
+    palace: <FaBuilding className="text-lg text-gray-600" />,
+    fortress: <FaBuilding className="text-lg text-gray-600" />,
+  };  return (
     <>
       <Head>
         <title>Heritage Places in Bhutan | Complete Guide to Dzongs, Monasteries & Temples</title>
@@ -97,16 +102,15 @@ const SacredPlacesIndex = () => {
         </script>
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-orange-600 to-red-600 py-24">
+        <div className="relative bg-gradient-to-r from-orange-500 to-yellow-400 py-24">
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <FaPrayingHands className="text-6xl mx-auto mb-6 text-yellow-300" />
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Heritage Places of Bhutan
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
+            <p className="text-xl text-white opacity-90 mb-8">
               Journey through the cultural landscape of the Thunder Dragon Kingdom. Discover ancient dzongs, monasteries, and temples that have guided Bhutanese Buddhism for centuries.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
@@ -228,7 +232,7 @@ const SacredPlacesIndex = () => {
                     </div>
                     
                     <Link href={`/dzongkhag/${place.dzongkhagSlug}`} className="mt-auto">
-                      <button className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
+                      <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
                         Explore {place.dzongkhag}
                       </button>
                     </Link>
@@ -248,7 +252,7 @@ const SacredPlacesIndex = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
                   <h3 className="text-xl font-semibold mb-4 flex items-center">
-                    <FaMountain className="mr-2 text-red-500" />
+                    <FaMountain className="mr-2 text-orange-500" />
                     Dzongs - Fortress Monasteries
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -280,7 +284,7 @@ const SacredPlacesIndex = () => {
                 
                 <div>
                   <h3 className="text-xl font-semibold mb-4 flex items-center">
-                    <div className="w-5 h-5 bg-yellow-500 rounded-full mr-2"></div>
+                    <div className="w-5 h-5 bg-orange-500 rounded-full mr-2"></div>
                     Chortens - Sacred Stupas
                   </h3>
                   <p className="text-gray-700 leading-relaxed">

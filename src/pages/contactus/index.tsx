@@ -2,8 +2,11 @@ import React from "react";
 import Head from "next/head";
 import axios from "axios"; // Import axios
 import WhatsAppButton from "../../components/whatsAppButton";
+import { getTheme } from "../../styles/themes";
 
 const ContactPage = () => {
+  // Get unified theme
+  const theme = getTheme();
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -196,7 +199,7 @@ const ContactPage = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 hover:from-orange-600 hover:to-yellow-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 text-base ${
+                      className={`w-full py-3 px-6 ${theme.primary} text-white font-semibold rounded-lg shadow-md transition duration-200 ${theme.primaryHover} focus:outline-none focus:ring-2 ${theme.primaryRing} focus:ring-offset-2 text-base ${
                         isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                       }`}
                     >
@@ -243,9 +246,9 @@ const ContactPage = () => {
 
                   <div className="space-y-4 sm:space-y-6">
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 bg-orange-100 p-2 sm:p-3 rounded-lg">
+                      <div className={`flex-shrink-0 ${theme.primaryLight} p-2 sm:p-3 rounded-lg`}>
                         <svg
-                          className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500"
+                          className={`h-5 w-5 sm:h-6 sm:w-6 ${theme.primaryText}`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
