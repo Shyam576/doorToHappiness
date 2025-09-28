@@ -28,10 +28,10 @@ const SacredPlacesIndex = () => {
     return acc.concat(
       sacredPlacesInDzongkhag.map((place: any) => ({
         ...place,
+        slug: place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
         dzongkhag: dzongkhag.name,
         dzongkhagSlug: dzongkhag.slug,
-        region: dzongkhag.location.region,
-        type: getPlaceType(place.name)
+        region: dzongkhag.location.region
       }))
     );
   }, []);
@@ -203,7 +203,7 @@ const SacredPlacesIndex = () => {
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center">
-                        {typeIcons[place.type]}
+                        {typeIcons[place.type as keyof typeof typeIcons] || typeIcons.temple}
                         <span className="ml-2 text-sm font-medium text-gray-600 capitalize">{place.type}</span>
                       </div>
                       {place.rating && (
@@ -230,11 +230,18 @@ const SacredPlacesIndex = () => {
                       )}
                     </div>
                     
-                    <Link href={`/dzongkhag/${place.dzongkhagSlug}`} className="mt-auto">
-                      <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
-                        Explore {place.dzongkhag}
-                      </button>
-                    </Link>
+                    <div className="flex gap-2">
+                      <Link href={`/sacred-places/${place.slug}`} className="flex-1">
+                        <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
+                          Read More
+                        </button>
+                      </Link>
+                      <Link href={`/dzongkhag/${place.dzongkhagSlug}`} className="flex-1">
+                        <button className="w-full bg-gradient-to-br from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
+                          Explore {place.dzongkhag}
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
