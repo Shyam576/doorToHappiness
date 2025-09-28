@@ -318,7 +318,7 @@ function Index() {
               {activeCategory === 'adventure' && 'Bhutan Treks & Adventures'}
               {activeCategory === 'group' && 'Bhutan Group Tours'}
             </h2>
-            <button
+            {/* <button
               onClick={() => {
                 setActiveCategory('all');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -326,7 +326,7 @@ function Index() {
               className="text-orange-600 hover:text-orange-800 font-medium underline"
             >
               ← Back to all categories
-            </button>
+            </button> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">

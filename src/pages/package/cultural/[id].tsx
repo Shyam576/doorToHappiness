@@ -179,9 +179,9 @@ const CulturalTourDetails = () => {
                 {/* Pricing Card */}
                 <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-6 rounded-xl shadow-lg min-w-[280px]">
                   <div className="text-center">
-                    <p className="text-sm opacity-90 mb-1">Starting from</p>
+                    {/* <p className="text-sm opacity-90 mb-1">Starting from</p>
                     <p className="text-3xl font-bold mb-1">$1,299</p>
-                    <p className="text-sm opacity-90 mb-4">per person</p>
+                    <p className="text-sm opacity-90 mb-4">per person</p> */}
                     <button className="w-full bg-white text-orange-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
                       Book This Tour
                     </button>

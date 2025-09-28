@@ -49,6 +49,12 @@ const Index: React.FC = () => {
   const [sortOption, setSortOption] = useState("recommended");
   const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  
+  // Newsletter subscription state
+  const [email, setEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscriptionMessage, setSubscriptionMessage] = useState("");
+  const [subscriptionStatus, setSubscriptionStatus] = useState<"idle" | "success" | "error">("idle");
 
   // Refs for scrolling
   const destinationsRef = useRef<HTMLDivElement>(null);
@@ -80,6 +86,62 @@ const Index: React.FC = () => {
       case 'city':
       default:
         return `/package/majorcitytour/${tour.id}`;
+    }
+  };
+
+  // Handle newsletter subscription
+  const handleNewsletterSubscription = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.trim()) {
+      setSubscriptionMessage("Please enter your email address.");
+      setSubscriptionStatus("error");
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setSubscriptionMessage("Please enter a valid email address.");
+      setSubscriptionStatus("error");
+      return;
+    }
+
+    setIsSubscribing(true);
+    setSubscriptionStatus("idle");
+    setSubscriptionMessage("");
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubscriptionStatus("success");
+        setSubscriptionMessage(data.message);
+        setEmail(""); // Clear the email field on success
+      } else {
+        setSubscriptionStatus("error");
+        setSubscriptionMessage(data.message || "Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      setSubscriptionStatus("error");
+      setSubscriptionMessage("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubscribing(false);
+      
+      // Clear message after 5 seconds
+      setTimeout(() => {
+        setSubscriptionMessage("");
+        setSubscriptionStatus("idle");
+      }, 5000);
     }
   };
 
@@ -913,19 +975,64 @@ const Index: React.FC = () => {
               </p>
             </div>
             <div className="md:w-1/2 p-6 sm:p-8">
-              <div className="mb-4">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
-                />
-              </div>
-              <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-lg transition text-base">
-                Subscribe
-              </button>
-              <p className="text-xs text-gray-500 mt-3">
-                We respect your privacy. Unsubscribe at any time.
-              </p>
+              <form onSubmit={handleNewsletterSubscription} className="space-y-4">
+                <div className="mb-4">
+                  <input
+                    type="email"
+                    placeholder="Your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isSubscribing}
+                    className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 text-base transition-colors ${
+                      subscriptionStatus === "error" 
+                        ? "border-red-400 focus:ring-red-500" 
+                        : subscriptionStatus === "success"
+                        ? "border-green-400 focus:ring-green-500"
+                        : "border-gray-400 focus:ring-yellow-500"
+                    } ${isSubscribing ? "opacity-50 cursor-not-allowed" : ""}`}
+                  />
+                </div>
+                
+                <button 
+                  type="submit"
+                  disabled={isSubscribing || !email.trim()}
+                  className={`w-full font-bold py-3 px-4 rounded-lg transition text-base ${
+                    isSubscribing 
+                      ? "bg-gray-400 text-gray-200 cursor-not-allowed" 
+                      : subscriptionStatus === "success"
+                      ? "bg-green-600 hover:bg-green-700 text-white"
+                      : "bg-gray-800 hover:bg-gray-900 text-white"
+                  }`}
+                >
+                  {isSubscribing ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Subscribing...
+                    </span>
+                  ) : subscriptionStatus === "success" ? (
+                    "Subscribed!"
+                  ) : (
+                    "Subscribe"
+                  )}
+                </button>
+                
+                {subscriptionMessage && (
+                  <div className={`p-3 rounded-lg text-sm ${
+                    subscriptionStatus === "success" 
+                      ? "bg-green-50 text-green-800 border border-green-200" 
+                      : "bg-red-50 text-red-800 border border-red-200"
+                  }`}>
+                    {subscriptionMessage}
+                  </div>
+                )}
+                
+                <p className="text-xs text-gray-500 mt-3">
+                  We respect your privacy. Unsubscribe at any time.
+                </p>
+              </form>
             </div>
           </div>
         </div>

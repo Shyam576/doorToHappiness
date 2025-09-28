@@ -444,7 +444,7 @@ const TrekkingTourDetails = () => {
           </div>
 
           {/* Safety Notice */}
-          <div className="mt-6 bg-gradient-to-r from-yellow-100 to-orange-100 border-l-4 border-yellow-500 p-6 rounded-r-xl">
+          <div className="mt-6 bg-gradient-to-r from-yellow-100 to-orange-100 border-l-4 border-yellow-500 p-6 rounded-r-xl mb-2">
             <div className="flex items-start space-x-3">
               <FiAlertTriangle className="w-6 h-6 text-yellow-600 mt-1 flex-shrink-0" />
               <div>
