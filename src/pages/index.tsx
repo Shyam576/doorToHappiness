@@ -795,9 +795,9 @@ const Index: React.FC = () => {
                       <p className="text-xs text-gray-200">{dzongkhag.tagline}</p>
                     </div>
                   </div>
-                  <div className="flex justify-between items-center">
+                  {/* <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">{dzongkhag.culture.dzongs.length} Historic Dzongs</span>
-                  </div>
+                  </div> */}
                 </div>
               </Link>
             ))}

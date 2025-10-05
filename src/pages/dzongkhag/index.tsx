@@ -16,7 +16,8 @@ const DzongkhagIndex = () => {
     'Western Bhutan': dzongkhags.filter(d => d.location.region === 'Western Bhutan'),
     'Central Bhutan': dzongkhags.filter(d => d.location.region === 'Central Bhutan'),
     'Eastern Bhutan': dzongkhags.filter(d => d.location.region === 'Eastern Bhutan'),
-    'Southern Bhutan': dzongkhags.filter(d => d.location.region === 'Southern Bhutan')
+    'Southern Bhutan': dzongkhags.filter(d => d.location.region === 'Southern Bhutan'),
+    'Northern Bhutan': dzongkhags.filter(d => d.location.region === 'Northern Bhutan')
   };
 
   return (
@@ -172,7 +173,7 @@ const DzongkhagIndex = () => {
           </div>
         ))}
 
-        {/* SEO Rich Content Section */}
+        {/* SEO Rich Content Section
         <div className="bg-gray-50 py-16">
           <div className="max-w-6xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -194,7 +195,7 @@ const DzongkhagIndex = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
