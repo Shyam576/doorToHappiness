@@ -33,7 +33,7 @@ export const Footer = () => {
           {/* Lower Section */}
           <div className="flex flex-col lg:flex-row justify-between items-center">
             <p className="text-sm text-center lg:text-left">
-              © 2022-2023 by PoProstuWitold. All rights reserved.
+              © 2022-2023 by DoorToHappiness. All rights reserved.
             </p>
   
             {/* Social Icons */}

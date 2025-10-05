@@ -94,13 +94,24 @@ const DzongkhagIndex = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {dzongkhagList.map((dzongkhag: any) => (
                 <div key={dzongkhag.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-                  <div className="h-48 bg-gradient-to-br from-blue-400 to-blue-600 relative overflow-hidden flex-shrink-0">
-                    {dzongkhag.images && dzongkhag.images[0] && (
+                  <div className="h-48 bg-gradient-to-br from-orange-400 to-yellow-400 relative overflow-hidden flex-shrink-0">
+                    {dzongkhag.media?.images && dzongkhag.media.images[0] ? (
                       <img 
-                        src={dzongkhag.images[0]} 
-                        alt={`${dzongkhag.name} dzongkhag`}
-                        className="w-full h-full object-cover"
+                        src={dzongkhag.media.images[0]} 
+                        alt={`${dzongkhag.name} dzongkhag landscape`}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
                       />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <div className="text-center text-white">
+                          <FaMountain className="w-16 h-16 mx-auto mb-2 opacity-80" />
+                          <p className="text-sm font-medium">{dzongkhag.name}</p>
+                        </div>
+                      </div>
                     )}
                     <div className="absolute top-4 left-4">
                       <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
