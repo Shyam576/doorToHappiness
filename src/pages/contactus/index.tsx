@@ -299,7 +299,9 @@ const ContactPage = () => {
                         <h3 className="text-base sm:text-lg font-medium text-gray-800">
                           Phone Number
                         </h3>
-                        <p className="mt-1 text-gray-600 text-sm sm:text-base">+975 1234 5678</p>
+                        <p className="mt-1 text-gray-600 text-sm sm:text-base">
+                          {process.env.NEXT_PUBLIC_PHONE_NO}
+                        </p>
                       </div>
                     </div>
 
@@ -324,9 +326,14 @@ const ContactPage = () => {
                         <h3 className="text-base sm:text-lg font-medium text-gray-800">
                           Email Address
                         </h3>
-                        <p className="mt-1 text-gray-600 text-sm sm:text-base">
+                        <a 
+                          href="https://mail.google.com/mail/?view=cm&to=info@doortohappiness.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 text-orange-600 hover:text-orange-700 text-sm sm:text-base transition-colors duration-200 cursor-pointer"
+                        >
                           info@doortohappiness.com
-                        </p>
+                        </a>
                       </div>
                     </div>
 

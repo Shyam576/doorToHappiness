@@ -321,7 +321,7 @@ const Index: React.FC = () => {
               addressCountry: "Bhutan",
             },
             openingHours: "Mo,Tu,We,Th,Fr,Sa,Su 09:00-17:00",
-            telephone: "+975-XXXX-XXXX",
+            telephone: process.env.NEXT_PUBLIC_PHONE_NO,
           })}
         </script>
       </Head>
