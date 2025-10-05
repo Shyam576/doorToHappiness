@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const Footer = () => {
     return (
       <footer className="bg-neutral text-neutral-content">
@@ -11,19 +13,25 @@ export const Footer = () => {
             </div>
   
             {/* Links */}
-            <div className="flex space-x-4 text-sm">
-              <a href="#" className="hover:text-gray-400">
+            <div className="flex flex-wrap justify-center lg:justify-end space-x-4 text-sm">
+              <Link href="/" className="hover:text-gray-400 transition-colors">
                 Home
-              </a>
-              <a href="#" className="hover:text-gray-400">
-                About
-              </a>
-              <a href="#" className="hover:text-gray-400">
-                Services
-              </a>
-              <a href="#" className="hover:text-gray-400">
+              </Link>
+              <Link href="/package" className="hover:text-gray-400 transition-colors">
+                Packages
+              </Link>
+              <Link href="/dzongkhag" className="hover:text-gray-400 transition-colors">
+                Dzongkhags
+              </Link>
+              <Link href="/sacred-places" className="hover:text-gray-400 transition-colors">
+                Heritage Places
+              </Link>
+              <Link href="/faq" className="hover:text-gray-400 transition-colors">
+                FAQ
+              </Link>
+              <Link href="/contactus" className="hover:text-gray-400 transition-colors">
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
   
@@ -32,17 +40,13 @@ export const Footer = () => {
   
           {/* Lower Section */}
           <div className="flex flex-col lg:flex-row justify-between items-center">
-            <p className="text-sm text-center lg:text-left">
-              © 2022-2023 by DoorToHappiness. All rights reserved.
-            </p>
-  
             {/* Social Icons */}
-            <div className="flex space-x-4 mt-4 lg:mt-0">
+            <div className="flex space-x-4">
               <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-400"
+                className="hover:text-gray-400 transition-colors"
               >
                 <i className="fab fa-twitter"></i>
               </a>
@@ -50,7 +54,7 @@ export const Footer = () => {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-400"
+                className="hover:text-gray-400 transition-colors"
               >
                 <i className="fab fa-facebook"></i>
               </a>
@@ -58,7 +62,7 @@ export const Footer = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-400"
+                className="hover:text-gray-400 transition-colors"
               >
                 <i className="fab fa-instagram"></i>
               </a>
