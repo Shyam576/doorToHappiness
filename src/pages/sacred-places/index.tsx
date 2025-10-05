@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
-import { FiMapPin, FiSearch, FiFilter, FiStar } from 'react-icons/fi';
+import { FiMapPin, FiSearch } from 'react-icons/fi';
 import { FaPrayingHands, FaMountain, FaBuilding } from 'react-icons/fa';
 import { getTheme } from '../../styles/themes';
 
@@ -11,8 +11,6 @@ const SacredPlacesIndex = () => {
   const theme = getTheme();
   
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedType, setSelectedType] = useState('all');
-  const [selectedRegion, setSelectedRegion] = useState('all');
 
   // Extract all sacred places from all dzongkhags
   const allSacredPlaces = popularDestination.reduce((acc: any[], dzongkhag: any) => {
@@ -36,27 +34,13 @@ const SacredPlacesIndex = () => {
     );
   }, []);
 
-  function getPlaceType(name: string): string {
-    const lowerName = name.toLowerCase();
-    if (lowerName.includes('dzong')) return 'dzong';
-    if (lowerName.includes('lhakhang') || lowerName.includes('temple')) return 'temple';
-    if (lowerName.includes('monastery') || lowerName.includes('goenpa')) return 'monastery';
-    if (lowerName.includes('chorten')) return 'chorten';
-    return 'other';
-  }
-
   const filteredPlaces = allSacredPlaces.filter((place: any) => {
     const matchesSearch = place.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          place.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          place.dzongkhag.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = selectedType === 'all' || place.type === selectedType;
-    const matchesRegion = selectedRegion === 'all' || place.region === selectedRegion;
     
-    return matchesSearch && matchesType && matchesRegion;
+    return matchesSearch;
   });
-
-  const regions = Array.from(new Set(popularDestination.map((d: any) => d.location.region)));
-  const types = Array.from(new Set(allSacredPlaces.map((p: any) => p.type)));
 
   const typeIcons = {
     dzong: <FaBuilding className="text-lg text-gray-600" />,
@@ -122,57 +106,19 @@ const SacredPlacesIndex = () => {
 
         {/* Search and Filters */}
         <div className="bg-white shadow-md sticky top-0 z-10">
-          <div className="max-w-7xl mx-auto px-4 py-6">
-            <div className="flex flex-col md:flex-row gap-4">
+          <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+            <div className="flex justify-center">
               {/* Search */}
-              <div className="relative flex-1">
+              <div className="relative w-full max-w-2xl">
                 <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search sacred places, dzongs, monasteries..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-base"
                 />
               </div>
-
-              {/* Type Filter */}
-              <div className="relative">
-                <select
-                  value={selectedType}
-                  onChange={(e) => setSelectedType(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                >
-                  <option value="all">All Types</option>
-                  <option value="dzong">Dzongs</option>
-                  <option value="monastery">Monasteries</option>
-                  <option value="temple">Temples/Lhakhangs</option>
-                  <option value="chorten">Chortens</option>
-                  <option value="other">Other Sacred Sites</option>
-                </select>
-                <FiFilter className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
-              </div>
-
-              {/* Region Filter */}
-              <div className="relative">
-                <select
-                  value={selectedRegion}
-                  onChange={(e) => setSelectedRegion(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-3 pr-8 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                >
-                  <option value="all">All Regions</option>
-                  {regions.map((region: string) => (
-                    <option key={region} value={region}>{region}</option>
-                  ))}
-                </select>
-                <FiMapPin className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
-              </div>
-            </div>
-
-            {/* Results count */}
-            <div className="mt-4 text-gray-600">
-              Showing {filteredPlaces.length} sacred places
-              {searchTerm && ` matching "${searchTerm}"`}
             </div>
           </div>
         </div>
@@ -206,12 +152,6 @@ const SacredPlacesIndex = () => {
                         {typeIcons[place.type as keyof typeof typeIcons] || typeIcons.temple}
                         <span className="ml-2 text-sm font-medium text-gray-600 capitalize">{place.type}</span>
                       </div>
-                      {place.rating && (
-                        <div className="flex items-center">
-                          <FiStar className="text-yellow-400 w-4 h-4 mr-1" />
-                          <span className="text-sm text-gray-600">{place.rating}</span>
-                        </div>
-                      )}
                     </div>
                     
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{place.name}</h3>
@@ -230,15 +170,17 @@ const SacredPlacesIndex = () => {
                       )}
                     </div>
                     
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                       <Link href={`/sacred-places/${place.slug}`} className="flex-1">
-                        <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
+                        <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-200 min-h-[40px] flex items-center justify-center text-sm">
                           Read More
                         </button>
                       </Link>
                       <Link href={`/dzongkhag/${place.dzongkhagSlug}`} className="flex-1">
-                        <button className="w-full bg-gradient-to-br from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
-                          Explore {place.dzongkhag}
+                        <button className="w-full bg-gradient-to-br from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-200 min-h-[40px] flex items-center justify-center text-center leading-tight text-sm overflow-hidden">
+                          <span className="truncate whitespace-nowrap max-w-full">
+                            {place.dzongkhag.length > 15 ? `${place.dzongkhag.substring(0, 12)}...` : `Explore ${place.dzongkhag}`}
+                          </span>
                         </button>
                       </Link>
                     </div>

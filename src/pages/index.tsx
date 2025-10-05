@@ -193,18 +193,10 @@ const Index: React.FC = () => {
           getDurationInDays(b.duration || "0 days") -
           getDurationInDays(a.duration || "0 days")
         );
-      case "rating":
-        return (
-          (b.rating ? parseFloat(b.rating.toString()) : 0) -
-          (a.rating ? parseFloat(a.rating.toString()) : 0)
-        );
       case "recommended":
       default:
         // Default sorting (could be based on popularity or other metrics)
-        return (
-          (b.rating ? parseFloat(b.rating.toString()) : 0) -
-          (a.rating ? parseFloat(b.rating.toString()) : 0)
-        );
+        return 0;
     }
   });
 
@@ -292,7 +284,6 @@ const Index: React.FC = () => {
     { value: "recommended", label: "Recommended" },
     { value: "duration-short", label: "Duration (Shortest)" },
     { value: "duration-long", label: "Duration (Longest)" },
-    { value: "rating", label: "Highest Rated" },
   ];
 
   return (
@@ -590,9 +581,7 @@ const Index: React.FC = () => {
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-yellow-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold">
-                    {tour.rating || 4.8} ★
-                  </div>
+
                 </div>
 
                 {/* Content section with flex-grow and fixed min-height */}
@@ -663,7 +652,7 @@ const Index: React.FC = () => {
       </Container>
 
       {/* Testimonials Section */}
-      <Container className="py-12 sm:py-16">
+      {/* <Container className="py-12 sm:py-16">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
             What Travelers Say About Us
@@ -731,7 +720,7 @@ const Index: React.FC = () => {
             </div>
           ))}
         </div>
-      </Container>
+      </Container> */}
 
       {/* Dzongkhags & Heritage Places Section */}
       <Container className="py-12 sm:py-16 bg-gradient-to-b from-blue-50 to-orange-50">
@@ -752,7 +741,7 @@ const Index: React.FC = () => {
               Explore over 50 fortress-monasteries that serve as both administrative centers and spiritual sanctuaries across all 20 dzongkhags.
             </p>
             <Link href="/dzongkhag">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+              <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
                 Explore Dzongkhags
               </button>
             </Link>
@@ -765,7 +754,7 @@ const Index: React.FC = () => {
               Visit ancient lhakhangs, gompas, and temples that preserve 1,000+ years of Buddhist wisdom and serve as centers of cultural practice.
             </p>
             <Link href="/sacred-places">
-              <button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+              <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
                 Heritage Places Guide
               </button>
             </Link>
@@ -778,7 +767,7 @@ const Index: React.FC = () => {
               Experience living traditions through tsechu festivals, traditional architecture, and time-honored customs preserved in each dzongkhag.
             </p>
             <Link href="/guides/dzong-architecture">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+              <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
                 Architecture Guide
               </button>
             </Link>
@@ -796,7 +785,7 @@ const Index: React.FC = () => {
                 <div className="group cursor-pointer">
                   <div className="relative h-32 rounded-lg overflow-hidden mb-3">
                     <img
-                      src={dzongkhag.images?.[0] || '/backgroundbanner.png'}
+                      src={dzongkhag.media?.images?.[0] || '/backgroundbanner.png'}
                       alt={`${dzongkhag.name} dzongkhag`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -808,10 +797,6 @@ const Index: React.FC = () => {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">{dzongkhag.culture.dzongs.length} Historic Dzongs</span>
-                    <div className="flex items-center">
-                      <span className="text-yellow-400 text-sm">⭐</span>
-                      <span className="text-sm text-gray-600 ml-1">{dzongkhag.rating}</span>
-                    </div>
                   </div>
                 </div>
               </Link>

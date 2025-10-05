@@ -5,7 +5,6 @@ import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
 import { 
   FiMapPin, 
-  FiStar, 
   FiCalendar, 
   FiClock, 
   FiUsers, 
@@ -98,12 +97,7 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
               "name": "Bhutan"
             },
             "touristType": ["Cultural Tourism", "Religious Tourism", "Adventure Tourism"],
-            "hasMap": `https://www.google.com/maps?q=${dzongkhag.location.coordinates.lat},${dzongkhag.location.coordinates.lng}`,
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": dzongkhag.rating,
-              "bestRating": "5"
-            }
+            "hasMap": `https://www.google.com/maps?q=${dzongkhag.location.coordinates.lat},${dzongkhag.location.coordinates.lng}`
           })}
         </script>
       </Head>
@@ -153,10 +147,6 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                 <div className="bg-orange-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
                   <FiMapPin className="mr-2" />
                   <span>{dzongkhag.location.region}</span>
-                </div>
-                <div className="bg-yellow-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
-                  <FiStar className="mr-2" />
-                  <span>{dzongkhag.rating} Rating</span>
                 </div>
                 <div className="bg-orange-500 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
                   <FaPrayingHands className="mr-2" />
@@ -244,12 +234,6 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                           <div key={index} className="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow flex flex-col h-full">
                             <div className="flex items-start justify-between mb-3">
                               <h3 className="font-semibold text-gray-900 text-lg">{place.name}</h3>
-                              {place.rating && (
-                                <div className="flex items-center text-yellow-500 flex-shrink-0 ml-2">
-                                  <FiStar className="w-4 h-4 mr-1 fill-current" />
-                                  <span className="text-sm text-gray-600">{place.rating}</span>
-                                </div>
-                              )}
                             </div>
                             <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">{place.description}</p>
                             {place.image && (
@@ -387,13 +371,6 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500 font-medium">Region</span>
                     <span className="text-sm font-medium text-gray-700">{dzongkhag.location.region}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 font-medium">Rating</span>
-                    <div className="flex items-center">
-                      <FiStar className="w-4 h-4 text-yellow-400 mr-1" />
-                      <span className="text-sm font-medium text-gray-700">{dzongkhag.rating}/5</span>
-                    </div>
                   </div>
                   <div className="pt-3 border-t">
                     <p className="text-sm text-gray-500 font-medium mb-2">Coordinates</p>

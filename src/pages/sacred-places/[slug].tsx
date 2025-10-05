@@ -5,7 +5,6 @@ import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
 import { 
   FiMapPin, 
-  FiStar, 
   FiCalendar, 
   FiClock, 
   FiChevronRight,
@@ -102,12 +101,6 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                   <FiMapPin className="mr-2" />
                   <span>{place.region}</span>
                 </div>
-                {place.rating && (
-                  <div className="bg-yellow-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
-                    <FiStar className="mr-2" />
-                    <span>{place.rating} Rating</span>
-                  </div>
-                )}
                 {place.distance && (
                   <div className="bg-orange-500 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
                     <FiMapPin className="mr-2" />
@@ -230,15 +223,6 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                     <span className="text-sm text-gray-500 font-medium">Location</span>
                     <span className="text-sm font-medium text-gray-700">{dzongkhag.name}</span>
                   </div>
-                  {place.rating && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500 font-medium">Rating</span>
-                      <div className="flex items-center">
-                        <FiStar className="w-4 h-4 text-yellow-400 mr-1" />
-                        <span className="text-sm font-medium text-gray-700">{place.rating}/5</span>
-                      </div>
-                    </div>
-                  )}
                   {place.distance && (
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500 font-medium">Distance</span>

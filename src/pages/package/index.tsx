@@ -213,6 +213,7 @@ function Index() {
       {/* Hero Section with Search */}
       <div className="relative bg-gradient-to-r from-orange-500 to-yellow-400 py-24">
         <div className="max-w-4xl mx-auto">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Bhutan Tour Packages
           </h1>
@@ -230,6 +231,7 @@ function Index() {
             />
             <FiSearch className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
           </div>
+        </div>
         </div>
       </div>
 

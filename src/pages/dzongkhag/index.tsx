@@ -118,12 +118,6 @@ const DzongkhagIndex = () => {
                         {dzongkhag.tagline}
                       </span>
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <div className="flex items-center bg-white bg-opacity-90 px-2 py-1 rounded-full">
-                        <span className="text-yellow-500 mr-1">⭐</span>
-                        <span className="text-sm font-semibold">{dzongkhag.rating}</span>
-                      </div>
-                    </div>
                   </div>
                   
                   <div className="p-6 flex flex-col flex-grow">
