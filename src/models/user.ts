@@ -6,6 +6,8 @@ export interface IUser extends Document {
     email: string;
     password?: string; // Optional because it will be removed in toJSON
     role?: 'admin' | 'editor' | 'user'; // Define your roles
+    createdAt?: Date;
+    updatedAt?: Date;
     comparePassword(candidatePassword: string): Promise<boolean>;
 }
 

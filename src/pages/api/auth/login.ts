@@ -70,9 +70,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // --- Send Success Response ---
         // Send back user info (password is removed by model's toJSON or default selection)
+        const userResponse = {
+            _id: user._id,
+            email: user.email,
+            role: user.role,
+        };
+        
         res.status(200).json({
             message: 'Login successful',
-            user: user.toJSON(), // Use toJSON to ensure password removal
+            user: userResponse,
         });
 
     } catch (error) {
