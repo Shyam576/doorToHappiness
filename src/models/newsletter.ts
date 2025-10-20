@@ -7,7 +7,7 @@ export interface INewsletter extends Document {
   unsubscribedAt?: Date;
 }
 
-const NewsletterSchema = new Schema({
+const NewsletterSchema = new Schema<INewsletter>({
   email: {
     type: String,
     required: [true, 'Please provide an email address.'],
@@ -35,6 +35,6 @@ const NewsletterSchema = new Schema({
 // Create compound index for better performance
 NewsletterSchema.index({ email: 1, isActive: 1 });
 
-const Newsletter = models.Newsletter || model('Newsletter', NewsletterSchema);
+const Newsletter = (models.Newsletter as mongoose.Model<INewsletter>) || model<INewsletter>('Newsletter', NewsletterSchema);
 
 export default Newsletter;

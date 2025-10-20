@@ -41,10 +41,6 @@ const Index: React.FC<InviteProps> = ({}) => {
         }
     }, [socket])
 
-    if(!user) {
-        return <></>
-    }
-
     useEffect(() => {
         const getInvintationByCode = async() => {
             try {
@@ -60,10 +56,14 @@ const Index: React.FC<InviteProps> = ({}) => {
                 setApiResponse(err)
             }
         }
-        if(code) {
+        if(code && user) {
             getInvintationByCode()
         }
-    }, [code])
+    }, [code, user])
+
+    if(!user) {
+        return <></>
+    }
     
 
     const joinRoom = async(room: any) => {
