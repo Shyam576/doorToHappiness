@@ -53,8 +53,14 @@ export default async function handler(
         await user.save();
 
         // Important: Don't send the password back, even the hash.
-        // The toJSON method in the model should handle removing it.
-        res.status(201).json({ message: 'User registered successfully', user: user.toJSON() });
+        // Create explicit user response object to avoid TypeScript complex union type issues
+        const userResponse = {
+            _id: user._id,
+            email: user.email,
+            role: user.role,
+        };
+        
+        res.status(201).json({ message: 'User registered successfully', user: userResponse });
 
     } catch (error: any) {
         console.error('Registration error:', error);
