@@ -95,11 +95,27 @@ const FestivalTourDetails = () => {
     );
   }
 
+  // Function to randomly select images from local images
+  const getRandomImages = (count: number) => {
+    const localImages = [
+      '/image1.jpeg',
+      '/image2.jpeg',
+      '/image3.jpeg',
+      '/image4.jpeg',
+      '/image5.jpeg',
+      '/image6.jpeg',
+      '/image7.jpeg',
+      '/image8.jpeg'
+    ];
+    
+    // Shuffle array and take the first 'count' images
+    const shuffled = [...localImages].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+  };
+
   const sampleImages = [
     tourData.image,
-    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-    "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
-    "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+    ...getRandomImages(3) // Get 3 random images from the local images
   ];
 
   return (
@@ -110,12 +126,12 @@ const FestivalTourDetails = () => {
         <meta name="keywords" content="Bhutan festival tour, Tsechu festival, Buddhist celebration, cultural festival" />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section with Image Gallery */}
-        <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 h-96 lg:h-[500px]">
+        <div className="relative h-96 lg:h-[500px]">
+          <div className="grid grid-cols-1 lg:grid-cols-4 h-full">
             {/* Main Image */}
-            <div className="lg:col-span-3 relative group cursor-pointer overflow-hidden rounded-l-lg">
+            <div className="lg:col-span-3 relative group cursor-pointer overflow-hidden rounded-lg">
               <img
                 src={sampleImages[selectedImageIndex]}
                 alt={tourData.title}
@@ -129,21 +145,14 @@ const FestivalTourDetails = () => {
                   🎭 Festival Special
                 </div>
               </div>
-              
-              <button className="absolute bottom-4 left-4 flex items-center space-x-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium hover:bg-white transition-colors">
-                <FiPlay className="w-4 h-4" />
-                <span>Festival Preview</span>
-              </button>
             </div>
             
             {/* Thumbnail Gallery */}
-            <div className="hidden lg:flex flex-col gap-2">
+            <div className="hidden lg:flex flex-col gap-1 ml-2">
               {sampleImages.slice(1, 4).map((img, index) => (
                 <div 
                   key={index + 1}
-                  className={`relative h-full cursor-pointer overflow-hidden group ${
-                    index === 2 ? 'rounded-tr-lg rounded-br-lg' : ''
-                  }`}
+                  className="relative h-52 w-full cursor-pointer overflow-hidden rounded-lg group"
                   onClick={() => setSelectedImageIndex(index + 1)}
                 >
                   <img
@@ -151,9 +160,6 @@ const FestivalTourDetails = () => {
                     alt={`Gallery ${index + 1}`}
                     className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110"
                   />
-                  <div className={`absolute inset-0 transition-opacity duration-300 ${
-                    selectedImageIndex === index + 1 ? 'bg-orange-500/20' : 'bg-black/20 group-hover:bg-black/10'
-                  }`} />
                 </div>
               ))}
             </div>
