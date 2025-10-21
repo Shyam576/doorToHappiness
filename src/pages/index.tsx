@@ -4,7 +4,7 @@ import { Container } from "../components/Container";
 import WhatsAppButton from "../components/whatsAppButton";
 import majorCitiesPackage from "../data/majorCitiesPackage.json";
 import popularDestination from "../data/popularDestination.json";
-import { FaUmbrellaBeach, FaMountain, FaCity, FaTree, FaPager, FaCertificate, FaLeaf, FaHandHoldingUsd, FaShieldAlt } from "react-icons/fa";
+import { FaUmbrellaBeach, FaMountain, FaCity, FaTree, FaPager, FaCertificate, FaLeaf, FaHandHoldingUsd, FaShieldAlt, FaBuilding, FaPrayingHands, FaFortAwesome } from "react-icons/fa";
 import { getTheme } from "../styles/themes";
 
 import {
@@ -768,7 +768,9 @@ const Index: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="text-5xl text-red-600 mb-4">🏰</div>
+            <div className="text-5xl text-red-600 mb-4 flex justify-center">
+              <FaFortAwesome />
+            </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">Historic Dzongs</h3>
             <p className="text-gray-600 mb-6">
               Explore over 50 fortress-monasteries that serve as both administrative centers and spiritual sanctuaries across all 20 dzongkhags.
@@ -781,7 +783,9 @@ const Index: React.FC = () => {
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="text-5xl text-orange-600 mb-4">🙏</div>
+            <div className="text-5xl text-orange-600 mb-4 flex justify-center">
+              <FaBuilding />
+            </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">Monasteries & Temples</h3>
             <p className="text-gray-600 mb-6">
               Visit ancient lhakhangs, gompas, and temples that preserve 1,000+ years of Buddhist wisdom and serve as centers of cultural practice.
@@ -794,7 +798,9 @@ const Index: React.FC = () => {
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="text-5xl text-blue-600 mb-4">⛰️</div>
+            <div className="text-5xl text-blue-600 mb-4 flex justify-center">
+              <FaPrayingHands />
+            </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">Cultural Heritage</h3>
             <p className="text-gray-600 mb-6">
               Experience living traditions through tsechu festivals, traditional architecture, and time-honored customs preserved in each dzongkhag.

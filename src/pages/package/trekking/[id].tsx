@@ -154,7 +154,7 @@ const TrekkingTourDetails = () => {
               </div>
               
               {/* Difficulty Level */}
-              <div className="absolute top-4 left-44">
+              <div className="absolute top-16 left-4">
                 <div className={`px-3 py-1 rounded-full text-xs font-semibold ${getDifficultyColor('moderate')}`}>
                   Moderate Difficulty
                 </div>
