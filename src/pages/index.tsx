@@ -281,7 +281,7 @@ const Index: React.FC = () => {
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+      src: "https://img.global.news.samsung.com/in/wp-content/uploads/2020/03/20190909_152125-01.jpg",
       alt: "Himalayan mountain landscape in Bhutan",
       title: "Epic Himalayan Treks",
       subtitle: "Challenge yourself in pristine wilderness",
@@ -620,8 +620,8 @@ const Index: React.FC = () => {
                 {/* Content section with flex-grow and fixed min-height */}
                 <div className="p-4 sm:p-6 flex flex-col flex-grow">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-lg sm:text-xl text-gray-800 font-bold">{tour.title}</h3>
-                    <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap">
+                    <h3 className="text-sm sm:text-lg text-gray-800 font-bold flex-1 pr-2">{tour.title}</h3>
+                    <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap flex-shrink-0">
                       {tour.duration || tour.dates}
                     </span>
                   </div>
