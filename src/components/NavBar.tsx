@@ -1,7 +1,8 @@
 import Link from "next/link";
 // Removed unused imports: useTheme, useDispatch, useSelector, themes, authRoutes, Dispatch, RootState, useAuthenticatedSocket
 import { useRouter } from "next/router";
-import { AiOutlineMenu } from "react-icons/ai";
+import { useState, useEffect } from "react";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { getTheme } from "../styles/themes";
 
 import logo from "../../public/logo.png"; // Assuming logo is correctly imported
@@ -9,10 +10,33 @@ import logo from "../../public/logo.png"; // Assuming logo is correctly imported
 interface NavBarProps {}
 
 export const NavBar: React.FC<NavBarProps> = () => {
-  const router = useRouter(); // Keep router if needed for active link styling later
+  const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Get unified theme
   const theme = getTheme();
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsMobileMenuOpen(false);
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router.events]);
+
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Close mobile menu
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   // Removed Redux/Auth/Theme logic as it wasn't used in the provided snippet for layout
   // const { theme, setTheme } = useTheme();
@@ -31,9 +55,17 @@ export const NavBar: React.FC<NavBarProps> = () => {
         <div className="flex items-center">
           {/* Hamburger Menu Icon */}
           <div className="lg:hidden mr-3">
-            <label htmlFor="menu-toggle" className="cursor-pointer">
-              <AiOutlineMenu size={24} className="text-gray-700" />
-            </label>
+            <button
+              onClick={toggleMobileMenu}
+              className="cursor-pointer p-2 rounded-md hover:bg-gray-100 transition-colors duration-200"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <AiOutlineClose size={24} className="text-gray-700" />
+              ) : (
+                <AiOutlineMenu size={24} className="text-gray-700" />
+              )}
+            </button>
           </div>
 
           {/* Logo and Company Name Link */}
@@ -139,76 +171,82 @@ export const NavBar: React.FC<NavBarProps> = () => {
       </div>
 
       {/* --- Mobile Dropdown Menu --- */}
-      {/* Input needs to be outside the main flex container but ideally right before the dropdown div */}
-      <input type="checkbox" id="menu-toggle" className="hidden peer" />
-      <div
-        className="lg:hidden peer-checked:block hidden bg-white shadow-md border-t border-gray-200"
-        id="mobile-menu"
-      >
-        <ul className="flex flex-col space-y-1 p-4">
-          {/* Mobile links with unified orange theme */}
-          <Link
-            href="/"
-            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-              router.pathname === '/' 
-                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
-            }`}
-          >
-            Home
-          </Link>
-          <Link
-            href="/package"
-            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-              router.pathname.startsWith('/package') 
-                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
-            }`}
-          >
-            Packages
-          </Link>
-          <Link
-            href="/dzongkhag"
-            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-              router.pathname.startsWith('/dzongkhag') 
-                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
-            }`}
-          >
-            Dzongkhags
-          </Link>
-          <Link
-            href="/sacred-places"
-            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-              router.pathname.startsWith('/sacred-places') 
-                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
-            }`}
-          >
-            Heritage Places
-          </Link>
-          <Link
-            href="/contactus"
-            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-              router.pathname.startsWith('/contactus') 
-                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
-            }`}
-          >
-            Contact Us
-          </Link>
-          <Link
-            href="/faq"
-            className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-              router.pathname.startsWith('/faq') 
-                ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
-            }`}
-          >
-            FAQ
-          </Link>
-        </ul>
-      </div>
+      {isMobileMenuOpen && (
+        <div
+          className="lg:hidden bg-white shadow-md border-t border-gray-200"
+          id="mobile-menu"
+        >
+          <ul className="flex flex-col space-y-1 p-4">
+            {/* Mobile links with unified orange theme */}
+            <Link
+              href="/"
+              onClick={closeMobileMenu}
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                router.pathname === '/' 
+                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/package"
+              onClick={closeMobileMenu}
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                router.pathname.startsWith('/package') 
+                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+              }`}
+            >
+              Packages
+            </Link>
+            <Link
+              href="/dzongkhag"
+              onClick={closeMobileMenu}
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                router.pathname.startsWith('/dzongkhag') 
+                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+              }`}
+            >
+              Dzongkhags
+            </Link>
+            <Link
+              href="/sacred-places"
+              onClick={closeMobileMenu}
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                router.pathname.startsWith('/sacred-places') 
+                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+              }`}
+            >
+              Heritage Places
+            </Link>
+            <Link
+              href="/contactus"
+              onClick={closeMobileMenu}
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                router.pathname.startsWith('/contactus') 
+                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+              }`}
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="/faq"
+              onClick={closeMobileMenu}
+              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                router.pathname.startsWith('/faq') 
+                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
+                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+              }`}
+            >
+              FAQ
+            </Link>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };
