@@ -10,6 +10,7 @@ import { getTheme } from "../styles/themes";
 import {
   FiSearch,
   FiArrowRight,
+  FiChevronDown,
 } from "react-icons/fi";
 import festivalTours from "../data/festivialTours.json";
 import culturalTours from "../data/culturalTours.json";
@@ -60,8 +61,10 @@ const Index: React.FC = () => {
   const [packageSearchTerm, setPackageSearchTerm] = useState("");
   const [showPackageResults, setShowPackageResults] = useState(false);
   const [sortOption, setSortOption] = useState("recommended");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Newsletter subscription state
   const [email, setEmail] = useState("");
@@ -208,6 +211,20 @@ const Index: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle clicking outside dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   // Debounced search handlers for better performance
   const handlePackageSearch = useCallback((value: string) => {
     setPackageSearchTerm(value);
@@ -307,7 +324,7 @@ const Index: React.FC = () => {
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://www.doortohappinessholiday.com" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logowhitebg.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -549,18 +566,35 @@ const Index: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex items-center justify-end w-full sm:w-auto">
-              <select
-                className="px-3 sm:px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base bg-white text-gray-700 hover:border-orange-300 transition-colors min-w-[140px] sm:min-w-[160px]"
-                value={sortOption}
-                onChange={(e) => setSortOption(e.target.value)}
-              >
-                {sortOptions.map((option) => (
-                  <option key={option.value} value={option.value} className="text-gray-700">
-                    {option.label}
-                  </option>
-                ))}
-              </select>
+            <div className="flex items-center justify-end w-full sm:w-auto relative" ref={dropdownRef}>
+              <div className="relative">
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="px-3 sm:px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base bg-white text-gray-700 hover:border-orange-300 transition-colors min-w-[140px] sm:min-w-[160px] flex items-center justify-between"
+                >
+                  <span>{sortOptions.find(option => option.value === sortOption)?.label}</span>
+                  <FiChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {isDropdownOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-orange-200 rounded-lg shadow-lg z-50 overflow-hidden">
+                    {sortOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() => {
+                          setSortOption(option.value);
+                          setIsDropdownOpen(false);
+                        }}
+                        className={`w-full text-left px-3 sm:px-4 py-2 text-sm sm:text-base hover:bg-orange-50 transition-colors ${
+                          sortOption === option.value ? 'bg-orange-100 text-orange-700 font-medium' : 'text-gray-700'
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@ const LoginError: React.FC<LoginErrorProps> = ({}) => {
             <Head>
                 <title>Login Error</title>
                 <meta name="description" content="Welcome to Witq" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/logowhitebg.png" />
             </Head>
             <Container>
                 <div>

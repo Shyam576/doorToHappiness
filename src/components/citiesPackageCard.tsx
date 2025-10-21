@@ -43,28 +43,28 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
         />
       </div>
 
-      <div className="p-6 flex flex-col flex-grow" style={{ minHeight: '300px' }}>
-        <h3 className="text-2xl font-bold text-gray-800 mb-2 line-clamp-2">
+      <div className="p-4 sm:p-6 flex flex-col flex-grow" style={{ minHeight: '280px' }}>
+        <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-2 line-clamp-2">
           {tour.title}
         </h3>
 
-        <p className="text-sm text-orange-500 mb-1 line-clamp-1">
+        <p className="text-xs sm:text-sm text-orange-500 mb-1 line-clamp-1">
           {tour.highlights.join(' | ')}
         </p>
 
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
           {tour.duration} {tour.route && `[${tour.route}]`}
         </p>
 
-        <div className="mb-6 flex-grow overflow-y-auto" style={{ maxHeight: '100px' }}>
-          <p className="text-gray-700 leading-relaxed">
+        <div className="mb-4 sm:mb-6 flex-grow">
+          <p className="text-gray-700 leading-relaxed line-clamp-3 sm:line-clamp-4 text-sm">
             {tour.description}
           </p>
         </div>
 
-        <div className="mt-auto pt-4">
+        <div className="mt-auto pt-3 sm:pt-4">
           <Link href={getRouteForTour(tour)} passHref>
-            <button className="w-full py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700">
+            <button className="w-full py-2 sm:py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md transition duration-200 active:scale-95 active:bg-orange-700 text-sm sm:text-base">
               View Details
             </button>
           </Link>

@@ -2,7 +2,7 @@
 module.exports = {
 	reactStrictMode: true,
 	images: {
-		domains: ['www.gravatar.com', 'lh3.googleusercontent.com', 'platform-lookaside.fbsbx.com', 'images.unsplash.com', 'www.bhutanpilgrimage.com', 'ucarecdn.com'],
+		domains: ['www.gravatar.com', 'lh3.googleusercontent.com', 'platform-lookaside.fbsbx.com', 'images.unsplash.com', 'www.bhutanpilgrimage.com', 'ucarecdn.com', 'www.heavenlybhutan.com', 'www.exoticmiles.com'],
 		formats: ['image/webp', 'image/avif'],
 	},
 	// Generate sitemap automatically
