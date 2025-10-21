@@ -114,16 +114,7 @@ const PackageDetailsPage = () => {
         {/* Enhanced Statistics Section */}
         <div className="relative -mt-16 mx-4 sm:mx-6 lg:mx-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              <div className="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FiUsers className="w-8 h-8 text-orange-600" />
-                </div>
-                <h3 className="text-3xl font-bold text-orange-600 mb-2">
-                  10,000+
-                </h3>
-                <p className="text-gray-600 font-medium">Happy Travelers</p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-6 mb-16 max-w-md mx-auto">
               <div className="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-all duration-300">
                 <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FiClock className="w-8 h-8 text-orange-600" />
@@ -132,15 +123,6 @@ const PackageDetailsPage = () => {
                   {packageData.duration}
                 </h3>
                 <p className="text-gray-600 font-medium">Adventure Duration</p>
-              </div>
-              <div className="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FiStar className="w-8 h-8 text-orange-600" />
-                </div>
-                <h3 className="text-3xl font-bold text-orange-600 mb-2">
-                  4.9/5
-                </h3>
-                <p className="text-gray-600 font-medium">Average Rating</p>
               </div>
             </div>
           </div>
@@ -370,13 +352,10 @@ const PackageDetailsPage = () => {
                 </div>
 
                 <div className="space-y-4 mb-8">
-                  <button className="w-full py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-bold rounded-xl shadow-lg transition duration-300 hover:from-orange-600 hover:to-yellow-600 transform hover:scale-105">
-                    <span className="flex items-center justify-center">
-                      <FiCalendar className="w-5 h-5 mr-2" />
-                      Book Now
-                    </span>
-                  </button>
-                  <button className="w-full py-4 border-2 border-orange-500 text-orange-600 font-bold rounded-xl transition duration-300 hover:bg-orange-50 transform hover:scale-105">
+                  <button 
+                    onClick={() => router.push('/contactus')}
+                    className="w-full py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-bold rounded-xl shadow-lg transition duration-300 hover:from-orange-600 hover:to-yellow-600 transform hover:scale-105"
+                  >
                     <span className="flex items-center justify-center">
                       <FiInfo className="w-5 h-5 mr-2" />
                       Enquire Now
@@ -385,7 +364,7 @@ const PackageDetailsPage = () => {
                 </div>
 
                 {/* Quick Info */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-1 gap-4 mb-6">
                   <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl">
                     <FiClock className="w-6 h-6 text-orange-600 mx-auto mb-2" />
                     <p className="text-sm text-gray-600 font-medium">
@@ -393,13 +372,6 @@ const PackageDetailsPage = () => {
                     </p>
                     <p className="text-lg font-bold text-gray-800">
                       {packageData.duration}
-                    </p>
-                  </div>
-                  <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl">
-                    <FiStar className="w-6 h-6 text-orange-600 mx-auto mb-2" />
-                    <p className="text-sm text-gray-600 font-medium">Rating</p>
-                    <p className="text-lg font-bold text-gray-800">
-                      {packageData.rating}/5
                     </p>
                   </div>
                 </div>

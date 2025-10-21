@@ -11,7 +11,6 @@ import {
   FiUsers,
   FiTrendingUp,
   FiCamera,
-  FiHeart,
   FiShare2,
   FiChevronRight,
   FiPlay,
@@ -48,6 +47,30 @@ const TrekkingTourDetails = () => {
   const { id } = router.query;
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  // Share function
+  const handleShare = async () => {
+    const shareData = {
+      title: tourData?.title || 'Trekking Adventure',
+      text: tourData?.description || 'Check out this amazing trekking adventure in Bhutan!',
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Error sharing:', err);
+        // Fallback to copying URL
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+      }
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
 
   // Find the tour with matching ID
   const tourData = trekkingAdventure.find(tour => tour.id === id) as TrekkingTour | undefined;
@@ -152,11 +175,11 @@ const TrekkingTourDetails = () => {
           </div>
 
           {/* Floating Action Buttons */}
-          <div className="absolute top-4 right-4 flex space-x-2">
-            <button className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
-              <FiHeart className="w-5 h-5 text-gray-700" />
-            </button>
-            <button className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
+          <div className="absolute top-4 right-4">
+            <button 
+              onClick={handleShare}
+              className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
+            >
               <FiShare2 className="w-5 h-5 text-gray-700" />
             </button>
           </div>

@@ -11,7 +11,6 @@ import {
   FiUsers,
   FiMusic,
   FiCamera,
-  FiHeart,
   FiShare2,
   FiChevronRight,
   FiPlay
@@ -50,6 +49,30 @@ const FestivalTourDetails = () => {
   const { id } = router.query;
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  // Share function
+  const handleShare = async () => {
+    const shareData = {
+      title: tourData?.title || 'Festival Tour',
+      text: tourData?.description || 'Check out this amazing festival tour in Bhutan!',
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Error sharing:', err);
+        // Fallback to copying URL
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+      }
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  };
 
   // Find the tour with matching ID
   const tourData = festivialTours.find(tour => tour.id === id) as FestivalTour | undefined;
@@ -137,11 +160,11 @@ const FestivalTourDetails = () => {
           </div>
 
           {/* Floating Action Buttons */}
-          <div className="absolute top-4 right-4 flex space-x-2">
-            <button className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
-              <FiHeart className="w-5 h-5 text-gray-700" />
-            </button>
-            <button className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
+          <div className="absolute top-4 right-4">
+            <button 
+              onClick={handleShare}
+              className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
+            >
               <FiShare2 className="w-5 h-5 text-gray-700" />
             </button>
           </div>
@@ -152,7 +175,7 @@ const FestivalTourDetails = () => {
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             {/* Header Info */}
             <div className="p-6 lg:p-8 border-b border-gray-100">
-              <div className="flex flex-wrap justify-between items-start gap-4">
+              <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center space-x-2 text-sm text-orange-600 font-medium mb-2">
                     <FiMusic className="w-4 h-4" />
@@ -178,24 +201,20 @@ const FestivalTourDetails = () => {
                       <FiClock className="w-4 h-4 text-orange-500" />
                       <span>{tourData.duration}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <FiStar className="w-4 h-4 text-yellow-500 fill-current" />
-                      <span>4.9 (32 festival reviews)</span>
-                    </div>
                   </div>
                 </div>
 
                 {/* Booking Card */}
-                <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-6 rounded-xl shadow-lg min-w-[280px]">
+                <div className="w-full lg:w-auto lg:min-w-[280px] bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-6 rounded-xl shadow-lg">
                   <div className="text-center">
                     <p className="text-lg font-semibold mb-2">Festival Experience</p>
                     <p className="text-sm opacity-90 mb-2">Join this sacred celebration</p>
-                    <p className="text-xs opacity-75 mb-4">Limited spots available!</p>
-                    <button className="w-full bg-white text-orange-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
-                      Reserve Festival Spot
-                    </button>
-                    <button className="w-full mt-2 border border-white/30 text-white font-semibold py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                      Get Festival Info
+                    <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
+                    <button 
+                      onClick={() => router.push('/contactus')}
+                      className="w-full bg-white text-orange-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                    >
+                      Enquire Now
                     </button>
                   </div>
                 </div>
@@ -275,7 +294,7 @@ const FestivalTourDetails = () => {
                   </div>
 
                   {/* Festival Statistics */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 not-prose">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 not-prose">
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
                       <div className="text-2xl font-bold text-orange-600">5-6</div>
                       <div className="text-sm text-gray-600">Festival Days</div>
@@ -287,10 +306,6 @@ const FestivalTourDetails = () => {
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
                       <div className="text-2xl font-bold text-orange-600">3</div>
                       <div className="text-sm text-gray-600">Sacred Sites</div>
-                    </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">4.9★</div>
-                      <div className="text-sm text-gray-600">Rating</div>
                     </div>
                   </div>
                 </div>
