@@ -250,7 +250,7 @@ function Index() {
           </div>
 
           {/* Category Navigation Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-6 mb-12">
             {[
               {
                 id: "all",
@@ -343,7 +343,7 @@ function Index() {
 
           {/* Quick Stats */}
           <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div>
                 <div className="text-3xl font-bold text-orange-600 mb-2">
                   {allTours.cityTours.length +
@@ -363,12 +363,6 @@ function Index() {
                   3-15
                 </div>
                 <div className="text-gray-600 font-medium">Days Duration</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-orange-600 mb-2">
-                  4.8★
-                </div>
-                <div className="text-gray-600 font-medium">Average Rating</div>
               </div>
             </div>
           </div>

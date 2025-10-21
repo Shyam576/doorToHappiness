@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { 
   FiMapPin, 
   FiCalendar, 
-  FiStar, 
   FiCheck, 
   FiX, 
   FiClock,
@@ -181,7 +180,7 @@ const GroupTourDetails = () => {
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             {/* Header Info */}
             <div className="p-6 lg:p-8 border-b border-gray-100">
-              <div className="flex flex-wrap justify-between items-start gap-4">
+              <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center space-x-2 text-sm text-orange-600 font-medium mb-2">
                     <HiOutlineUserGroup className="w-4 h-4" />
@@ -217,24 +216,20 @@ const GroupTourDetails = () => {
                       <FiClock className="w-4 h-4 text-orange-500" />
                       <span>{tourData.duration}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <FiStar className="w-4 h-4 text-yellow-500 fill-current" />
-                      <span>{tourData.rating} (28 group reviews)</span>
-                    </div>
                   </div>
                 </div>
 
                 {/* Booking Card */}
-                <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-6 rounded-xl shadow-lg min-w-[280px]">
+                <div className="w-full lg:w-auto lg:min-w-[280px] bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-6 rounded-xl shadow-lg">
                   <div className="text-center">
                     <p className="text-lg font-semibold mb-2">Join Group Adventure</p>
                     <p className="text-sm opacity-90 mb-2">Share the experience with fellow travelers</p>
-                    <p className="text-xs opacity-75 mb-4">Minimum 6 people required</p>
-                    <button className="w-full bg-white text-orange-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300">
-                      Join Group Tour
-                    </button>
-                    <button className="w-full mt-2 border border-white/30 text-white font-semibold py-3 px-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                      Check Availability
+                    <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
+                    <button 
+                      onClick={() => router.push('/contactus')}
+                      className="w-full bg-white text-orange-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                    >
+                      Enquire Now
                     </button>
                   </div>
                 </div>
