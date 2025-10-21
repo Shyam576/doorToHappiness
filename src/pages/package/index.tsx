@@ -263,6 +263,9 @@ function Index() {
                   allTours.groupTours.length,
                 icon: FiSearch,
                 description: "Browse everything",
+                gradient: "from-orange-500 to-yellow-500",
+                hoverGradient: "hover:from-orange-600 hover:to-yellow-600",
+                activeGradient: "from-orange-600 to-yellow-600",
               },
               {
                 id: "city",
@@ -270,6 +273,9 @@ function Index() {
                 count: allTours.cityTours.length,
                 icon: FiMapPin,
                 description: "From major cities",
+                gradient: "from-yellow-400 to-orange-400",
+                hoverGradient: "hover:from-yellow-500 hover:to-orange-500",
+                activeGradient: "from-yellow-500 to-orange-500",
               },
               {
                 id: "festival",
@@ -277,6 +283,9 @@ function Index() {
                 count: allTours.festivalTours.length,
                 icon: FiCalendar,
                 description: "Cultural celebrations",
+                gradient: "from-orange-400 to-red-400",
+                hoverGradient: "hover:from-orange-500 hover:to-red-500",
+                activeGradient: "from-orange-500 to-red-500",
               },
               {
                 id: "cultural",
@@ -284,6 +293,9 @@ function Index() {
                 count: allTours.culturalTours.length,
                 icon: FiCamera,
                 description: "Heritage & traditions",
+                gradient: "from-yellow-500 to-amber-500",
+                hoverGradient: "hover:from-yellow-600 hover:to-amber-600",
+                activeGradient: "from-yellow-600 to-amber-600",
               },
               {
                 id: "adventure",
@@ -291,6 +303,9 @@ function Index() {
                 count: allTours.adventureTours.length,
                 icon: FiTrendingUp,
                 description: "Treks & outdoor",
+                gradient: "from-orange-600 to-yellow-400",
+                hoverGradient: "hover:from-orange-700 hover:to-yellow-500",
+                activeGradient: "from-orange-700 to-yellow-500",
               },
               {
                 id: "group",
@@ -298,14 +313,17 @@ function Index() {
                 count: allTours.groupTours.length,
                 icon: FiUsers,
                 description: "Travel together",
+                gradient: "from-amber-400 to-orange-500",
+                hoverGradient: "hover:from-amber-500 hover:to-orange-600",
+                activeGradient: "from-amber-500 to-orange-600",
               },
             ].map((category) => (
               <div
                 key={category.id}
                 onClick={() => scrollToCategory(category.id)}
-                className={`cursor-pointer transform hover:scale-105 transition-all duration-300 rounded-2xl p-6 text-white bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 ${
+                className={`cursor-pointer transform hover:scale-105 transition-all duration-300 rounded-2xl p-6 text-white bg-gradient-to-br ${category.gradient} ${category.hoverGradient} ${
                   activeCategory === category.id
-                    ? "ring-4 ring-yellow-300 shadow-2xl scale-105 from-orange-600 to-yellow-600"
+                    ? `ring-4 ring-yellow-300 shadow-2xl scale-105 ${category.activeGradient}`
                     : "hover:shadow-xl"
                 }`}
               >

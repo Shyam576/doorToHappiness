@@ -110,13 +110,13 @@ const SacredPlacesIndex = () => {
             <div className="flex justify-center">
               {/* Search */}
               <div className="relative w-full max-w-2xl">
-                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-400" />
                 <input
                   type="text"
                   placeholder="Search sacred places, dzongs, monasteries..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-base"
+                  className="w-full pl-10 pr-4 py-3 border border-orange-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-300 text-base bg-white hover:border-orange-300 transition-colors"
                 />
               </div>
             </div>
@@ -172,12 +172,12 @@ const SacredPlacesIndex = () => {
                     
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                       <Link href={`/sacred-places/${place.slug}`} className="flex-1">
-                        <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-200 min-h-[40px] flex items-center justify-center text-sm">
+                        <button className="w-full bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-200 min-h-[40px] flex items-center justify-center text-sm shadow-md hover:shadow-lg">
                           Read More
                         </button>
                       </Link>
                       <Link href={`/dzongkhag/${place.dzongkhagSlug}`} className="flex-1">
-                        <button className="w-full bg-gradient-to-br from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-200 min-h-[40px] flex items-center justify-center text-center leading-tight text-sm overflow-hidden">
+                        <button className="w-full bg-gradient-to-br from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-200 min-h-[40px] flex items-center justify-center text-center leading-tight text-sm overflow-hidden shadow-md hover:shadow-lg">
                           <span className="truncate whitespace-nowrap max-w-full">
                             {place.dzongkhag.length > 15 ? `${place.dzongkhag.substring(0, 12)}...` : `Explore ${place.dzongkhag}`}
                           </span>
