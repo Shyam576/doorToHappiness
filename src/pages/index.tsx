@@ -4,7 +4,7 @@ import { Container } from "../components/Container";
 import WhatsAppButton from "../components/whatsAppButton";
 import majorCitiesPackage from "../data/majorCitiesPackage.json";
 import popularDestination from "../data/popularDestination.json";
-import { FaUmbrellaBeach, FaMountain, FaCity, FaTree, FaPager } from "react-icons/fa";
+import { FaUmbrellaBeach, FaMountain, FaCity, FaTree, FaPager, FaCertificate, FaLeaf, FaHandHoldingUsd, FaShieldAlt } from "react-icons/fa";
 import { getTheme } from "../styles/themes";
 
 import {
@@ -494,22 +494,22 @@ const Index: React.FC = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
             {[
               {
-                icon: "🏆",
+                icon: <FaCertificate className="text-blue-600" />,
                 title: "Best Local Guides",
                 text: "Certified Bhutanese experts",
               },
               {
-                icon: "🌱",
+                icon: <FaLeaf className="text-green-600" />,
                 title: "Sustainable Travel",
                 text: "Carbon-neutral tours",
               },
               {
-                icon: "💰",
+                icon: <FaHandHoldingUsd className="text-emerald-600" />,
                 title: "Transparent Pricing",
                 text: "Clear & fair costs",
               },
               {
-                icon: "🛡️",
+                icon: <FaShieldAlt className="text-indigo-600" />,
                 title: "Flexible Booking",
                 text: "Free cancellations",
               },
@@ -518,7 +518,7 @@ const Index: React.FC = () => {
                 key={index}
                 className="p-4 sm:p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition"
               >
-                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">{item.icon}</div>
+                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 flex justify-center">{item.icon}</div>
                 <h3 className="font-bold text-base sm:text-lg mb-1 sm:mb-2 text-gray-800">
                   {item.title}
                 </h3>
@@ -532,8 +532,8 @@ const Index: React.FC = () => {
       {/* Featured Tours Section */}
       <Container className="py-8 sm:py-12" ref={toursRef}>
         <div className="text-center mb-8 sm:mb-12">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-left mb-4 md:mb-0">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
+            <div className="text-left flex-1">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                 Our Most Popular Bhutan Tours
               </h2>
@@ -549,15 +549,14 @@ const Index: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex items-center">
-              <span className="mr-2 text-gray-700 text-sm sm:text-base">Sort by:</span>
+            <div className="flex items-center justify-end w-full sm:w-auto">
               <select
-                className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+                className="px-3 sm:px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base bg-white text-gray-700 hover:border-orange-300 transition-colors min-w-[140px] sm:min-w-[160px]"
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
               >
                 {sortOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
+                  <option key={option.value} value={option.value} className="text-gray-700">
                     {option.label}
                   </option>
                 ))}
@@ -642,7 +641,7 @@ const Index: React.FC = () => {
         {sortedPackages.length > 6 && !packageSearchTerm && (
           <div className="text-center mt-8 sm:mt-12">
             <Link href="/package" passHref>
-              <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 transition">
+              <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 transition">
                 View All {sortedPackages.length} Tour Packages
                 <FiArrowRight className="ml-2" />
               </button>
@@ -840,7 +839,7 @@ const Index: React.FC = () => {
                         ? "border-red-400 focus:ring-red-500" 
                         : subscriptionStatus === "success"
                         ? "border-green-400 focus:ring-green-500"
-                        : "border-gray-400 focus:ring-yellow-500"
+                        : "border-orange-200 focus:ring-orange-500"
                     } ${isSubscribing ? "opacity-50 cursor-not-allowed" : ""}`}
                   />
                 </div>
@@ -853,7 +852,7 @@ const Index: React.FC = () => {
                       ? "bg-gray-400 text-gray-200 cursor-not-allowed" 
                       : subscriptionStatus === "success"
                       ? "bg-green-600 hover:bg-green-700 text-white"
-                      : "bg-gray-800 hover:bg-gray-900 text-white"
+                      : "bg-orange-500 hover:bg-orange-600 text-white"
                   }`}
                 >
                   {isSubscribing ? (
