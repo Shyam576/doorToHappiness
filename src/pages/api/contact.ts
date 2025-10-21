@@ -7,16 +7,30 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-    try {
-        await dbConnect();
-        
-      } catch (error:any) {
-        console.error('Database connection error:', error);
-        return res.status(500).json({ 
-          message: 'Database connection error',
-          error: error.message 
-        });
-      }
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+
+  // Handle OPTIONS request (CORS preflight)
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  try {
+    await dbConnect();
+  } catch (error: any) {
+    console.error('Database connection error:', error);
+    return res.status(500).json({ 
+      message: 'Database connection error',
+      error: error.message 
+    });
+  }
 
   const { method } = req;
 
@@ -69,7 +83,8 @@ export default async function handler(
       break;
 
     default:
-      res.status(400).json({ success: false, message: 'Invalid request method' });
+      res.setHeader('Allow', ['GET', 'POST', 'DELETE', 'OPTIONS']);
+      res.status(405).json({ success: false, message: `Method ${method} not allowed` });
       break;
   }
 }

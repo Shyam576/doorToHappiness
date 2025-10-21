@@ -19,7 +19,14 @@ import "../FontAwesomeConfig";
 
 const persistor = getPersistor();
 
-axios.defaults.baseURL = "http://localhost:3000";
+// Set axios base URL dynamically based on environment
+if (typeof window !== 'undefined') {
+  // Client-side: use the current origin
+  axios.defaults.baseURL = window.location.origin;
+} else {
+  // Server-side: use environment variable or default
+  axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
+}
 axios.defaults.withCredentials = false;
 
 const fetcher = async (url: string) => {
