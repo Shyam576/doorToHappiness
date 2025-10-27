@@ -12,7 +12,6 @@ function generateSiteMapXML() {
   // Static pages that actually exist
   const staticPages = [
     { url: '', changefreq: 'weekly', priority: '1.0' },
-    { url: '/destination', changefreq: 'weekly', priority: '0.9' },
     { url: '/package', changefreq: 'weekly', priority: '0.9' },
     { url: '/contactus', changefreq: 'monthly', priority: '0.7' },
     { url: '/faq', changefreq: 'monthly', priority: '0.6' },
@@ -22,15 +21,6 @@ function generateSiteMapXML() {
     { url: '/invite', changefreq: 'yearly', priority: '0.3' },
     { url: '/unsubscribe', changefreq: 'yearly', priority: '0.1' },
   ];
-
-  // Dynamic destination explore pages (these exist with [id].tsx)
-  const destinationPages = popularDestination
-    .filter((dest: any) => dest.slug)
-    .map((dest: any) => ({
-      url: `/destination/explore/${dest.slug}`,
-      changefreq: 'weekly',
-      priority: '0.8'
-    }));
   
   // Dzongkhag pages (these exist with [slug].tsx)
   const dzongkhagPages = popularDestination
@@ -98,7 +88,6 @@ function generateSiteMapXML() {
   // Combine all existing pages
   const allPages = [
     ...staticPages,
-    ...destinationPages, 
     ...dzongkhagPages,
     ...sacredPlacePages,
     ...majorCityPages,
