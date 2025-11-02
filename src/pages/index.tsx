@@ -4,14 +4,23 @@ import { Container } from "../components/Container";
 import WhatsAppButton from "../components/whatsAppButton";
 import majorCitiesPackage from "../data/majorCitiesPackage.json";
 import popularDestination from "../data/popularDestination.json";
-import { FaUmbrellaBeach, FaMountain, FaCity, FaTree, FaPager, FaCertificate, FaLeaf, FaHandHoldingUsd, FaShieldAlt, FaBuilding, FaPrayingHands, FaFortAwesome } from "react-icons/fa";
+import {
+  FaUmbrellaBeach,
+  FaMountain,
+  FaCity,
+  FaTree,
+  FaPager,
+  FaCertificate,
+  FaLeaf,
+  FaHandHoldingUsd,
+  FaShieldAlt,
+  FaBuilding,
+  FaPrayingHands,
+  FaFortAwesome,
+} from "react-icons/fa";
 import { getTheme } from "../styles/themes";
 
-import {
-  FiSearch,
-  FiArrowRight,
-  FiChevronDown,
-} from "react-icons/fi";
+import { FiSearch, FiArrowRight, FiChevronDown } from "react-icons/fi";
 import festivalTours from "../data/festivialTours.json";
 import culturalTours from "../data/culturalTours.json";
 import trekkingAdventures from "../data/trekkingAdventure.json";
@@ -21,7 +30,7 @@ import Link from "next/link";
 
 const SEO_KEYWORDS = [
   "Bhutan tours",
-  "Bhutan travel packages", 
+  "Bhutan travel packages",
   "Bhutan dzongkhags",
   "sacred places Bhutan",
   "dzongs Bhutan",
@@ -43,7 +52,7 @@ const SEO_KEYWORDS = [
   "Bhutan spiritual journey",
   "Lhakhangs Bhutan",
   "Chortens Bhutan",
-  "traditional architecture Bhutan"
+  "traditional architecture Bhutan",
 ];
 
 // Helper function to convert duration string to days
@@ -56,7 +65,7 @@ const getDurationInDays = (duration: any) => {
 const Index: React.FC = () => {
   // Get unified theme
   const theme = getTheme();
-  
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [packageSearchTerm, setPackageSearchTerm] = useState("");
   const [showPackageResults, setShowPackageResults] = useState(false);
@@ -65,12 +74,14 @@ const Index: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
+
   // Newsletter subscription state
   const [email, setEmail] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscriptionMessage, setSubscriptionMessage] = useState("");
-  const [subscriptionStatus, setSubscriptionStatus] = useState<"idle" | "success" | "error">("idle");
+  const [subscriptionStatus, setSubscriptionStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   // Refs for scrolling
   const toursRef = useRef<HTMLDivElement>(null);
@@ -80,25 +91,25 @@ const Index: React.FC = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Determine the correct route based on the tour category
   const getRouteForTour = (tour: any) => {
     switch (tour.category) {
-      case 'cultural':
+      case "cultural":
         return `/package/cultural/${tour.id}`;
-      case 'festival':
+      case "festival":
         return `/package/festival/${tour.id}`;
-      case 'group':
+      case "group":
         return `/package/group/${tour.id}`;
-      case 'trekking':
-      case 'adventure':  // Adventure tours also use trekking pages
+      case "trekking":
+      case "adventure": // Adventure tours also use trekking pages
         return `/package/trekking/${tour.id}`;
-      case 'city':
+      case "city":
       default:
         return `/package/majorcitytour/${tour.id}`;
     }
@@ -107,7 +118,7 @@ const Index: React.FC = () => {
   // Handle newsletter subscription
   const handleNewsletterSubscription = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !email.trim()) {
       setSubscriptionMessage("Please enter your email address.");
       setSubscriptionStatus("error");
@@ -127,10 +138,10 @@ const Index: React.FC = () => {
     setSubscriptionMessage("");
 
     try {
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
       });
@@ -143,7 +154,9 @@ const Index: React.FC = () => {
         setEmail(""); // Clear the email field on success
       } else {
         setSubscriptionStatus("error");
-        setSubscriptionMessage(data.message || "Failed to subscribe. Please try again.");
+        setSubscriptionMessage(
+          data.message || "Failed to subscribe. Please try again."
+        );
       }
     } catch (error) {
       console.error("Newsletter subscription error:", error);
@@ -151,7 +164,7 @@ const Index: React.FC = () => {
       setSubscriptionMessage("Something went wrong. Please try again later.");
     } finally {
       setIsSubscribing(false);
-      
+
       // Clear message after 5 seconds
       setTimeout(() => {
         setSubscriptionMessage("");
@@ -179,7 +192,7 @@ const Index: React.FC = () => {
         pkg.highlights.some((highlight) =>
           highlight.toLowerCase().includes(packageSearchTerm.toLowerCase())
         ));
-  
+
     return matchesSearch;
   });
 
@@ -214,14 +227,17 @@ const Index: React.FC = () => {
   // Handle clicking outside dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -229,7 +245,7 @@ const Index: React.FC = () => {
   const handlePackageSearch = useCallback((value: string) => {
     setPackageSearchTerm(value);
     setShowPackageResults(value.length > 0);
-    
+
     // Auto-scroll to tours if user is actively searching
     if (value.length > 2) {
       setTimeout(() => scrollToSection(toursRef), 500);
@@ -239,9 +255,9 @@ const Index: React.FC = () => {
   // Scroll to section function
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
-      ref.current.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
+      ref.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
     }
   };
@@ -249,10 +265,10 @@ const Index: React.FC = () => {
   // Handle search application with scroll
   const handleSearch = () => {
     setIsLoading(true);
-    
+
     // Scroll to tours section
     setTimeout(() => scrollToSection(toursRef), 100);
-    
+
     // Reset loading state
     setTimeout(() => setIsLoading(false), 1000);
   };
@@ -290,8 +306,16 @@ const Index: React.FC = () => {
 
   const categories = [
     { id: "all", name: "All", icon: null },
-    { id: "cultural", name: "Cultural", icon: <FaPager className="inline mr-1" /> },
-    { id: "adventure", name: "Adventure", icon: <FaMountain className="inline mr-1" /> },
+    {
+      id: "cultural",
+      name: "Cultural",
+      icon: <FaPager className="inline mr-1" />,
+    },
+    {
+      id: "adventure",
+      name: "Adventure",
+      icon: <FaMountain className="inline mr-1" />,
+    },
     { id: "nature", name: "Nature", icon: <FaTree className="inline mr-1" /> },
     { id: "spiritual", name: "Spiritual", icon: "🕉️" },
     { id: "scenic", name: "Scenic", icon: "🏞️" },
@@ -307,7 +331,8 @@ const Index: React.FC = () => {
     <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
       <Head>
         <title>
-          Bhutan's #1 Tour Operator | Dzongkhag & Sacred Places Expert | Door To Happiness
+          Bhutan's #1 Tour Operator | Dzongkhag & Sacred Places Expert | Door To
+          Happiness
         </title>
         <meta
           name="description"
@@ -323,9 +348,12 @@ const Index: React.FC = () => {
           content="Custom Bhutan tours featuring monasteries, festivals, and Himalayan adventures. Sustainable tourism with local experts."
         />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholiday.com" />
+        <link rel="canonical" href="https://www.doortohappinessholidays.com" />
         <link rel="icon" href="/logowhitebg.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -418,8 +446,18 @@ const Index: React.FC = () => {
                       setShowPackageResults(false);
                     }}
                   >
-                    <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="h-5 w-5 text-gray-400 hover:text-gray-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 )}
@@ -459,18 +497,28 @@ const Index: React.FC = () => {
                   className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base"
                   onClick={clearSearch}
                 >
-                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                   Clear
                 </button>
               )}
               <button
                 className={`${
-                  packageSearchTerm ? 'col-span-1' : 'col-span-2'
+                  packageSearchTerm ? "col-span-1" : "col-span-2"
                 } ${
-                  isLoading 
-                    ? 'bg-gray-400 cursor-not-allowed' 
+                  isLoading
+                    ? "bg-gray-400 cursor-not-allowed"
                     : `${theme.primary} ${theme.primaryHover}`
                 } text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base`}
                 onClick={() => {
@@ -482,9 +530,25 @@ const Index: React.FC = () => {
               >
                 {isLoading ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     Searching...
                   </>
@@ -535,11 +599,15 @@ const Index: React.FC = () => {
                 key={index}
                 className="p-4 sm:p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition"
               >
-                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 flex justify-center">{item.icon}</div>
+                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 flex justify-center">
+                  {item.icon}
+                </div>
                 <h3 className="font-bold text-base sm:text-lg mb-1 sm:mb-2 text-gray-800">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm sm:text-base">{item.text}</p>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  {item.text}
+                </p>
               </div>
             ))}
           </div>
@@ -557,7 +625,8 @@ const Index: React.FC = () => {
               <p className="text-gray-600 text-sm sm:text-base">
                 {packageSearchTerm ? (
                   <>
-                    Found {filteredPackages.length} tour{filteredPackages.length !== 1 ? 's' : ''} 
+                    Found {filteredPackages.length} tour
+                    {filteredPackages.length !== 1 ? "s" : ""}
                     {packageSearchTerm && ` matching "${packageSearchTerm}"`}
                   </>
                 ) : (
@@ -566,16 +635,28 @@ const Index: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex items-center justify-end w-full sm:w-auto relative" ref={dropdownRef}>
+            <div
+              className="flex items-center justify-end w-full sm:w-auto relative"
+              ref={dropdownRef}
+            >
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="px-3 sm:px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base bg-white text-gray-700 hover:border-orange-300 transition-colors min-w-[140px] sm:min-w-[160px] flex items-center justify-between"
                 >
-                  <span>{sortOptions.find(option => option.value === sortOption)?.label}</span>
-                  <FiChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  <span>
+                    {
+                      sortOptions.find((option) => option.value === sortOption)
+                        ?.label
+                    }
+                  </span>
+                  <FiChevronDown
+                    className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                      isDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
-                
+
                 {isDropdownOpen && (
                   <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-orange-200 rounded-lg shadow-lg z-50 overflow-hidden">
                     {sortOptions.map((option) => (
@@ -586,7 +667,9 @@ const Index: React.FC = () => {
                           setIsDropdownOpen(false);
                         }}
                         className={`w-full text-left px-3 sm:px-4 py-2 text-sm sm:text-base hover:bg-orange-50 transition-colors ${
-                          sortOption === option.value ? 'bg-orange-100 text-orange-700 font-medium' : 'text-gray-700'
+                          sortOption === option.value
+                            ? "bg-orange-100 text-orange-700 font-medium"
+                            : "text-gray-700"
                         }`}
                       >
                         {option.label}
@@ -614,13 +697,14 @@ const Index: React.FC = () => {
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-
                 </div>
 
                 {/* Content section with flex-grow and fixed min-height */}
                 <div className="p-4 sm:p-6 flex flex-col flex-grow">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-sm sm:text-lg text-gray-800 font-bold flex-1 pr-2">{tour.title}</h3>
+                    <h3 className="text-sm sm:text-lg text-gray-800 font-bold flex-1 pr-2">
+                      {tour.title}
+                    </h3>
                     <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap flex-shrink-0">
                       {tour.duration || tour.dates}
                     </span>
@@ -657,10 +741,12 @@ const Index: React.FC = () => {
               <div className="text-gray-400 mb-4">
                 <FiSearch className="mx-auto h-12 w-12" />
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">No tours found</h3>
+              <h3 className="text-xl font-medium text-gray-900 mb-2">
+                No tours found
+              </h3>
               <p className="text-gray-500 mb-4">
-                We couldn't find any tours matching "{packageSearchTerm}". 
-                Try adjusting your search or browse all tours.
+                We couldn't find any tours matching "{packageSearchTerm}". Try
+                adjusting your search or browse all tours.
               </p>
               <button
                 onClick={clearSearch}
@@ -762,7 +848,9 @@ const Index: React.FC = () => {
             Explore Bhutan's Historic Dzongkhags
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-            Discover the cultural heart of Bhutan through its 20 dzongkhags, each home to ancient dzongs, monasteries, and timeless Buddhist traditions.
+            Discover the cultural heart of Bhutan through its 20 dzongkhags,
+            each home to ancient dzongs, monasteries, and timeless Buddhist
+            traditions.
           </p>
         </div>
 
@@ -771,9 +859,13 @@ const Index: React.FC = () => {
             <div className="text-5xl text-red-600 mb-4 flex justify-center">
               <FaFortAwesome />
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-800">Historic Dzongs</h3>
+            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+              Historic Dzongs
+            </h3>
             <p className="text-gray-600 mb-6">
-              Explore over 50 fortress-monasteries that serve as both administrative centers and spiritual sanctuaries across all 20 dzongkhags.
+              Explore over 50 fortress-monasteries that serve as both
+              administrative centers and spiritual sanctuaries across all 20
+              dzongkhags.
             </p>
             <Link href="/dzongkhag">
               <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
@@ -786,9 +878,13 @@ const Index: React.FC = () => {
             <div className="text-5xl text-orange-600 mb-4 flex justify-center">
               <FaBuilding />
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-800">Monasteries & Temples</h3>
+            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+              Monasteries & Temples
+            </h3>
             <p className="text-gray-600 mb-6">
-              Visit ancient lhakhangs, gompas, and temples that preserve 1,000+ years of Buddhist wisdom and serve as centers of cultural practice.
+              Visit ancient lhakhangs, gompas, and temples that preserve 1,000+
+              years of Buddhist wisdom and serve as centers of cultural
+              practice.
             </p>
             <Link href="/sacred-places">
               <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
@@ -801,9 +897,13 @@ const Index: React.FC = () => {
             <div className="text-5xl text-blue-600 mb-4 flex justify-center">
               <FaPrayingHands />
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-800">Cultural Heritage</h3>
+            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+              Cultural Heritage
+            </h3>
             <p className="text-gray-600 mb-6">
-              Experience living traditions through tsechu festivals, traditional architecture, and time-honored customs preserved in each dzongkhag.
+              Experience living traditions through tsechu festivals, traditional
+              architecture, and time-honored customs preserved in each
+              dzongkhag.
             </p>
             <Link href="/guides/dzong-architecture">
               <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
@@ -824,14 +924,20 @@ const Index: React.FC = () => {
                 <div className="group cursor-pointer">
                   <div className="relative h-32 rounded-lg overflow-hidden mb-3">
                     <img
-                      src={dzongkhag.media?.images?.[0] || '/backgroundbanner.png'}
+                      src={
+                        dzongkhag.media?.images?.[0] || "/backgroundbanner.png"
+                      }
                       alt={`${dzongkhag.name} dzongkhag`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-opacity"></div>
                     <div className="absolute bottom-2 left-2 right-2">
-                      <h4 className="font-bold text-white text-sm">{dzongkhag.name}</h4>
-                      <p className="text-xs text-gray-200">{dzongkhag.tagline}</p>
+                      <h4 className="font-bold text-white text-sm">
+                        {dzongkhag.name}
+                      </h4>
+                      <p className="text-xs text-gray-200">
+                        {dzongkhag.tagline}
+                      </p>
                     </div>
                   </div>
                   {/* <div className="flex justify-between items-center">
@@ -841,7 +947,7 @@ const Index: React.FC = () => {
               </Link>
             ))}
           </div>
-          
+
           <div className="text-center mt-8">
             <Link href="/dzongkhag">
               <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-lg font-bold transition-all transform hover:scale-105">
@@ -866,7 +972,10 @@ const Index: React.FC = () => {
               </p>
             </div>
             <div className="md:w-1/2 p-6 sm:p-8">
-              <form onSubmit={handleNewsletterSubscription} className="space-y-4">
+              <form
+                onSubmit={handleNewsletterSubscription}
+                className="space-y-4"
+              >
                 <div className="mb-4">
                   <input
                     type="email"
@@ -875,21 +984,21 @@ const Index: React.FC = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isSubscribing}
                     className={`w-full px-4 py-3 bg-white border rounded-lg focus:outline-none focus:ring-2 text-base transition-colors ${
-                      subscriptionStatus === "error" 
-                        ? "border-red-400 focus:ring-red-500" 
+                      subscriptionStatus === "error"
+                        ? "border-red-400 focus:ring-red-500"
                         : subscriptionStatus === "success"
                         ? "border-green-400 focus:ring-green-500"
                         : "border-orange-200 focus:ring-orange-500"
                     } ${isSubscribing ? "opacity-50 cursor-not-allowed" : ""}`}
                   />
                 </div>
-                
-                <button 
+
+                <button
                   type="submit"
                   disabled={isSubscribing || !email.trim()}
                   className={`w-full font-bold py-3 px-4 rounded-lg transition text-base ${
-                    isSubscribing 
-                      ? "bg-gray-400 text-gray-200 cursor-not-allowed" 
+                    isSubscribing
+                      ? "bg-gray-400 text-gray-200 cursor-not-allowed"
                       : subscriptionStatus === "success"
                       ? "bg-green-600 hover:bg-green-700 text-white"
                       : "bg-orange-500 hover:bg-orange-600 text-white"
@@ -897,9 +1006,25 @@ const Index: React.FC = () => {
                 >
                   {isSubscribing ? (
                     <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Subscribing...
                     </span>
@@ -909,17 +1034,19 @@ const Index: React.FC = () => {
                     "Subscribe"
                   )}
                 </button>
-                
+
                 {subscriptionMessage && (
-                  <div className={`p-3 rounded-lg text-sm ${
-                    subscriptionStatus === "success" 
-                      ? "bg-green-50 text-green-800 border border-green-200" 
-                      : "bg-red-50 text-red-800 border border-red-200"
-                  }`}>
+                  <div
+                    className={`p-3 rounded-lg text-sm ${
+                      subscriptionStatus === "success"
+                        ? "bg-green-50 text-green-800 border border-green-200"
+                        : "bg-red-50 text-red-800 border border-red-200"
+                    }`}
+                  >
                     {subscriptionMessage}
                   </div>
                 )}
-                
+
                 <p className="text-xs text-gray-500 mt-3">
                   We respect your privacy. Unsubscribe at any time.
                 </p>

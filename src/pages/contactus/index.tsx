@@ -327,12 +327,12 @@ const ContactPage = () => {
                           Email Address
                         </h3>
                         <a 
-                          href="https://mail.google.com/mail/?view=cm&to=haengboghage17@gmail.com"
+                          href="https://mail.google.com/mail/?view=cm&to=doortohappinessholiday@gmail.com"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="mt-1 text-orange-600 hover:text-orange-700 text-sm sm:text-base transition-colors duration-200 cursor-pointer"
                         >
-                           haengboghage17@gmail.com
+                           doortohappinessholiday@gmail.com
                         </a>
                       </div>
                     </div>

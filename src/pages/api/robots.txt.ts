@@ -18,7 +18,6 @@ Disallow: /unsubscribe
 
 # Allow important pages that actually exist
 Allow: /package/
-Allow: /destination/
 Allow: /dzongkhag/
 Allow: /sacred-places/
 Allow: /contactus
