@@ -8,7 +8,7 @@ export const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-between items-center">
             {/* Branding */}
             <div className="text-center lg:text-left mb-4 lg:mb-0">
-              <h2 className="text-xl font-bold">Door To Happiness</h2>
+              <h2 className="text-xl font-bold">Door To Happiness Holiday</h2>
               <p className="text-sm">Creating seamless experiences since 2022</p>
             </div>
   
