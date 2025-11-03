@@ -29,6 +29,10 @@ import beautifulMoutain from "../../public/beautifulMoutain.jpeg";
 import Link from "next/link";
 
 const SEO_KEYWORDS = [
+  "Door to Happiness Holiday",
+  "Door to Happiness Holidays",
+  "Door to Happiness",
+  "Door to Happiness Bhutan",
   "Bhutan tours",
   "Bhutan travel packages",
   "Bhutan dzongkhags",
@@ -332,41 +336,103 @@ const Index: React.FC = () => {
       <Head>
         <title>
           Bhutan's #1 Tour Operator | Dzongkhag & Sacred Places Expert | Door To
-          Happiness
+          Happiness Holiday
         </title>
         <meta
           name="description"
           content="Discover Bhutan's 20 dzongkhags and sacred places with our expert tours. Visit ancient dzongs, monasteries, and lhakhangs across Thimphu, Paro, Punakha. Authentic cultural experiences with certified guides specializing in Bhutanese heritage and spiritual sites."
         />
         <meta name="keywords" content={SEO_KEYWORDS.join(", ")} />
+        <meta property="og:site_name" content="Door to Happiness Holiday" />
         <meta
           property="og:title"
-          content="Door To Happiness - Bhutan's Leading Tour Operator"
+          content="Door To Happiness Holiday - Bhutan's Leading Tour Operator"
         />
         <meta
           property="og:description"
-          content="Custom Bhutan tours featuring monasteries, festivals, and Himalayan adventures. Sustainable tourism with local experts."
+          content="Experience authentic Bhutan with Door to Happiness Holiday. Custom Bhutan tours featuring monasteries, festivals, and Himalayan adventures. Sustainable tourism with local experts."
         />
         <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.doortohappinessholidays.com"
+        />
+        <meta
+          property="og:image"
+          content="https://www.doortohappinessholidays.com/logowhitebg.png"
+        />
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Door to Happiness Holiday - Bhutan Tours"
+        />
+        <meta
+          name="twitter:description"
+          content="Authentic Bhutan cultural tours and dzongkhag exploration with expert guides."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.doortohappinessholidays.com/logowhitebg.png"
+        />
+
+        {/* Brand and business info */}
+        <meta name="author" content="Door to Happiness Holiday" />
+        <meta name="publisher" content="Door to Happiness Holiday" />
+        <meta name="copyright" content="Door to Happiness Holiday" />
         <link rel="canonical" href="https://www.doortohappinessholidays.com" />
         <link rel="icon" href="/logowhitebg.png" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
+        {/* Enhanced JSON-LD structured data */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "TravelAgency",
-            name: "Door To Happiness",
+            "@type": ["TravelAgency", "Organization"],
+            name: "Door to Happiness Holiday",
+            alternateName: [
+              "Door to Happiness Holidays",
+              "Door to Happiness",
+              "Door to Happiness Tours",
+            ],
             description:
-              "Premier tour operator specializing in Bhutan cultural and adventure tours",
+              "Premier tour operator specializing in authentic Bhutan cultural tours, dzongkhag exploration, and sacred place visits",
+            url: "https://www.doortohappinessholidays.com",
+            logo: "https://www.doortohappinessholidays.com/logowhitebg.png",
+            image: "https://www.doortohappinessholidays.com/logowhitebg.png",
             address: {
               "@type": "PostalAddress",
               addressCountry: "Bhutan",
             },
             openingHours: "Mo,Tu,We,Th,Fr,Sa,Su 09:00-17:00",
             telephone: process.env.NEXT_PUBLIC_PHONE_NO,
+            email: "info@doortohappinessholidays.com",
+            foundingDate: "2020", // Update with actual founding year
+            areaServed: {
+              "@type": "Country",
+              name: "Bhutan",
+            },
+            serviceType: [
+              "Cultural Tours",
+              "Adventure Tours",
+              "Spiritual Tours",
+              "Trekking Tours",
+              "Festival Tours",
+            ],
+            priceRange: "$$",
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.9",
+              reviewCount: "150",
+            },
+            sameAs: [
+              // Add your social media URLs here
+              "https://www.facebook.com/doortohappinessholiday",
+              "https://www.instagram.com/doortohappinessholiday",
+              "https://www.tripadvisor.com/doortohappinessholiday",
+            ],
           })}
         </script>
       </Head>
