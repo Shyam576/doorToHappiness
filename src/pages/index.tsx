@@ -29,6 +29,9 @@ import beautifulMoutain from "../../public/beautifulMoutain.jpeg";
 import Link from "next/link";
 
 const SEO_KEYWORDS = [
+  "Department Of Tourism",
+  "DOT",
+  "dot",
   "Door to Happiness Holiday",
   "Door to Happiness Holidays",
   "Door to Happiness",
