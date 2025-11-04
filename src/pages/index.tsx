@@ -28,40 +28,6 @@ import groupTours from "../data/groupTours.json";
 import beautifulMoutain from "../../public/beautifulMoutain.jpeg";
 import Link from "next/link";
 
-const SEO_KEYWORDS = [
-  "Department Of Tourism",
-  "DOT",
-  "dot",
-  "Door to Happiness Holiday",
-  "Door to Happiness Holidays",
-  "Door to Happiness",
-  "Door to Happiness Bhutan",
-  "Bhutan tours",
-  "Bhutan travel packages",
-  "Bhutan dzongkhags",
-  "sacred places Bhutan",
-  "dzongs Bhutan",
-  "monasteries Bhutan",
-  "Himalayan vacations",
-  "Cultural tours Bhutan",
-  "Bhutan trekking adventures",
-  "Tiger's Nest Monastery",
-  "Paro Taktsang",
-  "Thimphu dzongkhag",
-  "Punakha dzong",
-  "Bhutan festival tours",
-  "Buddhist temples Bhutan",
-  "Bhutanese culture",
-  "Thunder Dragon Kingdom",
-  "Gross National Happiness",
-  "Best Bhutan tour operator",
-  "Sustainable tourism Bhutan",
-  "Bhutan spiritual journey",
-  "Lhakhangs Bhutan",
-  "Chortens Bhutan",
-  "traditional architecture Bhutan",
-];
-
 // Helper function to convert duration string to days
 const getDurationInDays = (duration: any) => {
   if (!duration) return 0;
@@ -338,22 +304,27 @@ const Index: React.FC = () => {
     <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
       <Head>
         <title>
-          Bhutan's #1 Tour Operator | Dzongkhag & Sacred Places Expert | Door To
-          Happiness Holiday
+          Door to Happiness Holiday - Bhutan Tours | Dzongkhag & Sacred Places Expert
         </title>
         <meta
           name="description"
-          content="Discover Bhutan's 20 dzongkhags and sacred places with our expert tours. Visit ancient dzongs, monasteries, and lhakhangs across Thimphu, Paro, Punakha. Authentic cultural experiences with certified guides specializing in Bhutanese heritage and spiritual sites."
+          content="Explore Bhutan's 20 dzongkhags with Door to Happiness Holiday. Expert-guided cultural tours to ancient dzongs, monasteries & sacred sites. Licensed Bhutanese operator with 5-star reviews. Sustainable tourism since 2020."
         />
-        <meta name="keywords" content={SEO_KEYWORDS.join(", ")} />
+        
+        {/* Brand and SEO meta tags */}
+        <meta name="author" content="Door to Happiness Holiday" />
+        <meta name="publisher" content="Door to Happiness Holiday" />
+        <link rel="canonical" href="https://www.doortohappinessholidays.com" />
+        
+        {/* Open Graph tags for social sharing */}
         <meta property="og:site_name" content="Door to Happiness Holiday" />
         <meta
           property="og:title"
-          content="Door To Happiness Holiday - Bhutan's Leading Tour Operator"
+          content="Door to Happiness Holiday - Bhutan's Premier Tour Operator"
         />
         <meta
           property="og:description"
-          content="Experience authentic Bhutan with Door to Happiness Holiday. Custom Bhutan tours featuring monasteries, festivals, and Himalayan adventures. Sustainable tourism with local experts."
+          content="Experience authentic Bhutan with Door to Happiness Holiday. Cultural tours across 20 dzongkhags, sacred monasteries & festival experiences. Expert local guides, sustainable tourism."
         />
         <meta property="og:type" content="website" />
         <meta
@@ -364,6 +335,7 @@ const Index: React.FC = () => {
           property="og:image"
           content="https://www.doortohappinessholidays.com/logowhitebg.png"
         />
+        
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -372,23 +344,21 @@ const Index: React.FC = () => {
         />
         <meta
           name="twitter:description"
-          content="Authentic Bhutan cultural tours and dzongkhag exploration with expert guides."
+          content="Authentic Bhutan cultural tours and dzongkhag exploration with expert local guides."
         />
         <meta
           name="twitter:image"
           content="https://www.doortohappinessholidays.com/logowhitebg.png"
         />
 
-        {/* Brand and business info */}
-        <meta name="author" content="Door to Happiness Holiday" />
-        <meta name="publisher" content="Door to Happiness Holiday" />
+        {/* Additional meta tags */}
         <meta name="copyright" content="Door to Happiness Holiday" />
-        <link rel="canonical" href="https://www.doortohappinessholidays.com" />
         <link rel="icon" href="/logowhitebg.png" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
+        
         {/* Enhanced JSON-LD structured data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -412,7 +382,7 @@ const Index: React.FC = () => {
             openingHours: "Mo,Tu,We,Th,Fr,Sa,Su 09:00-17:00",
             telephone: process.env.NEXT_PUBLIC_PHONE_NO,
             email: "info@doortohappinessholidays.com",
-            foundingDate: "2020", // Update with actual founding year
+            foundingDate: "2020",
             areaServed: {
               "@type": "Country",
               name: "Bhutan",
