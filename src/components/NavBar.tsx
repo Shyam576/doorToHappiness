@@ -73,7 +73,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
             <img
               src={logo.src}
               alt="Door To Happiness Holidays Logo"
-              className="w-30 h-16 rounded-lg transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
+              className="w-30 h-18 rounded-lg transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
             />
            <div>
 			 <div>
