@@ -304,18 +304,19 @@ const Index: React.FC = () => {
     <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
       <Head>
         <title>
-          Door to Happiness Holiday - Bhutan Tours | Dzongkhag & Sacred Places Expert
+          Door to Happiness Holiday - Bhutan Tours | Dzongkhag & Sacred Places
+          Expert
         </title>
         <meta
           name="description"
           content="Explore Bhutan's 20 dzongkhags with Door to Happiness Holiday. Expert-guided cultural tours to ancient dzongs, monasteries & sacred sites. Licensed Bhutanese operator with 5-star reviews. Sustainable tourism since 2020."
         />
-        
+
         {/* Brand and SEO meta tags */}
         <meta name="author" content="Door to Happiness Holiday" />
         <meta name="publisher" content="Door to Happiness Holiday" />
         <link rel="canonical" href="https://www.doortohappinessholidays.com" />
-        
+
         {/* Open Graph tags for social sharing */}
         <meta property="og:site_name" content="Door to Happiness Holiday" />
         <meta
@@ -335,7 +336,7 @@ const Index: React.FC = () => {
           property="og:image"
           content="https://www.doortohappinessholidays.com/logowhitebg.png"
         />
-        
+
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -358,7 +359,7 @@ const Index: React.FC = () => {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        
+
         {/* Enhanced JSON-LD structured data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -431,8 +432,8 @@ const Index: React.FC = () => {
 
         <Container className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6">
           <div className="text-center text-white max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 drop-shadow-lg leading-tight">
-              Discover Bhutan's Magic
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 drop-shadow-lg leading-tight">
+              Discover Bhutan’s Magic
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 drop-shadow-md px-4">
               Authentic Cultural Experiences • Sustainable Tourism •
@@ -609,7 +610,7 @@ const Index: React.FC = () => {
       </div>
 
       {/* Trust Indicators */}
-      <div className="w-full bg-gradient-to-r from-orange-50 to-yellow-50">
+      {/* <div className="w-full bg-gradient-to-r from-orange-50 to-yellow-50">
         <Container className="py-8 sm:py-12">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
             {[
@@ -651,13 +652,222 @@ const Index: React.FC = () => {
             ))}
           </div>
         </Container>
+      </div> */}
+
+      {/* About Section - SEO-optimized with Modern Design */}
+      <div className="w-full bg-white py-16 sm:py-24">
+        <Container>
+          {/* Header Section */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 px-4">
+            <div className="inline-block mb-4">
+              <span className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
+                Certified by Tourism Council of Bhutan
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+              Your Gateway to Authentic Bhutan Travel Experiences
+            </h2>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed text-left sm:text-center">
+              <strong className="text-gray-900">Door to Happiness Holiday</strong> is a premier
+              Bhutan-based travel company specializing in authentic cultural
+              tours, trekking adventures, and personalized travel experiences
+              across all 20 dzongkhags of Bhutan. As a licensed Bhutanese tour
+              operator, we connect travelers with the genuine heart of the Land
+              of the Thunder Dragon through expertly curated journeys that honor
+              Bhutan&apos;s unique philosophy of Gross National Happiness.
+            </p>
+          </div>
+
+          {/* Experience Cards */}
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
+            {/* Cultural Tours Card */}
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 hover:shadow-2xl transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
+              <div className="relative p-6 sm:p-8">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                  <FaPrayingHands className="text-white text-2xl sm:text-3xl" />
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+                  Cultural & Heritage Tours
+                </h3>
+                <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
+                  Explore Bhutan&apos;s rich Buddhist heritage through visits to
+                  ancient dzongs and sacred monasteries. Our cultural tours
+                  provide deep insights into Bhutanese traditions, festivals
+                  (tsechus), and spiritual practices that have been preserved
+                  for centuries across remote valleys and historic dzongkhags.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-white text-orange-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                    Ancient Dzongs
+                  </span>
+                  <span className="bg-white text-orange-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                    Sacred Monasteries
+                  </span>
+                  <span className="bg-white text-orange-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                    Festival Tours
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Trekking Card */}
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-2xl transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
+              <div className="relative p-6 sm:p-8">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                  <FaMountain className="text-white text-2xl sm:text-3xl" />
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+                  Trekking & Adventure Travel
+                </h3>
+                <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
+                  Discover pristine Himalayan landscapes through multi-day
+                  trekking expeditions, from the legendary Snowman Trek to
+                  scenic valley hikes. Our adventure tours showcase
+                  Bhutan&apos;s untouched natural beauty while ensuring
+                  sustainable, eco-friendly travel practices that protect the
+                  kingdom&apos;s fragile mountain ecosystems.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-white text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                    Snowman Trek
+                  </span>
+                  <span className="bg-white text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                    Valley Hikes
+                  </span>
+                  <span className="bg-white text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                    Eco-Friendly
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Expertise Statement - Enhanced */}
+          <div className="max-w-5xl mx-auto mb-12 sm:mb-16">
+            <div className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 rounded-3xl p-8 sm:p-10 lg:p-12 shadow-xl border border-orange-100">
+              {/* Decorative Elements */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-30 -mr-20 -mt-20"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-orange-200 to-yellow-200 rounded-full opacity-30 -ml-16 -mb-16"></div>
+              
+              <div className="relative">
+                {/* Icon/Visual Element */}
+                {/* <div className="flex justify-center mb-6">
+                  <div className="bg-gradient-to-br from-orange-400 to-pink-500 rounded-full p-4 shadow-lg">
+                    <div className="text-white text-4xl sm:text-5xl">🏯</div>
+                  </div>
+                </div> */}
+
+                {/* Main Text */}
+                <p className="text-lg sm:text-xl lg:text-2xl text-gray-800 leading-relaxed text-center mb-8 font-medium">
+                  Whether you&apos;re seeking spiritual enrichment at{" "}
+                  <span className="relative inline-block">
+                    <span className="relative z-10 font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-yellow-600">
+                      Taktsang Monastery (Tiger&apos;s Nest)
+                    </span>
+                    <span className="absolute bottom-0 left-0 w-full h-2 bg-yellow-200 opacity-50 -z-0"></span>
+                  </span>
+                  , cultural immersion during vibrant festival celebrations, or challenging high-altitude treks through
+                  the Eastern Himalayas, Door to Happiness Holiday crafts bespoke
+                  Bhutan tour packages tailored to your interests.
+                </p>
+
+                {/* Location Highlights
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {[
+                    { name: "Thimphu", icon: "🏯", desc: "Urban Dzongs", color: "from-orange-400 to-orange-500" },
+                    { name: "Bumthang", icon: "🙏", desc: "Remote Monasteries", color: "from-yellow-500 to-orange-400" },
+                    { name: "Paro", icon: "⛰️", desc: "Sacred Sites", color: "from-orange-500 to-yellow-500" },
+                    { name: "Punakha", icon: "🕉️", desc: "Historic Fortresses", color: "from-yellow-600 to-orange-600" },
+                  ].map((location, index) => (
+                    <div 
+                      key={index}
+                      className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                    >
+                      <div className={`w-12 h-12 mx-auto mb-3 bg-gradient-to-br ${location.color} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-md`}>
+                        <span className="text-2xl">{location.icon}</span>
+                      </div>
+                      <h4 className="font-bold text-gray-900 text-sm sm:text-base mb-1">
+                        {location.name}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-gray-600">
+                        {location.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div> */}
+              </div>
+            </div>
+          </div>
+
+          {/* Why Choose Us - Modern Grid */}
+          <div className="bg-gradient-to-br from-yellow-50 via-orange-50 to-yellow-50 rounded-3xl p-6 sm:p-10 lg:p-12">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center px-4">
+              Why Choose Door to Happiness Holiday?
+            </h3>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {/* Feature 1 */}
+              <div className="text-center px-2">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
+                  <FaCertificate className="text-xl sm:text-2xl lg:text-3xl text-orange-500" />
+                </div>
+                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
+                  Licensed Bhutanese Operator
+                </h4>
+                <p className="text-xs sm:text-xs lg:text-sm text-gray-600 leading-snug">
+                  Fully authorized by the Tourism Council of Bhutan with certified local guides
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="text-center px-2">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
+                  <FaBuilding className="text-xl sm:text-2xl lg:text-3xl text-yellow-600" />
+                </div>
+                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
+                  Complete Dzongkhag Coverage
+                </h4>
+                <p className="text-xs sm:text-xs lg:text-sm text-gray-600 leading-snug">
+                  Tours across all 20 districts from Haa to Trashigang
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="text-center px-2">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
+                  <FaLeaf className="text-xl sm:text-2xl lg:text-3xl text-orange-600" />
+                </div>
+                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
+                  Sustainable Tourism
+                </h4>
+                <p className="text-xs sm:text-xs lg:text-sm text-gray-600 leading-snug">
+                  Committed to carbon-neutral travel and preserving Bhutan&apos;s cultural integrity
+                </p>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="text-center px-2">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
+                  <FaPager className="text-xl sm:text-2xl lg:text-3xl text-yellow-500" />
+                </div>
+                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
+                  Custom Itineraries
+                </h4>
+                <p className="text-xs sm:text-xs lg:text-sm text-gray-600 leading-snug">
+                  Personalized Bhutan vacation packages designed around your interests and schedule
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
       </div>
 
       {/* Featured Tours Section */}
       <Container className="py-8 sm:py-12" ref={toursRef}>
         <div className="text-center mb-8 sm:mb-12">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
-            <div className="text-left flex-1">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+            <div className="text-center sm:text-center flex-1">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                 Our Most Popular Bhutan Tours
               </h2>
