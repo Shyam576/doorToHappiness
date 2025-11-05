@@ -48,6 +48,9 @@ const Index: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Parallax effect state
+  const [scrollY, setScrollY] = useState(0);
+
   // Newsletter subscription state
   const [email, setEmail] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
@@ -68,6 +71,16 @@ const Index: React.FC = () => {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Determine the correct route based on the tour category
@@ -419,11 +432,15 @@ const Index: React.FC = () => {
             className={`absolute inset-0 transition-opacity duration-1000 ${
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
+            style={{
+              transform: `translateY(${scrollY * 0.5}px)`,
+              transition: "transform 0.1s ease-out",
+            }}
           >
             <img
               src={slide.src}
               alt={slide.alt}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-110"
               loading={index === 0 ? "eager" : "lazy"}
             />
             <div className="absolute inset-0 bg-black bg-opacity-40" />
