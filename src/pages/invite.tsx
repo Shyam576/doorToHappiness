@@ -85,10 +85,9 @@ const Index: React.FC<InviteProps> = ({}) => {
 
     return (
         <>
-            <Head>
-                <title>Nest Next Boilerplate</title>
-                <meta name="description" content="Welcome to Witq"/>
-                <link rel="icon" href="/logowhitebg.png" />
+                        <Head>
+                <title>Create Account - Door to Happiness Holiday</title>
+                <meta name="robots" content="noindex, nofollow" />
             </Head>
             <Container>
                 <div>

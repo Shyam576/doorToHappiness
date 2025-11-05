@@ -5,11 +5,11 @@ const Document = () => {
     return (
         <Html lang="en">
             <Head>
-                {/* Favicon and App Icons */}
-                <link rel="icon" type="image/png" href="/logowhitebg.png" />
-                <link rel="shortcut icon" type="image/png" href="/logowhitebg.png" />
-                <link rel="apple-touch-icon" href="/logowhitebg.png" />
-                <meta name="msapplication-TileImage" content="/logowhitebg.png" />
+                {/* Favicon and App Icons - with cache busting */}
+                <link rel="icon" href="/favicon.ico?v=2" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2" />
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=2" />
+                <link rel="apple-touch-icon" href="/favicon.png?v=2" />
                 <meta name="theme-color" content="#f97316" />
             </Head>
             <body>

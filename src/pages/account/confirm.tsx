@@ -58,7 +58,6 @@ const Confirm: React.FC<ConfirmProps> = ({}) => {
             <Head>
                 <title>Confirm account</title>
                 <meta name="description" content="Profile page" />
-                <link rel="icon" href="/logowhitebg.png" />
             </Head>
             <Container>
                 {!ApiResponse ? <button onClick={confirmAccount} className="btn btn-primary btn-outline">Confirm account</button> 

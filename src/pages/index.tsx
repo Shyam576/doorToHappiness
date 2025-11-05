@@ -367,7 +367,6 @@ const Index: React.FC = () => {
 
         {/* Additional meta tags */}
         <meta name="copyright" content="Door to Happiness Holiday" />
-        <link rel="icon" href="/logowhitebg.png" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -395,7 +394,7 @@ const Index: React.FC = () => {
             },
             openingHours: "Mo,Tu,We,Th,Fr,Sa,Su 09:00-17:00",
             telephone: process.env.NEXT_PUBLIC_PHONE_NO,
-            email: "info@doortohappinessholidays.com",
+            email: "doortohappinessholiday@gmail.com",
             foundingDate: "2020",
             areaServed: {
               "@type": "Country",
@@ -701,8 +700,12 @@ const Index: React.FC = () => {
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 hover:shadow-2xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
               <div className="relative p-6 sm:p-8">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
-                  <FaPrayingHands className="text-white text-2xl sm:text-3xl" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0">
+                  <img 
+                    src="/aboutus1.svg" 
+                    alt="Cultural & Heritage Tours" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                   Cultural & Heritage Tours
@@ -732,8 +735,12 @@ const Index: React.FC = () => {
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-2xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
               <div className="relative p-6 sm:p-8">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
-                  <FaMountain className="text-white text-2xl sm:text-3xl" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0">
+                  <img 
+                    src="/aboutus2.svg" 
+                    alt="Trekking & Adventure Travel" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                   Trekking & Adventure Travel
@@ -826,8 +833,12 @@ const Index: React.FC = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {/* Feature 1 */}
               <div className="text-center px-2">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
-                  <FaCertificate className="text-xl sm:text-2xl lg:text-3xl text-orange-500" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
+                  <img 
+                    src="/whyus1.svg" 
+                    alt="Licensed Bhutanese Operator" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
                   Licensed Bhutanese Operator
@@ -839,8 +850,12 @@ const Index: React.FC = () => {
 
               {/* Feature 2 */}
               <div className="text-center px-2">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
-                  <FaBuilding className="text-xl sm:text-2xl lg:text-3xl text-yellow-600" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
+                  <img 
+                    src="/whyus2.svg" 
+                    alt="Complete Dzongkhag Coverage" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
                   Complete Dzongkhag Coverage
@@ -852,8 +867,12 @@ const Index: React.FC = () => {
 
               {/* Feature 3 */}
               <div className="text-center px-2">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
-                  <FaLeaf className="text-xl sm:text-2xl lg:text-3xl text-orange-600" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
+                  <img 
+                    src="/whyus3.svg" 
+                    alt="Sustainable Tourism" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
                   Sustainable Tourism
@@ -865,8 +884,12 @@ const Index: React.FC = () => {
 
               {/* Feature 4 */}
               <div className="text-center px-2">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
-                  <FaPager className="text-xl sm:text-2xl lg:text-3xl text-yellow-500" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
+                  <img 
+                    src="/whyus4.svg" 
+                    alt="Custom Itineraries" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
                   Custom Itineraries
@@ -1122,8 +1145,12 @@ const Index: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="text-5xl text-red-600 mb-4 flex justify-center">
-              <FaFortAwesome />
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center">
+              <img 
+                src="/explore1.svg" 
+                alt="Historic Dzongs" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
               Historic Dzongs
@@ -1141,8 +1168,12 @@ const Index: React.FC = () => {
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="text-5xl text-orange-600 mb-4 flex justify-center">
-              <FaBuilding />
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center">
+              <img 
+                src="/explore2.svg" 
+                alt="Monasteries & Temples" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
               Monasteries & Temples
@@ -1160,8 +1191,12 @@ const Index: React.FC = () => {
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="text-5xl text-blue-600 mb-4 flex justify-center">
-              <FaPrayingHands />
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center">
+              <img 
+                src="/explore3.svg" 
+                alt="Cultural Heritage" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
               Cultural Heritage

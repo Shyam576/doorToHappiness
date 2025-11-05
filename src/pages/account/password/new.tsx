@@ -61,7 +61,6 @@ const New: React.FC<NewProps> = ({}) => {
             <Head>
                 <title>New password</title>
                 <meta name="description" content="Profile page" />
-                <link rel="icon" href="/logowhitebg.png" />
             </Head>
             <div className="h-screen">
             <div className="flex w-full m-auto mt-0 shadow-xl lg:w-4/12 md:w-10/12 md:mt-28 bg-base-200 rounded-xl" >
