@@ -8,9 +8,9 @@ Allow: /dzongkhag/
 Allow: /sacred-places/
 
 # Sitemap location
-Sitemap: https://www.doortohappinessholiday.com/sitemap.xml
-Sitemap: https://www.doortohappinessholiday.com/dzongkhag-sitemap.xml
-Sitemap: https://www.doortohappinessholiday.com/sacred-places-sitemap.xml
+Sitemap: https://www.doortohappinessholidays.com/sitemap.xml
+Sitemap: https://www.doortohappinessholidays.com/dzongkhag-sitemap.xml
+Sitemap: https://www.doortohappinessholidays.com/sacred-places-sitemap.xml
 
 # Disallow admin areas
 Disallow: /admin/
@@ -18,4 +18,4 @@ Disallow: /api/auth/
 Disallow: /_next/
 Disallow: /node_modules/
 
-Host: https://www.doortohappinessholiday.com
+Host: https://www.doortohappinessholidays.com
