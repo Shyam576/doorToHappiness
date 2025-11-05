@@ -31,14 +31,27 @@ function generateSiteMapXML() {
       priority: '0.9'
     }));
 
-  // Sacred places pages (these exist with [slug].tsx)
-  const sacredPlacePages = popularDestination
-    .filter((dest: any) => dest.slug && dest.culture?.lhakhangs?.length > 0)
-    .map((dest: any) => ({
-      url: `/sacred-places/${dest.slug}`,
-      changefreq: 'weekly',
-      priority: '0.9'
-    }));
+  // Sacred places pages - extract individual heritage places from placesToVisit
+  const sacredPlacePages: any[] = [];
+  popularDestination.forEach((dzongkhag: any) => {
+    const sacredPlacesInDzongkhag = dzongkhag.placesToVisit?.filter((place: any) => 
+      place.name.toLowerCase().includes('dzong') || 
+      place.name.toLowerCase().includes('lhakhang') ||
+      place.name.toLowerCase().includes('monastery') ||
+      place.name.toLowerCase().includes('temple') ||
+      place.name.toLowerCase().includes('chorten') ||
+      place.name.toLowerCase().includes('goenpa')
+    ) || [];
+
+    sacredPlacesInDzongkhag.forEach((place: any) => {
+      const placeSlug = place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      sacredPlacePages.push({
+        url: `/sacred-places/${placeSlug}`,
+        changefreq: 'weekly',
+        priority: '0.8'
+      });
+    });
+  });
 
   // Major cities package tours (using ID since there's no slug field)
   const majorCityPages = majorCitiesPackage
