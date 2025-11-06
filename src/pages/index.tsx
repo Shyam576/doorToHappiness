@@ -467,12 +467,12 @@ const Index: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-transparent rounded-3xl blur-xl -z-10"></div>
             <div className="absolute inset-0 bg-gradient-radial from-black/5 via-transparent to-transparent rounded-3xl -z-10"></div>
             
-            <div className="relative p-8 sm:p-10 md:p-12">
-              <TypewriterTagline className="mb-6 sm:mb-8" />
+            <div className="relative p-6 sm:p-8 md:p-10 lg:p-12 space-y-4 sm:space-y-6">
+              <TypewriterTagline className="" />
               
-              <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto mb-6 sm:mb-8"></div>
+              <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto"></div>
               
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 drop-shadow-lg font-light tracking-wider opacity-95">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl drop-shadow-lg font-light tracking-wider opacity-95">
                 Authentic Cultural Experiences • Sustainable Tourism •
                 Award-Winning Guides
               </p>
@@ -493,19 +493,19 @@ const Index: React.FC = () => {
           </div>
 
           {/* Enhanced Search Widget */}
-          <div className="mt-6 sm:mt-8 bg-white rounded-2xl shadow-xl p-4 sm:p-6 transition-all duration-300 bg-opacity-30 mx-4">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-4">
+          <div className="mt-4 sm:mt-6 md:mt-8 bg-white rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-4 md:p-6 transition-all duration-300 bg-opacity-30 mx-2 sm:mx-4">
+            <h2 className="text-base sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 md:mb-4">
               Plan Your Bhutan Adventure
             </h2>
 
-            <div className="flex flex-col gap-4 mb-4">
+            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-3 md:mb-4">
               <div className="relative flex-grow">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiSearch className="text-gray-400" />
+                <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 flex items-center pointer-events-none">
+                  <FiSearch className="text-gray-400 text-sm sm:text-base" />
                 </div>
                 <input
                   type="text"
-                  className="w-full pl-10 pr-12 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
+                  className="w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 md:py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
                   placeholder="Search for tours or activities"
                   value={packageSearchTerm}
                   onChange={(e) => handlePackageSearch(e.target.value)}
@@ -518,14 +518,14 @@ const Index: React.FC = () => {
                 />
                 {packageSearchTerm && (
                   <button
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    className="absolute inset-y-0 right-0 pr-2 sm:pr-3 flex items-center"
                     onClick={() => {
                       setPackageSearchTerm("");
                       setShowPackageResults(false);
                     }}
                   >
                     <svg
-                      className="h-5 w-5 text-gray-400 hover:text-gray-600"
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 hover:text-gray-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -572,11 +572,11 @@ const Index: React.FC = () => {
             <div className="grid grid-cols-2 gap-2">
               {packageSearchTerm && (
                 <button
-                  className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base"
+                  className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base"
                   onClick={clearSearch}
                 >
                   <svg
-                    className="w-4 h-4 mr-2"
+                    className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -598,7 +598,7 @@ const Index: React.FC = () => {
                   isLoading
                     ? "bg-gray-400 cursor-not-allowed"
                     : `${theme.primary} ${theme.primaryHover}`
-                } text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center text-base`}
+                } text-white font-bold py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base`}
                 onClick={() => {
                   if (!isLoading && packageSearchTerm) {
                     handleSearch();
