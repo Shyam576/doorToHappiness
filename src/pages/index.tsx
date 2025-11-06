@@ -450,14 +450,23 @@ const Index: React.FC = () => {
         ))}
 
         <Container className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6">
-          <div className="text-center text-white max-w-4xl mx-auto">
-            <TypewriterTagline className="mb-6" />
-            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 drop-shadow-md px-4">
-              Authentic Cultural Experiences • Sustainable Tourism •
-              Award-Winning Guides
-            </p>
+          <div className="text-center text-white max-w-5xl mx-auto relative">
+            {/* Gradient fade background - subtle and blends into background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-transparent rounded-3xl blur-xl -z-10"></div>
+            <div className="absolute inset-0 bg-gradient-radial from-black/5 via-transparent to-transparent rounded-3xl -z-10"></div>
+            
+            <div className="relative p-8 sm:p-10 md:p-12">
+              <TypewriterTagline className="mb-6 sm:mb-8" />
+              
+              <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto mb-6 sm:mb-8"></div>
+              
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 drop-shadow-lg font-light tracking-wider opacity-95">
+                Authentic Cultural Experiences • Sustainable Tourism •
+                Award-Winning Guides
+              </p>
+            </div>
 
-            <div className="inline-flex items-center bg-white bg-opacity-90 rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8 mx-4">
+            {/* <div className="inline-flex items-center bg-white bg-opacity-90 rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8 mx-4">
               <svg
                 className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-500 mr-2"
                 fill="currentColor"
@@ -468,7 +477,7 @@ const Index: React.FC = () => {
               <span className="text-gray-800 font-semibold text-sm sm:text-base">
                 Certified Excellence in Bhutan Tourism
               </span>
-            </div>
+            </div> */}
           </div>
 
           {/* Enhanced Search Widget */}

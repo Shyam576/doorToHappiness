@@ -13,8 +13,6 @@ const animatedWords = [
 ];
 
 const TypewriterTagline: React.FC<TypewriterTaglineProps> = ({ className = "" }) => {
-  const staticText = "Door To Happiness Holiday — Where Every Journey Is";
-
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -59,13 +57,26 @@ const TypewriterTagline: React.FC<TypewriterTaglineProps> = ({ className = "" })
 
   return (
     <div className={`${className}`}>
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg leading-tight">
-        <span className="block mb-2">{staticText}</span>
-        <span className="inline-block min-h-[1.2em]">
-          <span className="text-yellow-300">{currentText}</span>
-          <span className="animate-pulse text-yellow-300">|</span>
-        </span>
-      </h1>
+      <div className="space-y-3 sm:space-y-4">
+        {/* Main brand name - bigger and dominant with subtle animation */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold drop-shadow-2xl leading-tight tracking-tight animate-fade-in">
+          Door to Happiness Holidays
+        </h1>
+        
+        {/* Decorative underline */}
+        <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto rounded-full"></div>
+        
+        {/* Tagline with typewriter animation */}
+        <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light drop-shadow-lg pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            <span className="whitespace-nowrap">Where Every Journey Is</span>
+            <span className="inline-flex items-center min-w-[200px] sm:min-w-[260px] md:min-w-[320px]">
+              <span className="text-yellow-400 font-bold text-shadow-lg tracking-wide">{currentText}</span>
+              <span className="animate-pulse text-yellow-400 font-bold">|</span>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
