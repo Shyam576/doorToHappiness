@@ -212,22 +212,17 @@ function Index() {
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section with Search */}
-      <div className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
-        {/* Background Image - Mobile-Optimized */}
-        <div className="absolute inset-0 z-0 w-full h-full">
-          <img 
-            src="/packagebg.svg" 
-            alt="Bhutan Landscape" 
-            className="absolute top-0 left-0 w-full h-full object-cover object-center"
-            style={{
-              minWidth: '100%',
-              minHeight: '100%',
-              maxWidth: 'none'
-            }}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </div>
+      <div 
+        className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900"
+        style={{
+          backgroundImage: 'url(/packagebg.svg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Dark overlay for better text readability - optional */}
+        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
         
         <div className="max-w-4xl mx-auto">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
