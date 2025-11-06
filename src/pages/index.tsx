@@ -430,12 +430,12 @@ const Index: React.FC = () => {
         {heroSlides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
+            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
             style={{
               transform: `translateY(${scrollY * 0.5}px)`,
-              transition: "transform 0.1s ease-out",
+              transition: "transform 0.1s ease-out, opacity 2s ease-in-out",
             }}
           >
             <Image

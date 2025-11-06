@@ -5,11 +5,11 @@ interface TypewriterTaglineProps {
 }
 
 const animatedWords = [
-  { text: "Peaceful", emoji: "🌿" },
-  { text: "Sacred", emoji: "🙏" },
-  { text: "Adventurous", emoji: "🏔️" },
+  { text: "Tranquil", emoji: "🌿" },
+  { text: "Graceful", emoji: "🪔" },
+  { text: "Majestic", emoji: "🏔️" },
   { text: "Authentic", emoji: "🇧🇹" },
-  { text: "Yours", emoji: "💛" },
+  { text: "Memorable", emoji: "💛" },
 ];
 
 const TypewriterTagline: React.FC<TypewriterTaglineProps> = ({ className = "" }) => {
@@ -67,10 +67,10 @@ const TypewriterTagline: React.FC<TypewriterTaglineProps> = ({ className = "" })
         <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto rounded-full"></div>
         
         {/* Tagline with typewriter animation */}
-        <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light drop-shadow-lg pt-2">
-          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-            <span className="whitespace-nowrap">Where Every Journey Is</span>
-            <span className="inline-flex items-center min-w-[200px] sm:min-w-[260px] md:min-w-[320px]">
+        <div className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light drop-shadow-lg pt-2 px-2">
+          <div className="flex items-center justify-center gap-x-1 sm:gap-x-2">
+            <span className="text-center">Where Every Journey Is</span>
+            <span className="inline-flex items-center justify-start">
               <span className="text-yellow-400 font-bold text-shadow-lg tracking-wide">{currentText}</span>
               <span className="animate-pulse text-yellow-400 font-bold">|</span>
             </span>
