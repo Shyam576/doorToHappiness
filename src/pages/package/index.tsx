@@ -212,7 +212,7 @@ function Index() {
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section with Search */}
-      <div className="relative py-24 overflow-hidden">
+      <div className="relative py-24 overflow-hidden bg-gray-900">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image 
@@ -221,7 +221,11 @@ function Index() {
             fill
             className="object-cover"
             priority
-            quality={90}
+            loading="eager"
+            quality={75}
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZjJhMzciLz48L3N2Zz4="
           />
         </div>
         

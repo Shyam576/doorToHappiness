@@ -76,11 +76,19 @@ const ContactPage = () => {
           name="description"
           content="Get in touch with Door to Happiness Holiday for your Bhutan travel inquiries"
         />
+        
+        {/* Preload hero image for faster LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/contactusbg.svg"
+          fetchPriority="high"
+        />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section - Mobile Optimized */}
-        <div className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+        <div className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden bg-gray-900">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image 
@@ -89,7 +97,11 @@ const ContactPage = () => {
               fill
               className="object-cover"
               priority
-              quality={90}
+              loading="eager"
+              quality={75}
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZjJhMzciLz48L3N2Zz4="
             />
           </div>
           

@@ -37,6 +37,15 @@ const DzongkhagIndex = () => {
         <meta property="og:description" content="Discover the sacred places, dzongs, and monasteries in all 20 dzongkhags of Bhutan. Your ultimate guide to Bhutan's cultural and spiritual heritage." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://www.doortohappinessholiday.com/dzongkhag" />
+        
+        {/* Preload hero image for faster LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/dzongkhag.svg"
+          fetchPriority="high"
+        />
+        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -58,7 +67,7 @@ const DzongkhagIndex = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <div className="relative py-24 overflow-hidden">
+        <div className="relative py-24 overflow-hidden bg-gray-900">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image 
@@ -67,7 +76,11 @@ const DzongkhagIndex = () => {
               fill
               className="object-cover"
               priority
-              quality={90}
+              loading="eager"
+              quality={75}
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZjJhMzciLz48L3N2Zz4="
             />
           </div>
           
