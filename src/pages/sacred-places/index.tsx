@@ -97,19 +97,15 @@ const SacredPlacesIndex = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <div className="relative py-24 overflow-hidden">
+        <div className="relative py-24 overflow-hidden bg-gray-900">
           {/* Background Image Layer */}
-          <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 z-0">
             <img 
               src="/heritagebg.svg" 
               alt="" 
-              className="w-full h-full object-cover"
-              style={{ objectFit: 'cover' }}
+              className="w-full h-full object-cover opacity-40"
             />
           </div>
-          
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80 -z-5"></div>
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
