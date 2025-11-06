@@ -88,16 +88,24 @@ const ContactPage = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section - Mobile Optimized */}
-        <div className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="/contactusbg.svg" 
-              alt="Contact Us Background" 
-              className="w-full h-full object-cover"
-              loading="eager"
-            />
-          </div>
+              {/* Hero Section */}
+      <div className="relative py-16 sm:py-24 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
+        {/* Background Image - Mobile-Optimized */}
+        <div className="absolute inset-0 z-0 w-full h-full">
+          <img 
+            src="/contactusbg.svg" 
+            alt="Contact Us" 
+            className="absolute top-0 left-0 w-full h-full object-cover object-center"
+            style={{
+              minWidth: '100%',
+              minHeight: '100%',
+              maxWidth: 'none'
+            }}
+            loading="eager"
+            fetchPriority="high"
+          />
+        </div>
+
           
           <div className="relative z-10 max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">

@@ -97,14 +97,20 @@ const SacredPlacesIndex = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <div className="relative py-24 overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0">
+        <div className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
+          {/* Background Image - Mobile-Optimized */}
+          <div className="absolute inset-0 z-0 w-full h-full">
             <img 
               src="/heritagebg.svg" 
               alt="Heritage Places of Bhutan" 
-              className="w-full h-full object-cover"
+              className="absolute top-0 left-0 w-full h-full object-cover object-center"
+              style={{
+                minWidth: '100%',
+                minHeight: '100%',
+                maxWidth: 'none'
+              }}
               loading="eager"
+              fetchPriority="high"
             />
           </div>
           
