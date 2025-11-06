@@ -451,7 +451,9 @@ const Index: React.FC = () => {
 
         <Container className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6">
           <div className="text-center text-white max-w-4xl mx-auto">
-            <TypewriterTagline className="mb-6" />
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 drop-shadow-lg leading-tight">
+              Discover Bhutan’s Magic
+            </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 drop-shadow-md px-4">
               Authentic Cultural Experiences • Sustainable Tourism •
               Award-Winning Guides
