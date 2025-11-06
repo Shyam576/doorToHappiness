@@ -374,6 +374,14 @@ const Index: React.FC = () => {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
 
+        {/* Preload hero image for faster LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/homepagebg1.svg"
+          fetchPriority="high"
+        />
+
         {/* Enhanced JSON-LD structured data */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -426,7 +434,7 @@ const Index: React.FC = () => {
       </Head>
 
       {/* Hero Section */}
-      <div className="relative h-screen max-h-[800px] overflow-hidden">
+      <div className="relative h-screen max-h-[800px] overflow-hidden bg-gray-900">
         {heroSlides.map((slide, index) => (
           <div
             key={slide.id}
@@ -444,7 +452,11 @@ const Index: React.FC = () => {
               fill
               className="object-cover scale-110"
               priority={index === 0}
-              quality={90}
+              loading={index === 0 ? "eager" : "lazy"}
+              quality={75}
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZjJhMzciLz48L3N2Zz4="
             />
           </div>
         ))}
