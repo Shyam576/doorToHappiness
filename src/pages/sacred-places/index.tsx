@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import popularDestination from '../../data/popularDestination.json';
 import { FiMapPin, FiSearch } from 'react-icons/fi';
 import { FaPrayingHands, FaMountain, FaBuilding } from 'react-icons/fa';
@@ -91,10 +92,13 @@ const SacredPlacesIndex = () => {
         <div className="relative py-24 overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
-            <img 
+            <Image 
               src="/heritagebg.svg" 
               alt="Heritage Places of Bhutan" 
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              priority
+              quality={90}
             />
           </div>
           

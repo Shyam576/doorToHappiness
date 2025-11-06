@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { Container } from "../../components/Container";
 import WhatsAppButton from "../../components/whatsAppButton";
 import majorCitiesPackage from "../../data/majorCitiesPackage.json";
@@ -214,10 +215,13 @@ function Index() {
       <div className="relative py-24 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src="/packagebg.svg" 
             alt="Bhutan Landscape" 
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            priority
+            quality={90}
           />
         </div>
         

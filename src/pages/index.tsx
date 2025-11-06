@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { Container } from "../components/Container";
 import WhatsAppButton from "../components/whatsAppButton";
 import majorCitiesPackage from "../data/majorCitiesPackage.json";
@@ -269,21 +270,21 @@ const Index: React.FC = () => {
   const heroSlides = [
     {
       id: 1,
-      src: "https://www.bhutanpeacefultour.com/wp-content/uploads/2018/11/Thimphu-City-Image-Main.jpg",
+      src: "/homepagebg1.svg",
       alt: "Tiger's Nest Monastery Paro Bhutan",
       title: "Discover the Last Shangri-La",
       subtitle: "Experience Gross National Happiness",
     },
     {
       id: 2,
-      src: beautifulMoutain.src,
+      src: "/homepagebg2.svg",
       alt: "Traditional Bhutanese festival with masked dancers",
       title: "Vibrant Cultural Festivals",
       subtitle: "Witness ancient traditions come alive",
     },
     {
       id: 3,
-      src: "https://img.global.news.samsung.com/in/wp-content/uploads/2020/03/20190909_152125-01.jpg",
+      src: "/homepagebg3.svg",
       alt: "Himalayan mountain landscape in Bhutan",
       title: "Epic Himalayan Treks",
       subtitle: "Challenge yourself in pristine wilderness",
@@ -436,13 +437,14 @@ const Index: React.FC = () => {
               transition: "transform 0.1s ease-out",
             }}
           >
-            <img
+            <Image
               src={slide.src}
               alt={slide.alt}
-              className="w-full h-full object-cover scale-110"
-              loading={index === 0 ? "eager" : "lazy"}
+              fill
+              className="object-cover scale-110"
+              priority={index === 0}
+              quality={90}
             />
-            <div className="absolute inset-0 bg-black bg-opacity-40" />
           </div>
         ))}
 

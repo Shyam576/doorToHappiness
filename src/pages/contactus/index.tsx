@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import axios from "axios"; // Import axios
 import WhatsAppButton from "../../components/whatsAppButton";
 import { getTheme } from "../../styles/themes";
@@ -79,8 +80,20 @@ const ContactPage = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section - Mobile Optimized */}
-        <div className="relative bg-gradient-to-r from-yellow-400 to-orange-500 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-4xl mx-auto">
+        <div className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src="/contactusbg.svg" 
+              alt="Contact Us Background" 
+              fill
+              className="object-cover"
+              priority
+              quality={90}
+            />
+          </div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
               Contact Door to Happiness Holiday
             </h2>
