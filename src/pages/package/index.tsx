@@ -273,9 +273,8 @@ function Index() {
                   allTours.groupTours.length,
                 icon: FiSearch,
                 description: "Browse everything",
-                gradient: "from-orange-500 to-yellow-500",
-                hoverGradient: "hover:from-orange-600 hover:to-yellow-600",
-                activeGradient: "from-orange-600 to-yellow-600",
+                bgImage: "all", // Special flag for mixed images
+                gradient: "from-orange-500/70 to-yellow-500/70",
               },
               {
                 id: "city",
@@ -283,9 +282,8 @@ function Index() {
                 count: allTours.cityTours.length,
                 icon: FiMapPin,
                 description: "From major cities",
-                gradient: "from-yellow-400 to-orange-400",
-                hoverGradient: "hover:from-yellow-500 hover:to-orange-500",
-                activeGradient: "from-yellow-500 to-orange-500",
+                bgImage: "/category1.svg",
+                gradient: "from-yellow-400/70 to-orange-400/70",
               },
               {
                 id: "festival",
@@ -293,9 +291,8 @@ function Index() {
                 count: allTours.festivalTours.length,
                 icon: FiCalendar,
                 description: "Cultural celebrations",
-                gradient: "from-orange-400 to-red-400",
-                hoverGradient: "hover:from-orange-500 hover:to-red-500",
-                activeGradient: "from-orange-500 to-red-500",
+                bgImage: "/category2.svg",
+                gradient: "from-orange-400/70 to-red-400/70",
               },
               {
                 id: "cultural",
@@ -303,9 +300,8 @@ function Index() {
                 count: allTours.culturalTours.length,
                 icon: FiCamera,
                 description: "Heritage & traditions",
-                gradient: "from-yellow-500 to-amber-500",
-                hoverGradient: "hover:from-yellow-600 hover:to-amber-600",
-                activeGradient: "from-yellow-600 to-amber-600",
+                bgImage: "/category3.svg",
+                gradient: "from-yellow-500/70 to-amber-500/70",
               },
               {
                 id: "adventure",
@@ -313,9 +309,8 @@ function Index() {
                 count: allTours.adventureTours.length,
                 icon: FiTrendingUp,
                 description: "Treks & outdoor",
-                gradient: "from-orange-600 to-yellow-400",
-                hoverGradient: "hover:from-orange-700 hover:to-yellow-500",
-                activeGradient: "from-orange-700 to-yellow-500",
+                bgImage: "/category4.svg",
+                gradient: "from-orange-600/70 to-yellow-400/70",
               },
               {
                 id: "group",
@@ -323,27 +318,72 @@ function Index() {
                 count: allTours.groupTours.length,
                 icon: FiUsers,
                 description: "Travel together",
-                gradient: "from-amber-400 to-orange-500",
-                hoverGradient: "hover:from-amber-500 hover:to-orange-600",
-                activeGradient: "from-amber-500 to-orange-600",
+                bgImage: "/category5.svg",
+                gradient: "from-amber-400/70 to-orange-500/70",
               },
             ].map((category) => (
               <div
                 key={category.id}
                 onClick={() => scrollToCategory(category.id)}
-                className={`cursor-pointer transform hover:scale-105 transition-all duration-300 rounded-2xl p-6 text-white bg-gradient-to-br ${category.gradient} ${category.hoverGradient} ${
+                className={`cursor-pointer transform hover:scale-105 transition-all duration-300 rounded-2xl overflow-hidden relative group ${
                   activeCategory === category.id
-                    ? `ring-4 ring-yellow-300 shadow-2xl scale-105 ${category.activeGradient}`
+                    ? "ring-4 ring-yellow-300 shadow-2xl scale-105"
                     : "hover:shadow-xl"
                 }`}
               >
-                <div className="text-center">
-                  <category.icon className="w-8 h-8 mx-auto mb-3" />
-                  <h3 className="font-bold text-lg mb-1">{category.title}</h3>
-                  <p className="text-sm opacity-90 mb-2">
+                {/* Background Image - Mixed collage for "All Tours" */}
+                {category.bgImage === "all" ? (
+                  <div className="absolute inset-0 z-0 grid grid-cols-2 grid-rows-2 gap-0.5">
+                    <div className="relative overflow-hidden">
+                      <img 
+                        src="/category1.svg" 
+                        alt="" 
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="relative overflow-hidden">
+                      <img 
+                        src="/category2.svg" 
+                        alt="" 
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="relative overflow-hidden">
+                      <img 
+                        src="/category3.svg" 
+                        alt="" 
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="relative overflow-hidden">
+                      <img 
+                        src="/category4.svg" 
+                        alt="" 
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                  </div>
+                ) : category.bgImage ? (
+                  <div className="absolute inset-0 z-0">
+                    <img 
+                      src={category.bgImage} 
+                      alt="" 
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                ) : null}
+                
+                {/* Gradient Overlay - Reduced opacity */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} z-5`}></div>
+                
+                {/* Content */}
+                <div className="relative z-10 p-6 text-white text-center">
+                  <category.icon className="w-8 h-8 mx-auto mb-3 drop-shadow-lg" />
+                  <h3 className="font-bold text-lg mb-1 drop-shadow-md">{category.title}</h3>
+                  <p className="text-sm opacity-95 mb-2 drop-shadow">
                     {category.description}
                   </p>
-                  <div className="bg-white bg-opacity-20 rounded-full px-3 py-1 text-sm font-medium">
+                  <div className="bg-white bg-opacity-30 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium inline-block drop-shadow-md">
                     {category.count} tours
                   </div>
                 </div>
