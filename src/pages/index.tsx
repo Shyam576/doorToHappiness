@@ -808,12 +808,12 @@ const Index: React.FC = () => {
                 {/* Main Text */}
                 <p className="text-lg sm:text-xl lg:text-2xl text-gray-800 leading-relaxed text-center mb-8 font-medium">
                   Whether you&apos;re seeking spiritual enrichment at{" "}
-                  <span className="relative inline-block">
-                    <span className="relative z-10 font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-yellow-600">
+                  <Link href="/dzongkhag/paro" className="relative inline-block group cursor-pointer">
+                    <span className="relative z-10 font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-yellow-600 group-hover:from-orange-700 group-hover:to-yellow-700 transition-all duration-300">
                       Taktsang Monastery (Tiger&apos;s Nest)
                     </span>
-                    <span className="absolute bottom-0 left-0 w-full h-2 bg-yellow-200 opacity-50 -z-0"></span>
-                  </span>
+                    <span className="absolute bottom-0 left-0 w-full h-2 bg-yellow-200 opacity-50 group-hover:opacity-70 group-hover:h-3 transition-all duration-300 -z-0"></span>
+                  </Link>
                   , cultural immersion during vibrant festival celebrations, or challenging high-altitude treks through
                   the Eastern Himalayas, Door to Happiness Holiday crafts bespoke
                   Bhutan tour packages tailored to your interests.
