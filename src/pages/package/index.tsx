@@ -12,6 +12,10 @@ import {
   FiUsers,
   FiTrendingUp,
   FiCamera,
+  FiAlertCircle,
+  FiCreditCard,
+  FiCheckCircle,
+  FiInfo,
 } from "react-icons/fi";
 import { getTheme } from "../../styles/themes";
 
@@ -530,6 +534,158 @@ function Index() {
             groupToursRef
           )}
         </>
+      )}
+
+      {/* Payment Advisory Section */}
+      {!searchTerm && (
+        <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 relative overflow-hidden">
+          {/* Animated background pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-10 left-10 w-32 h-32 bg-indigo-500 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          </div>
+          
+          <Container>
+            <div className="max-w-5xl mx-auto">
+              {/* Header with Attention Badge */}
+              <div className="text-center mb-8">
+                {/* Important Badge */}
+                <div className="inline-flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 animate-bounce">
+                  <FiAlertCircle className="w-4 h-4" />
+                  IMPORTANT - PLEASE READ
+                </div>
+                
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mb-4 shadow-lg animate-pulse">
+                  <FiCreditCard className="w-8 h-8 text-white" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                  Important Payment Information
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Please read carefully to ensure a smooth payment experience during your Bhutan journey
+                </p>
+              </div>
+
+              {/* Welcome Message */}
+              <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 border-l-4 border-indigo-500 transform hover:scale-[1.02] transition-transform duration-300">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                  <span className="mr-3">🇧🇹</span>
+                  Welcome to Bhutan – The Land of the Thunder Dragon!
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  We are delighted to have you in our beautiful country. To make your stay truly memorable and ensure a smooth payment experience, please take note of the following important guidelines:
+                </p>
+              </div>
+
+              {/* Smart Tips Section */}
+              <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <FiCheckCircle className="w-6 h-6 text-green-500 mr-3 animate-pulse" />
+                  Smart Tips for Hassle-Free Payments
+                </h3>
+                
+                <div className="space-y-6">
+                  {/* Tip 1 */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <span className="text-indigo-600 font-bold">1</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Enable Your Cards for International Use</h4>
+                      <p className="text-gray-600">
+                        Before traveling, confirm with your bank (or via your mobile banking app) that your debit/credit cards are enabled for international transactions, including use in Bhutan.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Tip 2 */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <span className="text-indigo-600 font-bold">2</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Inform Your Bank About Your Travel Plans</h4>
+                      <p className="text-gray-600">
+                        Notify your bank of your travel dates and destination to prevent transaction declines and ensure smooth payments.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Tip 3 */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <span className="text-indigo-600 font-bold">3</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Check Card Network Compatibility</h4>
+                      <p className="text-gray-600 mb-3">
+                        Ensure your card network — e.g. Visa, Mastercard, UnionPay, JCB, or American Express — is supported by banks in Bhutan.
+                      </p>
+                      <a 
+                        href="https://www.rma.org.bt" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
+                      >
+                        Visit Royal Monetary Authority (RMA) →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Things to Do Section */}
+              <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 transform hover:scale-[1.02] transition-transform duration-300">
+                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <FiInfo className="w-6 h-6 text-blue-500 mr-3 animate-pulse" />
+                  Key Things to Do Before You Pay
+                </h3>
+                
+                <div className="space-y-6">
+                  {/* Point 1 */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <span className="text-blue-600 font-bold">1</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Be Aware of Transaction & Withdrawal Limits</h4>
+                      <p className="text-gray-600">
+                        Check your bank&apos;s transaction limit. At ATMs in Bhutan, follow on-screen instructions to note withdrawal limits per transaction.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Point 2 */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <span className="text-blue-600 font-bold">2</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Consult Merchants, Guides, or Banks</h4>
+                      <p className="text-gray-600">
+                        If a payment is declined, consult your merchant or guide for assistance. If the issue persists, contact the nearest bank.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Point 3 */}
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <span className="text-blue-600 font-bold">3</span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Important Note for Regional (Indian) Tourists</h4>
+                      <p className="text-gray-600">
+                        Cards issued in India denominated in USD will not work in Bhutan due to FEMA regulations by the Reserve Bank of India. Please carry cards valid for India, Bhutan, and Nepal to avoid payment issues.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </Container>
+        </div>
       )}
 
       {/* Call to Action */}
