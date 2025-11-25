@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import axios from "axios"; // Import axios
 import WhatsAppButton from "../../components/whatsAppButton";
 import { getTheme } from "../../styles/themes";
@@ -76,7 +75,7 @@ const ContactPage = () => {
           name="description"
           content="Get in touch with Door to Happiness Holiday for your Bhutan travel inquiries"
         />
-        
+
         {/* Preload hero image for faster LCP */}
         <link
           rel="preload"
@@ -91,14 +90,14 @@ const ContactPage = () => {
       <div className="relative py-16 sm:py-24 overflow-hidden bg-gray-900">
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/contactusbg.svg" 
-            alt="" 
+          <img
+            src="/contactusbg.svg"
+            alt=""
             className="w-full h-full object-cover opacity-40"
           />
         </div>
 
-          
+
           <div className="relative z-10 max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
               Contact Door to Happiness Holiday
@@ -345,7 +344,7 @@ const ContactPage = () => {
                         <h3 className="text-base sm:text-lg font-medium text-gray-800">
                           Email Address
                         </h3>
-                        <a 
+                        <a
                           href="https://mail.google.com/mail/?view=cm&to=doortohappinessholiday@gmail.com"
                           target="_blank"
                           rel="noopener noreferrer"
