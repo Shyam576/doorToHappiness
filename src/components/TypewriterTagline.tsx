@@ -60,7 +60,7 @@ const TypewriterTagline: React.FC<TypewriterTaglineProps> = ({ className = "" })
       <div className="space-y-3 sm:space-y-4">
         {/* Main brand name - bigger and dominant with subtle animation */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold drop-shadow-2xl leading-tight tracking-tight animate-fade-in">
-          Door to Happiness Holidays
+          Door to Happiness Holiday
         </h1>
         
         {/* Decorative underline */}

@@ -390,7 +390,7 @@ const Index: React.FC = () => {
             "@type": ["TravelAgency", "Organization"],
             name: "Door to Happiness Holiday",
             alternateName: [
-              "Door to Happiness Holidays",
+              "Door to Happiness Holiday",
               "Door to Happiness",
               "Door to Happiness Tours",
             ],
