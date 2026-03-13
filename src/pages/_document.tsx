@@ -11,6 +11,12 @@ const Document = () => {
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png?v=2" />
                 <link rel="apple-touch-icon" href="/favicon.png?v=2" />
                 <meta name="theme-color" content="#f97316" />
+                {/* DNS prefetch for common external image domains */}
+                <link rel="dns-prefetch" href="//images.unsplash.com" />
+                <link rel="dns-prefetch" href="//ucarecdn.com" />
+                <link rel="dns-prefetch" href="//cdn.drukasia.com" />
+                <link rel="dns-prefetch" href="//upload.wikimedia.org" />
+                <link rel="dns-prefetch" href="//dynamic-media-cdn.tripadvisor.com" />
             </Head>
             <body>
                 <Main />

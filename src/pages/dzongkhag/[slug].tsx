@@ -242,6 +242,8 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                                 alt={place.name}
                                 className="w-full h-32 object-cover rounded-md mb-3"
                                 loading="lazy"
+                                width={400}
+                                height={128}
                               />
                             )}
                             {place.distance && (

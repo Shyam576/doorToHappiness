@@ -218,13 +218,11 @@ function Index() {
       {/* Hero Section with Search */}
       <div className="relative py-24 overflow-hidden bg-gray-900">
         {/* Background Image Layer */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/packagebg.svg" 
-            alt="" 
-            className="w-full h-full object-cover opacity-40"
-          />
-        </div>
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
+          style={{ backgroundImage: "url('/packagebg.svg')" }}
+          aria-hidden="true"
+        />
         
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -238,6 +236,7 @@ function Index() {
           <div className="relative max-w-md mx-auto">
             <input
               type="text"
+              aria-label="Search tour packages"
               placeholder="Search all packages..."
               className="w-full py-4 px-6 bg-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 pr-12"
               value={searchTerm}
@@ -337,44 +336,30 @@ function Index() {
               >
                 {/* Background Image - Mixed collage for "All Tours" */}
                 {category.bgImage === "all" ? (
-                  <div className="absolute inset-0 z-0 grid grid-cols-2 grid-rows-2 gap-0.5">
-                    <div className="relative overflow-hidden">
-                      <img 
-                        src="/category1.svg" 
-                        alt="" 
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="relative overflow-hidden">
-                      <img 
-                        src="/category2.svg" 
-                        alt="" 
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="relative overflow-hidden">
-                      <img 
-                        src="/category3.svg" 
-                        alt="" 
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="relative overflow-hidden">
-                      <img 
-                        src="/category4.svg" 
-                        alt="" 
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                  </div>
-                ) : category.bgImage ? (
-                  <div className="absolute inset-0 z-0">
-                    <img 
-                      src={category.bgImage} 
-                      alt="" 
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  <div className="absolute inset-0 z-0 grid grid-cols-2 grid-rows-2 gap-0.5" aria-hidden="true">
+                    <div
+                      className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                      style={{ backgroundImage: "url('/category1.svg')" }}
+                    />
+                    <div
+                      className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                      style={{ backgroundImage: "url('/category2.svg')" }}
+                    />
+                    <div
+                      className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                      style={{ backgroundImage: "url('/category3.svg')" }}
+                    />
+                    <div
+                      className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                      style={{ backgroundImage: "url('/category4.svg')" }}
                     />
                   </div>
+                ) : category.bgImage ? (
+                  <div
+                    className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                    style={{ backgroundImage: `url('${category.bgImage}')` }}
+                    aria-hidden="true"
+                  />
                 ) : null}
                 
                 {/* Gradient Overlay - Reduced opacity */}

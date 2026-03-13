@@ -63,6 +63,7 @@ const FAQPage = () => {
           </div>
           <input
             type="text"
+            aria-label="Search FAQs"
             placeholder="Search FAQs..."
             className="block w-full pl-10 pr-3 py-3 border-2 border-orange-200 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-orange-300 focus:border-orange-400 text-base shadow-sm transition-all duration-200"
             value={searchTerm}

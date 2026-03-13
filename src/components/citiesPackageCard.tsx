@@ -79,13 +79,11 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
     <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group">
       {/* Category Background Pattern - Very Subtle */}
       {categoryBg && (
-        <div className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-5 transition-opacity duration-500 overflow-hidden z-0">
-          <img 
-            src={categoryBg} 
-            alt="" 
-            className="w-full h-full object-cover transform rotate-12 scale-150"
-          />
-        </div>
+        <div
+          className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-5 transition-opacity duration-500 z-0 rotate-12 scale-150 bg-cover bg-center"
+          style={{ backgroundImage: `url('${categoryBg}')` }}
+          aria-hidden="true"
+        />
       )}
       
       <div className="h-52 overflow-hidden relative">
@@ -93,6 +91,9 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
           src={tour.image}
           alt={tour.alt || tour.title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          loading="lazy"
+          width={400}
+          height={208}
         />
         {/* Category Badge - Slightly transparent */}
         {tour.category && (
@@ -124,13 +125,11 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
         <div className="mt-auto pt-3 sm:pt-4 relative">
           {/* Very subtle background pattern on hover */}
           {categoryBg && (
-            <div className="absolute -bottom-2 -right-2 w-24 h-24 opacity-0 group-hover:opacity-3 transition-opacity duration-500 overflow-hidden pointer-events-none">
-              <img 
-                src={categoryBg} 
-                alt="" 
-                className="w-full h-full object-cover transform -rotate-12"
-              />
-            </div>
+            <div
+              className="absolute -bottom-2 -right-2 w-24 h-24 opacity-0 group-hover:opacity-3 transition-opacity duration-500 pointer-events-none -rotate-12 bg-cover bg-center"
+              style={{ backgroundImage: `url('${categoryBg}')` }}
+              aria-hidden="true"
+            />
           )}
           <Link href={getRouteForTour(tour)} passHref>
             <button className={`relative overflow-hidden w-full py-2 sm:py-3 ${badgeColor} text-white font-semibold rounded-lg shadow-md transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95 text-sm sm:text-base group/btn`}>

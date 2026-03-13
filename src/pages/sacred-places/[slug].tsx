@@ -258,6 +258,9 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                               src={relatedPlace.image} 
                               alt={relatedPlace.name}
                               className="w-12 h-12 object-cover rounded-lg flex-shrink-0"
+                              loading="lazy"
+                              width={48}
+                              height={48}
                             />
                           )}
                           <div className="flex-grow min-w-0">

@@ -99,13 +99,11 @@ const SacredPlacesIndex = () => {
         {/* Hero Section */}
         <div className="relative py-24 overflow-hidden bg-gray-900">
           {/* Background Image Layer */}
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="/heritagebg.svg" 
-              alt="" 
-              className="w-full h-full object-cover opacity-40"
-            />
-          </div>
+          <div
+            className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
+            style={{ backgroundImage: "url('/heritagebg.svg')" }}
+            aria-hidden="true"
+          />
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -131,6 +129,7 @@ const SacredPlacesIndex = () => {
                 <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-400" />
                 <input
                   type="text"
+                  aria-label="Search sacred places"
                   placeholder="Search sacred places, dzongs, monasteries..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}

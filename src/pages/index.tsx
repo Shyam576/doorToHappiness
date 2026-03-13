@@ -37,10 +37,33 @@ const getDurationInDays = (duration: any) => {
   return match ? parseInt(match[0]) : 0;
 };
 
+const heroSlides = [
+  {
+    id: 1,
+    src: "/homepagebg1.svg",
+    alt: "Tiger's Nest Monastery Paro Bhutan",
+    title: "Discover the Last Shangri-La",
+    subtitle: "Experience Gross National Happiness",
+  },
+  {
+    id: 2,
+    src: "/homepagebg2.svg",
+    alt: "Traditional Bhutanese festival with masked dancers",
+    title: "Vibrant Cultural Festivals",
+    subtitle: "Witness ancient traditions come alive",
+  },
+  {
+    id: 3,
+    src: "/homepagebg3.svg",
+    alt: "Himalayan mountain landscape in Bhutan",
+    title: "Epic Himalayan Treks",
+    subtitle: "Challenge yourself in pristine wilderness",
+  },
+];
+
 const Index: React.FC = () => {
   // Get unified theme
   const theme = getTheme();
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [packageSearchTerm, setPackageSearchTerm] = useState("");
   const [showPackageResults, setShowPackageResults] = useState(false);
@@ -50,8 +73,8 @@ const Index: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Parallax effect state
-  const [scrollY, setScrollY] = useState(0);
+  // Parallax effect - use ref instead of state to avoid re-rendering on scroll
+  const heroParallaxRef = useRef<HTMLDivElement>(null);
 
   // Newsletter subscription state
   const [email, setEmail] = useState("");
@@ -75,10 +98,12 @@ const Index: React.FC = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Parallax scroll effect
+  // Parallax scroll effect - directly mutate DOM to avoid React re-renders
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (heroParallaxRef.current) {
+        heroParallaxRef.current.style.transform = `translateY(${window.scrollY * 0.5}px)`;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -268,30 +293,6 @@ const Index: React.FC = () => {
     setSortOption("recommended");
   };
 
-  const heroSlides = [
-    {
-      id: 1,
-      src: "/homepagebg1.svg",
-      alt: "Tiger's Nest Monastery Paro Bhutan",
-      title: "Discover the Last Shangri-La",
-      subtitle: "Experience Gross National Happiness",
-    },
-    {
-      id: 2,
-      src: "/homepagebg2.svg",
-      alt: "Traditional Bhutanese festival with masked dancers",
-      title: "Vibrant Cultural Festivals",
-      subtitle: "Witness ancient traditions come alive",
-    },
-    {
-      id: 3,
-      src: "/homepagebg3.svg",
-      alt: "Himalayan mountain landscape in Bhutan",
-      title: "Epic Himalayan Treks",
-      subtitle: "Challenge yourself in pristine wilderness",
-    },
-  ];
-
   const categories = [
     { id: "all", name: "All", icon: null },
     {
@@ -371,7 +372,7 @@ const Index: React.FC = () => {
         <meta name="copyright" content="Door to Happiness Holiday" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          content="width=device-width, initial-scale=1.0"
         />
 
         {/* Preload hero image for faster LCP */}
@@ -435,16 +436,14 @@ const Index: React.FC = () => {
 
       {/* Hero Section */}
       <div className="relative h-screen max-h-[800px] overflow-hidden bg-gray-900">
+        {/* Parallax wrapper: transform applied directly to DOM via ref, no React state = no re-renders */}
+        <div ref={heroParallaxRef} className="absolute inset-0" style={{ willChange: "transform" }}>
         {heroSlides.map((slide, index) => (
           <div
             key={slide.id}
             className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
               index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
-            style={{
-              transform: `translateY(${scrollY * 0.5}px)`,
-              transition: "transform 0.1s ease-out, opacity 2s ease-in-out",
-            }}
           >
             <Image
               src={slide.src}
@@ -460,6 +459,7 @@ const Index: React.FC = () => {
             />
           </div>
         ))}
+        </div>{/* end heroParallaxRef */}
 
         <Container className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6">
           <div className="text-center text-white max-w-5xl mx-auto relative">
@@ -505,6 +505,7 @@ const Index: React.FC = () => {
                 </div>
                 <input
                   type="text"
+                  aria-label="Search for tours or activities"
                   className="w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 md:py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
                   placeholder="Search for tours or activities"
                   value={packageSearchTerm}
@@ -548,6 +549,8 @@ const Index: React.FC = () => {
                             <img
                               src={pkg.image}
                               alt={pkg.title}
+                              width={40}
+                              height={40}
                               className="w-10 h-10 rounded-md object-cover mr-3"
                             />
                             <div>
@@ -640,7 +643,7 @@ const Index: React.FC = () => {
             </div>
             {packageSearchTerm && (
               <p className="text-xs text-white text-center mt-2">
-                Searching for "{packageSearchTerm}" in tours
+                Searching for &ldquo;{packageSearchTerm}&rdquo; in tours
               </p>
             )}
           </div>
@@ -722,11 +725,12 @@ const Index: React.FC = () => {
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 hover:shadow-2xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
               <div className="relative p-6 sm:p-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0">
-                  <img 
-                    src="/aboutus1.svg" 
-                    alt="Cultural & Heritage Tours" 
-                    className="w-full h-full object-contain"
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative">
+                  <Image
+                    src="/aboutus1.svg"
+                    alt="Cultural & Heritage Tours"
+                    fill
+                    className="object-contain"
                   />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
@@ -757,11 +761,12 @@ const Index: React.FC = () => {
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-2xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
               <div className="relative p-6 sm:p-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0">
-                  <img 
-                    src="/aboutus2.svg" 
-                    alt="Trekking & Adventure Travel" 
-                    className="w-full h-full object-contain"
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative">
+                  <Image
+                    src="/aboutus2.svg"
+                    alt="Trekking & Adventure Travel"
+                    fill
+                    className="object-contain"
                   />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
@@ -855,11 +860,12 @@ const Index: React.FC = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {/* Feature 1 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
-                  <img 
-                    src="/whyus1.svg" 
-                    alt="Licensed Bhutanese Operator" 
-                    className="w-full h-full object-contain"
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
+                  <Image
+                    src="/whyus1.svg"
+                    alt="Licensed Bhutanese Operator"
+                    fill
+                    className="object-contain"
                   />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
@@ -872,11 +878,12 @@ const Index: React.FC = () => {
 
               {/* Feature 2 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
-                  <img 
-                    src="/whyus2.svg" 
-                    alt="Complete Dzongkhag Coverage" 
-                    className="w-full h-full object-contain"
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
+                  <Image
+                    src="/whyus2.svg"
+                    alt="Complete Dzongkhag Coverage"
+                    fill
+                    className="object-contain"
                   />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
@@ -889,11 +896,12 @@ const Index: React.FC = () => {
 
               {/* Feature 3 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
-                  <img 
-                    src="/whyus3.svg" 
-                    alt="Sustainable Tourism" 
-                    className="w-full h-full object-contain"
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
+                  <Image
+                    src="/whyus3.svg"
+                    alt="Sustainable Tourism"
+                    fill
+                    className="object-contain"
                   />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
@@ -906,11 +914,12 @@ const Index: React.FC = () => {
 
               {/* Feature 4 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform">
-                  <img 
-                    src="/whyus4.svg" 
-                    alt="Custom Itineraries" 
-                    className="w-full h-full object-contain"
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
+                  <Image
+                    src="/whyus4.svg"
+                    alt="Custom Itineraries"
+                    fill
+                    className="object-contain"
                   />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
@@ -1007,6 +1016,8 @@ const Index: React.FC = () => {
                     alt={tour.title}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    width={400}
+                    height={192}
                   />
                 </div>
 
@@ -1056,7 +1067,7 @@ const Index: React.FC = () => {
                 No tours found
               </h3>
               <p className="text-gray-500 mb-4">
-                We couldn't find any tours matching "{packageSearchTerm}". Try
+                We couldn&apos;t find any tours matching &ldquo;{packageSearchTerm}&rdquo;. Try
                 adjusting your search or browse all tours.
               </p>
               <button
@@ -1156,7 +1167,7 @@ const Index: React.FC = () => {
       <Container className="py-12 sm:py-16 bg-gradient-to-b from-blue-50 to-orange-50">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-            Explore Bhutan's Historic Dzongkhags
+            Explore Bhutan&apos;s Historic Dzongkhags
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto text-lg">
             Discover the cultural heart of Bhutan through its 20 dzongkhags,
@@ -1167,11 +1178,12 @@ const Index: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center">
-              <img 
-                src="/explore1.svg" 
-                alt="Historic Dzongs" 
-                className="w-full h-full object-contain"
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
+              <Image
+                src="/explore1.svg"
+                alt="Historic Dzongs"
+                fill
+                className="object-contain"
               />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
@@ -1190,11 +1202,12 @@ const Index: React.FC = () => {
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center">
-              <img 
-                src="/explore2.svg" 
-                alt="Monasteries & Temples" 
-                className="w-full h-full object-contain"
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
+              <Image
+                src="/explore2.svg"
+                alt="Monasteries & Temples"
+                fill
+                className="object-contain"
               />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
@@ -1213,11 +1226,12 @@ const Index: React.FC = () => {
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center">
-              <img 
-                src="/explore3.svg" 
-                alt="Cultural Heritage" 
-                className="w-full h-full object-contain"
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
+              <Image
+                src="/explore3.svg"
+                alt="Cultural Heritage"
+                fill
+                className="object-contain"
               />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
@@ -1252,6 +1266,9 @@ const Index: React.FC = () => {
                       }
                       alt={`${dzongkhag.name} dzongkhag`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      width={300}
+                      height={128}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-opacity"></div>
                     <div className="absolute bottom-2 left-2 right-2">

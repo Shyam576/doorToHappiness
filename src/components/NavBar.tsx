@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { getTheme } from "../styles/themes";
 
-import logo from "../../public/logo.png"; // Assuming logo is correctly imported
+import logo from "../../public/logo.svg"; // Assuming logo is correctly imported
 
 interface NavBarProps {}
 
@@ -73,11 +73,11 @@ export const NavBar: React.FC<NavBarProps> = () => {
             <img
               src={logo.src}
               alt="Door To Happiness Holidays Logo"
-              className="w-30 h-18 rounded-lg transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
+              className="h-18 w-auto mt-2 mb-2 transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
             />
-           <div>
-			 <div>
-              <span className="hidden sm:inline-flex flex-row">
+           {/* <div className="mt-2">
+			 <div> */}
+              {/* <span className="hidden sm:inline-flex flex-row">
                 <span className="font-bold text-lg text-gray-800 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
                   Your
                 </span>
@@ -89,14 +89,14 @@ export const NavBar: React.FC<NavBarProps> = () => {
             <div>
               <span className="hidden sm:inline-flex flex-row">
                 <span className="font-bold text-lg text-gray-700 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
-                  our
+                  is
                 </span>
                 <span className="text-lg font-bold text-yellow-700 group-hover:text-yellow-600 transition-colors duration-300 leading-tight ml-1">
                   Priority
                 </span>
               </span>
-            </div>
-		   </div>
+            </div> */}
+		   {/* </div> */}
           </Link>
         </div>
 
@@ -107,8 +107,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
             href="/"
             className={`transition-colors duration-200 ${
               router.pathname === '/' 
-                ? `${theme.primaryText} font-semibold` 
-                : `${theme.neutral} ${theme.primaryTextHover}`
+                ? 'text-black font-bold' 
+                : 'text-gray-900 hover:text-black hover:font-bold'
             }`}
           >
             Home
@@ -117,8 +117,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
             href="/package"
             className={`transition-colors duration-200 ${
               router.pathname.startsWith('/package') 
-                ? `${theme.primaryText} font-semibold` 
-                : `${theme.neutral} ${theme.primaryTextHover}`
+                ? 'text-black font-bold' 
+                : 'text-gray-900 hover:text-black hover:font-bold'
             }`}
           >
             Packages
@@ -127,8 +127,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
             href="/dzongkhag"
             className={`transition-colors duration-200 ${
               router.pathname.startsWith('/dzongkhag') 
-                ? `${theme.primaryText} font-semibold` 
-                : `${theme.neutral} ${theme.primaryTextHover}`
+                ? 'text-black font-bold' 
+                : 'text-gray-900 hover:text-black hover:font-bold'
             }`}
           >
             Dzongkhags
@@ -137,8 +137,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
             href="/sacred-places"
             className={`transition-colors duration-200 ${
               router.pathname.startsWith('/sacred-places') 
-                ? `${theme.primaryText} font-semibold` 
-                : `${theme.neutral} ${theme.primaryTextHover}`
+                ? 'text-black font-bold' 
+                : 'text-gray-900 hover:text-black hover:font-bold'
             }`}
           >
             Heritage Places
@@ -147,8 +147,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
             href="/contactus"
             className={`transition-colors duration-200 ${
               router.pathname.startsWith('/contactus') 
-                ? `${theme.primaryText} font-semibold` 
-                : `${theme.neutral} ${theme.primaryTextHover}`
+                ? 'text-black font-bold' 
+                : 'text-gray-900 hover:text-black hover:font-bold'
             }`}
           >
             Contact Us
@@ -157,8 +157,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
             href="/faq"
             className={`transition-colors duration-200 ${
               router.pathname.startsWith('/faq') 
-                ? `${theme.primaryText} font-semibold` 
-                : `${theme.neutral} ${theme.primaryTextHover}`
+                ? 'text-black font-bold' 
+                : 'text-gray-900 hover:text-black hover:font-bold'
             }`}
           >
             FAQ
@@ -183,8 +183,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
               onClick={closeMobileMenu}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                 router.pathname === '/' 
-                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+                  ? 'bg-gray-100 text-black font-bold' 
+                  : 'text-gray-900 hover:bg-gray-50 hover:text-black hover:font-bold'
               }`}
             >
               Home
@@ -194,8 +194,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
               onClick={closeMobileMenu}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                 router.pathname.startsWith('/package') 
-                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+                  ? 'bg-gray-100 text-black font-bold' 
+                  : 'text-gray-900 hover:bg-gray-50 hover:text-black hover:font-bold'
               }`}
             >
               Packages
@@ -205,8 +205,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
               onClick={closeMobileMenu}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                 router.pathname.startsWith('/dzongkhag') 
-                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+                  ? 'bg-gray-100 text-black font-bold' 
+                  : 'text-gray-900 hover:bg-gray-50 hover:text-black hover:font-bold'
               }`}
             >
               Dzongkhags
@@ -227,8 +227,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
               onClick={closeMobileMenu}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                 router.pathname.startsWith('/contactus') 
-                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+                  ? 'bg-gray-100 text-black font-bold' 
+                  : 'text-gray-900 hover:bg-gray-50 hover:text-black hover:font-bold'
               }`}
             >
               Contact Us
@@ -238,8 +238,8 @@ export const NavBar: React.FC<NavBarProps> = () => {
               onClick={closeMobileMenu}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                 router.pathname.startsWith('/faq') 
-                  ? `${theme.primaryLight} ${theme.primaryText} font-semibold` 
-                  : `${theme.neutral} hover:bg-gray-50 ${theme.primaryTextHover}`
+                  ? 'bg-gray-100 text-black font-bold' 
+                  : 'text-gray-900 hover:bg-gray-50 hover:text-black hover:font-bold'
               }`}
             >
               FAQ
