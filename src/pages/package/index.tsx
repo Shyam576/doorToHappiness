@@ -220,7 +220,7 @@ function Index() {
         {/* Background Image Layer */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('/packagebg.svg')" }}
+          style={{ backgroundImage: "url('/packagebg.jpg')" }}
           aria-hidden="true"
         />
         
@@ -285,7 +285,7 @@ function Index() {
                 count: allTours.cityTours.length,
                 icon: FiMapPin,
                 description: "From major cities",
-                bgImage: "/category1.svg",
+                bgImage: "/category1.jpg",
                 gradient: "from-yellow-400/70 to-orange-400/70",
               },
               {
@@ -294,7 +294,7 @@ function Index() {
                 count: allTours.festivalTours.length,
                 icon: FiCalendar,
                 description: "Cultural celebrations",
-                bgImage: "/category2.svg",
+                bgImage: "/category2.jpg",
                 gradient: "from-orange-400/70 to-red-400/70",
               },
               {
@@ -303,7 +303,7 @@ function Index() {
                 count: allTours.culturalTours.length,
                 icon: FiCamera,
                 description: "Heritage & traditions",
-                bgImage: "/category3.svg",
+                bgImage: "/category3.jpg",
                 gradient: "from-yellow-500/70 to-amber-500/70",
               },
               {
@@ -312,7 +312,7 @@ function Index() {
                 count: allTours.adventureTours.length,
                 icon: FiTrendingUp,
                 description: "Treks & outdoor",
-                bgImage: "/category4.svg",
+                bgImage: "/category4.jpg",
                 gradient: "from-orange-600/70 to-yellow-400/70",
               },
               {
@@ -321,7 +321,7 @@ function Index() {
                 count: allTours.groupTours.length,
                 icon: FiUsers,
                 description: "Travel together",
-                bgImage: "/category5.svg",
+                bgImage: "/category5.jpg",
                 gradient: "from-amber-400/70 to-orange-500/70",
               },
             ].map((category) => (
@@ -339,19 +339,19 @@ function Index() {
                   <div className="absolute inset-0 z-0 grid grid-cols-2 grid-rows-2 gap-0.5" aria-hidden="true">
                     <div
                       className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundImage: "url('/category1.svg')" }}
+                      style={{ backgroundImage: "url('/category1.jpg')" }}
                     />
                     <div
                       className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundImage: "url('/category2.svg')" }}
+                      style={{ backgroundImage: "url('/category2.jpg')" }}
                     />
                     <div
                       className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundImage: "url('/category3.svg')" }}
+                      style={{ backgroundImage: "url('/category3.jpg')" }}
                     />
                     <div
                       className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundImage: "url('/category4.svg')" }}
+                      style={{ backgroundImage: "url('/category4.jpg')" }}
                     />
                   </div>
                 ) : category.bgImage ? (

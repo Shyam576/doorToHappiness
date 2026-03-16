@@ -36,21 +36,21 @@ const getDurationInDays = (duration: any) => {
 const heroSlides = [
   {
     id: 1,
-    src: "/homepagebg1.svg",
+    src: "/homepagebg1.jpg",
     alt: "Tiger's Nest Monastery Paro Bhutan",
     title: "Discover the Last Shangri-La",
     subtitle: "Experience Gross National Happiness",
   },
   {
     id: 2,
-    src: "/homepagebg2.svg",
+    src: "/homepagebg2.jpg",
     alt: "Traditional Bhutanese festival with masked dancers",
     title: "Vibrant Cultural Festivals",
     subtitle: "Witness ancient traditions come alive",
   },
   {
     id: 3,
-    src: "/homepagebg3.svg",
+    src: "/homepagebg3.jpg",
     alt: "Himalayan mountain landscape in Bhutan",
     title: "Epic Himalayan Treks",
     subtitle: "Challenge yourself in pristine wilderness",
@@ -345,7 +345,7 @@ const Index: React.FC = () => {
         <link
           rel="preload"
           as="image"
-          href="/homepagebg1.svg"
+          href="/homepagebg1.jpg"
           fetchPriority="high"
         />
 
@@ -729,12 +729,12 @@ const Index: React.FC = () => {
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-2xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
               <div className="relative p-6 sm:p-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative rounded-full overflow-hidden ring-4 ring-orange-400">
                   <Image
-                    src="/aboutus2.svg"
+                    src="/aboutus2.jpg"
                     alt="Trekking & Adventure Travel"
                     fill
-                    className="object-contain"
+                    className="object-cover"
                   />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
@@ -848,10 +848,10 @@ const Index: React.FC = () => {
               <div className="text-center px-2">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
                   <Image
-                    src="/whyus2.svg"
+                    src="/whyus2.jpg"
                     alt="Complete Dzongkhag Coverage"
                     fill
-                    className="object-contain"
+                    className="object-cover rounded-lg"
                   />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
@@ -866,10 +866,10 @@ const Index: React.FC = () => {
               <div className="text-center px-2">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
                   <Image
-                    src="/whyus3.svg"
+                    src="/whyus3.jpg"
                     alt="Sustainable Tourism"
                     fill
-                    className="object-contain"
+                    className="object-cover rounded-lg"
                   />
                 </div>
                 <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
@@ -1151,10 +1151,10 @@ const Index: React.FC = () => {
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
             <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
               <Image
-                src="/explore1.svg"
+                src="/explore1.jpg"
                 alt="Historic Dzongs"
                 fill
-                className="object-contain"
+                className="object-cover rounded-lg"
               />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
@@ -1175,10 +1175,10 @@ const Index: React.FC = () => {
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
             <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
               <Image
-                src="/explore2.svg"
+                src="/explore2.jpg"
                 alt="Monasteries & Temples"
                 fill
-                className="object-contain"
+                className="object-cover rounded-lg"
               />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
@@ -1199,10 +1199,10 @@ const Index: React.FC = () => {
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
             <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
               <Image
-                src="/explore3.svg"
+                src="/explore3.jpg"
                 alt="Cultural Heritage"
                 fill
-                className="object-contain"
+                className="object-cover rounded-lg"
               />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-800">
@@ -1233,7 +1233,7 @@ const Index: React.FC = () => {
                   <div className="relative h-32 rounded-lg overflow-hidden mb-3">
                     <Image
                       src={
-                        dzongkhag.media?.images?.[0] || "/backgroundbanner.png"
+                        dzongkhag.media?.images?.[0] || "/backgroundbanner.jpg"
                       }
                       alt={`${dzongkhag.name} dzongkhag`}
                       fill

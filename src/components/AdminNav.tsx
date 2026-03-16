@@ -29,7 +29,7 @@ export const AdminNav: React.FC<NavBarProps> = () => {
     };
 
     return (
-        <nav className="bg-[url('../../public/dzonglight.png')] bg-cover bg-center sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200">
+        <nav className="bg-[url('../../public/dzonglight.jpg')] bg-cover bg-center sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200">
             <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-1">
                 {/* Left Section (Logo/Name/Hamburger) */}
                 <div className="flex items-center">

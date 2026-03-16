@@ -52,7 +52,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
         <meta name="description" content={place.description} />
         <meta property="og:title" content={`${place.name} - ${dzongkhag.name} Attraction`} />
         <meta property="og:description" content={place.description} />
-        <meta property="og:image" content={place.image || '/backgroundbanner.png'} />
+        <meta property="og:image" content={place.image || '/backgroundbanner.jpg'} />
         <meta property="og:type" content="article" />
         <link rel="canonical" href={`https://www.doortohappinessholiday.com/attractions/${place.slug}`} />
       </Head>
@@ -79,7 +79,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
         <div className="relative h-96 overflow-hidden">
           <div className="absolute inset-0">
             <img
-              src={place.image || '/backgroundbanner.png'}
+              src={place.image || '/backgroundbanner.jpg'}
               alt={`${place.name} attraction`}
               className="w-full h-full object-cover"
             />

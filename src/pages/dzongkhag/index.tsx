@@ -42,7 +42,7 @@ const DzongkhagIndex = () => {
         <link
           rel="preload"
           as="image"
-          href="/dzongkhag.svg"
+          href="/dzongkhag.jpg"
           fetchPriority="high"
         />
         
@@ -71,7 +71,7 @@ const DzongkhagIndex = () => {
           {/* Background Image Layer */}
           <div
             className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: "url('/dzongkhag.svg')" }}
+            style={{ backgroundImage: "url('/dzongkhag.jpg')" }}
             aria-hidden="true"
           />
           

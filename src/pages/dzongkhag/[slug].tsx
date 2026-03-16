@@ -128,7 +128,7 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
         <div className="relative h-96 overflow-hidden">
           <div className="absolute inset-0">
             <img
-              src={dzongkhag.images?.[0] || '/backgroundbanner.png'}
+              src={dzongkhag.images?.[0] || '/backgroundbanner.jpg'}
               alt={`${dzongkhag.name} dzongkhag landscape`}
               className="w-full h-full object-cover"
             />

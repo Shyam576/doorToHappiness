@@ -80,7 +80,7 @@ const ContactPage = () => {
         <link
           rel="preload"
           as="image"
-          href="/contactusbg.svg"
+          href="/contactusbg.jpg"
           fetchPriority="high"
         />
       </Head>
@@ -91,7 +91,7 @@ const ContactPage = () => {
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/contactusbg.svg"
+            src="/contactusbg.jpg"
             alt=""
             className="w-full h-full object-cover opacity-40"
           />

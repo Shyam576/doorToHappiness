@@ -38,16 +38,16 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
   const getCategoryBackground = (category?: string) => {
     switch (category) {
       case 'city':
-        return '/category1.svg';
+        return '/category1.jpg';
       case 'festival':
-        return '/category2.svg';
+        return '/category2.jpg';
       case 'cultural':
-        return '/category3.svg';
+        return '/category3.jpg';
       case 'adventure':
       case 'trekking':
-        return '/category4.svg';
+        return '/category4.jpg';
       case 'group':
-        return '/category5.svg';
+        return '/category5.jpg';
       default:
         return null;
     }

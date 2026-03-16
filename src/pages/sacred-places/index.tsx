@@ -73,7 +73,7 @@ const SacredPlacesIndex = () => {
         <link
           rel="preload"
           as="image"
-          href="/heritagebg.svg"
+          href="/heritagebg.jpg"
           fetchPriority="high"
         />
         
@@ -101,7 +101,7 @@ const SacredPlacesIndex = () => {
           {/* Background Image Layer */}
           <div
             className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: "url('/heritagebg.svg')" }}
+            style={{ backgroundImage: "url('/heritagebg.jpg')" }}
             aria-hidden="true"
           />
           
