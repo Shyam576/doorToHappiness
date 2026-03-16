@@ -18,6 +18,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ phoneNumber, message = 
       passHref
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
       style={{
         position: 'fixed',
         bottom: '20px',

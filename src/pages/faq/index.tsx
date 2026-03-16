@@ -82,6 +82,8 @@ const FAQPage = () => {
                 <button
                   className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-inset bg-gradient-to-r from-orange-50 to-yellow-50 hover:from-orange-100 hover:to-yellow-100 transition-all duration-200"
                   onClick={() => toggleItem(index)}
+                  aria-expanded={expandedItems.includes(index)}
+                  aria-controls={`faq-answer-${index}`}
                 >
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold text-gray-800 pr-4">
@@ -95,7 +97,7 @@ const FAQPage = () => {
                   </div>
                 </button>
                 {expandedItems.includes(index) && (
-                  <div className="px-6 pb-5 pt-2 bg-gradient-to-r from-orange-25 to-yellow-25">
+                  <div id={`faq-answer-${index}`} className="px-6 pb-5 pt-2 bg-gradient-to-r from-orange-25 to-yellow-25">
                     <div className="prose prose-gray max-w-none">
                       <p className="text-gray-700 leading-relaxed text-base">
                         {faq.answer}

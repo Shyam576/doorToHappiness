@@ -46,25 +46,28 @@ export const Footer = () => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on Twitter"
                 className="hover:text-gray-400 transition-colors"
               >
-                <i className="fab fa-twitter"></i>
+                <i className="fab fa-twitter" aria-hidden="true"></i>
               </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on Facebook"
                 className="hover:text-gray-400 transition-colors"
               >
-                <i className="fab fa-facebook"></i>
+                <i className="fab fa-facebook" aria-hidden="true"></i>
               </a>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow us on Instagram"
                 className="hover:text-gray-400 transition-colors"
               >
-                <i className="fab fa-instagram"></i>
+                <i className="fab fa-instagram" aria-hidden="true"></i>
               </a>
             </div>
           </div>

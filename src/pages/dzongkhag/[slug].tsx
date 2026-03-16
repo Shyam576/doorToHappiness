@@ -187,6 +187,8 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                   <h2 className="text-2xl font-bold text-gray-900">About {dzongkhag.name} Dzongkhag</h2>
                   <button 
                     onClick={() => toggleSection('overview')}
+                    aria-label={expandedSections.overview ? 'Collapse overview' : 'Expand overview'}
+                    aria-expanded={expandedSections.overview}
                     className="text-gray-400 hover:text-gray-600"
                   >
                     {expandedSections.overview ? <FiChevronUp /> : <FiChevronDown />}
@@ -268,6 +270,8 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                   <h2 className="text-2xl font-bold text-gray-900">Cultural Heritage</h2>
                   <button 
                     onClick={() => toggleSection('culture')}
+                    aria-label={expandedSections.culture ? 'Collapse cultural heritage' : 'Expand cultural heritage'}
+                    aria-expanded={expandedSections.culture}
                     className="text-gray-400 hover:text-gray-600"
                   >
                     {expandedSections.culture ? <FiChevronUp /> : <FiChevronDown />}
@@ -323,6 +327,8 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                     </h2>
                     <button 
                       onClick={() => toggleSection('nature')}
+                      aria-label={expandedSections.nature ? 'Collapse natural wonders' : 'Expand natural wonders'}
+                      aria-expanded={expandedSections.nature}
                       className="text-gray-400 hover:text-gray-600"
                     >
                       {expandedSections.nature ? <FiChevronUp /> : <FiChevronDown />}

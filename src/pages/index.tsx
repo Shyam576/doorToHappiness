@@ -486,6 +486,7 @@ const Index: React.FC = () => {
                 {packageSearchTerm && (
                   <button
                     className="absolute inset-y-0 right-0 pr-2 sm:pr-3 flex items-center"
+                    aria-label="Clear search"
                     onClick={() => {
                       setPackageSearchTerm("");
                       setShowPackageResults(false);
@@ -512,11 +513,12 @@ const Index: React.FC = () => {
                       filteredPackages.map((pkg) => (
                         <Link key={pkg.id} href={getRouteForTour(pkg)} passHref>
                           <div className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center">
-                            <img
+                            <Image
                               src={pkg.image}
                               alt={pkg.title}
                               width={40}
                               height={40}
+                              unoptimized
                               className="w-10 h-10 rounded-md object-cover mr-3"
                             />
                             <div>
@@ -928,6 +930,9 @@ const Index: React.FC = () => {
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  aria-label="Sort tours"
+                  aria-haspopup="listbox"
+                  aria-expanded={isDropdownOpen}
                   className="px-3 sm:px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base bg-white text-gray-700 hover:border-orange-300 transition-colors min-w-[140px] sm:min-w-[160px] flex items-center justify-between"
                 >
                   <span>
@@ -977,13 +982,13 @@ const Index: React.FC = () => {
               >
                 {/* Image section with fixed height */}
                 <div className="relative h-40 sm:h-48 flex-shrink-0">
-                  <img
+                  <Image
                     src={tour.image}
                     alt={tour.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    unoptimized
+                    className="object-cover"
                     loading="lazy"
-                    width={400}
-                    height={192}
                   />
                 </div>
 
@@ -1226,15 +1231,15 @@ const Index: React.FC = () => {
               <Link key={dzongkhag.id} href={`/dzongkhag/${dzongkhag.slug}`}>
                 <div className="group cursor-pointer">
                   <div className="relative h-32 rounded-lg overflow-hidden mb-3">
-                    <img
+                    <Image
                       src={
                         dzongkhag.media?.images?.[0] || "/backgroundbanner.png"
                       }
                       alt={`${dzongkhag.name} dzongkhag`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      unoptimized
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
-                      width={300}
-                      height={128}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-opacity"></div>
                     <div className="absolute bottom-2 left-2 right-2">
