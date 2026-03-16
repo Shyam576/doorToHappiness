@@ -415,10 +415,10 @@ const Index: React.FC = () => {
               src={slide.src}
               alt={slide.alt}
               fill
+              unoptimized
               className="object-cover scale-110"
               priority={index === 0}
               loading={index === 0 ? "eager" : "lazy"}
-              quality={75}
               sizes="100vw"
               placeholder="blur"
               blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZjJhMzciLz48L3N2Zz4="
@@ -734,6 +734,7 @@ const Index: React.FC = () => {
                     src="/aboutus2.jpg"
                     alt="Trekking & Adventure Travel"
                     fill
+                    unoptimized
                     className="object-cover"
                   />
                 </div>
@@ -851,6 +852,7 @@ const Index: React.FC = () => {
                     src="/whyus2.jpg"
                     alt="Complete Dzongkhag Coverage"
                     fill
+                    unoptimized
                     className="object-cover rounded-lg"
                   />
                 </div>
@@ -869,6 +871,7 @@ const Index: React.FC = () => {
                     src="/whyus3.jpg"
                     alt="Sustainable Tourism"
                     fill
+                    unoptimized
                     className="object-cover rounded-lg"
                   />
                 </div>
@@ -1154,6 +1157,7 @@ const Index: React.FC = () => {
                 src="/explore1.jpg"
                 alt="Historic Dzongs"
                 fill
+                unoptimized
                 className="object-cover rounded-lg"
               />
             </div>
@@ -1178,6 +1182,7 @@ const Index: React.FC = () => {
                 src="/explore2.jpg"
                 alt="Monasteries & Temples"
                 fill
+                unoptimized
                 className="object-cover rounded-lg"
               />
             </div>
@@ -1202,6 +1207,7 @@ const Index: React.FC = () => {
                 src="/explore3.jpg"
                 alt="Cultural Heritage"
                 fill
+                unoptimized
                 className="object-cover rounded-lg"
               />
             </div>
