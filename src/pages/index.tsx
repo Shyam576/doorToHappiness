@@ -1,24 +1,18 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Container } from "../components/Container";
 import WhatsAppButton from "../components/whatsAppButton";
-import TypewriterTagline from "../components/TypewriterTagline";
 import majorCitiesPackage from "../data/majorCitiesPackage.json";
 import popularDestination from "../data/popularDestination.json";
 import {
-  FaUmbrellaBeach,
   FaMountain,
-  FaCity,
-  FaTree,
   FaPager,
   FaCertificate,
   FaLeaf,
   FaHandHoldingUsd,
   FaShieldAlt,
-  FaBuilding,
-  FaPrayingHands,
-  FaFortAwesome,
 } from "react-icons/fa";
 import { getTheme } from "../styles/themes";
 
@@ -27,8 +21,10 @@ import festivalTours from "../data/festivialTours.json";
 import culturalTours from "../data/culturalTours.json";
 import trekkingAdventures from "../data/trekkingAdventure.json";
 import groupTours from "../data/groupTours.json";
-import beautifulMoutain from "../../public/beautifulMoutain.jpeg";
 import Link from "next/link";
+
+// Defer typewriter animation — runs heavy timer-driven state updates; skip on SSR
+const TypewriterTagline = dynamic(() => import("../components/TypewriterTagline"), { ssr: false });
 
 // Helper function to convert duration string to days
 const getDurationInDays = (duration: any) => {
@@ -61,6 +57,12 @@ const heroSlides = [
   },
 ];
 
+const sortOptions = [
+  { value: "recommended", label: "Recommended" },
+  { value: "duration-short", label: "Duration (Shortest)" },
+  { value: "duration-long", label: "Duration (Longest)" },
+];
+
 const Index: React.FC = () => {
   // Get unified theme
   const theme = getTheme();
@@ -70,7 +72,6 @@ const Index: React.FC = () => {
   const [sortOption, setSortOption] = useState("recommended");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Parallax effect - use ref instead of state to avoid re-rendering on scroll
@@ -86,17 +87,6 @@ const Index: React.FC = () => {
 
   // Refs for scrolling
   const toursRef = useRef<HTMLDivElement>(null);
-
-  // Detect mobile device
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   // Parallax scroll effect - directly mutate DOM to avoid React re-renders
   useEffect(() => {
@@ -186,31 +176,31 @@ const Index: React.FC = () => {
     }
   };
 
-  // Combine all packages
-  const allPackages = [
+  // Combine all packages — memoized: only recomputed when JSON data changes (never at runtime)
+  const allPackages = useMemo(() => [
     ...majorCitiesPackage,
     ...festivalTours,
     ...culturalTours,
     ...trekkingAdventures,
     ...groupTours,
-  ];
+  ], []);
 
-  // Filter packages based on search
-  const filteredPackages = allPackages.filter((pkg) => {
-    // Search term matching
-    const matchesSearch =
-      pkg.title.toLowerCase().includes(packageSearchTerm.toLowerCase()) ||
-      pkg.description.toLowerCase().includes(packageSearchTerm.toLowerCase()) ||
+  // Filter packages based on search — only recomputed when search term changes
+  const filteredPackages = useMemo(() => allPackages.filter((pkg) => {
+    if (!packageSearchTerm) return true;
+    const term = packageSearchTerm.toLowerCase();
+    return (
+      pkg.title.toLowerCase().includes(term) ||
+      pkg.description.toLowerCase().includes(term) ||
       (pkg.highlights &&
         pkg.highlights.some((highlight) =>
-          highlight.toLowerCase().includes(packageSearchTerm.toLowerCase())
-        ));
+          highlight.toLowerCase().includes(term)
+        ))
+    );
+  }), [allPackages, packageSearchTerm]);
 
-    return matchesSearch;
-  });
-
-  // Sort packages based on selected option
-  const sortedPackages = [...filteredPackages].sort((a, b) => {
+  // Sort packages — only recomputed when sort option or filtered list changes
+  const sortedPackages = useMemo(() => [...filteredPackages].sort((a, b) => {
     switch (sortOption) {
       case "duration-short":
         return (
@@ -224,10 +214,9 @@ const Index: React.FC = () => {
         );
       case "recommended":
       default:
-        // Default sorting (could be based on popularity or other metrics)
         return 0;
     }
-  });
+  }), [filteredPackages, sortOption]);
 
   // Auto-rotate slides with better performance
   useEffect(() => {
@@ -292,29 +281,6 @@ const Index: React.FC = () => {
     setShowPackageResults(false);
     setSortOption("recommended");
   };
-
-  const categories = [
-    { id: "all", name: "All", icon: null },
-    {
-      id: "cultural",
-      name: "Cultural",
-      icon: <FaPager className="inline mr-1" />,
-    },
-    {
-      id: "adventure",
-      name: "Adventure",
-      icon: <FaMountain className="inline mr-1" />,
-    },
-    { id: "nature", name: "Nature", icon: <FaTree className="inline mr-1" /> },
-    { id: "spiritual", name: "Spiritual", icon: "🕉️" },
-    { id: "scenic", name: "Scenic", icon: "🏞️" },
-  ];
-
-  const sortOptions = [
-    { value: "recommended", label: "Recommended" },
-    { value: "duration-short", label: "Duration (Shortest)" },
-    { value: "duration-long", label: "Duration (Longest)" },
-  ];
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
@@ -389,7 +355,7 @@ const Index: React.FC = () => {
             "@context": "https://schema.org",
             "@type": ["TravelAgency", "Organization"],
             name: "Door to Happiness Holiday",
-            alternateName: [
+            alternateName: [ 
               "Door to Happiness Holiday",
               "Door to Happiness",
               "Door to Happiness Tours",
