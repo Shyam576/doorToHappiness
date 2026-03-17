@@ -693,7 +693,7 @@ const Index: React.FC = () => {
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 hover:shadow-2xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
               <div className="relative p-6 sm:p-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative rounded-full overflow-hidden ring-4 ring-orange-400">
                   <Image
                     src="/aboutus1.svg"
                     alt="Cultural & Heritage Tours"
@@ -829,7 +829,7 @@ const Index: React.FC = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {/* Feature 1 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-orange-400">
                   <Image
                     src="/whyus1.svg"
                     alt="Licensed Bhutanese Operator"
@@ -847,7 +847,7 @@ const Index: React.FC = () => {
 
               {/* Feature 2 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-orange-400">
                   <Image
                     src="/whyus2.jpg"
                     alt="Complete Dzongkhag Coverage"
@@ -866,7 +866,7 @@ const Index: React.FC = () => {
 
               {/* Feature 3 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-orange-400">
                   <Image
                     src="/whyus3.jpg"
                     alt="Sustainable Tourism"
@@ -885,7 +885,7 @@ const Index: React.FC = () => {
 
               {/* Feature 4 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-orange-400">
                   <Image
                     src="/whyus4.svg"
                     alt="Custom Itineraries"
@@ -1152,7 +1152,7 @@ const Index: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-orange-400">
               <Image
                 src="/explore1.jpg"
                 alt="Historic Dzongs"
@@ -1177,7 +1177,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-orange-400">
               <Image
                 src="/explore2.jpg"
                 alt="Monasteries & Temples"
@@ -1202,7 +1202,7 @@ const Index: React.FC = () => {
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-orange-400">
               <Image
                 src="/explore3.jpg"
                 alt="Cultural Heritage"

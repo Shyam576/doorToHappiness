@@ -49,7 +49,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
   // const logout = async () => { ... };
 
   return (
-    <nav className="bg-[url('/dzonglight.jpg')] bg-cover bg-center sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200">
+    <nav className="bg-[url('../../public/dzonglight.jpg')] bg-cover bg-center sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200">
       {/* Main container uses justify-between to push Logo/Name left and Nav links right */}
       <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 py-1">
         {/* --- Left Section (Logo/Name/Hamburger) --- */}
@@ -75,7 +75,7 @@ export const NavBar: React.FC<NavBarProps> = () => {
               src={logo}
               alt="Door To Happiness Holidays Logo"
               height={72}
-              className="w-auto mt-2 mb-2 transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
+              className="w-auto h-10 sm:h-[72px] mt-2 mb-2 transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
             />
            {/* <div className="mt-2">
 			 <div> */}
