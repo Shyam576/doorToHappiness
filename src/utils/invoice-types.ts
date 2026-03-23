@@ -31,6 +31,7 @@ export interface InvoiceData {
   
   // Cost Breakdown
   costItems: CostItem[];
+  currency: string; // 'USD' or 'INR'
   
   // Beneficiary Details
   beneficiaryName: string;

@@ -52,6 +52,7 @@ const InvoiceGeneratorPage: NextPage = () => {
         amount: 1000
       }
     ],
+    currency: 'USD',
     
     // Beneficiary Details
     beneficiaryName: 'Door to Happiness Holiday',

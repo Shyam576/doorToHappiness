@@ -10,6 +10,14 @@ interface InvoicePreviewProps {
 const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
   const invoiceRef = useRef<HTMLDivElement>(null);
 
+  const getCurrencySymbol = () => {
+    return invoiceData.currency === 'INR' ? '₹' : '$';
+  };
+
+  const getCurrencyLabel = () => {
+    return invoiceData.currency === 'INR' ? 'INR' : 'USD';
+  };
+
   const calculateTotal = () => {
     return invoiceData.costItems.reduce((sum: number, item: CostItem) => sum + item.amount, 0);
   };
@@ -110,35 +118,38 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
         className="w-[900px] bg-white shadow-2xl"
         style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}
       >
-        <div className="p-12 min-h-[1120px] flex flex-col" style={{ fontSize: '13px', color: '#1a1a2e' }}>
+        {/* A4 size container with footer at bottom */}
+        <div className="p-12 flex flex-col" style={{ fontSize: '15px', color: '#1a1a2e', minHeight: '1270px' }}>
           
+          {/* Main Content */}
+          <div className="flex-grow">
           {/* Header */}
-          <div className="flex justify-between items-start mb-1.5">
-            <div className="flex items-center gap-4">
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex items-center">
               <img 
                 src="/logo.svg" 
                 alt="Door To Happiness Holiday Logo" 
-                className="h-16 w-auto object-contain"
+                className="h-20 w-auto object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/logo.png';
+                }}
               />
-              <div>
-                <div className="text-[28px] font-extrabold leading-tight" style={{ color: '#1a1a2e' }}>
-                  {invoiceData.companyName}
-                </div>
-                <div className="text-[13px] font-bold tracking-[2px] mt-1" style={{ color: '#1a1a2e' }}>
-                  INVOICE
-                </div>
+            </div>
+            <div className="flex-1 text-center">
+              <div className="text-[28px] font-extrabold tracking-[3px] mt-6" style={{ color: '#1a1a2e' }}>
+                INVOICE
               </div>
             </div>
-            <div className="text-right text-xs leading-relaxed" style={{ color: '#333' }}>
+            <div className="text-right text-sm leading-relaxed" style={{ color: '#333' }}>
               <div><strong style={{ color: '#1a1a2e' }}>Confirmation No:</strong> {invoiceData.confirmationNumber}</div>
               <div><strong style={{ color: '#1a1a2e' }}>Date:</strong> {formatInvoiceDate(invoiceData.invoiceDate)}</div>
             </div>
           </div>
 
-          <hr className="border-t-2 border-[#1a1a2e] my-3" />
+          <hr className="border-t-2 border-[#1a1a2e] my-4" />
 
           {/* Bill To */}
-          <div className="mb-6">
+          <div className="mb-8">
             <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#1a1a2e' }}>
               Bill To
             </div>
@@ -156,7 +167,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
           </div>
 
           {/* Travel Details Table */}
-          <div className="mb-6">
+          <div className="mb-8">
             <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#1a1a2e' }}>
               Travel Details
             </div>
@@ -192,7 +203,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
           </div>
 
           {/* Cost Breakdown Table */}
-          <div className="mb-6">
+          <div className="mb-8">
             <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#1a1a2e' }}>
               Cost Breakdown
             </div>
@@ -203,7 +214,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
                     Description
                   </th>
                   <th className="border border-[#1a1a2e] px-3.5 py-2 text-right font-semibold text-[11.5px]">
-                    Amount (USD)
+                    Amount ({getCurrencyLabel()})
                   </th>
                 </tr>
               </thead>
@@ -211,7 +222,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
                 {invoiceData.costItems.map((item: CostItem, index: number) => (
                   <tr key={item.id} className={index % 2 === 1 ? 'bg-[#f9f9fc]' : ''}>
                     <td className="border border-[#d0d4e8] px-3.5 py-2">{item.description || '–'}</td>
-                    <td className="border border-[#d0d4e8] px-3.5 py-2 text-right">${item.amount.toFixed(2)}</td>
+                    <td className="border border-[#d0d4e8] px-3.5 py-2 text-right">{getCurrencySymbol()}{item.amount.toFixed(2)}</td>
                   </tr>
                 ))}
                 <tr>
@@ -219,7 +230,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
                     Total Amount Payable
                   </td>
                   <td className="border border-[#d0d4e8] px-3.5 py-2.5 text-right font-bold text-[15px]" style={{ color: '#1a1a2e' }}>
-                    ${calculateTotal().toFixed(2)}
+                    {getCurrencySymbol()}{calculateTotal().toFixed(2)}
                   </td>
                 </tr>
               </tbody>
@@ -227,7 +238,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
           </div>
 
           {/* Beneficiary Details */}
-          <div className="mb-8">
+          <div className="mb-10">
             <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#1a1a2e' }}>
               Beneficiary Details
             </div>
@@ -260,14 +271,15 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
           </div>
 
           {/* Signature */}
-          <div className="flex justify-end mb-4">
+          <div className="flex justify-end mb-6">
             <div className="text-right">
               <div className="w-[220px] border-t-[1.5px] border-[#1a1a2e] mb-1.5"></div>
               <div className="text-xs font-bold" style={{ color: '#1a1a2e' }}>Authorised Signature</div>
             </div>
           </div>
+          </div>
 
-          {/* Footer */}
+          {/* Footer - Fixed at bottom of A4 page */}
           <div className="border-t-2 border-[#1a1a2e] pt-3 text-center mt-auto">
             <div className="font-bold text-[13px] mb-1.5" style={{ color: '#1a1a2e' }}>
               {invoiceData.companyName}

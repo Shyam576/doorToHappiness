@@ -138,7 +138,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
       {/* Bill To */}
       <div className="mb-6">
         <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
-          Bill To
+          Bill To :
         </h3>
         <div className="space-y-2">
           <div>
@@ -274,7 +274,9 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] text-[#9a9abf] mb-1">Amount (USD)</label>
+                  <label className="block text-[11px] text-[#9a9abf] mb-1">
+                    Amount ({invoiceData.currency === 'INR' ? 'INR' : 'USD'})
+                  </label>
                   <input
                     type="number"
                     value={item.amount}
@@ -293,6 +295,24 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
         >
           + Add Cost Item
         </button>
+      </div>
+
+      {/* Currency Selector */}
+      <div className="mb-6">
+        <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
+          Currency
+        </h3>
+        <div>
+          <label className="block text-[11px] text-[#9a9abf] mb-1">Currency</label>
+          <select
+            value={invoiceData.currency}
+            onChange={(e) => handleInputChange('currency', e.target.value)}
+            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+          >
+            <option value="USD">USD ($)</option>
+            <option value="INR">INR (₹)</option>
+          </select>
+        </div>
       </div>
 
       {/* Beneficiary Details */}
