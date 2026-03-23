@@ -48,13 +48,13 @@ export const AdminNav: React.FC<NavBarProps> = () => {
                         <img
                             src={logo.src}
                             alt="Door To Happiness Holidays Logo"
-                            className="w-30 h-16 rounded-lg transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
+                            className="w-24 h-12 rounded-lg transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
                         />
                         <div className="hidden sm:flex flex-col">
-                            <span className="font-bold text-lg text-gray-800 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
+                            <span className="font-bold text-base text-gray-800 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
                                 Admin Dashboard
                             </span>
-                            <span className="text-sm font-medium text-yellow-700 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
+                            <span className="text-xs font-medium text-yellow-700 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
                                 Management Portal
                             </span>
                         </div>
@@ -74,6 +74,12 @@ export const AdminNav: React.FC<NavBarProps> = () => {
                         className={`hover:text-yellow-600 transition-colors duration-200 ${router.pathname === '/admin/destination' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
                     >
                         Destinations
+                    </Link>
+                    <Link
+                        href="/invoice/generator"
+                        className={`hover:text-yellow-600 transition-colors duration-200 ${router.pathname === '/invoice/generator' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                    >
+                        Invoice Generator
                     </Link>
                     <Link
                         href="/admin/contactus"
@@ -108,6 +114,12 @@ export const AdminNav: React.FC<NavBarProps> = () => {
                         className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-yellow-600 ${router.pathname === '/admin/destination' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
                     >
                         Destinations
+                    </Link>
+                    <Link 
+                        href="/invoice/generator" 
+                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-yellow-600 ${router.pathname === '/invoice/generator' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                    >
+                        Invoice Generator
                     </Link>
                     <Link 
                         href="/admin/contactus" 
