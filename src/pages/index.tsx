@@ -72,6 +72,7 @@ const Index: React.FC = () => {
   const [sortOption, setSortOption] = useState("recommended");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchNoResults, setSearchNoResults] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Parallax effect - use ref instead of state to avoid re-rendering on scroll
@@ -243,16 +244,13 @@ const Index: React.FC = () => {
     };
   }, []);
 
-  // Debounced search handlers for better performance
+  // Search input handler — only updates term and dropdown, no auto-scroll
   const handlePackageSearch = useCallback((value: string) => {
     setPackageSearchTerm(value);
     setShowPackageResults(value.length > 0);
-
-    // Auto-scroll to tours if user is actively searching
-    if (value.length > 2) {
-      setTimeout(() => scrollToSection(toursRef), 500);
-    }
-  }, []);
+    // Clear any previous no-results warning when user types
+    if (searchNoResults) setSearchNoResults(false);
+  }, [searchNoResults]);
 
   // Scroll to section function
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
@@ -264,21 +262,24 @@ const Index: React.FC = () => {
     }
   };
 
-  // Handle search application with scroll
+  // Handle search button — only scrolls when results exist, warns otherwise
   const handleSearch = () => {
+    if (filteredPackages.length === 0) {
+      setSearchNoResults(true);
+      return;
+    }
+    setSearchNoResults(false);
     setIsLoading(true);
-
-    // Scroll to tours section
+    setShowPackageResults(false);
     setTimeout(() => scrollToSection(toursRef), 100);
-
-    // Reset loading state
-    setTimeout(() => setIsLoading(false), 1000);
+    setTimeout(() => setIsLoading(false), 800);
   };
 
   // Clear search function
   const clearSearch = () => {
     setPackageSearchTerm("");
     setShowPackageResults(false);
+    setSearchNoResults(false);
     setSortOption("recommended");
   };
 
@@ -609,9 +610,21 @@ const Index: React.FC = () => {
                 )}
               </button>
             </div>
-            {packageSearchTerm && (
-              <p className="text-xs text-white text-center mt-2">
-                Searching for &ldquo;{packageSearchTerm}&rdquo; in tours
+            {/* No-results warning */}
+            {searchNoResults && packageSearchTerm && (
+              <div className="mt-2 flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-3 py-2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 flex-shrink-0 text-yellow-200" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+                <p className="text-xs text-white/90">
+                  No tours found for &ldquo;{packageSearchTerm}&rdquo; — try a different keyword.
+                </p>
+              </div>
+            )}
+            {/* Results hint when found */}
+            {!searchNoResults && packageSearchTerm && filteredPackages.length > 0 && (
+              <p className="text-xs text-white/80 text-center mt-2">
+                {filteredPackages.length} tour{filteredPackages.length !== 1 ? "s" : ""} found — press Search to view
               </p>
             )}
           </div>
@@ -669,11 +682,11 @@ const Index: React.FC = () => {
           {/* Header Section */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 px-4">
             <div className="inline-block mb-4">
-              <span className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white text-sm font-semibold px-4 py-2 rounded-full">
+              <span className="bg-gradient-to-r from-amber-600 to-amber-700 text-white text-sm font-semibold px-4 py-2 rounded-full">
                 Certified by Tourism Council of Bhutan
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 mb-4 sm:mb-6 leading-tight">
               Your Gateway to Authentic Bhutan Travel Experiences
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed text-left sm:text-center">
@@ -690,10 +703,10 @@ const Index: React.FC = () => {
           {/* Experience Cards */}
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {/* Cultural Tours Card */}
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 hover:shadow-2xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100 hover:shadow-2xl transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
               <div className="relative p-6 sm:p-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative rounded-full overflow-hidden ring-4 ring-orange-400">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative rounded-full overflow-hidden ring-4 ring-amber-400">
                   <Image
                     src="/aboutus1.svg"
                     alt="Cultural & Heritage Tours"
@@ -701,7 +714,7 @@ const Index: React.FC = () => {
                     className="object-contain"
                   />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+                <h3 className="font-heading text-2xl sm:text-3xl font-bold text-stone-900 mb-3 sm:mb-4">
                   Cultural & Heritage Tours
                 </h3>
                 <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
@@ -712,13 +725,13 @@ const Index: React.FC = () => {
                   for centuries across remote valleys and historic dzongkhags.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-white text-orange-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                  <span className="bg-white text-amber-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
                     Ancient Dzongs
                   </span>
-                  <span className="bg-white text-orange-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                  <span className="bg-white text-amber-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
                     Sacred Monasteries
                   </span>
-                  <span className="bg-white text-orange-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                  <span className="bg-white text-amber-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
                     Festival Tours
                   </span>
                 </div>
@@ -726,10 +739,10 @@ const Index: React.FC = () => {
             </div>
 
             {/* Trekking Card */}
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-2xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 hover:shadow-2xl transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
               <div className="relative p-6 sm:p-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative rounded-full overflow-hidden ring-4 ring-orange-400">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative rounded-full overflow-hidden ring-4 ring-emerald-400">
                   <Image
                     src="/aboutus2.jpg"
                     alt="Trekking & Adventure Travel"
@@ -738,7 +751,7 @@ const Index: React.FC = () => {
                     className="object-cover"
                   />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+                <h3 className="font-heading text-2xl sm:text-3xl font-bold text-stone-900 mb-3 sm:mb-4">
                   Trekking & Adventure Travel
                 </h3>
                 <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
@@ -750,13 +763,13 @@ const Index: React.FC = () => {
                   kingdom&apos;s fragile mountain ecosystems.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-white text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                  <span className="bg-white text-emerald-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
                     Snowman Trek
                   </span>
-                  <span className="bg-white text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                  <span className="bg-white text-emerald-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
                     Valley Hikes
                   </span>
-                  <span className="bg-white text-blue-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
+                  <span className="bg-white text-emerald-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
                     Eco-Friendly
                   </span>
                 </div>
@@ -766,10 +779,10 @@ const Index: React.FC = () => {
 
           {/* Expertise Statement - Enhanced */}
           <div className="max-w-5xl mx-auto mb-12 sm:mb-16">
-            <div className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 rounded-3xl p-8 sm:p-10 lg:p-12 shadow-xl border border-orange-100">
+            <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-stone-50 to-amber-50 rounded-3xl p-8 sm:p-10 lg:p-12 shadow-xl border border-amber-100">
               {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-30 -mr-20 -mt-20"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-orange-200 to-yellow-200 rounded-full opacity-30 -ml-16 -mb-16"></div>
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full opacity-30 -mr-20 -mt-20"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-amber-200 to-stone-200 rounded-full opacity-30 -ml-16 -mb-16"></div>
               
               <div className="relative">
                 {/* Icon/Visual Element */}
@@ -783,7 +796,7 @@ const Index: React.FC = () => {
                 <p className="text-lg sm:text-xl lg:text-2xl text-gray-800 leading-relaxed text-center mb-8 font-medium">
                   Whether you&apos;re seeking spiritual enrichment at{" "}
                   <Link href="/dzongkhag/paro" className="relative inline-block group cursor-pointer">
-                    <span className="relative z-10 font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-yellow-600 group-hover:from-orange-700 group-hover:to-yellow-700 transition-all duration-300">
+                    <span className="relative z-10 font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500 group-hover:from-amber-800 group-hover:to-amber-600 transition-all duration-300">
                       Taktsang Monastery (Tiger&apos;s Nest)
                     </span>
                     <span className="absolute bottom-0 left-0 w-full h-2 bg-yellow-200 opacity-50 group-hover:opacity-70 group-hover:h-3 transition-all duration-300 -z-0"></span>
@@ -822,14 +835,14 @@ const Index: React.FC = () => {
           </div>
 
           {/* Why Choose Us - Modern Grid */}
-          <div className="bg-gradient-to-br from-yellow-50 via-orange-50 to-yellow-50 rounded-3xl p-6 sm:p-10 lg:p-12">
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center px-4">
+          <div className="bg-gradient-to-br from-stone-50 to-amber-50 rounded-3xl p-6 sm:p-10 lg:p-12">
+            <h3 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-stone-900 mb-6 sm:mb-8 text-center px-4">
               Why Choose Door to Happiness Holiday?
             </h3>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {/* Feature 1 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-orange-400">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-amber-400">
                   <Image
                     src="/whyus1.svg"
                     alt="Licensed Bhutanese Operator"
@@ -847,7 +860,7 @@ const Index: React.FC = () => {
 
               {/* Feature 2 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-orange-400">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-amber-400">
                   <Image
                     src="/whyus2.jpg"
                     alt="Complete Dzongkhag Coverage"
@@ -866,7 +879,7 @@ const Index: React.FC = () => {
 
               {/* Feature 3 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-orange-400">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-amber-400">
                   <Image
                     src="/whyus3.jpg"
                     alt="Sustainable Tourism"
@@ -885,7 +898,7 @@ const Index: React.FC = () => {
 
               {/* Feature 4 */}
               <div className="text-center px-2">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-orange-400">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-2 sm:mb-3 hover:scale-110 transition-transform relative rounded-full overflow-hidden ring-4 ring-amber-400">
                   <Image
                     src="/whyus4.svg"
                     alt="Custom Itineraries"
@@ -910,7 +923,7 @@ const Index: React.FC = () => {
         <div className="text-center mb-8 sm:mb-12">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
             <div className="text-center sm:text-center flex-1">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
                 Our Most Popular Bhutan Tours
               </h2>
               <p className="text-gray-600 text-sm sm:text-base">
@@ -936,7 +949,7 @@ const Index: React.FC = () => {
                   aria-label="Sort tours"
                   aria-haspopup="listbox"
                   aria-expanded={isDropdownOpen}
-                  className="px-3 sm:px-4 py-2 border border-orange-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base bg-white text-gray-700 hover:border-orange-300 transition-colors min-w-[140px] sm:min-w-[160px] flex items-center justify-between"
+                  className="px-3 sm:px-4 py-2 border border-amber-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm sm:text-base bg-white text-stone-700 hover:border-amber-300 transition-colors min-w-[140px] sm:min-w-[160px] flex items-center justify-between"
                 >
                   <span>
                     {
@@ -960,10 +973,10 @@ const Index: React.FC = () => {
                           setSortOption(option.value);
                           setIsDropdownOpen(false);
                         }}
-                        className={`w-full text-left px-3 sm:px-4 py-2 text-sm sm:text-base hover:bg-orange-50 transition-colors ${
+                        className={`w-full text-left px-3 sm:px-4 py-2 text-sm sm:text-base hover:bg-amber-50 transition-colors ${
                           sortOption === option.value
-                            ? "bg-orange-100 text-orange-700 font-medium"
-                            : "text-gray-700"
+                            ? "bg-amber-100 text-amber-700 font-medium"
+                            : "text-stone-700"
                         }`}
                       >
                         {option.label}
@@ -1001,7 +1014,7 @@ const Index: React.FC = () => {
                     <h3 className="text-sm sm:text-lg text-gray-800 font-bold flex-1 pr-2">
                       {tour.title}
                     </h3>
-                    <span className="bg-yellow-200 text-gray-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap flex-shrink-0">
+                    <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap flex-shrink-0">
                       {tour.duration || tour.dates}
                     </span>
                   </div>
@@ -1023,7 +1036,7 @@ const Index: React.FC = () => {
                   {/* Button at bottom with proper Link */}
                   <div className="mt-auto">
                     <Link href={getRouteForTour(tour)} passHref>
-                      <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
+                      <button className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
                         View Details
                         <FiArrowRight className="ml-2" />
                       </button>
@@ -1046,7 +1059,7 @@ const Index: React.FC = () => {
               </p>
               <button
                 onClick={clearSearch}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700"
               >
                 Clear search and browse all
               </button>
@@ -1057,7 +1070,7 @@ const Index: React.FC = () => {
         {sortedPackages.length > 6 && !packageSearchTerm && (
           <div className="text-center mt-8 sm:mt-12">
             <Link href="/package" passHref>
-              <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 transition">
+              <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 transition">
                 View All {sortedPackages.length} Tour Packages
                 <FiArrowRight className="ml-2" />
               </button>
@@ -1138,7 +1151,7 @@ const Index: React.FC = () => {
       </Container> */}
 
       {/* Dzongkhags & Heritage Places Section */}
-      <Container className="py-12 sm:py-16 bg-gradient-to-b from-blue-50 to-orange-50">
+      <Container className="py-12 sm:py-16 bg-gradient-to-b from-stone-50 to-amber-50">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
             Explore Bhutan&apos;s Historic Dzongkhags
@@ -1152,7 +1165,7 @@ const Index: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-orange-400">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-amber-400">
               <Image
                 src="/explore1.jpg"
                 alt="Historic Dzongs"
@@ -1170,14 +1183,14 @@ const Index: React.FC = () => {
               dzongkhags.
             </p>
             <Link href="/dzongkhag">
-              <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+              <button className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
                 Explore Dzongkhags
               </button>
             </Link>
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-orange-400">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-amber-400">
               <Image
                 src="/explore2.jpg"
                 alt="Monasteries & Temples"
@@ -1195,14 +1208,14 @@ const Index: React.FC = () => {
               practice.
             </p>
             <Link href="/sacred-places">
-              <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+              <button className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
                 Heritage Places Guide
               </button>
             </Link>
           </div>
 
           <div className="text-center bg-white rounded-xl p-8 shadow-lg">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-orange-400">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto mb-4 flex justify-center items-center relative rounded-full overflow-hidden ring-4 ring-amber-400">
               <Image
                 src="/explore3.jpg"
                 alt="Cultural Heritage"
@@ -1220,7 +1233,7 @@ const Index: React.FC = () => {
               dzongkhag.
             </p>
             <Link href="/guides/dzong-architecture">
-              <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+              <button className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
                 Architecture Guide
               </button>
             </Link>
@@ -1267,7 +1280,7 @@ const Index: React.FC = () => {
 
           <div className="text-center mt-8">
             <Link href="/dzongkhag">
-              <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-3 rounded-lg font-bold transition-all transform hover:scale-105">
+              <button className="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 rounded-lg font-bold transition-all transform hover:scale-105">
                 Explore All 20 Dzongkhags
               </button>
             </Link>
@@ -1276,14 +1289,14 @@ const Index: React.FC = () => {
       </Container>
 
       {/* Newsletter Signup */}
-      <Container className="py-12 sm:py-16 bg-gradient-to-r from-orange-50 to-yellow-50">
+      <Container className="py-12 sm:py-16 bg-gradient-to-r from-stone-50 to-amber-50">
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden">
           <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/2 bg-yellow-500 p-6 sm:p-8 flex flex-col justify-center">
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+            <div className="md:w-1/2 bg-amber-700 p-6 sm:p-8 flex flex-col justify-center">
+              <h2 className="text-xl sm:text-2xl font-heading font-bold text-white mb-3 sm:mb-4">
                 Get Bhutan Travel Inspiration
               </h2>
-              <p className="text-yellow-100 text-sm sm:text-base">
+              <p className="text-amber-100 text-sm sm:text-base">
                 Sign up for exclusive offers, travel tips, and Bhutanese
                 cultural insights.
               </p>
@@ -1305,7 +1318,7 @@ const Index: React.FC = () => {
                         ? "border-red-400 focus:ring-red-500"
                         : subscriptionStatus === "success"
                         ? "border-green-400 focus:ring-green-500"
-                        : "border-orange-200 focus:ring-orange-500"
+                        : "border-amber-200 focus:ring-amber-500"
                     } ${isSubscribing ? "opacity-50 cursor-not-allowed" : ""}`}
                   />
                 </div>
@@ -1318,7 +1331,7 @@ const Index: React.FC = () => {
                       ? "bg-gray-400 text-gray-200 cursor-not-allowed"
                       : subscriptionStatus === "success"
                       ? "bg-green-600 hover:bg-green-700 text-white"
-                      : "bg-orange-500 hover:bg-orange-600 text-white"
+                      : "bg-amber-600 hover:bg-amber-700 text-white"
                   }`}
                 >
                   {isSubscribing ? (

@@ -12,135 +12,91 @@ interface TourPackage {
   description: string;
   price?: string | number;
   category?: string;
-  [key: string]: any; // Allow additional properties
+  [key: string]: any;
 }
 
+const CATEGORY_CONFIG: Record<string, { label: string; color: string }> = {
+  city:      { label: 'City Tour',    color: 'bg-amber-500' },
+  festival:  { label: 'Festival',     color: 'bg-orange-500' },
+  cultural:  { label: 'Cultural',     color: 'bg-yellow-600' },
+  trekking:  { label: 'Trekking',     color: 'bg-emerald-700' },
+  adventure: { label: 'Adventure',    color: 'bg-emerald-700' },
+  group:     { label: 'Group Tour',   color: 'bg-amber-600' },
+};
+
+const getRouteForTour = (tour: TourPackage): string => {
+  switch (tour.category) {
+    case 'cultural':  return `/package/cultural/${tour.id}`;
+    case 'festival':  return `/package/festival/${tour.id}`;
+    case 'group':     return `/package/group/${tour.id}`;
+    case 'trekking':
+    case 'adventure': return `/package/trekking/${tour.id}`;
+    default:          return `/package/majorcitytour/${tour.id}`;
+  }
+};
+
 const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
-  // Determine the correct route based on the tour category
-  const getRouteForTour = (tour: TourPackage) => {
-    switch (tour.category) {
-      case 'cultural':
-        return `/package/cultural/${tour.id}`;
-      case 'festival':
-        return `/package/festival/${tour.id}`;
-      case 'group':
-        return `/package/group/${tour.id}`;
-      case 'trekking':
-      case 'adventure':  // Adventure tours also use trekking pages
-        return `/package/trekking/${tour.id}`;
-      case 'city':
-      default:
-        return `/package/majorcitytour/${tour.id}`;
-    }
-  };
-
-  // Get category background image
-  const getCategoryBackground = (category?: string) => {
-    switch (category) {
-      case 'city':
-        return '/category1.jpg';
-      case 'festival':
-        return '/category2.jpg';
-      case 'cultural':
-        return '/category3.jpg';
-      case 'adventure':
-      case 'trekking':
-        return '/category4.jpg';
-      case 'group':
-        return '/category5.jpg';
-      default:
-        return null;
-    }
-  };
-
-  // Get category badge color
-  const getCategoryBadgeColor = (category?: string) => {
-    switch (category) {
-      case 'city':
-        return 'bg-gradient-to-r from-yellow-400 to-orange-400';
-      case 'festival':
-        return 'bg-gradient-to-r from-orange-400 to-red-400';
-      case 'cultural':
-        return 'bg-gradient-to-r from-yellow-500 to-amber-500';
-      case 'adventure':
-      case 'trekking':
-        return 'bg-gradient-to-r from-orange-600 to-yellow-400';
-      case 'group':
-        return 'bg-gradient-to-r from-amber-400 to-orange-500';
-      default:
-        return 'bg-gradient-to-r from-orange-500 to-yellow-500';
-    }
-  };
-
-  const categoryBg = getCategoryBackground(tour.category);
-  const badgeColor = getCategoryBadgeColor(tour.category);
+  const cfg = CATEGORY_CONFIG[tour.category ?? ''] ?? { label: tour.category ?? '', color: 'bg-amber-500' };
 
   return (
-    <div className="relative bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full group">
-      {/* Category Background Pattern - Very Subtle */}
-      {categoryBg && (
-        <div
-          className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-5 transition-opacity duration-500 z-0 rotate-12 scale-150 bg-cover bg-center"
-          style={{ backgroundImage: `url('${categoryBg}')` }}
-          aria-hidden="true"
-        />
-      )}
-      
-      <div className="h-52 overflow-hidden relative">
+    <article className="group relative bg-white rounded-xl overflow-hidden flex flex-col h-full transition-all duration-300 hover:-translate-y-1 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.10)]">
+
+      {/* ── Image ── */}
+      <div className="relative h-52 overflow-hidden bg-stone-100">
         <img
           src={tour.image}
           alt={tour.alt || tour.title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
           width={400}
           height={208}
         />
-        {/* Category Badge - Slightly transparent */}
+        {/* Gradient overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+
+        {/* Category badge */}
         {tour.category && (
-          <div className={`absolute top-4 left-4 ${badgeColor} bg-opacity-95 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide shadow-lg z-10 backdrop-blur-sm`}>
-            {tour.category}
-          </div>
+          <span className={`absolute top-3 left-3 ${cfg.color} text-white text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide shadow-sm`}>
+            {cfg.label}
+          </span>
         )}
       </div>
 
-      <div className="p-4 sm:p-6 flex flex-col flex-grow relative z-10" style={{ minHeight: '280px' }}>
-        <h3 className="text-lg sm:text-2xl font-bold text-gray-800 mb-2 line-clamp-2">
+      {/* ── Content ── */}
+      <div className="flex flex-col flex-grow p-5">
+        {/* Duration */}
+        <p className="text-xs font-medium text-amber-600 uppercase tracking-wider mb-1.5">
+          {tour.duration}
+          {tour.route && <span className="text-stone-400 normal-case tracking-normal font-normal ml-1">· {tour.route}</span>}
+        </p>
+
+        {/* Title */}
+        <h3 className="font-heading text-xl font-semibold text-stone-900 mb-2 leading-snug line-clamp-2">
           {tour.title}
         </h3>
 
-        <p className="text-xs sm:text-sm text-orange-500 mb-1 line-clamp-1">
-          {tour.highlights.join(' | ')}
+        {/* Highlights */}
+        <p className="text-xs text-stone-500 mb-3 line-clamp-1">
+          {tour.highlights.join(' · ')}
         </p>
 
-        <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
-          {tour.duration} {tour.route && `[${tour.route}]`}
+        {/* Description */}
+        <p className="text-sm text-stone-600 leading-relaxed line-clamp-3 flex-grow mb-5">
+          {tour.description}
         </p>
 
-        <div className="mb-4 sm:mb-6 flex-grow">
-          <p className="text-gray-700 leading-relaxed line-clamp-3 sm:line-clamp-4 text-sm">
-            {tour.description}
-          </p>
-        </div>
-
-        <div className="mt-auto pt-3 sm:pt-4 relative">
-          {/* Very subtle background pattern on hover */}
-          {categoryBg && (
-            <div
-              className="absolute -bottom-2 -right-2 w-24 h-24 opacity-0 group-hover:opacity-3 transition-opacity duration-500 pointer-events-none -rotate-12 bg-cover bg-center"
-              style={{ backgroundImage: `url('${categoryBg}')` }}
-              aria-hidden="true"
-            />
-          )}
-          <Link href={getRouteForTour(tour)} passHref>
-            <button className={`relative overflow-hidden w-full py-2 sm:py-3 ${badgeColor} text-white font-semibold rounded-lg shadow-md transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95 text-sm sm:text-base group/btn`}>
-              <span className="relative z-10">View Details</span>
-              {/* Shimmer effect on hover */}
-              <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-            </button>
-          </Link>
-        </div>
+        {/* CTA */}
+        <Link
+          href={getRouteForTour(tour)}
+          className="mt-auto flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 transition-colors duration-150 shadow-sm"
+        >
+          View Details
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </Link>
       </div>
-    </div>
+    </article>
   );
 };
 

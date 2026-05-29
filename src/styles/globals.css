@@ -2,6 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   Design System — Door to Happiness Holiday
+   Industry: Cultural/Adventure Travel
+   Style: Photography-Forward + Editorial Minimalism
+   Generated via UI UX Pro Max skill
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Color tokens */
+  --color-primary:       #D97706;  /* Warm gold / CTA */
+  --color-primary-dark:  #B45309;  /* Deep amber */
+  --color-primary-light: #FEF3C7;  /* Amber tint */
+  --color-forest:        #064E3B;  /* Deep forest green */
+  --color-forest-mid:    #065F46;
+  --color-cream:         #FFFBEB;  /* Warm page background */
+  --color-text:          #1C1917;  /* Deep charcoal */
+  --color-text-muted:    #78716C;  /* Warm gray */
+  --color-border:        #E7E5E4;  /* Warm sand */
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Shadows */
+  --shadow-card:       0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
+  --shadow-warm:       0 4px 12px rgba(180, 83, 9, 0.10), 0 2px 4px rgba(0,0,0,0.06);
+
+  /* Transitions */
+  --transition-base: 200ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
 /* Mobile-specific improvements */
 @layer base {
   html {
@@ -9,11 +42,157 @@
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   body {
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Focus ring — visible but styled */
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* ── Heading styles ─────────────────── */
+  .heading-display {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .heading-section {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  /* ── Button variants ────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white transition-all duration-200 cursor-pointer;
+    background-color: var(--color-primary);
+    box-shadow: var(--shadow-warm);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(180, 83, 9, 0.20);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 cursor-pointer border;
+    color: var(--color-primary-dark);
+    border-color: var(--color-primary);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    background-color: var(--color-primary-light);
+  }
+
+  /* ── Card ───────────────────────────── */
+  .card-elevated {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+  .card-elevated:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* ── Section label (small uppercase tag) ── */
+  .label-section {
+    @apply inline-block text-xs font-semibold uppercase tracking-widest;
+    color: var(--color-primary);
+  }
+
+  /* ── Divider ──────────────────────── */
+  .divider-warm {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-border), transparent);
+  }
+
+  /* ── Touch targets ─────────────────── */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* ── Smooth transitions ─────────────── */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ── Prevent zoom on input focus (iOS) ─ */
+  @media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="password"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
+  }
+
+  /* ── Card hover lift ─────────────────── */
+  .mobile-card {
+    @apply transition-all duration-300;
+    transform: translateZ(0);
+  }
+  .mobile-card:hover {
+    @apply shadow-card-hover;
+    transform: translateY(-2px) translateZ(0);
+  }
+
+  /* ── Button press ─────────────────── */
+  .mobile-button {
+    @apply transition-all duration-200;
+    transform: translateZ(0);
+  }
+  .mobile-button:active {
+    transform: scale(0.98) translateZ(0);
+  }
+
+  /* ── Responsive grid ─────────────────── */
+  .mobile-grid {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  /* ── Responsive typography ─────────── */
+  .mobile-text {
+    @apply text-sm sm:text-base;
+    line-height: 1.6;
+  }
+
+  .mobile-heading {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  }
+  .text-shadow-lg {
+    text-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+  .bg-cream {
+    background-color: var(--color-cream);
   }
 }
 

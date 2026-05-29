@@ -3,6 +3,45 @@ module.exports = {
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
+            // ─── Design System: Door to Happiness Holiday ───────────────────────
+            // Industry: Cultural/Adventure Travel — Style: Photography-Forward + Editorial Minimalism
+            // Generated via UI UX Pro Max skill
+            fontFamily: {
+                heading: ['Cormorant Garamond', 'Georgia', 'serif'],
+                sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            },
+            colors: {
+                brand: {
+                    amber:       '#D97706',  // CTA — warm gold, Buddhist culture
+                    'amber-dark': '#B45309', // Primary — refined deep amber
+                    'amber-light': '#FEF3C7', // Light tint for backgrounds
+                    forest:      '#064E3B',  // Earthy accent — Bhutan nature
+                    'forest-mid': '#065F46',
+                    'forest-light': '#D1FAE5',
+                    cream:       '#FFFBEB',  // Warm page background
+                    'cream-deep': '#FEF3C7',
+                },
+                stone: {
+                    50:  '#FAFAF9',
+                    100: '#F5F5F4',
+                    200: '#E7E5E4',
+                    300: '#D6D3D1',
+                    400: '#A8A29E',
+                    500: '#78716C',
+                    600: '#57534E',
+                    700: '#44403C',
+                    800: '#292524',
+                    900: '#1C1917',
+                },
+            },
+            boxShadow: {
+                'warm-sm':  '0 1px 3px rgba(180, 83, 9, 0.08), 0 1px 2px rgba(0,0,0,0.06)',
+                'warm':     '0 4px 12px rgba(180, 83, 9, 0.10), 0 2px 4px rgba(0,0,0,0.06)',
+                'warm-lg':  '0 10px 30px rgba(180, 83, 9, 0.12), 0 4px 8px rgba(0,0,0,0.08)',
+                'warm-xl':  '0 20px 50px rgba(180, 83, 9, 0.15), 0 8px 16px rgba(0,0,0,0.10)',
+                'card':     '0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)',
+                'card-hover': '0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06)',
+            },
             screens: {
                 'xs': '475px',
                 '3xl': '1600px',
