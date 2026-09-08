@@ -20,12 +20,8 @@ const Document = () => {
                     rel="stylesheet"
                 />
 
-                {/* DNS prefetch for common external image domains */}
+                {/* DNS prefetch for external image domains actually in use */}
                 <link rel="dns-prefetch" href="//images.unsplash.com" />
-                <link rel="dns-prefetch" href="//ucarecdn.com" />
-                <link rel="dns-prefetch" href="//cdn.drukasia.com" />
-                <link rel="dns-prefetch" href="//upload.wikimedia.org" />
-                <link rel="dns-prefetch" href="//dynamic-media-cdn.tripadvisor.com" />
             </Head>
             <body>
                 <Main />

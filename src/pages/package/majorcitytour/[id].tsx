@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import {
   FiMapPin,
@@ -21,6 +22,7 @@ import {
 } from "react-icons/hi";
 import majorCitiesPackage from "../../../data/majorCitiesPackage.json";
 import ReactMarkdown from "react-markdown";
+import StickyEnquireBar from "../../../components/StickyEnquireBar";
 interface DayItinerary {
   title: string;
   description: string;
@@ -47,40 +49,30 @@ interface TourPackage {
   bestSeason: string[];
 }
 
-const PackageDetailsPage = () => {
+interface PackageDetailsPageProps {
+  packageData: TourPackage;
+}
+
+const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
+  packageData,
+}) => {
   const router = useRouter();
-  const { id } = router.query;
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedImage, setSelectedImage] = useState(0); // Start with first image from images array
-
-  // Find the package with matching ID
-  const packageData = majorCitiesPackage.find(
-    (pkg) => pkg.id && pkg.id.toString() === id
-  );
-
-  if (!packageData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-800">
-            Package not found
-          </h1>
-          <button
-            onClick={() => router.push("/")}
-            className="mt-4 px-4 py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-lg"
-          >
-            Back to Home
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <>
       <Head>
         <title>{packageData.title} | Door to Happiness Holiday</title>
         <meta name="description" content={packageData.description} />
+        <meta property="og:title" content={`${packageData.title} | Door to Happiness Holiday`} />
+        <meta property="og:description" content={packageData.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={packageData.image} />
+        <link
+          rel="canonical"
+          href={`https://www.doortohappinessholidays.com/package/majorcitytour/${packageData.id}`}
+        />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -462,8 +454,40 @@ const PackageDetailsPage = () => {
           </div>
         </div>
       </div>
+
+      <StickyEnquireBar title={packageData.title} />
     </>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = majorCitiesPackage
+    .filter((pkg) => pkg.id)
+    .map((pkg) => ({ params: { id: pkg.id.toString() } }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id as string;
+  const packageData = majorCitiesPackage.find(
+    (pkg) => pkg.id && pkg.id.toString() === id
+  );
+
+  if (!packageData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      packageData,
+    },
+  };
 };
 
 export default PackageDetailsPage;

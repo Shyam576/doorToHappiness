@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
+import PlacePlaceholder from '../../components/PlacePlaceholder';
 import { 
   FiMapPin, 
   FiCalendar, 
@@ -77,7 +78,7 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
         <meta property="og:description" content={`Explore ${dzongkhag.name} dzongkhag's sacred sites, ancient dzongs, and monasteries. ${dzongkhag.description}`} />
         <meta property="og:type" content="article" />
         <meta property="og:image" content={dzongkhag.images?.[0] || '/logo.png'} />
-        <link rel="canonical" href={`https://www.doortohappinessholiday.com/dzongkhag/${dzongkhag.slug}`} />
+        <link rel="canonical" href={`https://www.doortohappinessholidays.com/dzongkhag/${dzongkhag.slug}`} />
         
         {/* Schema.org structured data */}
         <script type="application/ld+json">
@@ -238,14 +239,19 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                               <h3 className="font-semibold text-gray-900 text-lg">{place.name}</h3>
                             </div>
                             <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">{place.description}</p>
-                            {place.image && (
-                              <img 
-                                src={place.image} 
+                            {place.image ? (
+                              <img
+                                src={place.image}
                                 alt={place.name}
                                 className="w-full h-32 object-cover rounded-md mb-3"
                                 loading="lazy"
                                 width={400}
                                 height={128}
+                              />
+                            ) : (
+                              <PlacePlaceholder
+                                name={place.name}
+                                className="w-full h-32 rounded-md mb-3"
                               />
                             )}
                             {place.distance && (

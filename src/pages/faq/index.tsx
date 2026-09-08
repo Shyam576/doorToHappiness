@@ -41,6 +41,13 @@ const FAQPage = () => {
           name="keywords"
           content="Bhutan FAQ, travel questions, tour booking, visa requirements, best time visit Bhutan, Bhutan travel guide"
         />
+        <meta property="og:title" content="Frequently Asked Questions | Door to Happiness Holiday" />
+        <meta
+          property="og:description"
+          content="Find answers to commonly asked questions about Bhutan tours, travel requirements, best times to visit, and booking procedures."
+        />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.doortohappinessholidays.com/faq" />
       </Head>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">

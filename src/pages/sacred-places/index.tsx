@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import popularDestination from '../../data/popularDestination.json';
+import PlacePlaceholder from '../../components/PlacePlaceholder';
 import { FiMapPin, FiSearch } from 'react-icons/fi';
 import { FaPrayingHands, FaMountain, FaBuilding } from 'react-icons/fa';
 import { getTheme } from '../../styles/themes';
@@ -67,7 +68,7 @@ const SacredPlacesIndex = () => {
         <meta property="og:title" content="Sacred Places in Bhutan - Complete Guide to Spiritual Sites" />
         <meta property="og:description" content="Explore Bhutan's sacred dzongs, monasteries, and temples. Your complete guide to spiritual sites across the Kingdom of Bhutan." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholiday.com/sacred-places" />
+        <link rel="canonical" href="https://www.doortohappinessholidays.com/sacred-places" />
         
         {/* Preload hero image for faster LCP */}
         <link
@@ -152,16 +153,18 @@ const SacredPlacesIndex = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPlaces.map((place: any, index: number) => (
                 <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-                  {place.image && (
-                    <div className="h-48 overflow-hidden flex-shrink-0">
-                      <img 
-                        src={place.image} 
+                  <div className="h-48 overflow-hidden flex-shrink-0">
+                    {place.image ? (
+                      <img
+                        src={place.image}
                         alt={place.name}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                       />
-                    </div>
-                  )}
+                    ) : (
+                      <PlacePlaceholder name={place.name} className="w-full h-full" />
+                    )}
+                  </div>
                   
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center justify-between mb-3">

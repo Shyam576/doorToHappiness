@@ -36,7 +36,7 @@ const DzongkhagIndex = () => {
         <meta property="og:title" content="Complete Guide to Bhutan's 20 Dzongkhags - Sacred Places & Cultural Heritage" />
         <meta property="og:description" content="Discover the sacred places, dzongs, and monasteries in all 20 dzongkhags of Bhutan. Your ultimate guide to Bhutan's cultural and spiritual heritage." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholiday.com/dzongkhag" />
+        <link rel="canonical" href="https://www.doortohappinessholidays.com/dzongkhag" />
         
         {/* Preload hero image for faster LCP */}
         <link

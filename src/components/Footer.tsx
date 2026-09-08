@@ -5,11 +5,12 @@ const FOOTER_LINKS = [
   { href: '/package',       label: 'Packages' },
   { href: '/dzongkhag',     label: 'Dzongkhags' },
   { href: '/sacred-places', label: 'Heritage Places' },
+  { href: '/guides',        label: 'Travel Guides' },
   { href: '/faq',           label: 'FAQ' },
   { href: '/contactus',     label: 'Contact' },
 ];
 
-const SOCIAL_LINKS = [
+export const SOCIAL_LINKS = [
   {
     href: 'https://www.facebook.com/doortohappinessholiday',
     label: 'Follow us on Facebook',

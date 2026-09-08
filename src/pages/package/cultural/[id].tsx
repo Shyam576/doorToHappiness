@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 import { 
   FiMapPin, 
@@ -21,6 +22,7 @@ import {
   HiOutlineBuildingLibrary
 } from 'react-icons/hi2';
 import culturalTours from '../../../data/culturalTours.json';
+import StickyEnquireBar from '../../../components/StickyEnquireBar';
 
 interface DayItinerary {
   day: number;
@@ -50,9 +52,14 @@ interface CulturalTour {
   difficulty_level?: string;
 }
 
-const CulturalTourDetails = () => {
+interface CulturalTourDetailsProps {
+  tourData: CulturalTour;
+}
+
+const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
+  tourData,
+}) => {
   const router = useRouter();
-  const { id } = router.query;
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -79,27 +86,6 @@ const CulturalTourDetails = () => {
       alert('Link copied to clipboard!');
     }
   };
-
-  // Find the tour with matching ID
-  const tourData = culturalTours.find(tour => tour.id === id) as CulturalTour | undefined;
-
-  if (!tourData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-yellow-50">
-        <div className="text-center p-8">
-          <HiOutlineBuildingLibrary className="mx-auto text-6xl text-orange-400 mb-4" />
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">Cultural Tour Not Found</h1>
-          <p className="text-gray-600 mb-6">The cultural tour you're looking for doesn't exist.</p>
-          <button 
-            onClick={() => router.push('/')}
-            className="px-6 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-lg font-semibold hover:from-orange-600 hover:to-yellow-600 transition-all duration-300"
-          >
-            Back to Home
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   // Function to randomly select images from local images
   const getRandomImages = (count: number) => {
@@ -130,6 +116,14 @@ const CulturalTourDetails = () => {
         <title>{tourData.title} | Door to Happiness Holiday</title>
         <meta name="description" content={tourData.description} />
         <meta name="keywords" content="Bhutan cultural tour, Buddhist culture, monastery visit, cultural experience" />
+        <meta property="og:title" content={`${tourData.title} | Door to Happiness Holiday`} />
+        <meta property="og:description" content={tourData.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={tourData.image} />
+        <link
+          rel="canonical"
+          href={`https://www.doortohappinessholidays.com/package/cultural/${tourData.id}`}
+        />
       </Head>
 
       <div className="bg-gradient-to-b from-gray-50 to-white">
@@ -404,8 +398,40 @@ const CulturalTourDetails = () => {
           {/* </div> */}
         </div>
       </div>
+
+      <StickyEnquireBar title={tourData.title} />
     </>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = culturalTours.map((tour) => ({
+    params: { id: tour.id.toString() },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id as string;
+  const tourData = culturalTours.find((tour) => tour.id === id) as
+    | CulturalTour
+    | undefined;
+
+  if (!tourData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      tourData,
+    },
+  };
 };
 
 export default CulturalTourDetails;

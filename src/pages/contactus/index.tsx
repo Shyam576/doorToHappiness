@@ -2,11 +2,15 @@ import React from "react";
 import Head from "next/head";
 import axios from "axios"; // Import axios
 import WhatsAppButton from "../../components/whatsAppButton";
+import TripBuilderForm from "../../components/TripBuilderForm";
 import { getTheme } from "../../styles/themes";
 
 const ContactPage = () => {
   // Get unified theme
   const theme = getTheme();
+  const [activeTab, setActiveTab] = React.useState<"plan" | "general">(
+    "plan"
+  );
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -75,6 +79,13 @@ const ContactPage = () => {
           name="description"
           content="Get in touch with Door to Happiness Holiday for your Bhutan travel inquiries"
         />
+        <meta property="og:title" content="Contact Us | Door to Happiness Holiday" />
+        <meta
+          property="og:description"
+          content="Get in touch with Door to Happiness Holiday for your Bhutan travel inquiries."
+        />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.doortohappinessholidays.com/contactus" />
 
         {/* Preload hero image for faster LCP */}
         <link
@@ -114,28 +125,61 @@ const ContactPage = () => {
             {/* Contact Form - Mobile Optimized */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden">
               <div className="p-6 sm:p-8">
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-                  Send us a message
-                </h2>
-                <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
-                  Fill out the form below and our team will get back to you
-                  within 24 hours.
-                </p>
+                <div className="flex items-center gap-6 border-b border-gray-200 mb-6 sm:mb-8">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("plan")}
+                    className={`pb-3 text-sm sm:text-base font-semibold border-b-2 transition-colors ${
+                      activeTab === "plan"
+                        ? `${theme.primaryText} ${theme.primaryBorder}`
+                        : "text-gray-400 border-transparent hover:text-gray-600"
+                    }`}
+                  >
+                    Plan My Trip
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("general")}
+                    className={`pb-3 text-sm sm:text-base font-semibold border-b-2 transition-colors ${
+                      activeTab === "general"
+                        ? `${theme.primaryText} ${theme.primaryBorder}`
+                        : "text-gray-400 border-transparent hover:text-gray-600"
+                    }`}
+                  >
+                    General Enquiry
+                  </button>
+                </div>
 
-                {submitStatus === "success" && (
-                  <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg text-sm sm:text-base">
-                    Thank you for your message! We'll get back to you soon.
-                  </div>
-                )}
+                {activeTab === "plan" ? (
+                  <TripBuilderForm />
+                ) : (
+                  <>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+                      Send us a message
+                    </h2>
+                    <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
+                      Fill out the form below and our team will get back to
+                      you within 24 hours.
+                    </p>
 
-                {submitStatus === "error" && (
-                  <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg text-sm sm:text-base">
-                    There was an error submitting your message. Please try again
-                    later.
-                  </div>
-                )}
+                    {submitStatus === "success" && (
+                      <div className="mb-6 p-4 bg-green-100 text-green-700 rounded-lg text-sm sm:text-base">
+                        Thank you for your message! We'll get back to you
+                        soon.
+                      </div>
+                    )}
 
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                    {submitStatus === "error" && (
+                      <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg text-sm sm:text-base">
+                        There was an error submitting your message. Please
+                        try again later.
+                      </div>
+                    )}
+
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-4 sm:space-y-6"
+                    >
                   <div>
                     <label
                       htmlFor="name"
@@ -251,6 +295,8 @@ const ContactPage = () => {
                     </button>
                   </div>
                 </form>
+                  </>
+                )}
               </div>
             </div>
 

@@ -2,8 +2,6 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import axios from "axios";
-import { PersistGate } from "redux-persist/lib/integration/react";
-import { getPersistor } from "@rematch/persist";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "next-themes";
 import { Provider } from "react-redux";
@@ -17,8 +15,6 @@ import { NavBar } from "../components/NavBar";
 import { AdminNav } from "../components/AdminNav";
 import "../components/styles/global.css";
 import "../FontAwesomeConfig";
-
-const persistor = getPersistor();
 
 // Axios setup
 if (typeof window !== 'undefined') {
@@ -65,23 +61,21 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <SWRConfig value={{ fetcher, dedupingInterval: 5000 }}>
         <ThemeProvider>
           <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-              {isProtected ? (
-                <AuthProvider>
-                  <IoProvider>
-                    <AdminNav />
-                    <Component {...pageProps} />
-                    <Footer />
-                  </IoProvider>
-                </AuthProvider>
-              ) : (
+            {isProtected ? (
+              <AuthProvider>
                 <IoProvider>
-                  <NavBar />
+                  <AdminNav />
                   <Component {...pageProps} />
                   <Footer />
                 </IoProvider>
-              )}
-            </PersistGate>
+              </AuthProvider>
+            ) : (
+              <IoProvider>
+                <NavBar />
+                <Component {...pageProps} />
+                <Footer />
+              </IoProvider>
+            )}
           </Provider>
         </ThemeProvider>
       </SWRConfig>

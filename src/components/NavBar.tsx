@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: "/package",       label: "Packages",        match: (p: string) => p.startsWith("/package") },
   { href: "/dzongkhag",     label: "Dzongkhags",      match: (p: string) => p.startsWith("/dzongkhag") },
   { href: "/sacred-places", label: "Heritage Places", match: (p: string) => p.startsWith("/sacred-places") },
+  { href: "/guides",        label: "Travel Guides",   match: (p: string) => p.startsWith("/guides") },
   { href: "/contactus",     label: "Contact Us",      match: (p: string) => p.startsWith("/contactus") },
   { href: "/faq",           label: "FAQ",             match: (p: string) => p.startsWith("/faq") },
 ];

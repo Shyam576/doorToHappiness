@@ -7,17 +7,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       "@graph": [
         {
           "@type": "Organization",
-          "@id": "https://www.doortohappinessholiday.com/#organization",
+          "@id": "https://www.doortohappinessholidays.com/#organization",
           "name": "Door To Happiness Holiday",
           "alternateName": "Door To Happiness",
-          "url": "https://www.doortohappinessholiday.com/",
+          "url": "https://www.doortohappinessholidays.com/",
           "logo": {
             "@type": "ImageObject",
-            "@id": "https://www.doortohappinessholiday.com/#logo",
-            "url": "https://www.doortohappinessholiday.com/logo.png",
+            "@id": "https://www.doortohappinessholidays.com/#logo",
+            "url": "https://www.doortohappinessholidays.com/logo.png",
             "caption": "Door To Happiness Holiday Logo"
           },
-          "image": {"@id": "https://www.doortohappinessholiday.com/#logo"},
+          "image": {"@id": "https://www.doortohappinessholidays.com/#logo"},
           "description": "Leading Bhutan tour operator specializing in dzongkhag exploration and sacred place visits",
           "address": {
             "@type": "PostalAddress",
@@ -35,28 +35,28 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         },
         {
           "@type": "WebSite",
-          "@id": "https://www.doortohappinessholiday.com/#website",
-          "url": "https://www.doortohappinessholiday.com/",
+          "@id": "https://www.doortohappinessholidays.com/#website",
+          "url": "https://www.doortohappinessholidays.com/",
           "name": "Door To Happiness Holiday",
           "description": "Bhutan's Premier Tour Operator for Dzongkhag and Sacred Place Tours",
           "publisher": {
-            "@id": "https://www.doortohappinessholiday.com/#organization"
+            "@id": "https://www.doortohappinessholidays.com/#organization"
           },
           "potentialAction": [
             {
               "@type": "SearchAction",
-              "target": "https://www.doortohappinessholiday.com/search?q={search_term_string}",
+              "target": "https://www.doortohappinessholidays.com/search?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           ]
         },
         {
           "@type": "CollectionPage",
-          "@id": "https://www.doortohappinessholiday.com/dzongkhag#webpage",
-          "url": "https://www.doortohappinessholiday.com/dzongkhag",
+          "@id": "https://www.doortohappinessholidays.com/dzongkhag#webpage",
+          "url": "https://www.doortohappinessholidays.com/dzongkhag",
           "name": "Bhutan Dzongkhags Guide",
           "isPartOf": {
-            "@id": "https://www.doortohappinessholiday.com/#website"
+            "@id": "https://www.doortohappinessholidays.com/#website"
           },
           "about": {
             "@type": "Place",
@@ -67,7 +67,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         },
         {
           "@type": "TouristDestination",
-          "@id": "https://www.doortohappinessholiday.com/sacred-places#destination",
+          "@id": "https://www.doortohappinessholidays.com/sacred-places#destination",
           "name": "Bhutan Sacred Places",
           "description": "Sacred dzongs, monasteries, lhakhangs and chortens across Bhutan",
           "geo": {

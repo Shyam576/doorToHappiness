@@ -5,6 +5,11 @@ interface IContact extends Document {
   email: string;
   phone?: string;
   message: string;
+  source?: string;
+  travelMonth?: string;
+  tripLength?: string;
+  interests?: string[];
+  travelParty?: string;
   createdAt: Date;
 }
 
@@ -27,6 +32,29 @@ const ContactSchema = new Schema<IContact>({
   message: {
     type: String,
     required: [true, 'Please provide a message.'],
+    trim: true,
+  },
+  // Enquiry origin — 'contact-form' (default, general enquiry) or 'trip-builder'
+  source: {
+    type: String,
+    default: 'contact-form',
+    trim: true,
+  },
+  // Trip-builder fields — only populated when source is 'trip-builder'
+  travelMonth: {
+    type: String,
+    trim: true,
+  },
+  tripLength: {
+    type: String,
+    trim: true,
+  },
+  interests: {
+    type: [String],
+    default: undefined,
+  },
+  travelParty: {
+    type: String,
     trim: true,
   },
   createdAt: {

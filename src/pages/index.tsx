@@ -1,19 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { Container } from "../components/Container";
 import WhatsAppButton from "../components/whatsAppButton";
 import majorCitiesPackage from "../data/majorCitiesPackage.json";
 import popularDestination from "../data/popularDestination.json";
-import {
-  FaMountain,
-  FaPager,
-  FaCertificate,
-  FaLeaf,
-  FaHandHoldingUsd,
-  FaShieldAlt,
-} from "react-icons/fa";
 import { getTheme } from "../styles/themes";
 
 import { FiSearch, FiArrowRight, FiChevronDown } from "react-icons/fi";
@@ -22,9 +13,12 @@ import culturalTours from "../data/culturalTours.json";
 import trekkingAdventures from "../data/trekkingAdventure.json";
 import groupTours from "../data/groupTours.json";
 import Link from "next/link";
-
-// Defer typewriter animation — runs heavy timer-driven state updates; skip on SSR
-const TypewriterTagline = dynamic(() => import("../components/TypewriterTagline"), { ssr: false });
+import HeroHeading from "../components/HeroHeading";
+import CityPackageCard from "../components/citiesPackageCard";
+import TrustBar from "../components/TrustBar";
+import PhotoStorySection from "../components/PhotoStorySection";
+import TeamSection from "../components/TeamSection";
+import TestimonialsSection from "../components/TestimonialsSection";
 
 // Helper function to convert duration string to days
 const getDurationInDays = (duration: any) => {
@@ -435,13 +429,28 @@ const Index: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-radial from-black/5 via-transparent to-transparent rounded-3xl -z-10"></div>
             
             <div className="relative p-6 sm:p-8 md:p-10 lg:p-12 space-y-4 sm:space-y-6">
-              <TypewriterTagline className="" />
-              
+              <HeroHeading />
+
               <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto"></div>
-              
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl drop-shadow-lg font-light tracking-wider opacity-95">
-                Authentic Cultural Experiences • Sustainable Tourism •
-                Award-Winning Guides
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-1">
+                <Link
+                  href="/contactus"
+                  className={`inline-flex items-center justify-center w-full sm:w-auto ${theme.primary} ${theme.primaryHover} text-white font-bold py-3 px-8 rounded-lg transition text-sm sm:text-base shadow-lg`}
+                >
+                  Plan My Bhutan Trip
+                </Link>
+                <button
+                  onClick={() => scrollToSection(toursRef)}
+                  className="inline-flex items-center justify-center w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/60 text-white font-bold py-3 px-8 rounded-lg transition text-sm sm:text-base backdrop-blur-sm"
+                >
+                  Explore Tours
+                </button>
+              </div>
+
+              <p className="text-xs sm:text-sm md:text-base drop-shadow-lg font-light tracking-wider opacity-90">
+                Local Bhutan Operator • Licensed Guides • Private Tours •
+                Visa Assistance
               </p>
             </div>
 
@@ -473,7 +482,7 @@ const Index: React.FC = () => {
                 <input
                   type="text"
                   aria-label="Search for tours or activities"
-                  className="w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 md:py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
+                  className="w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 md:py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
                   placeholder="Search for tours or activities"
                   value={packageSearchTerm}
                   onChange={(e) => handlePackageSearch(e.target.value)}
@@ -632,49 +641,7 @@ const Index: React.FC = () => {
       </div>
 
       {/* Trust Indicators */}
-      {/* <div className="w-full bg-gradient-to-r from-orange-50 to-yellow-50">
-        <Container className="py-8 sm:py-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
-            {[
-              {
-                icon: <FaCertificate className="text-blue-600" />,
-                title: "Best Local Guides",
-                text: "Certified Bhutanese experts",
-              },
-              {
-                icon: <FaLeaf className="text-green-600" />,
-                title: "Sustainable Travel",
-                text: "Carbon-neutral tours",
-              },
-              {
-                icon: <FaHandHoldingUsd className="text-emerald-600" />,
-                title: "Transparent Pricing",
-                text: "Clear & fair costs",
-              },
-              {
-                icon: <FaShieldAlt className="text-indigo-600" />,
-                title: "Flexible Booking",
-                text: "Free cancellations",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="p-4 sm:p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition"
-              >
-                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 flex justify-center">
-                  {item.icon}
-                </div>
-                <h3 className="font-bold text-base sm:text-lg mb-1 sm:mb-2 text-gray-800">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </div> */}
+      <TrustBar />
 
       {/* About Section - SEO-optimized with Modern Design */}
       <div className="w-full bg-white py-16 sm:py-24">
@@ -991,60 +958,9 @@ const Index: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {sortedPackages.length > 0 ? (
-            sortedPackages.slice(0, 6).map((tour) => (
-              <div
-                key={tour.id}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col h-full"
-              >
-                {/* Image section with fixed height */}
-                <div className="relative h-40 sm:h-48 flex-shrink-0">
-                  <Image
-                    src={tour.image}
-                    alt={tour.title}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Content section with flex-grow and fixed min-height */}
-                <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-sm sm:text-lg text-gray-800 font-bold flex-1 pr-2">
-                      {tour.title}
-                    </h3>
-                    <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs sm:text-sm whitespace-nowrap flex-shrink-0">
-                      {tour.duration || tour.dates}
-                    </span>
-                  </div>
-                  {/* Description with fixed height */}
-                  <p className="text-gray-600 mb-3 sm:mb-4 line-clamp-2 min-h-[3rem] text-sm sm:text-base">
-                    {tour.description}
-                  </p>
-                  {/* Highlights with fixed height */}
-                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4 min-h-[1.5rem]">
-                    {tour.highlights?.slice(0, 3).map((highlight, i) => (
-                      <span
-                        key={i}
-                        className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
-                      >
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-                  {/* Button at bottom with proper Link */}
-                  <div className="mt-auto">
-                    <Link href={getRouteForTour(tour)} passHref>
-                      <button className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 sm:py-3 px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base">
-                        View Details
-                        <FiArrowRight className="ml-2" />
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))
+            sortedPackages
+              .slice(0, 6)
+              .map((tour) => <CityPackageCard key={tour.id} tour={tour} />)
           ) : packageSearchTerm ? (
             <div className="col-span-full text-center py-12">
               <div className="text-gray-400 mb-4">
@@ -1079,76 +995,14 @@ const Index: React.FC = () => {
         )}
       </Container>
 
-      {/* Testimonials Section */}
-      {/* <Container className="py-12 sm:py-16">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-            What Travelers Say About Us
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto px-4 text-sm sm:text-base">
-            Don't just take our word for it - hear from our happy travelers
-            who've experienced Bhutan with us.
-          </p>
-        </div>
+      {/* Photo Storytelling Section */}
+      <PhotoStorySection />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {[
-            {
-              quote:
-                "The cultural insights we gained from our Bhutanese guide were incredible. This wasn't just a tour - it was a life-changing experience.",
-              author: "Sarah K., Australia",
-              rating: 5,
-              avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-            },
-            {
-              quote:
-                "Perfectly organized from start to finish. Every detail was taken care of, allowing us to fully immerse in Bhutan's beauty.",
-              author: "Michael T., USA",
-              rating: 5,
-              avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-            },
-            {
-              quote:
-                "As a solo female traveler, I felt completely safe and welcomed. The women-only group tour was empowering and unforgettable.",
-              author: "Priya M., India",
-              rating: 5,
-              avatar: "https://randomuser.me/api/portraits/women/68.jpg",
-            },
-          ].map((testimonial, index) => (
-            <div key={index} className="bg-white p-6 sm:p-8 rounded-xl shadow-md">
-              <div className="flex mb-3 sm:mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className={`w-4 h-4 sm:w-5 sm:h-5 ${
-                      i < testimonial.rating
-                        ? "text-yellow-500"
-                        : "text-gray-300"
-                    }`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <blockquote className="text-gray-700 italic mb-4 sm:mb-6 text-base sm:text-lg">
-                "{testimonial.quote}"
-              </blockquote>
-              <div className="flex items-center">
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.author}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-3 sm:mr-4"
-                />
-                <p className="font-medium text-gray-800 text-sm sm:text-base">
-                  — {testimonial.author}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Container> */}
+      {/* Team Section */}
+      <TeamSection />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* Dzongkhags & Heritage Places Section */}
       <Container className="py-12 sm:py-16 bg-gradient-to-b from-stone-50 to-amber-50">

@@ -54,7 +54,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
         <meta property="og:description" content={place.description} />
         <meta property="og:image" content={place.image || '/backgroundbanner.jpg'} />
         <meta property="og:type" content="article" />
-        <link rel="canonical" href={`https://www.doortohappinessholiday.com/attractions/${place.slug}`} />
+        <link rel="canonical" href={`https://www.doortohappinessholidays.com/attractions/${place.slug}`} />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">

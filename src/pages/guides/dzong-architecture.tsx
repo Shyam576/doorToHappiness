@@ -19,7 +19,7 @@ const DzongArchitectureGuide = () => {
         <meta property="og:title" content="Complete Guide to Bhutan's Sacred Dzong Architecture" />
         <meta property="og:description" content="Explore the magnificent dzongs of Bhutan - sacred fortress monasteries that represent 400 years of architectural tradition." />
         <meta property="og:type" content="article" />
-        <link rel="canonical" href="https://www.doortohappinessholiday.com/guides/dzong-architecture" />
+        <link rel="canonical" href="https://www.doortohappinessholidays.com/guides/dzong-architecture" />
         
         <script type="application/ld+json">
           {JSON.stringify({

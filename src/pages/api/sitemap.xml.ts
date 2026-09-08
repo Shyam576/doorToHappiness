@@ -5,6 +5,7 @@ import culturalTours from '../../data/culturalTours.json';
 import festivalTours from '../../data/festivialTours.json';
 import trekkingAdventures from '../../data/trekkingAdventure.json';
 import groupTours from '../../data/groupTours.json';
+import guides from '../../data/guides.json';
 
 const SITE_URL = 'https://www.doortohappinessholidays.com';
 
@@ -17,11 +18,18 @@ function generateSiteMapXML() {
     { url: '/faq', changefreq: 'monthly', priority: '0.6' },
     { url: '/dzongkhag', changefreq: 'weekly', priority: '0.9' },
     { url: '/sacred-places', changefreq: 'weekly', priority: '0.9' },
-    { url: '/guides/dzong-architecture', changefreq: 'monthly', priority: '0.6' },
+    { url: '/guides', changefreq: 'weekly', priority: '0.7' },
     { url: '/invite', changefreq: 'yearly', priority: '0.3' },
     { url: '/unsubscribe', changefreq: 'yearly', priority: '0.1' },
   ];
-  
+
+  // Guide articles (kept in sync with src/data/guides.json)
+  const guidePages = guides.map((guide) => ({
+    url: `/guides/${guide.slug}`,
+    changefreq: 'monthly',
+    priority: '0.6',
+  }));
+
   // Dzongkhag pages (these exist with [slug].tsx)
   const dzongkhagPages = popularDestination
     .filter((dest: any) => dest.slug)
@@ -49,6 +57,19 @@ function generateSiteMapXML() {
         url: `/sacred-places/${placeSlug}`,
         changefreq: 'weekly',
         priority: '0.8'
+      });
+    });
+  });
+
+  // Attraction pages - every place across all dzongkhags (mirrors attractions/[slug].tsx getStaticPaths)
+  const attractionPages: any[] = [];
+  popularDestination.forEach((dzongkhag: any) => {
+    (dzongkhag.placesToVisit || []).forEach((place: any) => {
+      const placeSlug = place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      attractionPages.push({
+        url: `/attractions/${placeSlug}`,
+        changefreq: 'weekly',
+        priority: '0.7'
       });
     });
   });
@@ -101,11 +122,13 @@ function generateSiteMapXML() {
   // Combine all existing pages
   const allPages = [
     ...staticPages,
+    ...guidePages,
     ...dzongkhagPages,
     ...sacredPlacePages,
+    ...attractionPages,
     ...majorCityPages,
     ...culturalTourPages,
-    ...festivalTourPages, 
+    ...festivalTourPages,
     ...trekkingPages,
     ...groupTourPages
   ];

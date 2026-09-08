@@ -1,8 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
+import Head from "next/head";
 import Image from "next/image";
 import { Container } from "../../components/Container";
 import WhatsAppButton from "../../components/whatsAppButton";
 import majorCitiesPackage from "../../data/majorCitiesPackage.json";
+import festivalTours from "../../data/festivialTours.json";
+import culturalTours from "../../data/culturalTours.json";
+import trekkingAdventure from "../../data/trekkingAdventure.json";
+import groupTours from "../../data/groupTours.json";
 import CityPackageCard from "../../components/citiesPackageCard";
 import {
   FiArrowRight,
@@ -47,14 +52,13 @@ function Index() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
-  const [isLoading, setIsLoading] = useState(true);
-  const [allTours, setAllTours] = useState<AllTours>({
-    cityTours: [],
-    festivalTours: [],
-    culturalTours: [],
-    adventureTours: [],
-    groupTours: [],
-  });
+  const allTours: AllTours = {
+    cityTours: majorCitiesPackage,
+    festivalTours,
+    culturalTours,
+    adventureTours: trekkingAdventure,
+    groupTours,
+  };
 
   // Refs for scrolling to categories
   const cityToursRef = useRef<HTMLDivElement>(null);
@@ -63,35 +67,6 @@ function Index() {
   const adventureToursRef = useRef<HTMLDivElement>(null);
   const groupToursRef = useRef<HTMLDivElement>(null);
   const filteredToursRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Simulate loading data from multiple JSON files
-    const loadData = async () => {
-      try {
-        // In a real app, you would use fetch or axios to load these JSON files
-        const festivalTours = await import("../../data/festivialTours.json");
-        const culturalTours = await import("../../data/culturalTours.json");
-        const trekkingAdventure = await import(
-          "../../data/trekkingAdventure.json"
-        );
-        const groupTours = await import("../../data/groupTours.json");
-
-        setAllTours({
-          cityTours: majorCitiesPackage,
-          festivalTours: festivalTours.default,
-          culturalTours: culturalTours.default,
-          adventureTours: trekkingAdventure.default,
-          groupTours: groupTours.default,
-        });
-      } catch (error) {
-        console.error("Error loading tour data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
 
   // Scroll to category function
   const scrollToCategory = (categoryName: string) => {
@@ -200,21 +175,23 @@ function Index() {
     );
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-orange-50 to-yellow-50">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-lg text-orange-600 font-medium">
-            Loading amazing tours...
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white">
+      <Head>
+        <title>Bhutan Tour Packages | Cultural, Trekking & Festival Tours</title>
+        <meta
+          name="description"
+          content="Browse curated Bhutan tour packages: cultural tours, trekking adventures, festival tours, and group tours. Licensed Bhutanese operator with tailor-made itineraries."
+        />
+        <meta property="og:title" content="Bhutan Tour Packages | Door to Happiness Holiday" />
+        <meta
+          property="og:description"
+          content="Discover curated travel experiences to the Land of the Thunder Dragon — cultural, trekking, festival, and group tours."
+        />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.doortohappinessholidays.com/package" />
+      </Head>
+
       {/* Hero Section with Search */}
       <div className="relative py-24 overflow-hidden bg-gray-900">
         {/* Background Image Layer */}
