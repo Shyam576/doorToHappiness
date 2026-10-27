@@ -16,6 +16,13 @@ jest.mock('../components/whatsAppButton', () => {
   }
 })
 
+// Mock the Hero 3D overlay so this test doesn't pull in three/@react-three/fiber
+jest.mock('../components/hero3d/Hero3DOverlay', () => {
+  return function Hero3DOverlay() {
+    return null
+  }
+})
+
 // Mock the theme utility
 jest.mock('../styles/themes', () => ({
   getTheme: () => ({

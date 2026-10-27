@@ -19,6 +19,12 @@ import TrustBar from "../components/TrustBar";
 import PhotoStorySection from "../components/PhotoStorySection";
 import TeamSection from "../components/TeamSection";
 import TestimonialsSection from "../components/TestimonialsSection";
+import dynamic from "next/dynamic";
+
+const Hero3DOverlay = dynamic(() => import("../components/hero3d/Hero3DOverlay"), {
+  ssr: false,
+  loading: () => null,
+});
 
 // Helper function to convert duration string to days
 const getDurationInDays = (duration: any) => {
@@ -26,30 +32,6 @@ const getDurationInDays = (duration: any) => {
   const match = duration.match(/(\d+)/);
   return match ? parseInt(match[0]) : 0;
 };
-
-const heroSlides = [
-  {
-    id: 1,
-    src: "/homepagebg1.jpg",
-    alt: "Tiger's Nest Monastery Paro Bhutan",
-    title: "Discover the Last Shangri-La",
-    subtitle: "Experience Gross National Happiness",
-  },
-  {
-    id: 2,
-    src: "/homepagebg2.jpg",
-    alt: "Traditional Bhutanese festival with masked dancers",
-    title: "Vibrant Cultural Festivals",
-    subtitle: "Witness ancient traditions come alive",
-  },
-  {
-    id: 3,
-    src: "/homepagebg3.jpg",
-    alt: "Himalayan mountain landscape in Bhutan",
-    title: "Epic Himalayan Treks",
-    subtitle: "Challenge yourself in pristine wilderness",
-  },
-];
 
 const sortOptions = [
   { value: "recommended", label: "Recommended" },
@@ -60,7 +42,6 @@ const sortOptions = [
 const Index: React.FC = () => {
   // Get unified theme
   const theme = getTheme();
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [packageSearchTerm, setPackageSearchTerm] = useState("");
   const [showPackageResults, setShowPackageResults] = useState(false);
   const [sortOption, setSortOption] = useState("recommended");
@@ -68,9 +49,6 @@ const Index: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchNoResults, setSearchNoResults] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Parallax effect - use ref instead of state to avoid re-rendering on scroll
-  const heroParallaxRef = useRef<HTMLDivElement>(null);
 
   // Newsletter subscription state
   const [email, setEmail] = useState("");
@@ -82,18 +60,6 @@ const Index: React.FC = () => {
 
   // Refs for scrolling
   const toursRef = useRef<HTMLDivElement>(null);
-
-  // Parallax scroll effect - directly mutate DOM to avoid React re-renders
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroParallaxRef.current) {
-        heroParallaxRef.current.style.transform = `translateY(${window.scrollY * 0.5}px)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Determine the correct route based on the tour category
   const getRouteForTour = (tour: any) => {
@@ -212,14 +178,6 @@ const Index: React.FC = () => {
         return 0;
     }
   }), [filteredPackages, sortOption]);
-
-  // Auto-rotate slides with better performance
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Handle clicking outside dropdown
   useEffect(() => {
@@ -397,30 +355,22 @@ const Index: React.FC = () => {
 
       {/* Hero Section */}
       <div className="relative h-screen max-h-[800px] overflow-hidden bg-gray-900">
-        {/* Parallax wrapper: transform applied directly to DOM via ref, no React state = no re-renders */}
-        <div ref={heroParallaxRef} className="absolute inset-0" style={{ willChange: "transform" }}>
-        {heroSlides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              unoptimized
-              className="object-cover scale-110"
-              priority={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
-              sizes="100vw"
-              placeholder="blur"
-              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZjJhMzciLz48L3N2Zz4="
-            />
-          </div>
-        ))}
-        </div>{/* end heroParallaxRef */}
+        {/* Static image: always server-rendered, remains the LCP element and the fallback for
+            reduced-motion/no-WebGL/save-data visitors. Hero3DOverlay crossfades on top of it. */}
+        <div className="absolute inset-0">
+          <Image
+            src="/homepagebg1.jpg"
+            alt="Tiger's Nest Monastery Paro Bhutan"
+            fill
+            unoptimized
+            className="object-cover scale-110"
+            priority
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZjJhMzciLz48L3N2Zz4="
+          />
+        </div>
+        <Hero3DOverlay />
 
         <Container className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6">
           <div className="text-center text-white max-w-5xl mx-auto relative">
