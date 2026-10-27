@@ -22,6 +22,7 @@
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",
 		"@fortawesome/react-fontawesome": "^0.2.2",
 		"@headlessui/react": "^1.7.17",
+		"@react-three/fiber": "^8",
 		"@rematch/core": "^2.2.0",
 		"@rematch/loading": "^2.1.2",
 		"@rematch/persist": "^2.1.2",
@@ -46,6 +47,7 @@
 		"socket.io-client": "^4.7.2",
 		"socket.io-react-hook": "^2.4.2",
 		"swr": "^2.2.4",
+		"three": "^0.186.1",
 		"uuid": "^11.1.0",
 		"validator": "^13.15.0",
 		"yup": "^1.3.2"
@@ -60,6 +62,7 @@
 		"@types/jsonwebtoken": "^9.0.9",
 		"@types/node": "^20.8.3",
 		"@types/react": "^18.2.25",
+		"@types/three": "^0.186.0",
 		"@types/uuid": "^10.0.0",
 		"autoprefixer": "^10.4.16",
 		"eslint": "8.51.0",
