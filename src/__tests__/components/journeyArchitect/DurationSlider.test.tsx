@@ -1,7 +1,15 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { DurationSlider } from '../../../components/journeyArchitect/DurationSlider'
+import { MIN_DURATION_DAYS, MAX_DURATION_DAYS } from '../../../lib/calculator-utils'
 
 describe('DurationSlider', () => {
+  it('sets the slider bounds from the shared duration constants', () => {
+    render(<DurationSlider value={5} onChange={jest.fn()} />)
+    const slider = screen.getByRole('slider')
+    expect(slider).toHaveAttribute('min', String(MIN_DURATION_DAYS))
+    expect(slider).toHaveAttribute('max', String(MAX_DURATION_DAYS))
+  })
+
   it('displays the current duration', () => {
     render(<DurationSlider value={5} onChange={jest.fn()} />)
     expect(screen.getByText('5 days')).toBeInTheDocument()
