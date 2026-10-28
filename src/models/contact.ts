@@ -10,6 +10,12 @@ interface IContact extends Document {
   tripLength?: string;
   interests?: string[];
   travelParty?: string;
+  durationDays?: number;
+  adults?: number;
+  children?: number;
+  travelerType?: string;
+  estimatedCostUsd?: number;
+  routeSummary?: string;
   createdAt: Date;
 }
 
@@ -34,7 +40,8 @@ const ContactSchema = new Schema<IContact>({
     required: [true, 'Please provide a message.'],
     trim: true,
   },
-  // Enquiry origin — 'contact-form' (default, general enquiry) or 'trip-builder'
+  // Enquiry origin — 'contact-form' (default, general enquiry), 'trip-builder',
+  // or 'journey-architect'
   source: {
     type: String,
     default: 'contact-form',
@@ -54,6 +61,27 @@ const ContactSchema = new Schema<IContact>({
     default: undefined,
   },
   travelParty: {
+    type: String,
+    trim: true,
+  },
+  // Journey Architect fields — only populated when source is 'journey-architect'
+  durationDays: {
+    type: Number,
+  },
+  adults: {
+    type: Number,
+  },
+  children: {
+    type: Number,
+  },
+  travelerType: {
+    type: String,
+    trim: true,
+  },
+  estimatedCostUsd: {
+    type: Number,
+  },
+  routeSummary: {
     type: String,
     trim: true,
   },
