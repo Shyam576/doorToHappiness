@@ -61,6 +61,24 @@ describe('getRouteForDuration', () => {
     expect(route[route.length - 1].location).toBe('Bumthang')
   })
 
+  it.each([
+    { days: 4, lastLocation: 'Thimphu' },
+    { days: 7, lastLocation: 'Punakha' },
+    { days: 8, lastLocation: 'Phobjika' },
+    { days: 10, lastLocation: 'Phobjika' },
+    { days: 11, lastLocation: 'Bumthang' },
+  ])(
+    'returns one stop per day for a $days-day route, starting at Paro and ending at $lastLocation',
+    ({ days, lastLocation }) => {
+      const route = getRouteForDuration(days)
+
+      expect(route).toHaveLength(days)
+      expect(route.map((stop) => stop.day)).toEqual(Array.from({ length: days }, (_, index) => index + 1))
+      expect(route[0].location).toBe('Paro')
+      expect(route[route.length - 1].location).toBe(lastLocation)
+    },
+  )
+
   it('clamps a duration above the maximum to a 14-day route', () => {
     const route = getRouteForDuration(20)
     const expected = getRouteForDuration(14)
