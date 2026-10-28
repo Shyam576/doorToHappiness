@@ -1,7 +1,6 @@
-import { useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import * as THREE from 'three'
-import { TigersNestModel } from './TigersNestModel'
+import { HimalayanLandscape } from './landscape/HimalayanLandscape'
 import { useReactiveCamera } from './useReactiveCamera'
 
 interface HeroCanvasProps {
@@ -13,44 +12,25 @@ function CameraRig(): null {
   return null
 }
 
-interface MistPatchProps {
-  position: [number, number, number]
-  size: [number, number]
-  baseOpacity: number
-  rotation?: [number, number, number]
-}
-
-function MistPatch({ position, size, baseOpacity, rotation = [0, 0, 0] }: MistPatchProps) {
-  const materialRef = useRef<THREE.MeshBasicMaterial>(null)
-
-  useFrame((state) => {
-    if (materialRef.current) {
-      materialRef.current.opacity = baseOpacity + Math.sin(state.clock.elapsedTime * 0.3) * 0.05
-    }
-  })
-
-  return (
-    <mesh position={position} rotation={rotation}>
-      <planeGeometry args={size} />
-      <meshBasicMaterial ref={materialRef} color="#e8eef2" transparent opacity={baseOpacity} depthWrite={false} />
-    </mesh>
-  )
-}
-
 export function HeroCanvas({ onReady }: HeroCanvasProps): JSX.Element {
   return (
     <Canvas
       dpr={[1, 1.5]}
-      camera={{ position: [0, 1.2, 7], fov: 45 }}
-      gl={{ antialias: true, alpha: true }}
-      onCreated={() => onReady()}
+      camera={{ position: [0, 7.5, 26], fov: 44, near: 0.1, far: 260 }}
+      gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+      onCreated={({ gl }) => {
+        gl.outputColorSpace = THREE.SRGBColorSpace
+        gl.toneMapping = THREE.ACESFilmicToneMapping
+        gl.toneMappingExposure = 1.12
+        onReady()
+      }}
     >
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[5, 8, 5]} intensity={1.1} color="#ffe9c7" />
-      <fog attach="fog" args={['#8fa8bf', 5, 18]} />
-      <MistPatch position={[-3, 4, -4]} size={[6, 3]} baseOpacity={0.25} rotation={[0, 0.3, 0]} />
-      <MistPatch position={[3, 2.5, -3]} size={[5, 2.5]} baseOpacity={0.18} rotation={[0, -0.3, 0]} />
-      <TigersNestModel />
+      <color attach="background" args={['#b18a7e']} />
+      <fogExp2 attach="fog" args={['#c3a092', 0.006]} />
+      <hemisphereLight args={['#c8d9e6', '#26312b', 1.55]} />
+      <directionalLight position={[-28, 23, 5]} intensity={3.1} color="#ffd19a" />
+      <directionalLight position={[20, 10, -35]} intensity={0.75} color="#8ca5b2" />
+      <HimalayanLandscape />
       <CameraRig />
     </Canvas>
   )

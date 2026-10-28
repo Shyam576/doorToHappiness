@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#7c8790" />
+  <meta name="description" content="A real-time procedural Three.js Himalayan mountain landscape inspired by Bhutan." />
+  <title>Bhutan Himalayan Landscape — Three.js</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #7c8790; }
+    #scene { position: fixed; inset: 0; overflow: hidden; }
+    #scene canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <div id="scene" role="img" aria-label="Procedurally generated Himalayan mountain landscape with a Bhutanese chorten and prayer flags"></div>
+  <script type="importmap">
+    {"imports":{"three":"https://unpkg.com/three@0.165.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.165.0/examples/jsm/"}}
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // Lightweight deterministic value noise, layered into a small fBm function.
+    const fract = x => x - Math.floor(x);
+    function hash(x, y, z) { return fract(Math.sin(x * 127.1 + y * 311.7 + z * 74.7) * 43758.5453123); }
+    function noise3(x, y, z) {
+      const ix=Math.floor(x), iy=Math.floor(y), iz=Math.floor(z), fx=x-ix, fy=y-iy, fz=z-iz;
+      const u=fx*fx*(3-2*fx), v=fy*fy*(3-2*fy), w=fz*fz*(3-2*fz);
+      const a=hash(ix,iy,iz), b=hash(ix+1,iy,iz), c=hash(ix,iy+1,iz), d=hash(ix+1,iy+1,iz);
+      const e=hash(ix,iy,iz+1), f=hash(ix+1,iy,iz+1), g=hash(ix,iy+1,iz+1), h=hash(ix+1,iy+1,iz+1);
+      const mix=(p,q,t)=>p+(q-p)*t;
+      return mix(mix(mix(a,b,u),mix(c,d,u),v),mix(mix(e,f,u),mix(g,h,u),v),w)*2-1;
+    }
+    function fbm(x,y,z) { let n=0, a=.55, f=1; for(let i=0;i<4;i++){ n+=noise3(x*f,y*f,z*f)*a; f*=2.03; a*=.48; } return n; }
+
+    const host = document.querySelector('#scene');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#b18a7e');
+    scene.fog = new THREE.FogExp2('#c3a092', .006);
+    const camera = new THREE.PerspectiveCamera(44, innerWidth/innerHeight, .1, 260);
+    camera.position.set(0, 7.5, 26);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, innerWidth < 720 ? 1.35 : 1.65));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.12;
+    host.prepend(renderer.domElement);
+
+    // Procedural dawn sky: a cool zenith, warm horizon and a soft sunrise glow.
+    const sky = new THREE.Mesh(
+      new THREE.SphereGeometry(180, 32, 20),
+      new THREE.ShaderMaterial({
+        side: THREE.BackSide, depthWrite: false, depthTest: false,
+        vertexShader: `varying vec3 vDirection; void main(){ vec4 worldPosition=modelMatrix*vec4(position,1.0); vDirection=worldPosition.xyz-cameraPosition; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
+        fragmentShader: `
+          varying vec3 vDirection;
+          void main(){
+            vec3 d=normalize(vDirection);
+            float h=clamp(d.y*.5+.5,0.0,1.0);
+            vec3 zenith=mix(vec3(.20,.29,.40),vec3(.42,.57,.70),smoothstep(.18,.92,h));
+            float horizon=1.0-smoothstep(-.12,.48,d.y);
+            vec3 sky=mix(zenith,vec3(.82,.54,.43),horizon*.78);
+            vec3 sunDir=normalize(vec3(-.52,.20,-1.0));
+            float sun=max(dot(d,sunDir),0.0);
+            sky+=vec3(1.0,.66,.37)*pow(sun,420.0)*1.8;
+            sky+=vec3(.85,.42,.29)*exp(-max(0.0,1.0-sun)*23.0)*.22;
+            gl_FragColor=vec4(sky,1.0);
+          }`
+      })
+    );
+    sky.renderOrder = -100; scene.add(sky);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true; controls.dampingFactor = .045; controls.enablePan = false;
+    controls.enableZoom = false; controls.enableRotate = true; controls.rotateSpeed = .22;
+    controls.minPolarAngle = 1.15; controls.maxPolarAngle = 1.55;
+    controls.target.set(0, 7, -28);
+
+    scene.add(new THREE.HemisphereLight('#c8d9e6', '#26312b', 1.55));
+    const sun = new THREE.DirectionalLight('#ffd19a', 3.1); sun.position.set(-28, 23, 5); scene.add(sun);
+    const fill = new THREE.DirectionalLight('#8ca5b2', .75); fill.position.set(20, 10, -35); scene.add(fill);
+
+    const color = new THREE.Color();
+    const cPine = new THREE.Color('#17382e'), cGreen = new THREE.Color('#315342'), cRock = new THREE.Color('#555b5b'), cSnow = new THREE.Color('#edf0ec');
+    function mountainGeometry(radius, height, seed) {
+      const rings=52, sides=72, positions=[], colors=[], indices=[];
+      for(let r=0;r<=rings;r++) {
+        const t=r/rings, radial=t*radius;
+        for(let s=0;s<=sides;s++) {
+          const a=s/sides*Math.PI*2, jag=fbm(Math.cos(a)*2.2+seed, Math.sin(a)*2.2, seed*.7)*.12 + Math.sin(a*7+seed)*.025;
+          const rr=radial*(1+jag*t), ridge=fbm(Math.cos(a)*3+seed, t*2.2, Math.sin(a)*3)*.19;
+          let y=height*Math.pow(Math.max(0,1-t),1.08) + ridge*height*Math.sin(t*Math.PI)*.8;
+          y += fbm(Math.cos(a)*5+seed,t*4,Math.sin(a)*5)*height*.055*Math.sin(t*Math.PI);
+          y=Math.max(.015,y);
+          positions.push(Math.cos(a)*rr, y, Math.sin(a)*rr);
+          const elevation=y/height;
+          const snow=THREE.MathUtils.smoothstep(elevation + (hash(s,r,seed)-.5)*.12, .64, .86);
+          const rock=THREE.MathUtils.smoothstep(elevation, .22, .55);
+          color.copy(cPine).lerp(cGreen,THREE.MathUtils.smoothstep(elevation,.02,.24)).lerp(cRock,rock).lerp(cSnow,snow);
+          colors.push(color.r,color.g,color.b);
+          if(r<rings && s<sides){ const i=r*(sides+1)+s, n=i+sides+1; indices.push(i,i+1,n,n+1,n,i+1); }
+        }
+      }
+      const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3)); g.setAttribute('color',new THREE.Float32BufferAttribute(colors,3)); g.setIndex(indices); g.computeVertexNormals(); return g;
+    }
+    const mountainMat=new THREE.MeshStandardMaterial({ vertexColors:true, roughness:.96, metalness:0, flatShading:true });
+    const peaks=[
+      [-36,-48,17,27,2],[-19,-59,24,33,4],[2,-64,19,50,7],[24,-54,27,37,10],[44,-66,16,24,14],[-52,-69,25,40,16],
+      [-41,-101,21,25,21],[-9,-114,29,36,23],[22,-106,20,22,26],[47,-121,28,31,29]
+    ];
+    for(const [x,z,r,h,s] of peaks){ const m=new THREE.Mesh(mountainGeometry(r,h,s),mountainMat); m.position.set(x,0,z); scene.add(m); }
+
+    // Rolling foreground ridges add depth and a dark frame around the peaks.
+    function ridgeGeometry(width, depth, segmentsX, segmentsZ, yBase, seed, tint) {
+      const p=[], c=[], idx=[], base=new THREE.Color(tint), dark=new THREE.Color('#12231e');
+      for(let iz=0;iz<=segmentsZ;iz++) for(let ix=0;ix<=segmentsX;ix++){
+        const x=(ix/segmentsX-.5)*width, z=-(iz/segmentsZ)*depth;
+        let y=yBase+fbm(x*.055,z*.04,seed)*1.5+Math.sin(x*.045+seed)*.7;
+        p.push(x,y,z); const mix=THREE.MathUtils.clamp((y-yBase+2)/5,0,1); color.copy(dark).lerp(base,mix); c.push(color.r,color.g,color.b);
+        if(ix<segmentsX&&iz<segmentsZ){const i=iz*(segmentsX+1)+ix,n=i+segmentsX+1;idx.push(i,i+1,n,i+1,n+1,n);}
+      }
+      const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));g.setAttribute('color',new THREE.Float32BufferAttribute(c,3));g.setIndex(idx);g.computeVertexNormals();return g;
+    }
+    const ridgeMat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:1,flatShading:true});
+    const ridge1=new THREE.Mesh(ridgeGeometry(190,58,100,36,0,22,'#31523a'),ridgeMat);ridge1.position.z=3;scene.add(ridge1);
+    const ridge2=new THREE.Mesh(ridgeGeometry(175,38,90,24,-1.3,42,'#203e30'),ridgeMat);ridge2.position.z=15;scene.add(ridge2);
+
+    // Pine tree prototype + instancing keeps the forest at two draw calls.
+    const treeGroup=new THREE.Group();
+    const trunk=new THREE.Mesh(new THREE.CylinderGeometry(.045,.085,.8,5),new THREE.MeshStandardMaterial({color:'#40372a',roughness:1})); trunk.position.y=.4; treeGroup.add(trunk);
+    const pineMat=new THREE.MeshStandardMaterial({color:'#1c3d30',roughness:1,flatShading:true});
+    for(let i=0;i<3;i++){ const cone=new THREE.Mesh(new THREE.ConeGeometry(.38-i*.085,.8,6),pineMat);cone.position.y=.68+i*.34;treeGroup.add(cone); }
+    const treeGeo=[];treeGroup.updateMatrixWorld(true);treeGroup.traverse(o=>{if(o.isMesh){const g=o.geometry.clone();g.applyMatrix4(o.matrixWorld);treeGeo.push({g,m:o.material});}});
+    const treeCount=480; const treeMeshes=treeGeo.map(({g,m})=>new THREE.InstancedMesh(g,m,treeCount));
+    const dummy=new THREE.Object3D();let count=0;
+    for(let i=0;i<treeCount;i++){
+      const x=(Math.random()-.5)*145, z=4+Math.random()*28;
+      if(x>-10&&x<12&&z<18)continue;
+      const y= -1+fbm(x*.06,z*.06,32)*1.4+Math.sin(x*.045+22)*.7;
+      dummy.position.set(x,y,z);const s=.62+Math.random()*.8;dummy.scale.set(s,s,s);dummy.rotation.y=Math.random()*6.28;dummy.updateMatrix();
+      for(const mesh of treeMeshes) mesh.setMatrixAt(count,dummy.matrix);count++;
+    }
+    for(const mesh of treeMeshes){mesh.count=count;mesh.instanceMatrix.needsUpdate=true;scene.add(mesh);}
+
+    // Bhutanese chorten, placed on the right foreground ridge as a clear focal point.
+    const chorten=new THREE.Group(); chorten.position.set(4.4,1.1,5); scene.add(chorten);
+    const stone=new THREE.MeshStandardMaterial({color:'#eee8d7',roughness:.88,flatShading:true});
+    const white=new THREE.MeshStandardMaterial({color:'#f4efe2',roughness:.8,flatShading:true});
+    const gold=new THREE.MeshStandardMaterial({color:'#d6a551',metalness:.55,roughness:.37,flatShading:true});
+    function addShape(geo,mat,x,y,z,sx=1,sy=1,sz=1){const o=new THREE.Mesh(geo,mat);o.position.set(x,y,z);o.scale.set(sx,sy,sz);chorten.add(o);return o;}
+    addShape(new THREE.BoxGeometry(3.7,.28,3.1),stone,0,.16,0);
+    addShape(new THREE.BoxGeometry(3.15,.28,2.65),white,0,.43,0);
+    addShape(new THREE.BoxGeometry(2.65,.32,2.25),stone,0,.72,0);
+    addShape(new THREE.BoxGeometry(2.32,.22,1.98),white,0,.98,0);
+    const bellProfile=[new THREE.Vector2(.78,0),new THREE.Vector2(.98,.16),new THREE.Vector2(1.03,.42),new THREE.Vector2(.88,.72),new THREE.Vector2(.61,1.02),new THREE.Vector2(.48,1.3),new THREE.Vector2(.52,1.48),new THREE.Vector2(.68,1.65),new THREE.Vector2(.72,1.84),new THREE.Vector2(.55,2.02),new THREE.Vector2(0,2.02)];
+    addShape(new THREE.LatheGeometry(bellProfile,10),white,0,1.08,0);
+    addShape(new THREE.BoxGeometry(1.34,.68,1.2),white,0,3.28,0);
+    addShape(new THREE.BoxGeometry(1.48,.09,1.32),gold,0,2.94,0);
+    addShape(new THREE.CylinderGeometry(.14,.43,1.48,8),gold,0,4.35,0);
+    for(let i=0;i<4;i++) addShape(new THREE.TorusGeometry(.38-i*.055,.045,5,10),gold,0,3.72+i*.29,0);
+    addShape(new THREE.SphereGeometry(.14,8,6),gold,0,5.16,0);
+    // A small warm front niche gives the white body a recognizable Bhutanese detail.
+    addShape(new THREE.BoxGeometry(.58,.78,.055),gold,0,1.62,1.015);
+    addShape(new THREE.BoxGeometry(.40,.62,.07),new THREE.MeshStandardMaterial({color:'#8b4532',roughness:.85}),0,1.62,1.055);
+
+    // One geometry for all five-color prayer flags; vertex updates create the breeze.
+    const flagColors=['#277ac1','#f2eee2','#c93c35','#318653','#e2bb36'];
+    const flagPositions=[], flagCols=[], flagMeta=[]; const flagLine=[];
+    const flagStart=new THREE.Vector3(-.15,6.7,5.5), flagEnd=new THREE.Vector3(4.15,5.9,6.0), flagCount=25;
+    for(let i=0;i<=flagCount;i++){const t=i/flagCount;flagLine.push([flagStart.x+(flagEnd.x-flagStart.x)*t,flagStart.y+(flagEnd.y-flagStart.y)*t,flagStart.z+(flagEnd.z-flagStart.z)*t]);}
+    for(let i=0;i<flagCount;i++){
+      const [x,y,z]=flagLine[i], [nx,ny,nz]=flagLine[i+1], midx=(x+nx)/2, midy=(y+ny)/2, midz=(z+nz)/2;
+      const w=.38,h=.72, ci=i%5, baseIndex=flagPositions.length/3;
+      // Two triangles make a tapered pennant. All are stored in one BufferGeometry.
+      const verts=[[x,y,z],[x+w, y-.015,z],[midx+w*.34,midy-h,midz],[x+w,y-.015,z],[nx+w,ny,nz],[midx+w*.34,midy-h,midz]];
+      for(const v of verts){flagPositions.push(...v);flagCols.push(...new THREE.Color(flagColors[ci]).toArray());flagMeta.push(v[0],v[1],v[2],i);}
+    }
+    const flagGeo=new THREE.BufferGeometry();flagGeo.setAttribute('position',new THREE.Float32BufferAttribute(flagPositions,3));flagGeo.setAttribute('color',new THREE.Float32BufferAttribute(flagCols,3));
+    const flagMaterial=new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide}); const flags=new THREE.Mesh(flagGeo,flagMaterial);scene.add(flags);
+    const flagRest=Float32Array.from(flagPositions), flagAttr=flagGeo.attributes.position;
+    // Fine dark cords between poles.
+    const cordGeo=new THREE.BufferGeometry().setFromPoints(flagLine.map(p=>new THREE.Vector3(...p)));
+    scene.add(new THREE.Line(cordGeo,new THREE.LineBasicMaterial({color:'#403c35'})));
+    for(const [x,y,z] of [[-.15,6.7,5.5],[4.15,5.9,6.0]]){const pole=new THREE.Mesh(new THREE.CylinderGeometry(.035,.05,6,5),gold);pole.position.set(x,y-2.8,z);scene.add(pole);}
+
+    // Tiny atmospheric flecks, updated in place and rendered in a single call.
+    const particleCount=520, particlePos=new Float32Array(particleCount*3), particleVel=new Float32Array(particleCount*3);
+    for(let i=0;i<particleCount;i++){particlePos[i*3]=(Math.random()-.5)*105;particlePos[i*3+1]=Math.random()*30;particlePos[i*3+2]=-55+Math.random()*85;particleVel[i*3]=(Math.random()-.5)*.018;particleVel[i*3+1]=.006+Math.random()*.018;particleVel[i*3+2]=0;}
+    const particleGeo=new THREE.BufferGeometry();particleGeo.setAttribute('position',new THREE.BufferAttribute(particlePos,3));
+    const particles=new THREE.Points(particleGeo,new THREE.PointsMaterial({color:'#ffe7c2',size:.095,transparent:true,opacity:.58,depthWrite:false,sizeAttenuation:true}));scene.add(particles);
+
+    let pointerX=0,pointerY=0,scrollT=0,lastInput=performance.now();
+    let frameOffsetX=innerWidth<720?1.9:0;
+    camera.position.x=frameOffsetX; camera.fov=innerWidth<720?48:44; camera.updateProjectionMatrix();
+    controls.target.x=frameOffsetX;
+    addEventListener('pointermove',e=>{pointerX=(e.clientX/innerWidth-.5)*2;pointerY=(e.clientY/innerHeight-.5)*2;lastInput=performance.now();},{passive:true});
+    addEventListener('scroll',()=>{scrollT=Math.min(1,scrollY/Math.max(1,innerHeight*.9));lastInput=performance.now();},{passive:true});
+    addEventListener('resize',()=>{frameOffsetX=innerWidth<720?1.9:0;camera.aspect=innerWidth/innerHeight;camera.fov=innerWidth<720?48:44;camera.updateProjectionMatrix();renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<720?1.35:1.65));renderer.setSize(innerWidth,innerHeight);});
+    const clock=new THREE.Clock();
+    function animate(){
+      requestAnimationFrame(animate); const elapsed=clock.getElapsedTime(), dt=Math.min(clock.getDelta(),.04);
+      const idle=(performance.now()-lastInput)>4000;
+      const aimX=pointerX*.55+(idle?Math.sin(elapsed*.09)*.15:0), aimY=7.3-pointerY*.18-scrollT*1.1;
+      camera.position.x+=(frameOffsetX+aimX-camera.position.x)*.012;
+      camera.position.y+=(7.5+aimY*.04-camera.position.y)*.01;
+      controls.target.x+=(frameOffsetX+aimX*.42-controls.target.x)*.008;
+      controls.target.y+=(aimY-controls.target.y)*.008;
+      controls.target.z+=(-28+scrollT*7-controls.target.z)*.01;
+      controls.update();
+      for(let i=0;i<flagMeta.length/4;i++){
+        const j=i*3, phase=flagMeta[i*4+3]*.34+elapsed*1.45, drop=Math.max(0,flagRest[j+1]-flagLine[Math.min(flagCount-1,Math.floor(flagMeta[i*4+3]))][1]);
+        flagAttr.array[j]=flagRest[j]+Math.sin(phase)*.055;
+        flagAttr.array[j+1]=flagRest[j+1]+Math.sin(phase+flagRest[j]*.8)*(.045+drop*.035);
+        flagAttr.array[j+2]=flagRest[j+2]+Math.sin(phase+flagRest[j]*.55)*(.1+drop*.11);
+      }
+      flagAttr.needsUpdate=true; flagGeo.computeVertexNormals();
+      for(let i=0;i<particleCount;i++){const j=i*3;particlePos[j]+=particleVel[j]+Math.sin(elapsed*.25+i)*.002;particlePos[j+1]+=particleVel[j+1];if(particlePos[j+1]>31){particlePos[j+1]=0;particlePos[j]=(Math.random()-.5)*105;}}
+      particleGeo.attributes.position.needsUpdate=true;
+      renderer.render(scene,camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
