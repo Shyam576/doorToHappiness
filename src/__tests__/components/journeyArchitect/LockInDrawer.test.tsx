@@ -57,4 +57,24 @@ describe('LockInDrawer', () => {
     expect(screen.getByText('Please provide your name and email.')).toBeInTheDocument()
     expect(mockedAxios.post).not.toHaveBeenCalled()
   })
+
+  it('shows an inline error and preserves input when the submission fails', async () => {
+    mockedAxios.post.mockRejectedValueOnce(new Error('network error'))
+
+    render(<LockInDrawer isOpen onClose={jest.fn()} input={input} breakdown={breakdown} routeStops={routeStops} />)
+
+    fireEvent.change(screen.getByLabelText('Full Name'), { target: { value: 'Jane Doe' } })
+    fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'jane@example.com' } })
+    fireEvent.click(screen.getByRole('button', { name: /confirm request/i }))
+
+    await waitFor(() =>
+      expect(
+        screen.getByText('Something went wrong sending your request. Please try again.')
+      ).toBeInTheDocument()
+    )
+
+    expect(screen.getByLabelText('Full Name')).toHaveValue('Jane Doe')
+    expect(screen.getByLabelText('Email')).toHaveValue('jane@example.com')
+    expect(screen.queryByText('Request sent!')).not.toBeInTheDocument()
+  })
 })
