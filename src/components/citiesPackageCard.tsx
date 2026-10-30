@@ -138,14 +138,21 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
           {activeTab === 'itinerary' && (
             <ul className="space-y-2 text-sm text-stone-600">
               {itinerary.length === 0 && <li className="text-stone-400">Itinerary details coming soon.</li>}
-              {itinerary.map((day) => (
-                <li key={day.day}>
-                  <span className="font-semibold text-stone-800">
-                    <span className="text-amber-600">Day {day.day}:</span> {day.title}
-                  </span>
-                  {day.summary && <p className="text-stone-500">{day.summary}</p>}
-                </li>
-              ))}
+              {itinerary.map((day) => {
+                // Some tour types (e.g. city packages) store the title as a bare
+                // "Day N" label identical to the day number — showing it again
+                // next to the day badge would just repeat it.
+                const showTitle = day.title && day.title !== `Day ${day.day}`;
+                return (
+                  <li key={day.day}>
+                    <span className="font-semibold text-stone-800">
+                      <span className="text-amber-600">Day {day.day}:</span>
+                      {showTitle && <> {day.title}</>}
+                    </span>
+                    {day.summary && <p className="text-stone-500">{day.summary}</p>}
+                  </li>
+                );
+              })}
             </ul>
           )}
 

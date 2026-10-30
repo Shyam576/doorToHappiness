@@ -72,6 +72,13 @@ describe('CityPackageCard', () => {
     expect(screen.getByText('Arrival at Paro Airport, Transfer to Thimphu')).toBeInTheDocument()
   })
 
+  it('does not repeat a redundant "Day N" title next to the day badge', () => {
+    render(<CityPackageCard tour={cityTour} />)
+    fireEvent.click(screen.getByRole('tab', { name: 'Itinerary' }))
+    expect(screen.getByText('Day 1:')).toBeInTheDocument()
+    expect(screen.queryByText('Day 1: Day 1')).not.toBeInTheDocument()
+  })
+
   it('still links to the correct tour detail page', () => {
     render(<CityPackageCard tour={trekTour} />)
     expect(screen.getByRole('link', { name: /view details/i })).toHaveAttribute(
