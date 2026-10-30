@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { normalizeItinerary, parseDifficulty } from '../lib/package-card-utils';
 
 interface TourPackage {
   id: string;
@@ -12,8 +13,21 @@ interface TourPackage {
   description: string;
   price?: string | number;
   category?: string;
+  inclusions?: string[];
+  difficulty?: string;
+  trek_details?: { difficulty?: string };
+  detailed_itinerary?: { day: number; title: string; activities?: string[] }[];
+  itinerary?: { title: string; description?: string }[];
   [key: string]: any;
 }
+
+type PreviewTab = 'highlights' | 'itinerary' | 'inclusions';
+
+const PREVIEW_TABS: { key: PreviewTab; label: string }[] = [
+  { key: 'highlights', label: 'Highlights' },
+  { key: 'itinerary', label: 'Itinerary' },
+  { key: 'inclusions', label: 'Inclusions' },
+];
 
 const CATEGORY_CONFIG: Record<string, { label: string; color: string }> = {
   city:      { label: 'City Tour',    color: 'bg-amber-500' },
@@ -37,9 +51,14 @@ const getRouteForTour = (tour: TourPackage): string => {
 
 const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
   const cfg = CATEGORY_CONFIG[tour.category ?? ''] ?? { label: tour.category ?? '', color: 'bg-amber-500' };
+  const [activeTab, setActiveTab] = useState<PreviewTab>('highlights');
+
+  const difficulty = parseDifficulty(tour.trek_details?.difficulty ?? tour.difficulty);
+  const itinerary = normalizeItinerary(tour);
+  const inclusions = tour.inclusions ?? [];
 
   return (
-    <article className="group relative bg-white rounded-xl overflow-hidden flex flex-col h-full transition-all duration-300 hover:-translate-y-1 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.10)]">
+    <article className="group relative bg-white rounded-xl overflow-hidden flex flex-col h-full transition-all duration-300 hover:-translate-y-1 shadow-card hover:shadow-card-hover">
 
       {/* ── Image ── */}
       <div className="relative h-52 overflow-hidden bg-stone-100">
@@ -60,6 +79,13 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
             {cfg.label}
           </span>
         )}
+
+        {/* Difficulty badge — only shown when parseable difficulty data exists for this tour */}
+        {difficulty && (
+          <span className="absolute top-3 right-3 bg-white/90 text-stone-800 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm">
+            {difficulty}
+          </span>
+        )}
       </div>
 
       {/* ── Content ── */}
@@ -71,19 +97,70 @@ const CityPackageCard: React.FC<{ tour: TourPackage }> = ({ tour }) => {
         </p>
 
         {/* Title */}
-        <h3 className="font-heading text-xl font-semibold text-stone-900 mb-2 leading-snug line-clamp-2">
+        <h3 className="font-heading text-xl font-semibold text-stone-900 mb-3 leading-snug line-clamp-2">
           {tour.title}
         </h3>
 
-        {/* Highlights */}
-        <p className="text-xs text-stone-500 mb-3 line-clamp-1">
-          {tour.highlights.join(' · ')}
-        </p>
+        {/* Quick-preview tabs */}
+        <div className="border-b border-stone-100 mb-3">
+          <nav className="flex gap-4" role="tablist" aria-label="Tour preview">
+            {PREVIEW_TABS.map((tab) => (
+              <button
+                key={tab.key}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`pb-2 text-xs font-semibold border-b-2 transition-colors duration-200 ${
+                  activeTab === tab.key
+                    ? 'border-amber-500 text-amber-600'
+                    : 'border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        </div>
 
-        {/* Description */}
-        <p className="text-sm text-stone-600 leading-relaxed line-clamp-3 flex-grow mb-5">
-          {tour.description}
-        </p>
+        <div className="h-28 overflow-y-auto mb-5 flex-grow">
+          {activeTab === 'highlights' && (
+            <ul className="space-y-1.5 text-sm text-stone-600">
+              {tour.highlights.map((highlight) => (
+                <li key={highlight} className="flex items-start gap-1.5">
+                  <span className="text-amber-500 mt-0.5">•</span>
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {activeTab === 'itinerary' && (
+            <ul className="space-y-2 text-sm text-stone-600">
+              {itinerary.length === 0 && <li className="text-stone-400">Itinerary details coming soon.</li>}
+              {itinerary.map((day) => (
+                <li key={day.day}>
+                  <span className="font-semibold text-stone-800">
+                    <span className="text-amber-600">Day {day.day}:</span> {day.title}
+                  </span>
+                  {day.summary && <p className="text-stone-500">{day.summary}</p>}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {activeTab === 'inclusions' && (
+            <ul className="space-y-1.5 text-sm text-stone-600">
+              {inclusions.length === 0 && <li className="text-stone-400">Inclusion details coming soon.</li>}
+              {inclusions.map((item) => (
+                <li key={item} className="flex items-start gap-1.5">
+                  <span className="text-emerald-600 mt-0.5">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         {/* CTA */}
         <Link
