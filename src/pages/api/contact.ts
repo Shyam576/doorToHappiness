@@ -1,27 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiResponse } from 'next';
 import dbConnect from '../../lib/dbConnect';
 import Contact from '../../models/contact';
+import withAuth, { NextApiRequestWithAuth } from '../../middleware/withAuth';
 
-
-export default async function handler(
-  req: NextApiRequest,
+async function contactHandler(
+  req: NextApiRequestWithAuth,
   res: NextApiResponse
 ) {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
-
-  // Handle OPTIONS request (CORS preflight)
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-
   try {
     await dbConnect();
   } catch (error: any) {
@@ -83,8 +68,18 @@ export default async function handler(
       break;
 
     default:
-      res.setHeader('Allow', ['GET', 'POST', 'DELETE', 'OPTIONS']);
+      res.setHeader('Allow', ['GET', 'POST', 'DELETE']);
       res.status(405).json({ success: false, message: `Method ${method} not allowed` });
       break;
   }
+}
+
+// GET lists/reads all leads' contact info (name/email/phone); DELETE removes a lead.
+// Both are admin-only. POST stays public — it's the lead-capture submission endpoint
+// used by TripBuilderForm, LockInDrawer, and the /contactus page.
+export default function handler(req: NextApiRequestWithAuth, res: NextApiResponse) {
+  if (req.method === 'GET' || req.method === 'DELETE') {
+    return withAuth(contactHandler, 'admin')(req, res);
+  }
+  return contactHandler(req, res);
 }
