@@ -21,12 +21,6 @@ import TrustBar from "../components/TrustBar";
 import PhotoStorySection from "../components/PhotoStorySection";
 import TeamSection from "../components/TeamSection";
 import TestimonialsSection from "../components/TestimonialsSection";
-import dynamic from "next/dynamic";
-
-const Hero3DOverlay = dynamic(() => import("../components/hero3d/Hero3DOverlay"), {
-  ssr: false,
-  loading: () => null,
-});
 
 // Helper function to convert duration string to days
 const getDurationInDays = (duration: any) => {
@@ -320,8 +314,6 @@ const Index: React.FC = () => {
 
       {/* Hero Section */}
       <div className="relative h-screen max-h-[800px] overflow-hidden bg-gray-900">
-        {/* Static image: always server-rendered, remains the LCP element and the fallback for
-            reduced-motion/no-WebGL/save-data visitors. Hero3DOverlay crossfades on top of it. */}
         <div className="absolute inset-0">
           <Image
             src="/homepagebg1.webp"
@@ -335,7 +327,6 @@ const Index: React.FC = () => {
             blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMxZjJhMzciLz48L3N2Zz4="
           />
         </div>
-        <Hero3DOverlay />
 
         <Container className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6">
           <div className="text-center text-white max-w-5xl mx-auto relative">
