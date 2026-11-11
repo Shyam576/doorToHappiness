@@ -24,6 +24,11 @@ jest.mock('../styles/themes', () => ({
   })
 }))
 
+// TripCostPreview (hero's trip-cost picker) deep-links via next/router
+jest.mock('next/router', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+}))
+
 describe('Homepage', () => {
   it('renders without crashing', () => {
     render(<Index />)

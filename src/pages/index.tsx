@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Container } from "../components/Container";
@@ -9,7 +9,7 @@ import majorCitiesPackage from "../data/majorCitiesPackage.json";
 import popularDestination from "../data/popularDestination.json";
 import { getTheme } from "../styles/themes";
 
-import { FiSearch, FiArrowRight, FiChevronDown } from "react-icons/fi";
+import { FiArrowRight, FiChevronDown } from "react-icons/fi";
 import festivalTours from "../data/festivialTours.json";
 import culturalTours from "../data/culturalTours.json";
 import trekkingAdventures from "../data/trekkingAdventure.json";
@@ -21,6 +21,7 @@ import TrustBar from "../components/TrustBar";
 import PhotoStorySection from "../components/PhotoStorySection";
 import TeamSection from "../components/TeamSection";
 import TestimonialsSection from "../components/TestimonialsSection";
+import TripCostPreview from "../components/TripCostPreview";
 
 // Helper function to convert duration string to days
 const getDurationInDays = (duration: any) => {
@@ -38,12 +39,8 @@ const sortOptions = [
 const Index: React.FC = () => {
   // Get unified theme
   const theme = getTheme();
-  const [packageSearchTerm, setPackageSearchTerm] = useState("");
-  const [showPackageResults, setShowPackageResults] = useState(false);
   const [sortOption, setSortOption] = useState("recommended");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchNoResults, setSearchNoResults] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Newsletter subscription state
@@ -56,24 +53,6 @@ const Index: React.FC = () => {
 
   // Refs for scrolling
   const toursRef = useRef<HTMLDivElement>(null);
-
-  // Determine the correct route based on the tour category
-  const getRouteForTour = (tour: any) => {
-    switch (tour.category) {
-      case "cultural":
-        return `/package/cultural/${tour.id}`;
-      case "festival":
-        return `/package/festival/${tour.id}`;
-      case "group":
-        return `/package/group/${tour.id}`;
-      case "trekking":
-      case "adventure": // Adventure tours also use trekking pages
-        return `/package/trekking/${tour.id}`;
-      case "city":
-      default:
-        return `/package/majorcitytour/${tour.id}`;
-    }
-  };
 
   // Handle newsletter subscription
   const handleNewsletterSubscription = async (e: React.FormEvent) => {
@@ -142,22 +121,8 @@ const Index: React.FC = () => {
     ...groupTours,
   ], []);
 
-  // Filter packages based on search — only recomputed when search term changes
-  const filteredPackages = useMemo(() => allPackages.filter((pkg) => {
-    if (!packageSearchTerm) return true;
-    const term = packageSearchTerm.toLowerCase();
-    return (
-      pkg.title.toLowerCase().includes(term) ||
-      pkg.description.toLowerCase().includes(term) ||
-      (pkg.highlights &&
-        pkg.highlights.some((highlight) =>
-          highlight.toLowerCase().includes(term)
-        ))
-    );
-  }), [allPackages, packageSearchTerm]);
-
-  // Sort packages — only recomputed when sort option or filtered list changes
-  const sortedPackages = useMemo(() => [...filteredPackages].sort((a, b) => {
+  // Sort packages — only recomputed when sort option changes
+  const sortedPackages = useMemo(() => [...allPackages].sort((a, b) => {
     switch (sortOption) {
       case "duration-short":
         return (
@@ -173,7 +138,7 @@ const Index: React.FC = () => {
       default:
         return 0;
     }
-  }), [filteredPackages, sortOption]);
+  }), [allPackages, sortOption]);
 
   // Handle clicking outside dropdown
   useEffect(() => {
@@ -192,14 +157,6 @@ const Index: React.FC = () => {
     };
   }, []);
 
-  // Search input handler — only updates term and dropdown, no auto-scroll
-  const handlePackageSearch = useCallback((value: string) => {
-    setPackageSearchTerm(value);
-    setShowPackageResults(value.length > 0);
-    // Clear any previous no-results warning when user types
-    if (searchNoResults) setSearchNoResults(false);
-  }, [searchNoResults]);
-
   // Scroll to section function
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
@@ -208,27 +165,6 @@ const Index: React.FC = () => {
         block: "start",
       });
     }
-  };
-
-  // Handle search button — only scrolls when results exist, warns otherwise
-  const handleSearch = () => {
-    if (filteredPackages.length === 0) {
-      setSearchNoResults(true);
-      return;
-    }
-    setSearchNoResults(false);
-    setIsLoading(true);
-    setShowPackageResults(false);
-    setTimeout(() => scrollToSection(toursRef), 100);
-    setTimeout(() => setIsLoading(false), 800);
-  };
-
-  // Clear search function
-  const clearSearch = () => {
-    setPackageSearchTerm("");
-    setShowPackageResults(false);
-    setSearchNoResults(false);
-    setSortOption("recommended");
   };
 
   return (
@@ -374,180 +310,96 @@ const Index: React.FC = () => {
             </div> */}
           </div>
 
-          {/* Enhanced Search Widget */}
-          <div className="mt-4 sm:mt-6 md:mt-8 bg-white rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-4 md:p-6 transition-all duration-300 bg-opacity-30 mx-2 sm:mx-4">
-            <h2 className="text-base sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 md:mb-4">
-              Plan Your Bhutan Adventure
-            </h2>
-
-            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-3 md:mb-4">
-              <div className="relative flex-grow">
-                <div className="absolute inset-y-0 left-0 pl-2 sm:pl-3 flex items-center pointer-events-none">
-                  <FiSearch className="text-gray-400 text-sm sm:text-base" />
-                </div>
-                <input
-                  type="text"
-                  aria-label="Search for tours or activities"
-                  className="w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-2.5 md:py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 text-base"
-                  placeholder="Search for tours or activities"
-                  value={packageSearchTerm}
-                  onChange={(e) => handlePackageSearch(e.target.value)}
-                  onFocus={() =>
-                    setShowPackageResults(packageSearchTerm.length > 0)
-                  }
-                  onBlur={() =>
-                    setTimeout(() => setShowPackageResults(false), 200)
-                  }
-                />
-                {packageSearchTerm && (
-                  <button
-                    className="absolute inset-y-0 right-0 pr-2 sm:pr-3 flex items-center"
-                    aria-label="Clear search"
-                    onClick={() => {
-                      setPackageSearchTerm("");
-                      setShowPackageResults(false);
-                    }}
-                  >
-                    <svg
-                      className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 hover:text-gray-600"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                )}
-                {showPackageResults && (
-                  <div className="absolute z-10 mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-auto">
-                    {filteredPackages.length > 0 ? (
-                      filteredPackages.map((pkg) => (
-                        <Link key={pkg.id} href={getRouteForTour(pkg)} passHref>
-                          <div className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 flex items-center">
-                            <Image
-                              src={pkg.image}
-                              alt={pkg.title}
-                              width={40}
-                              height={40}
-                              unoptimized
-                              className="w-10 h-10 rounded-md object-cover mr-3"
-                            />
-                            <div>
-                              <div className="font-medium">{pkg.title}</div>
-                              <div className="text-sm text-gray-500">
-                                {pkg.duration || "Multi-day tour"}
-                              </div>
-                            </div>
-                          </div>
-                        </Link>
-                      ))
-                    ) : (
-                      <div className="p-4 text-center text-gray-500">
-                        No tours found
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              {packageSearchTerm && (
-                <button
-                  className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base"
-                  onClick={clearSearch}
-                >
-                  <svg
-                    className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                  Clear
-                </button>
-              )}
-              <button
-                className={`${
-                  packageSearchTerm ? "col-span-1" : "col-span-2"
-                } ${
-                  isLoading
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : `${theme.primary} ${theme.primaryHover}`
-                } text-white font-bold py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 rounded-lg transition flex items-center justify-center text-sm sm:text-base`}
-                onClick={() => {
-                  if (!isLoading && packageSearchTerm) {
-                    handleSearch();
-                  }
-                }}
-                disabled={isLoading || !packageSearchTerm}
-              >
-                {isLoading ? (
-                  <>
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Searching...
-                  </>
-                ) : (
-                  <>
-                    <FiSearch className="mr-2" />
-                    Search
-                  </>
-                )}
-              </button>
-            </div>
-            {/* No-results warning */}
-            {searchNoResults && packageSearchTerm && (
-              <div className="mt-2 flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-3 py-2">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 flex-shrink-0 text-yellow-200" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                </svg>
-                <p className="text-xs text-white/90">
-                  No tours found for &ldquo;{packageSearchTerm}&rdquo; — try a different keyword.
-                </p>
-              </div>
-            )}
-            {/* Results hint when found */}
-            {!searchNoResults && packageSearchTerm && filteredPackages.length > 0 && (
-              <p className="text-xs text-white/80 text-center mt-2">
-                {filteredPackages.length} tour{filteredPackages.length !== 1 ? "s" : ""} found — press Search to view
-              </p>
-            )}
-          </div>
+          <TripCostPreview />
         </Container>
       </div>
 
       {/* Trust Indicators */}
       <TrustBar />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
+      {/* Featured Tours Section */}
+      <Container className="py-8 sm:py-12" ref={toursRef}>
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
+            <div className="text-center sm:text-center flex-1">
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
+                Our Most Popular Bhutan Tours
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base">
+                {sortedPackages.length} tours available
+              </p>
+            </div>
+
+            <div
+              className="flex items-center justify-end w-full sm:w-auto relative"
+              ref={dropdownRef}
+            >
+              <div className="relative">
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  aria-label="Sort tours"
+                  aria-haspopup="listbox"
+                  aria-expanded={isDropdownOpen}
+                  className="px-3 sm:px-4 py-2 border border-amber-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm sm:text-base bg-white text-stone-700 hover:border-amber-300 transition-colors min-w-[140px] sm:min-w-[160px] flex items-center justify-between"
+                >
+                  <span>
+                    {
+                      sortOptions.find((option) => option.value === sortOption)
+                        ?.label
+                    }
+                  </span>
+                  <FiChevronDown
+                    className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                      isDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {isDropdownOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-orange-200 rounded-lg shadow-lg z-50 overflow-hidden">
+                    {sortOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        onClick={() => {
+                          setSortOption(option.value);
+                          setIsDropdownOpen(false);
+                        }}
+                        className={`w-full text-left px-3 sm:px-4 py-2 text-sm sm:text-base hover:bg-amber-50 transition-colors ${
+                          sortOption === option.value
+                            ? "bg-amber-100 text-amber-700 font-medium"
+                            : "text-stone-700"
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {sortedPackages
+            .slice(0, 6)
+            .map((tour) => <CityPackageCard key={tour.id} tour={tour} />)}
+        </div>
+
+        {sortedPackages.length > 6 && (
+          <div className="text-center mt-8 sm:mt-12">
+            <Link href="/package" passHref>
+              <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 transition">
+                View All {sortedPackages.length} Tour Packages
+                <FiArrowRight className="ml-2" />
+              </button>
+            </Link>
+          </div>
+        )}
+      </Container>
 
       {/* About Section - SEO-optimized with Modern Design */}
       <div className="w-full bg-white py-16 sm:py-24">
@@ -563,148 +415,17 @@ const Index: React.FC = () => {
               Your Gateway to Authentic Bhutan Travel Experiences
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed text-left sm:text-center">
-              <strong className="text-gray-900">Door to Happiness Holiday</strong> is a premier
-              Bhutan-based travel company specializing in authentic cultural
-              tours, trekking adventures, and personalized travel experiences
-              across all 20 dzongkhags of Bhutan. As a licensed Bhutanese tour
-              operator, we connect travelers with the genuine heart of the Land
-              of the Thunder Dragon through expertly curated journeys that honor
-              Bhutan&apos;s unique philosophy of Gross National Happiness.
+              <strong className="text-gray-900">Door to Happiness Holiday</strong> is a licensed
+              Bhutan-based tour operator connecting travelers with authentic
+              cultural tours, trekking adventures, and sacred sites like{" "}
+              <Link href="/dzongkhag/paro" className="relative inline-block group cursor-pointer">
+                <span className="relative z-10 font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500 group-hover:from-amber-800 group-hover:to-amber-600 transition-all duration-300">
+                  Taktsang Monastery (Tiger&apos;s Nest)
+                </span>
+                <span className="absolute bottom-0 left-0 w-full h-2 bg-yellow-200 opacity-50 group-hover:opacity-70 group-hover:h-3 transition-all duration-300 -z-0"></span>
+              </Link>
+              , across all 20 dzongkhags of Bhutan.
             </p>
-          </div>
-
-          {/* Experience Cards */}
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
-            {/* Cultural Tours Card */}
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100 hover:shadow-2xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
-              <div className="relative p-6 sm:p-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative rounded-full overflow-hidden ring-4 ring-amber-400">
-                  <Image
-                    src="/aboutus1.svg"
-                    alt="Cultural & Heritage Tours"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="font-heading text-2xl sm:text-3xl font-bold text-stone-900 mb-3 sm:mb-4">
-                  Cultural & Heritage Tours
-                </h3>
-                <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
-                  Explore Bhutan&apos;s rich Buddhist heritage through visits to
-                  ancient dzongs and sacred monasteries. Our cultural tours
-                  provide deep insights into Bhutanese traditions, festivals
-                  (tsechus), and spiritual practices that have been preserved
-                  for centuries across remote valleys and historic dzongkhags.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-white text-amber-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
-                    Ancient Dzongs
-                  </span>
-                  <span className="bg-white text-amber-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
-                    Sacred Monasteries
-                  </span>
-                  <span className="bg-white text-amber-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
-                    Festival Tours
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Trekking Card */}
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 hover:shadow-2xl transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
-              <div className="relative p-6 sm:p-8">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4 sm:mb-6 group-hover:scale-110 transition-transform mx-auto md:mx-0 relative rounded-full overflow-hidden ring-4 ring-emerald-400">
-                  <Image
-                    src="/aboutus2.jpg"
-                    alt="Trekking & Adventure Travel"
-                    fill
-                    unoptimized
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="font-heading text-2xl sm:text-3xl font-bold text-stone-900 mb-3 sm:mb-4">
-                  Trekking & Adventure Travel
-                </h3>
-                <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
-                  Discover pristine Himalayan landscapes through multi-day
-                  trekking expeditions, from the legendary Snowman Trek to
-                  scenic valley hikes. Our adventure tours showcase
-                  Bhutan&apos;s untouched natural beauty while ensuring
-                  sustainable, eco-friendly travel practices that protect the
-                  kingdom&apos;s fragile mountain ecosystems.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="bg-white text-emerald-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
-                    Snowman Trek
-                  </span>
-                  <span className="bg-white text-emerald-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
-                    Valley Hikes
-                  </span>
-                  <span className="bg-white text-emerald-700 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full">
-                    Eco-Friendly
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Expertise Statement - Enhanced */}
-          <div className="max-w-5xl mx-auto mb-12 sm:mb-16">
-            <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-stone-50 to-amber-50 rounded-3xl p-8 sm:p-10 lg:p-12 shadow-xl border border-amber-100">
-              {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full opacity-30 -mr-20 -mt-20"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-amber-200 to-stone-200 rounded-full opacity-30 -ml-16 -mb-16"></div>
-              
-              <div className="relative">
-                {/* Icon/Visual Element */}
-                {/* <div className="flex justify-center mb-6">
-                  <div className="bg-gradient-to-br from-orange-400 to-pink-500 rounded-full p-4 shadow-lg">
-                    <div className="text-white text-4xl sm:text-5xl">🏯</div>
-                  </div>
-                </div> */}
-
-                {/* Main Text */}
-                <p className="text-lg sm:text-xl lg:text-2xl text-gray-800 leading-relaxed text-center mb-8 font-medium">
-                  Whether you&apos;re seeking spiritual enrichment at{" "}
-                  <Link href="/dzongkhag/paro" className="relative inline-block group cursor-pointer">
-                    <span className="relative z-10 font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500 group-hover:from-amber-800 group-hover:to-amber-600 transition-all duration-300">
-                      Taktsang Monastery (Tiger&apos;s Nest)
-                    </span>
-                    <span className="absolute bottom-0 left-0 w-full h-2 bg-yellow-200 opacity-50 group-hover:opacity-70 group-hover:h-3 transition-all duration-300 -z-0"></span>
-                  </Link>
-                  , cultural immersion during vibrant festival celebrations, or challenging high-altitude treks through
-                  the Eastern Himalayas, Door to Happiness Holiday crafts bespoke
-                  Bhutan tour packages tailored to your interests.
-                </p>
-
-                {/* Location Highlights
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {[
-                    { name: "Thimphu", icon: "🏯", desc: "Urban Dzongs", color: "from-orange-400 to-orange-500" },
-                    { name: "Bumthang", icon: "🙏", desc: "Remote Monasteries", color: "from-yellow-500 to-orange-400" },
-                    { name: "Paro", icon: "⛰️", desc: "Sacred Sites", color: "from-orange-500 to-yellow-500" },
-                    { name: "Punakha", icon: "🕉️", desc: "Historic Fortresses", color: "from-yellow-600 to-orange-600" },
-                  ].map((location, index) => (
-                    <div 
-                      key={index}
-                      className="group bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                    >
-                      <div className={`w-12 h-12 mx-auto mb-3 bg-gradient-to-br ${location.color} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-md`}>
-                        <span className="text-2xl">{location.icon}</span>
-                      </div>
-                      <h4 className="font-bold text-gray-900 text-sm sm:text-base mb-1">
-                        {location.name}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-gray-600">
-                        {location.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div> */}
-              </div>
-            </div>
           </div>
 
           {/* Why Choose Us - Modern Grid */}
@@ -791,124 +512,8 @@ const Index: React.FC = () => {
         </Container>
       </div>
 
-      {/* Featured Tours Section */}
-      <Container className="py-8 sm:py-12" ref={toursRef}>
-        <div className="text-center mb-8 sm:mb-12">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
-            <div className="text-center sm:text-center flex-1">
-              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
-                Our Most Popular Bhutan Tours
-              </h2>
-              <p className="text-gray-600 text-sm sm:text-base">
-                {packageSearchTerm ? (
-                  <>
-                    Found {filteredPackages.length} tour
-                    {filteredPackages.length !== 1 ? "s" : ""}
-                    {packageSearchTerm && ` matching "${packageSearchTerm}"`}
-                  </>
-                ) : (
-                  `${filteredPackages.length} tours available`
-                )}
-              </p>
-            </div>
-
-            <div
-              className="flex items-center justify-end w-full sm:w-auto relative"
-              ref={dropdownRef}
-            >
-              <div className="relative">
-                <button
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  aria-label="Sort tours"
-                  aria-haspopup="listbox"
-                  aria-expanded={isDropdownOpen}
-                  className="px-3 sm:px-4 py-2 border border-amber-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm sm:text-base bg-white text-stone-700 hover:border-amber-300 transition-colors min-w-[140px] sm:min-w-[160px] flex items-center justify-between"
-                >
-                  <span>
-                    {
-                      sortOptions.find((option) => option.value === sortOption)
-                        ?.label
-                    }
-                  </span>
-                  <FiChevronDown
-                    className={`ml-2 h-4 w-4 transition-transform duration-200 ${
-                      isDropdownOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {isDropdownOpen && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-orange-200 rounded-lg shadow-lg z-50 overflow-hidden">
-                    {sortOptions.map((option) => (
-                      <button
-                        key={option.value}
-                        onClick={() => {
-                          setSortOption(option.value);
-                          setIsDropdownOpen(false);
-                        }}
-                        className={`w-full text-left px-3 sm:px-4 py-2 text-sm sm:text-base hover:bg-amber-50 transition-colors ${
-                          sortOption === option.value
-                            ? "bg-amber-100 text-amber-700 font-medium"
-                            : "text-stone-700"
-                        }`}
-                      >
-                        {option.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {sortedPackages.length > 0 ? (
-            sortedPackages
-              .slice(0, 6)
-              .map((tour) => <CityPackageCard key={tour.id} tour={tour} />)
-          ) : packageSearchTerm ? (
-            <div className="col-span-full text-center py-12">
-              <div className="text-gray-400 mb-4">
-                <FiSearch className="mx-auto h-12 w-12" />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">
-                No tours found
-              </h3>
-              <p className="text-gray-500 mb-4">
-                We couldn&apos;t find any tours matching &ldquo;{packageSearchTerm}&rdquo;. Try
-                adjusting your search or browse all tours.
-              </p>
-              <button
-                onClick={clearSearch}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700"
-              >
-                Clear search and browse all
-              </button>
-            </div>
-          ) : null}
-        </div>
-
-        {sortedPackages.length > 6 && !packageSearchTerm && (
-          <div className="text-center mt-8 sm:mt-12">
-            <Link href="/package" passHref>
-              <button className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 transition">
-                View All {sortedPackages.length} Tour Packages
-                <FiArrowRight className="ml-2" />
-              </button>
-            </Link>
-          </div>
-        )}
-      </Container>
-
       {/* Photo Storytelling Section */}
       <PhotoStorySection />
-
-      {/* Team Section */}
-      <TeamSection />
-
-      {/* Testimonials Section */}
-      <TestimonialsSection />
 
       {/* Dzongkhags & Heritage Places Section */}
       <Container className="py-12 sm:py-16 bg-gradient-to-b from-stone-50 to-amber-50">
@@ -1047,6 +652,9 @@ const Index: React.FC = () => {
           </div>
         </div>
       </Container>
+
+      {/* Team Section */}
+      <TeamSection />
 
       {/* Newsletter Signup */}
       <Container className="py-12 sm:py-16 bg-gradient-to-r from-stone-50 to-amber-50">

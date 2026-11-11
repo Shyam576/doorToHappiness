@@ -7,14 +7,19 @@ import { CostBreakdown } from './CostBreakdown'
 import { LockInDrawer } from './LockInDrawer'
 import { getTheme } from '../../styles/themes'
 
-const initialInput: CalculatorInput = {
+const DEFAULT_INPUT: CalculatorInput = {
   durationDays: 7,
   adults: 2,
   children: 0,
   travelerType: 'couple',
 }
 
-export function JourneyArchitect() {
+interface JourneyArchitectProps {
+  /** Lets callers (e.g. a homepage preview picker deep-linking here via URL query params) open the calculator pre-filled instead of always at the default. */
+  initialInput?: CalculatorInput
+}
+
+export function JourneyArchitect({ initialInput = DEFAULT_INPUT }: JourneyArchitectProps) {
   const theme = getTheme()
   const [input, setInput] = useState<CalculatorInput>(initialInput)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
