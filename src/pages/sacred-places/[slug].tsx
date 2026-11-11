@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Seo from '../../components/Seo';
+import VisitOnTourCTA from '../../components/VisitOnTourCTA';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
 import { 
@@ -230,6 +231,8 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                   )}
                 </div>
               </div>
+
+              <VisitOnTourCTA dzongkhagName={dzongkhag.name} pageLabel={place.name} />
 
               {/* Visit Dzongkhag */}
               <div className="bg-white rounded-xl shadow-lg p-6">

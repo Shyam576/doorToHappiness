@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Seo from '../../components/Seo';
+import VisitOnTourCTA from '../../components/VisitOnTourCTA';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
 import PlacePlaceholder from '../../components/PlacePlaceholder';
@@ -392,6 +393,8 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
               </div>
 
               {/* Key Highlights */}
+              <VisitOnTourCTA dzongkhagName={dzongkhag.name} pageLabel={`${dzongkhag.name} Dzongkhag`} />
+
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h3 className="text-lg font-bold mb-4">Key Highlights</h3>
                 <div className="space-y-2">

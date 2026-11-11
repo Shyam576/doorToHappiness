@@ -40,6 +40,29 @@ interface TourWithItinerary {
   itinerary?: CityItineraryDay[]
 }
 
+interface TourWithRoute {
+  id: string
+  category?: string
+}
+
+/** The category -> detail-page-type mapping, shared by the homepage and tour-mapping lookups so it's defined once. */
+export function getTourUrl(tour: TourWithRoute): string {
+  switch (tour.category) {
+    case 'cultural':
+      return `/package/cultural/${tour.id}`
+    case 'festival':
+      return `/package/festival/${tour.id}`
+    case 'group':
+      return `/package/group/${tour.id}`
+    case 'trekking':
+    case 'adventure':
+      return `/package/trekking/${tour.id}`
+    case 'city':
+    default:
+      return `/package/majorcitytour/${tour.id}`
+  }
+}
+
 export function normalizeItinerary(tour: TourWithItinerary): ItineraryDay[] {
   if (Array.isArray(tour.detailed_itinerary)) {
     return tour.detailed_itinerary.map((d) => ({
