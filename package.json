@@ -8,11 +8,11 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
+		"postbuild": "node scripts/check-no-legacy-domain.js",
 		"start": "next start",
 		"lint": "next lint",
 		"export": "next export",
 		"seo-check": "next build && next start",
-		"sitemap": "node scripts/generate-sitemap.js",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage"

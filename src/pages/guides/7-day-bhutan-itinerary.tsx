@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "next/head";
+import Seo from "../../components/Seo";
 import Link from "next/link";
 import { FiMap, FiClock } from "react-icons/fi";
 import { getTheme } from "../../styles/themes";
@@ -36,54 +36,33 @@ const SevenDayItinerary = () => {
 
   return (
     <>
-      <Head>
-        <title>
-          7-Day Bhutan Itinerary: Paro, Thimphu & Punakha | Door to Happiness
-          Holiday
-        </title>
-        <meta
-          name="description"
-          content="A day-by-day 7-day Bhutan itinerary covering Paro, Thimphu and Punakha — the classic first-time route, including Tiger's Nest, Punakha Dzong and Dochula Pass."
-        />
-        <meta
-          name="keywords"
-          content="7 day Bhutan itinerary, Bhutan itinerary, Paro Thimphu Punakha, Tiger's Nest itinerary, Bhutan trip planning"
-        />
-        <meta
-          property="og:title"
-          content="7-Day Bhutan Itinerary: Paro, Thimphu & Punakha"
-        />
-        <meta
-          property="og:description"
-          content="The classic first-time route through Bhutan's most iconic valleys — day by day, with real places you can visit."
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content="/image7.jpeg" />
-        <link
-          rel="canonical"
-          href="https://www.doortohappinessholidays.com/guides/7-day-bhutan-itinerary"
-        />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "7-Day Bhutan Itinerary: Paro, Thimphu & Punakha",
-            description:
-              "A day-by-day 7-day Bhutan itinerary covering Paro, Thimphu and Punakha, including Tiger's Nest, Punakha Dzong and Dochula Pass.",
-            author: {
-              "@type": "Organization",
-              name: "Door To Happiness Holiday",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "Door To Happiness Holiday",
-            },
-            datePublished: "2026-09-07",
-            dateModified: "2026-09-07",
-          })}
-        </script>
-      </Head>
+      <Seo
+        title="7-Day Bhutan Itinerary: Paro, Thimphu & Punakha | Door to Happiness Holiday"
+        description="A day-by-day 7-day Bhutan itinerary covering Paro, Thimphu and Punakha — the classic first-time route, including Tiger's Nest, Punakha Dzong and Dochula Pass."
+        path="/guides/7-day-bhutan-itinerary"
+        keywords="7 day Bhutan itinerary, Bhutan itinerary, Paro Thimphu Punakha, Tiger's Nest itinerary, Bhutan trip planning"
+        ogTitle="7-Day Bhutan Itinerary: Paro, Thimphu & Punakha"
+        ogDescription="The classic first-time route through Bhutan's most iconic valleys — day by day, with real places you can visit."
+        ogType="article"
+        ogImage="/image7.jpeg"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "7-Day Bhutan Itinerary: Paro, Thimphu & Punakha",
+          description:
+            "A day-by-day 7-day Bhutan itinerary covering Paro, Thimphu and Punakha, including Tiger's Nest, Punakha Dzong and Dochula Pass.",
+          author: {
+            "@type": "Organization",
+            name: "Door To Happiness Holiday",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Door To Happiness Holiday",
+          },
+          datePublished: "2026-09-07",
+          dateModified: "2026-09-07",
+        }}
+      />
 
       <article className="min-h-screen bg-white">
         {/* Hero */}

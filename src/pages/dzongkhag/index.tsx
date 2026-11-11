@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Seo from "../../components/Seo";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "../../components/Container";
@@ -23,21 +24,30 @@ const DzongkhagIndex = () => {
 
   return (
     <>
+      <Seo
+        title="Complete Guide to Bhutan's 20 Dzongkhags (Districts) | Cultural Heritage & Travel"
+        description="Comprehensive guide to all 20 dzongkhags of Bhutan. Explore dzongs, monasteries, and cultural heritage sites in each district. Plan your journey through the Land of the Thunder Dragon."
+        path="/dzongkhag"
+        keywords="Bhutan dzongkhags, Bhutan districts, dzong Bhutan, sacred places Bhutan, monasteries Bhutan, Bhutan cultural heritage, Thimphu dzongkhag, Paro dzongkhag, Punakha dzongkhag, traditional architecture Bhutan"
+        ogTitle="Complete Guide to Bhutan's 20 Dzongkhags - Sacred Places & Cultural Heritage"
+        ogDescription="Discover the sacred places, dzongs, and monasteries in all 20 dzongkhags of Bhutan. Your ultimate guide to Bhutan's cultural and spiritual heritage."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TravelGuide",
+          "name": "Bhutan Dzongkhags Guide",
+          "description": "Complete guide to Bhutan's 20 administrative districts (dzongkhags) and their sacred places",
+          "about": {
+            "@type": "Place",
+            "name": "Bhutan",
+            "description": "The Kingdom of Bhutan and its 20 dzongkhags"
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "Door To Happiness Holiday"
+          }
+        }}
+      />
       <Head>
-        <title>Complete Guide to Bhutan's 20 Dzongkhags (Districts) | Cultural Heritage & Travel</title>
-        <meta 
-          name="description" 
-          content="Comprehensive guide to all 20 dzongkhags of Bhutan. Explore dzongs, monasteries, and cultural heritage sites in each district. Plan your journey through the Land of the Thunder Dragon."
-        />
-        <meta 
-          name="keywords" 
-          content="Bhutan dzongkhags, Bhutan districts, dzong Bhutan, sacred places Bhutan, monasteries Bhutan, Bhutan cultural heritage, Thimphu dzongkhag, Paro dzongkhag, Punakha dzongkhag, traditional architecture Bhutan"
-        />
-        <meta property="og:title" content="Complete Guide to Bhutan's 20 Dzongkhags - Sacred Places & Cultural Heritage" />
-        <meta property="og:description" content="Discover the sacred places, dzongs, and monasteries in all 20 dzongkhags of Bhutan. Your ultimate guide to Bhutan's cultural and spiritual heritage." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholidays.com/dzongkhag" />
-        
         {/* Preload hero image for faster LCP */}
         <link
           rel="preload"
@@ -45,24 +55,6 @@ const DzongkhagIndex = () => {
           href="/dzongkhag.jpg"
           fetchPriority="high"
         />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "TravelGuide",
-            "name": "Bhutan Dzongkhags Guide",
-            "description": "Complete guide to Bhutan's 20 administrative districts (dzongkhags) and their sacred places",
-            "about": {
-              "@type": "Place",
-              "name": "Bhutan",
-              "description": "The Kingdom of Bhutan and its 20 dzongkhags"
-            },
-            "author": {
-              "@type": "Organization",
-              "name": "Door To Happiness Holiday"
-            }
-          })}
-        </script>
       </Head>
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">

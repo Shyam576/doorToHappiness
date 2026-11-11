@@ -15,6 +15,4 @@ Disallow: /login/
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://www.doortohappinessholidays.com/sitemap.xml
-
-Host: https://www.doortohappinessholidays.com
+Sitemap: https://dthholiday.com/sitemap.xml

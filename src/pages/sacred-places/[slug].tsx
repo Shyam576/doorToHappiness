@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import Head from 'next/head';
+import Seo from '../../components/Seo';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
 import { 
@@ -42,15 +42,14 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
 
   return (
     <>
-      <Head>
-        <title>{place.name} - Heritage Place in {dzongkhag.name} | Door to Happiness</title>
-        <meta name="description" content={place.description} />
-        <meta property="og:title" content={`${place.name} - Heritage Place in ${dzongkhag.name}`} />
-        <meta property="og:description" content={place.description} />
-        <meta property="og:image" content={place.image || '/backgroundbanner.jpg'} />
-        <meta property="og:type" content="article" />
-        <link rel="canonical" href={`https://www.doortohappinessholidays.com/sacred-places/${place.slug}`} />
-      </Head>
+      <Seo
+        title={`${place.name} - Heritage Place in ${dzongkhag.name} | Door to Happiness`}
+        description={place.description}
+        path={`/sacred-places/${place.slug}`}
+        ogTitle={`${place.name} - Heritage Place in ${dzongkhag.name}`}
+        ogImage={place.image || '/backgroundbanner.jpg'}
+        ogType="article"
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
         {/* Breadcrumb Navigation */}

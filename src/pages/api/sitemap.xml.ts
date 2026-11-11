@@ -6,8 +6,7 @@ import festivalTours from '../../data/festivialTours.json';
 import trekkingAdventures from '../../data/trekkingAdventure.json';
 import groupTours from '../../data/groupTours.json';
 import guides from '../../data/guides.json';
-
-const SITE_URL = 'https://www.doortohappinessholidays.com';
+import { SITE_URL } from '../../config/site';
 
 function generateSiteMapXML() {
   // Static pages that actually exist

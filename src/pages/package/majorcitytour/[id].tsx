@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Head from "next/head";
+import Seo from "../../../components/Seo";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import {
@@ -62,18 +62,12 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
   return (
     <>
-      <Head>
-        <title>{packageData.title} | Door to Happiness Holiday</title>
-        <meta name="description" content={packageData.description} />
-        <meta property="og:title" content={`${packageData.title} | Door to Happiness Holiday`} />
-        <meta property="og:description" content={packageData.description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={packageData.image} />
-        <link
-          rel="canonical"
-          href={`https://www.doortohappinessholidays.com/package/majorcitytour/${packageData.id}`}
-        />
-      </Head>
+      <Seo
+        title={`${packageData.title} | Door to Happiness Holiday`}
+        description={packageData.description}
+        path={`/package/majorcitytour/${packageData.id}`}
+        ogImage={packageData.image}
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}

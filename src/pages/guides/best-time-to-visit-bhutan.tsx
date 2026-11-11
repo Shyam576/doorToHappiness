@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "next/head";
+import Seo from "../../components/Seo";
 import Link from "next/link";
 import {
   FiSun,
@@ -15,54 +15,33 @@ const BestTimeToVisitBhutan = () => {
 
   return (
     <>
-      <Head>
-        <title>
-          Best Time to Visit Bhutan: A Season-by-Season Guide | Door to
-          Happiness Holiday
-        </title>
-        <meta
-          name="description"
-          content="When is the best time to visit Bhutan? A season-by-season breakdown of weather, festivals, trekking conditions, and crowds to help you plan your trip."
-        />
-        <meta
-          name="keywords"
-          content="best time to visit Bhutan, Bhutan weather, Bhutan festivals, Bhutan travel seasons, when to visit Bhutan, Bhutan spring autumn winter"
-        />
-        <meta
-          property="og:title"
-          content="Best Time to Visit Bhutan: A Season-by-Season Guide"
-        />
-        <meta
-          property="og:description"
-          content="Spring blooms, autumn festivals, monsoon quiet, or winter cranes — here's how to pick the right season for your Bhutan trip."
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content="/image1.jpeg" />
-        <link
-          rel="canonical"
-          href="https://www.doortohappinessholidays.com/guides/best-time-to-visit-bhutan"
-        />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "Best Time to Visit Bhutan: A Season-by-Season Guide",
-            description:
-              "A season-by-season breakdown of weather, festivals, trekking conditions, and crowds to help you plan a Bhutan trip.",
-            author: {
-              "@type": "Organization",
-              name: "Door To Happiness Holiday",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "Door To Happiness Holiday",
-            },
-            datePublished: "2026-09-07",
-            dateModified: "2026-09-07",
-          })}
-        </script>
-      </Head>
+      <Seo
+        title="Best Time to Visit Bhutan: A Season-by-Season Guide | Door to Happiness Holiday"
+        description="When is the best time to visit Bhutan? A season-by-season breakdown of weather, festivals, trekking conditions, and crowds to help you plan your trip."
+        path="/guides/best-time-to-visit-bhutan"
+        keywords="best time to visit Bhutan, Bhutan weather, Bhutan festivals, Bhutan travel seasons, when to visit Bhutan, Bhutan spring autumn winter"
+        ogTitle="Best Time to Visit Bhutan: A Season-by-Season Guide"
+        ogDescription="Spring blooms, autumn festivals, monsoon quiet, or winter cranes — here's how to pick the right season for your Bhutan trip."
+        ogType="article"
+        ogImage="/image1.jpeg"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Best Time to Visit Bhutan: A Season-by-Season Guide",
+          description:
+            "A season-by-season breakdown of weather, festivals, trekking conditions, and crowds to help you plan a Bhutan trip.",
+          author: {
+            "@type": "Organization",
+            name: "Door To Happiness Holiday",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Door To Happiness Holiday",
+          },
+          datePublished: "2026-09-07",
+          dateModified: "2026-09-07",
+        }}
+      />
 
       <article className="min-h-screen bg-white">
         {/* Hero */}

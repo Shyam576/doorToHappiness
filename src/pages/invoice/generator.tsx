@@ -63,7 +63,7 @@ const InvoiceGeneratorPage: NextPage = () => {
     bankAddress: 'Norzin Lam, RICBL Building, Thimphu, Bhutan',
     
     // Company Footer
-    website: 'www.doortohappinessholidays.com',
+    website: 'www.dthholiday.com',
     email: 'doortohappinessholiday@gmail.com',
     phone: '+975 - 17910421',
     location: 'Thimphu, Bhutan'

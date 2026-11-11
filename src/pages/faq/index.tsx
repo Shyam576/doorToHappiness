@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Head from "next/head";
 import { FiSearch, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import faqs from "../../data/faq.json";
 import { getTheme } from "../../styles/themes";
+import Seo from "../../components/Seo";
 
 interface FAQItem {
   question: string;
@@ -31,24 +31,14 @@ const FAQPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-100 py-12">
-      <Head>
-        <title>Frequently Asked Questions - Door To Happiness</title>
-        <meta
-          name="description"
-          content="Find answers to commonly asked questions about Bhutan tours, travel requirements, best times to visit, and booking procedures with Door To Happiness."
-        />
-        <meta
-          name="keywords"
-          content="Bhutan FAQ, travel questions, tour booking, visa requirements, best time visit Bhutan, Bhutan travel guide"
-        />
-        <meta property="og:title" content="Frequently Asked Questions | Door to Happiness Holiday" />
-        <meta
-          property="og:description"
-          content="Find answers to commonly asked questions about Bhutan tours, travel requirements, best times to visit, and booking procedures."
-        />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholidays.com/faq" />
-      </Head>
+      <Seo
+        title="Frequently Asked Questions - Door To Happiness"
+        description="Find answers to commonly asked questions about Bhutan tours, travel requirements, best times to visit, and booking procedures with Door To Happiness."
+        path="/faq"
+        keywords="Bhutan FAQ, travel questions, tour booking, visa requirements, best time visit Bhutan, Bhutan travel guide"
+        ogTitle="Frequently Asked Questions | Door to Happiness Holiday"
+        ogDescription="Find answers to commonly asked questions about Bhutan tours, travel requirements, best times to visit, and booking procedures."
+      />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         {/* Header */}
@@ -147,7 +137,7 @@ const FAQPage = () => {
               Contact Us
             </a>
             <a
-              href="https://wa.me/97577123456"
+              href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NO}`}
               className="inline-flex items-center justify-center px-8 py-3 border-2 border-orange-300 text-base font-medium rounded-lg text-orange-600 bg-white hover:bg-orange-50 hover:border-orange-400 transition-all duration-200"
               target="_blank"
               rel="noopener noreferrer"

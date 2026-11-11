@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import Head from "next/head";
+import Seo from "../../components/Seo";
 import Image from "next/image";
 import { Container } from "../../components/Container";
 import WhatsAppButton from "../../components/whatsAppButton";
@@ -177,20 +177,13 @@ function Index() {
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white">
-      <Head>
-        <title>Bhutan Tour Packages | Cultural, Trekking & Festival Tours</title>
-        <meta
-          name="description"
-          content="Browse curated Bhutan tour packages: cultural tours, trekking adventures, festival tours, and group tours. Licensed Bhutanese operator with tailor-made itineraries."
-        />
-        <meta property="og:title" content="Bhutan Tour Packages | Door to Happiness Holiday" />
-        <meta
-          property="og:description"
-          content="Discover curated travel experiences to the Land of the Thunder Dragon — cultural, trekking, festival, and group tours."
-        />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholidays.com/package" />
-      </Head>
+      <Seo
+        title="Bhutan Tour Packages | Cultural, Trekking & Festival Tours"
+        description="Browse curated Bhutan tour packages: cultural tours, trekking adventures, festival tours, and group tours. Licensed Bhutanese operator with tailor-made itineraries."
+        path="/package"
+        ogTitle="Bhutan Tour Packages | Door to Happiness Holiday"
+        ogDescription="Discover curated travel experiences to the Land of the Thunder Dragon — cultural, trekking, festival, and group tours."
+      />
 
       {/* Hero Section with Search */}
       <div className="relative py-24 overflow-hidden bg-gray-900">

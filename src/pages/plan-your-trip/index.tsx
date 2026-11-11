@@ -1,24 +1,17 @@
-import Head from 'next/head'
 import { Container } from '../../components/Container'
 import { JourneyArchitect } from '../../components/journeyArchitect/JourneyArchitect'
+import Seo from '../../components/Seo'
 
 export default function PlanYourTripPage() {
   return (
     <>
-      <Head>
-        <title>Plan Your Bhutan Trip - Door to Happiness Holiday</title>
-        <meta
-          name="description"
-          content="Build your own Bhutan itinerary: choose your trip length and travelers, see a live cost estimate and route, then lock it in."
-        />
-        <meta property="og:title" content="Plan Your Bhutan Trip | Door to Happiness Holiday" />
-        <meta
-          property="og:description"
-          content="Build your own Bhutan itinerary with a live cost estimate and route timeline."
-        />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholidays.com/plan-your-trip" />
-      </Head>
+      <Seo
+        title="Plan Your Bhutan Trip - Door to Happiness Holiday"
+        description="Build your own Bhutan itinerary: choose your trip length and travelers, see a live cost estimate and route, then lock it in."
+        path="/plan-your-trip"
+        ogTitle="Plan Your Bhutan Trip | Door to Happiness Holiday"
+        ogDescription="Build your own Bhutan itinerary with a live cost estimate and route timeline."
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 sm:py-16">
         <Container>

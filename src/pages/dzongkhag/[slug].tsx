@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import Head from 'next/head';
+import Seo from '../../components/Seo';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
 import PlacePlaceholder from '../../components/PlacePlaceholder';
@@ -64,44 +64,34 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
 
   return (
     <>
-      <Head>
-        <title>{dzongkhag.name} Dzongkhag Guide | Places to Visit, Dzongs & Monasteries in {dzongkhag.name}</title>
-        <meta 
-          name="description" 
-          content={`Complete travel guide to ${dzongkhag.name} dzongkhag in ${dzongkhag.location.region}. Discover dzongs, monasteries, cultural sites, and experiences in ${dzongkhag.name}, Bhutan.`}
-        />
-        <meta 
-          name="keywords" 
-          content={`${dzongkhag.name} dzongkhag, ${dzongkhag.name} Bhutan, ${dzongkhag.culture.dzongs.join(', ')}, ${dzongkhag.highlights.join(', ')}, ${dzongkhag.location.region}, sacred places ${dzongkhag.name}, monasteries ${dzongkhag.name}`}
-        />
-        <meta property="og:title" content={`${dzongkhag.name} Dzongkhag - Sacred Places & Cultural Heritage | Bhutan`} />
-        <meta property="og:description" content={`Explore ${dzongkhag.name} dzongkhag's sacred sites, ancient dzongs, and monasteries. ${dzongkhag.description}`} />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={dzongkhag.images?.[0] || '/logo.png'} />
-        <link rel="canonical" href={`https://www.doortohappinessholidays.com/dzongkhag/${dzongkhag.slug}`} />
-        
-        {/* Schema.org structured data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "TouristDestination",
-            "name": `${dzongkhag.name} Dzongkhag`,
-            "description": dzongkhag.description,
-            "image": dzongkhag.images || ['/logo.png'],
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": dzongkhag.location.coordinates.lat,
-              "longitude": dzongkhag.location.coordinates.lng
-            },
-            "containedInPlace": {
-              "@type": "Country",
-              "name": "Bhutan"
-            },
-            "touristType": ["Cultural Tourism", "Religious Tourism", "Adventure Tourism"],
-            "hasMap": `https://www.google.com/maps?q=${dzongkhag.location.coordinates.lat},${dzongkhag.location.coordinates.lng}`
-          })}
-        </script>
-      </Head>
+      <Seo
+        title={`${dzongkhag.name} Dzongkhag Guide | Places to Visit, Dzongs & Monasteries in ${dzongkhag.name}`}
+        description={`Complete travel guide to ${dzongkhag.name} dzongkhag in ${dzongkhag.location.region}. Discover dzongs, monasteries, cultural sites, and experiences in ${dzongkhag.name}, Bhutan.`}
+        path={`/dzongkhag/${dzongkhag.slug}`}
+        keywords={`${dzongkhag.name} dzongkhag, ${dzongkhag.name} Bhutan, ${dzongkhag.culture.dzongs.join(', ')}, ${dzongkhag.highlights.join(', ')}, ${dzongkhag.location.region}, sacred places ${dzongkhag.name}, monasteries ${dzongkhag.name}`}
+        ogTitle={`${dzongkhag.name} Dzongkhag - Sacred Places & Cultural Heritage | Bhutan`}
+        ogDescription={`Explore ${dzongkhag.name} dzongkhag's sacred sites, ancient dzongs, and monasteries. ${dzongkhag.description}`}
+        ogType="article"
+        ogImage={dzongkhag.images?.[0] || '/logo.png'}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TouristDestination",
+          "name": `${dzongkhag.name} Dzongkhag`,
+          "description": dzongkhag.description,
+          "image": dzongkhag.images || ['/logo.png'],
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": dzongkhag.location.coordinates.lat,
+            "longitude": dzongkhag.location.coordinates.lng
+          },
+          "containedInPlace": {
+            "@type": "Country",
+            "name": "Bhutan"
+          },
+          "touristType": ["Cultural Tourism", "Religious Tourism", "Adventure Tourism"],
+          "hasMap": `https://www.google.com/maps?q=${dzongkhag.location.coordinates.lat},${dzongkhag.location.coordinates.lng}`
+        }}
+      />
 
       <div className="min-h-screen bg-gray-50">
         {/* Breadcrumb Navigation */}

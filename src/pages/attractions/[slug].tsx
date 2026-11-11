@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import Head from 'next/head';
+import Seo from '../../components/Seo';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
 import { 
@@ -47,15 +47,14 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
 
   return (
     <>
-      <Head>
-        <title>{place.name} - {dzongkhag.name} Attraction | Door to Happiness</title>
-        <meta name="description" content={place.description} />
-        <meta property="og:title" content={`${place.name} - ${dzongkhag.name} Attraction`} />
-        <meta property="og:description" content={place.description} />
-        <meta property="og:image" content={place.image || '/backgroundbanner.jpg'} />
-        <meta property="og:type" content="article" />
-        <link rel="canonical" href={`https://www.doortohappinessholidays.com/attractions/${place.slug}`} />
-      </Head>
+      <Seo
+        title={`${place.name} - ${dzongkhag.name} Attraction | Door to Happiness`}
+        description={place.description}
+        path={`/attractions/${place.slug}`}
+        ogTitle={`${place.name} - ${dzongkhag.name} Attraction`}
+        ogImage={place.image || '/backgroundbanner.jpg'}
+        ogType="article"
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
         {/* Breadcrumb Navigation */}

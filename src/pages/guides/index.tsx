@@ -1,5 +1,5 @@
 import React from "react";
-import Head from "next/head";
+import Seo from "../../components/Seo";
 import Link from "next/link";
 import Image from "next/image";
 import guides from "../../data/guides.json";
@@ -11,23 +11,12 @@ const GuidesIndex = () => {
 
   return (
     <>
-      <Head>
-        <title>Bhutan Travel Guides | Door to Happiness Holiday</title>
-        <meta
-          name="description"
-          content="Practical Bhutan travel guides — when to visit, sample itineraries, and cultural insights to help you plan your trip."
-        />
-        <meta property="og:title" content="Bhutan Travel Guides" />
-        <meta
-          property="og:description"
-          content="Practical Bhutan travel guides — when to visit, sample itineraries, and cultural insights to help you plan your trip."
-        />
-        <meta property="og:type" content="website" />
-        <link
-          rel="canonical"
-          href="https://www.doortohappinessholidays.com/guides"
-        />
-      </Head>
+      <Seo
+        title="Bhutan Travel Guides | Door to Happiness Holiday"
+        description="Practical Bhutan travel guides — when to visit, sample itineraries, and cultural insights to help you plan your trip."
+        path="/guides"
+        ogTitle="Bhutan Travel Guides"
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         <div className={`relative bg-gradient-to-r ${theme.gradient} py-16 sm:py-20`}>

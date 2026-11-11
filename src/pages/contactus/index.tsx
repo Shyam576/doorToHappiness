@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Seo from "../../components/Seo";
 import axios from "axios"; // Import axios
 import WhatsAppButton from "../../components/whatsAppButton";
 import TripBuilderForm from "../../components/TripBuilderForm";
@@ -73,20 +74,14 @@ const ContactPage = () => {
 
   return (
     <>
+      <Seo
+        title="Contact Us - Door to Happiness Holiday"
+        description="Get in touch with Door to Happiness Holiday for your Bhutan travel inquiries"
+        path="/contactus"
+        ogTitle="Contact Us | Door to Happiness Holiday"
+        ogDescription="Get in touch with Door to Happiness Holiday for your Bhutan travel inquiries."
+      />
       <Head>
-        <title>Contact Us - Door to Happiness Holiday</title>
-        <meta
-          name="description"
-          content="Get in touch with Door to Happiness Holiday for your Bhutan travel inquiries"
-        />
-        <meta property="og:title" content="Contact Us | Door to Happiness Holiday" />
-        <meta
-          property="og:description"
-          content="Get in touch with Door to Happiness Holiday for your Bhutan travel inquiries."
-        />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholidays.com/contactus" />
-
         {/* Preload hero image for faster LCP */}
         <link
           rel="preload"

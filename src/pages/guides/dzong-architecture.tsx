@@ -1,45 +1,36 @@
 import React from 'react';
-import Head from 'next/head';
+import Seo from '../../components/Seo';
 import Link from 'next/link';
 import { FaPrayingHands, FaMountain, FaMap } from 'react-icons/fa';
 
 const DzongArchitectureGuide = () => {
   return (
     <>
-      <Head>
-        <title>Complete Guide to Bhutan's Sacred Dzong Architecture | Traditional Fortress Monasteries</title>
-        <meta 
-          name="description" 
-          content="Discover the architectural wonders of Bhutan's dzongs - fortress monasteries that combine government administration with sacred Buddhist practices. Learn about traditional building techniques, cultural significance, and visiting the most important dzongs."
-        />
-        <meta 
-          name="keywords" 
-          content="Bhutan dzong architecture, fortress monastery Bhutan, traditional Bhutanese buildings, dzong construction, sacred architecture Bhutan, Tashichho Dzong, Punakha Dzong, Paro Rinpung Dzong, Buddhist architecture"
-        />
-        <meta property="og:title" content="Complete Guide to Bhutan's Sacred Dzong Architecture" />
-        <meta property="og:description" content="Explore the magnificent dzongs of Bhutan - sacred fortress monasteries that represent 400 years of architectural tradition." />
-        <meta property="og:type" content="article" />
-        <link rel="canonical" href="https://www.doortohappinessholidays.com/guides/dzong-architecture" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": "Complete Guide to Bhutan's Sacred Dzong Architecture",
-            "description": "Comprehensive guide to understanding Bhutan's dzong architecture, construction methods, and cultural significance",
-            "author": {
-              "@type": "Organization",
-              "name": "Door To Happiness Holiday"
-            },
-            "publisher": {
-              "@type": "Organization", 
-              "name": "Door To Happiness Holiday"
-            },
-            "datePublished": "2024-01-15",
-            "dateModified": "2024-01-15"
-          })}
-        </script>
-      </Head>
+      <Seo
+        title="Complete Guide to Bhutan's Sacred Dzong Architecture | Traditional Fortress Monasteries"
+        description="Discover the architectural wonders of Bhutan's dzongs - fortress monasteries that combine government administration with sacred Buddhist practices. Learn about traditional building techniques, cultural significance, and visiting the most important dzongs."
+        path="/guides/dzong-architecture"
+        keywords="Bhutan dzong architecture, fortress monastery Bhutan, traditional Bhutanese buildings, dzong construction, sacred architecture Bhutan, Tashichho Dzong, Punakha Dzong, Paro Rinpung Dzong, Buddhist architecture"
+        ogTitle="Complete Guide to Bhutan's Sacred Dzong Architecture"
+        ogDescription="Explore the magnificent dzongs of Bhutan - sacred fortress monasteries that represent 400 years of architectural tradition."
+        ogType="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Complete Guide to Bhutan's Sacred Dzong Architecture",
+          "description": "Comprehensive guide to understanding Bhutan's dzong architecture, construction methods, and cultural significance",
+          "author": {
+            "@type": "Organization",
+            "name": "Door To Happiness Holiday"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Door To Happiness Holiday"
+          },
+          "datePublished": "2024-01-15",
+          "dateModified": "2024-01-15"
+        }}
+      />
 
       <article className="min-h-screen bg-white">
         {/* Hero Section */}

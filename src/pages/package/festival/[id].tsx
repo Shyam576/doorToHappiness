@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Head from 'next/head';
+import Seo from '../../../components/Seo';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 import { 
@@ -106,19 +106,13 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
 
   return (
     <>
-      <Head>
-        <title>{tourData.title} | Door to Happiness Holiday</title>
-        <meta name="description" content={tourData.description} />
-        <meta name="keywords" content="Bhutan festival tour, Tsechu festival, Buddhist celebration, cultural festival" />
-        <meta property="og:title" content={`${tourData.title} | Door to Happiness Holiday`} />
-        <meta property="og:description" content={tourData.description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={tourData.image} />
-        <link
-          rel="canonical"
-          href={`https://www.doortohappinessholidays.com/package/festival/${tourData.id}`}
-        />
-      </Head>
+      <Seo
+        title={`${tourData.title} | Door to Happiness Holiday`}
+        description={tourData.description}
+        path={`/package/festival/${tourData.id}`}
+        keywords="Bhutan festival tour, Tsechu festival, Buddhist celebration, cultural festival"
+        ogImage={tourData.image}
+      />
 
       <div className="bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section with Image Gallery */}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
+import Seo from '../../components/Seo';
 import Link from 'next/link';
 import Image from 'next/image';
 import popularDestination from '../../data/popularDestination.json';
@@ -55,21 +56,29 @@ const SacredPlacesIndex = () => {
     fortress: <FaBuilding className="text-lg text-gray-600" />,
   };  return (
     <>
+      <Seo
+        title="Heritage Places in Bhutan | Complete Guide to Dzongs, Monasteries & Temples"
+        description="Discover Bhutan's most significant heritage places including ancient dzongs, monasteries, lhakhangs, and chortens. Comprehensive guide to cultural sites across all 20 dzongkhags with detailed descriptions and travel information."
+        path="/sacred-places"
+        keywords="Bhutan sacred places, dzongs Bhutan, monasteries Bhutan, lhakhangs Bhutan, Buddhist temples Bhutan, chortens Bhutan, spiritual sites Bhutan, religious tourism Bhutan, Tiger's Nest Monastery, Paro Taktsang"
+        ogTitle="Sacred Places in Bhutan - Complete Guide to Spiritual Sites"
+        ogDescription="Explore Bhutan's sacred dzongs, monasteries, and temples. Your complete guide to spiritual sites across the Kingdom of Bhutan."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "TravelGuide",
+          "name": "Sacred Places of Bhutan Guide",
+          "description": "Complete guide to sacred places in Bhutan including dzongs, monasteries, and temples",
+          "about": {
+            "@type": "Place",
+            "name": "Bhutan Sacred Sites"
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "Door To Happiness Holiday"
+          }
+        }}
+      />
       <Head>
-        <title>Heritage Places in Bhutan | Complete Guide to Dzongs, Monasteries & Temples</title>
-        <meta 
-          name="description" 
-          content="Discover Bhutan's most significant heritage places including ancient dzongs, monasteries, lhakhangs, and chortens. Comprehensive guide to cultural sites across all 20 dzongkhags with detailed descriptions and travel information."
-        />
-        <meta 
-          name="keywords" 
-          content="Bhutan sacred places, dzongs Bhutan, monasteries Bhutan, lhakhangs Bhutan, Buddhist temples Bhutan, chortens Bhutan, spiritual sites Bhutan, religious tourism Bhutan, Tiger's Nest Monastery, Paro Taktsang"
-        />
-        <meta property="og:title" content="Sacred Places in Bhutan - Complete Guide to Spiritual Sites" />
-        <meta property="og:description" content="Explore Bhutan's sacred dzongs, monasteries, and temples. Your complete guide to spiritual sites across the Kingdom of Bhutan." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.doortohappinessholidays.com/sacred-places" />
-        
         {/* Preload hero image for faster LCP */}
         <link
           rel="preload"
@@ -77,23 +86,6 @@ const SacredPlacesIndex = () => {
           href="/heritagebg.jpg"
           fetchPriority="high"
         />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "TravelGuide",
-            "name": "Sacred Places of Bhutan Guide",
-            "description": "Complete guide to sacred places in Bhutan including dzongs, monasteries, and temples",
-            "about": {
-              "@type": "Place",
-              "name": "Bhutan Sacred Sites"
-            },
-            "author": {
-              "@type": "Organization",
-              "name": "Door To Happiness Holiday"
-            }
-          })}
-        </script>
       </Head>
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
