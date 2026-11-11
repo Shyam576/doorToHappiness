@@ -6,16 +6,22 @@ import { useReactiveCamera } from './useReactiveCamera'
 
 interface HeroCanvasProps {
   onReady: () => void
+  /** Incrementing counter — each increment starts a fresh "fly to the Tiger's Nest and back" camera animation. See useReactiveCamera.ts. */
+  revealTrigger?: number
 }
 
-function CameraRig(): null {
-  useReactiveCamera()
+interface CameraRigProps {
+  revealTrigger?: number
+}
+
+function CameraRig({ revealTrigger }: CameraRigProps): null {
+  useReactiveCamera(revealTrigger)
   return null
 }
 
 const MOBILE_BREAKPOINT = 720
 
-export function HeroCanvas({ onReady }: HeroCanvasProps): JSX.Element {
+export function HeroCanvas({ onReady, revealTrigger }: HeroCanvasProps): JSX.Element {
   // Decided once at mount, not resize-reactive: this only gates a one-time quality tier
   // (shadows/mist on vs. off), not something that needs to track live viewport changes.
   const [isMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < MOBILE_BREAKPOINT)
@@ -63,7 +69,7 @@ export function HeroCanvas({ onReady }: HeroCanvasProps): JSX.Element {
       />
       <directionalLight position={[20, 10, -35]} intensity={0.75} color="#8ca5b2" />
       <HimalayanLandscape isDesktop={!isMobile} />
-      <CameraRig />
+      <CameraRig revealTrigger={revealTrigger} />
     </Canvas>
   )
 }
