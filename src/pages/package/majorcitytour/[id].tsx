@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Seo from "../../../components/Seo";
+import { normalizeItinerary } from "../../../lib/package-card-utils";
+import { buildTourJsonLd } from "../../../lib/tour-jsonld";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 import {
@@ -67,6 +69,14 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
         description={packageData.description}
         path={`/package/majorcitytour/${packageData.id}`}
         ogImage={packageData.image}
+        jsonLd={buildTourJsonLd({
+          title: packageData.title,
+          description: packageData.description,
+          image: packageData.image,
+          path: `/package/majorcitytour/${packageData.id}`,
+          touristType: 'Cultural Tourism',
+          itinerary: normalizeItinerary(packageData),
+        })}
       />
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">

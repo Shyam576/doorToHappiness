@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Seo from '../../../components/Seo';
+import { normalizeItinerary } from '../../../lib/package-card-utils';
+import { buildTourJsonLd } from '../../../lib/tour-jsonld';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 import { 
@@ -104,6 +106,14 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
         path={`/package/group/${tourData.id}`}
         keywords="Bhutan group tour, group travel, affordable Bhutan tour, shared tour"
         ogImage={tourData.image}
+        jsonLd={buildTourJsonLd({
+          title: tourData.title,
+          description: tourData.description,
+          image: tourData.image,
+          path: `/package/group/${tourData.id}`,
+          touristType: 'Group Tourism',
+          itinerary: normalizeItinerary(tourData),
+        })}
       />
 
       <div className="bg-gradient-to-b from-gray-50 to-white">

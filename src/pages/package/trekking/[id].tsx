@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Seo from '../../../components/Seo';
+import { normalizeItinerary } from '../../../lib/package-card-utils';
+import { buildTourJsonLd } from '../../../lib/tour-jsonld';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 import { 
@@ -118,6 +120,14 @@ const TrekkingTourDetails: React.FC<TrekkingTourDetailsProps> = ({
         path={`/package/trekking/${tourData.id}`}
         keywords="Bhutan trekking, Himalaya trek, mountain adventure, hiking Bhutan"
         ogImage={tourData.image}
+        jsonLd={buildTourJsonLd({
+          title: tourData.title,
+          description: tourData.description,
+          image: tourData.image,
+          path: `/package/trekking/${tourData.id}`,
+          touristType: 'Adventure Tourism',
+          itinerary: normalizeItinerary(tourData),
+        })}
       />
 
       <div className="bg-gradient-to-b from-gray-50 to-white">
