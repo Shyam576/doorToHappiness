@@ -81,6 +81,17 @@ function fetchReviews() {
             source: 'Google',
           }))
 
+        // A real listing with existing reviews should never suddenly have zero —
+        // treat that as a failed fetch (API hiccup, quota exhausted, bad data_id)
+        // and leave the last-known-good testimonials.json untouched rather than
+        // wiping the homepage testimonials section.
+        if (testimonials.length === 0) {
+          console.error(
+            'fetch-google-reviews: got 0 qualifying reviews back from SerpApi — refusing to overwrite the existing testimonials.json. Investigate before re-running.'
+          )
+          process.exit(1)
+        }
+
         fs.writeFileSync(OUTPUT_PATH, `${JSON.stringify(testimonials, null, 2)}\n`)
         console.log(
           `fetch-google-reviews: wrote ${testimonials.length} review(s) to ${path.relative(process.cwd(), OUTPUT_PATH)}`
