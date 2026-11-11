@@ -114,14 +114,14 @@ export function Terrain(): JSX.Element {
   return (
     <group>
       {PEAKS.map(([x, z], index) => (
-        <mesh key={`${x}-${z}`} geometry={mountainGeometries[index]} position={[x, 0, z]}>
+        <mesh key={`${x}-${z}`} geometry={mountainGeometries[index]} position={[x, 0, z]} receiveShadow>
           <meshStandardMaterial vertexColors roughness={0.96} metalness={0} flatShading />
         </mesh>
       ))}
-      <mesh geometry={ridge1Geometry} position={[0, 0, 3]}>
+      <mesh geometry={ridge1Geometry} position={[0, 0, 3]} receiveShadow>
         <meshStandardMaterial vertexColors roughness={1} flatShading />
       </mesh>
-      <mesh geometry={ridge2Geometry} position={[0, 0, 15]}>
+      <mesh geometry={ridge2Geometry} position={[0, 0, 15]} receiveShadow>
         <meshStandardMaterial vertexColors roughness={1} flatShading />
       </mesh>
     </group>

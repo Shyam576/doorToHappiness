@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useLayoutEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -32,9 +32,22 @@ const BELL_PROFILE = [
 /** The stepped stone plinth, white-washed dome, and gold spire of a Bhutanese chorten. */
 function ChortenBody(): JSX.Element {
   const bellGeometry = useMemo(() => new THREE.LatheGeometry(BELL_PROFILE, 10), [])
+  const groupRef = useRef<THREE.Group>(null)
+
+  // Sets cast/receive shadow on every mesh in the body at once, rather than repeating it on
+  // each of the ~11 individual meshes below (castShadow/receiveShadow only take effect on
+  // Mesh objects, not the group itself, so this has to reach each child).
+  useLayoutEffect(() => {
+    groupRef.current?.traverse((object) => {
+      if (object instanceof THREE.Mesh) {
+        object.castShadow = true
+        object.receiveShadow = true
+      }
+    })
+  }, [])
 
   return (
-    <group>
+    <group ref={groupRef}>
       <mesh position={[0, 0.16, 0]} material={STONE_MATERIAL}>
         <boxGeometry args={[3.7, 0.28, 3.1]} />
       </mesh>
