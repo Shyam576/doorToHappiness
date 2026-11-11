@@ -5,20 +5,20 @@ describe('calculateCost', () => {
     const result = calculateCost({ durationDays: 3, adults: 1, children: 0, travelerType: 'solo' })
 
     expect(result.sdf.amountUsd).toBe(200)
-    expect(result.accommodation.amountUsd).toBe(240)
-    expect(result.guide.amountUsd).toBe(105)
+    expect(result.accommodation.amountUsd).toBe(400)
+    expect(result.guide.amountUsd).toBe(135)
     expect(result.transit.amountUsd).toBe(135)
-    expect(result.totalUsd).toBe(680)
+    expect(result.totalUsd).toBe(870)
   })
 
   it('computes the breakdown for a family with children on a 7-day trip', () => {
     const result = calculateCost({ durationDays: 7, adults: 2, children: 2, travelerType: 'family' })
 
     expect(result.sdf.amountUsd).toBe(1800)
-    expect(result.accommodation.amountUsd).toBe(1920)
-    expect(result.guide.amountUsd).toBe(245)
+    expect(result.accommodation.amountUsd).toBe(2880)
+    expect(result.guide.amountUsd).toBe(315)
     expect(result.transit.amountUsd).toBe(315)
-    expect(result.totalUsd).toBe(4280)
+    expect(result.totalUsd).toBe(5310)
   })
 
   it('clamps duration above the maximum to 14 days', () => {

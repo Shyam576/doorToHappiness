@@ -1,23 +1,39 @@
-// Placeholder trip-cost rates for the Journey Architect calculator.
-// These are NOT official figures. Replace every PLACEHOLDER value below with
-// current rates (Sustainable Development Fee, accommodation, guide, transit)
-// before this calculator is used to produce real quotes.
+// Trip-cost rates for the Journey Architect calculator.
+// SDF, guide, and accommodation below are grounded in publicly reported 2026
+// Bhutan tourism market rates (see citations per constant) rather than
+// invented numbers — but they are still estimates, not DoorToHappiness's own
+// negotiated tariffs. Confirm against your current hotel/guide contracts
+// before treating this as a final quote. Transit remains an unverified
+// placeholder (not covered by this pass).
 
-export const SDF_PER_ADULT_PER_NIGHT_USD = 100 // PLACEHOLDER
-export const SDF_PER_CHILD_PER_NIGHT_USD = 50 // PLACEHOLDER — ages 6-12
+// Confirmed: official international-visitor SDF, in effect through at least
+// 2027 (one source reports an extension to 2029). Child rate is the
+// documented half-rate for ages 6-12.
+// https://littlebhutan.com/travel-guide/bhutan-sdf/
+export const SDF_PER_ADULT_PER_NIGHT_USD = 100
+export const SDF_PER_CHILD_PER_NIGHT_USD = 50 // ages 6-12
 
+// Per-person-per-night, full-board "Standard" (3-star) tour-package tariff —
+// the figure relevant to an operator-booked trip (not an independent room
+// rate). Source lists solo/twin-share/3-or-more tiers; family and
+// trekking-group both map to the 3-or-more tier here.
+// https://www.keystobhutan.com/?p=68369
 export const ACCOMMODATION_PER_NIGHT_USD_BY_TYPE: Record<
   'solo' | 'couple' | 'family' | 'trekking-group',
   number
 > = {
-  solo: 120, // PLACEHOLDER
-  couple: 95, // PLACEHOLDER — blended per-person rate, shared room
-  family: 80, // PLACEHOLDER — blended per-person rate, group discount
-  'trekking-group': 70, // PLACEHOLDER — blended per-person rate, group discount
+  solo: 200,
+  couple: 140,
+  family: 120,
+  'trekking-group': 120,
 }
 
-export const GUIDE_PER_DAY_USD = 35 // PLACEHOLDER
-export const TRANSIT_PER_DAY_USD = 45 // PLACEHOLDER
+// Blended cultural/trekking licensed-guide day rate (reported range $30-80/day
+// depending on guide type); not yet split by trip type in this calculator.
+// https://www.langtangtreks.com/blog/?p=1712
+export const GUIDE_PER_DAY_USD = 45
+
+export const TRANSIT_PER_DAY_USD = 45 // PLACEHOLDER — not updated in this pass
 
 export interface RouteTemplateStop {
   location: string
