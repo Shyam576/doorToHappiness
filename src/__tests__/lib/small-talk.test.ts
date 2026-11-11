@@ -26,6 +26,12 @@ describe('getSmallTalkReply', () => {
     expect(getSmallTalkReply('is it safe to drink the water')).toBeNull()
   })
 
+  it('does not swallow a real question that merely opens with a greeting word', () => {
+    expect(getSmallTalkReply('Hello how can i visit bhutan')).toBeNull()
+    expect(getSmallTalkReply('hi, do I need a visa for bhutan')).toBeNull()
+    expect(getSmallTalkReply('hey what is the national language of bhutan')).toBeNull()
+  })
+
   it('returns null for an empty query', () => {
     expect(getSmallTalkReply('')).toBeNull()
     expect(getSmallTalkReply('   ')).toBeNull()
