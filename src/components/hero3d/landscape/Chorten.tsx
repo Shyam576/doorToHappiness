@@ -4,8 +4,10 @@ import * as THREE from 'three'
 
 // Close enough to stay clearly in front of the foreground ridge terrain (which would otherwise
 // bury or occlude anything placed behind its near edge around z=3) and raised and shifted right so
-// it sits above and beside the page's centered hero text, rather than directly behind it.
-const CHORTEN_POSITION: [number, number, number] = [7, 3, 5]
+// it sits above and beside the page's centered hero text, rather than directly behind it. Y is
+// raised further than a "standing on the ground" placement would suggest, specifically to clear
+// the search widget panel docked at the bottom of the hero and the trust line/flag overlap.
+const CHORTEN_POSITION: [number, number, number] = [8.5, 4.6, 5]
 const CHORTEN_SCALE = 1
 
 const STONE_MATERIAL = new THREE.MeshStandardMaterial({ color: '#eee8d7', roughness: 0.88, flatShading: true })

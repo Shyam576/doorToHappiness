@@ -1,5 +1,5 @@
 // components/WhatsAppButton.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -9,6 +9,13 @@ interface WhatsAppButtonProps {
 }
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ phoneNumber, message = "" }) => {
+  // react-fontawesome's rendered <svg> for this icon doesn't match between server and client
+  // render (a known SSR/hydration pitfall with this library), so this purely-decorative button
+  // renders client-side only, same pattern as the 3D hero overlay.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
   const encodedMessage = encodeURIComponent(message);
   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 

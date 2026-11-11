@@ -7,7 +7,7 @@ const IDLE_THRESHOLD_MS = 4000
 const MOBILE_BREAKPOINT = 720
 // Shifts the camera right on mobile so the chorten (off-center in the full scene) stays in frame
 // despite the narrower field of view.
-const MOBILE_FRAME_OFFSET_X = 3
+const MOBILE_FRAME_OFFSET_X = 4.5
 
 function isMobileViewport(): boolean {
   return window.innerWidth < MOBILE_BREAKPOINT
