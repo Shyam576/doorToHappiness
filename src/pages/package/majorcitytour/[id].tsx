@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Seo from "../../../components/Seo";
+import TourDestinationLinks from "../../../components/TourDestinationLinks";
 import { normalizeItinerary } from "../../../lib/package-card-utils";
 import { buildTourJsonLd } from "../../../lib/tour-jsonld";
 import { GetStaticProps, GetStaticPaths } from "next";
@@ -104,6 +105,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                 <span className="font-medium">{packageData.duration}</span>
               </div>
             </div>
+            <TourDestinationLinks route={packageData.route} variant="onDark" />
           </div>
         </div>
 

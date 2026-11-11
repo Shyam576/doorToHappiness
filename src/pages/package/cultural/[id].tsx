@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Seo from '../../../components/Seo';
+import TourDestinationLinks from '../../../components/TourDestinationLinks';
 import { normalizeItinerary } from '../../../lib/package-card-utils';
 import { buildTourJsonLd } from '../../../lib/tour-jsonld';
 import { GetStaticProps, GetStaticPaths } from 'next';
@@ -197,6 +198,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                       <span>{tourData.duration}</span>
                     </div>
                   </div>
+                  <TourDestinationLinks route={tourData.route} />
                 </div>
 
                 {/* Booking Card */}

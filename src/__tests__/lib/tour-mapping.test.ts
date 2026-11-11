@@ -1,4 +1,4 @@
-import { getToursForDzongkhag, getDzongkhagsForRoute } from '../../lib/tour-mapping'
+import { getToursForDzongkhag, getDzongkhagsForRoute, getDzongkhagLinksForRoute } from '../../lib/tour-mapping'
 
 describe('getToursForDzongkhag', () => {
   it('finds tours whose route mentions the given dzongkhag, case-insensitively', () => {
@@ -34,5 +34,18 @@ describe('getDzongkhagsForRoute', () => {
   it('returns an empty array for an undefined or non-matching route', () => {
     expect(getDzongkhagsForRoute(undefined)).toEqual([])
     expect(getDzongkhagsForRoute('Bagdogra to Bagdogra')).toEqual([])
+  })
+})
+
+describe('getDzongkhagLinksForRoute', () => {
+  it('resolves matched dzongkhag names to real {name, slug} page links', () => {
+    const links = getDzongkhagLinksForRoute('Paro - Thimphu - Punakha')
+    expect(links.length).toBeGreaterThanOrEqual(3)
+    const paro = links.find((l) => l.name === 'Paro')
+    expect(paro).toEqual({ name: 'Paro', slug: 'paro' })
+  })
+
+  it('returns an empty array when nothing matches', () => {
+    expect(getDzongkhagLinksForRoute('Bagdogra to Bagdogra')).toEqual([])
   })
 })

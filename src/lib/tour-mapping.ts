@@ -63,3 +63,16 @@ export function getDzongkhagsForRoute(route: string | undefined): string[] {
   const routeLower = route.toLowerCase()
   return DZONGKHAG_NAMES.filter((name) => routeLower.includes(name.toLowerCase()))
 }
+
+export interface DzongkhagLink {
+  name: string
+  slug: string
+}
+
+/** Same match as getDzongkhagsForRoute, but resolved to real dzongkhag page links (for cross-linking tour pages to the dzongkhag pages they pass through). */
+export function getDzongkhagLinksForRoute(route: string | undefined): DzongkhagLink[] {
+  const names = getDzongkhagsForRoute(route)
+  return (popularDestination as { name: string; slug: string }[])
+    .filter((d) => names.includes(d.name))
+    .map((d) => ({ name: d.name, slug: d.slug }))
+}
