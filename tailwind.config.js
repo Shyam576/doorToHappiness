@@ -67,6 +67,7 @@ module.exports = {
                 'fade-in': 'fadeIn 0.5s ease-in-out',
                 'slide-up': 'slideUp 0.3s ease-out',
                 'bounce-gentle': 'bounceGentle 2s infinite',
+                marquee: 'marquee 40s linear infinite',
             },
             keyframes: {
                 fadeIn: {
@@ -80,6 +81,13 @@ module.exports = {
                 bounceGentle: {
                     '0%, 100%': { transform: 'translateY(0)' },
                     '50%': { transform: 'translateY(-5px)' },
+                },
+                // Track is rendered as two identical copies of the content placed
+                // side by side, so translating by exactly half its width loops
+                // seamlessly back to the start.
+                marquee: {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-50%)' },
                 },
             },
             transitionTimingFunction: {

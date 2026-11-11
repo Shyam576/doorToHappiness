@@ -37,20 +37,43 @@ describe('TestimonialsSection with real reviews', () => {
     const TestimonialsSectionWithData = require('../../components/TestimonialsSection').default
     render(<TestimonialsSectionWithData />)
 
-    expect(screen.getByText('An unforgettable trip through Bhutan.', { exact: false })).toBeInTheDocument()
-    expect(screen.getByText(/Jane Doe/)).toBeInTheDocument()
+    expect(screen.getAllByText('An unforgettable trip through Bhutan.', { exact: false }).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Jane Doe/).length).toBeGreaterThan(0)
 
-    const link = screen.getByRole('link', { name: /read full review/i })
-    expect(link).toHaveAttribute('href', 'https://www.google.com/maps/reviews/data=example')
-    expect(link).toHaveAttribute('target', '_blank')
-    expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'))
+    const links = screen.getAllByRole('link', { name: /read full review/i })
+    links.forEach((link) => {
+      expect(link).toHaveAttribute('href', 'https://www.google.com/maps/reviews/data=example')
+      expect(link).toHaveAttribute('target', '_blank')
+      expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'))
+    })
   })
 
   it('does not render a review link when the testimonial has none', () => {
     const TestimonialsSectionWithData = require('../../components/TestimonialsSection').default
     render(<TestimonialsSectionWithData />)
 
-    const noLinkCard = screen.getByText(/No Link Reviewer/).closest('div')
-    expect(noLinkCard && noLinkCard.querySelector('a')).toBeNull()
+    const noLinkCards = screen.getAllByText(/No Link Reviewer/)
+    noLinkCards.forEach((reviewer) => {
+      const card = reviewer.closest('div')
+      expect(card && card.querySelector('a')).toBeNull()
+    })
+  })
+
+  it('duplicates the review set once for a seamless scrolling loop', () => {
+    const TestimonialsSectionWithData = require('../../components/TestimonialsSection').default
+    render(<TestimonialsSectionWithData />)
+
+    // 2 real reviews, duplicated once = 4 rendered cards total
+    expect(screen.getAllByText(/Jane Doe/)).toHaveLength(2)
+    expect(screen.getAllByText(/No Link Reviewer/)).toHaveLength(2)
+  })
+
+  it('hides the duplicated copy from assistive tech so reviews are not announced twice', () => {
+    const TestimonialsSectionWithData = require('../../components/TestimonialsSection').default
+    const { container } = render(<TestimonialsSectionWithData />)
+
+    const hiddenGroups = container.querySelectorAll('[aria-hidden="true"]')
+    const hiddenHasReview = Array.from(hiddenGroups).some((el) => el.textContent?.includes('Jane Doe'))
+    expect(hiddenHasReview).toBe(true)
   })
 })
