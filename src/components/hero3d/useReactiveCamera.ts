@@ -9,6 +9,12 @@ const MOBILE_BREAKPOINT = 720
 // despite the narrower field of view.
 const MOBILE_FRAME_OFFSET_X = 4.5
 
+// Approximate world position of the temple cluster in TigersNest.tsx (the group's own position/
+// rotation applied to the temple buildings' local coordinates). As the user scrolls past the hero,
+// the camera partially pans toward this point instead of its usual chorten-centered framing.
+const TIGERS_NEST_TARGET = { x: -36.7, y: 16.1, z: -42.3 }
+const lerp = (a: number, b: number, t: number): number => a + (b - a) * t
+
 function isMobileViewport(): boolean {
   return window.innerWidth < MOBILE_BREAKPOINT
 }
@@ -70,16 +76,27 @@ export function useReactiveCamera(): void {
     const elapsed = state.clock.getElapsedTime()
     const idle = performance.now() - lastInputRef.current > IDLE_THRESHOLD_MS
     const frameOffsetX = frameOffsetXRef.current
+    const scroll = scrollRef.current
     const aimX = pointerRef.current.x * 0.55 + (idle ? Math.sin(elapsed * 0.09) * 0.15 : 0)
-    const aimY = 7.3 - pointerRef.current.y * 0.18 - scrollRef.current * 1.1
+    const aimY = 7.3 - pointerRef.current.y * 0.18 - scroll * 1.1
 
-    camera.position.x += (frameOffsetX + aimX - camera.position.x) * 0.012
+    // Scrolling past the hero partially pans the camera toward the Tiger's Nest cliff instead of
+    // its usual chorten-centered framing — a reveal, not a hard cut, so mouse parallax still has
+    // some influence even mid-scroll. Capped at 0.85 rather than 1 so it never fully snaps onto
+    // dead-center framing, which read as an abrupt jump rather than a pan.
+    const nestBlend = isMobileViewport() ? 0 : scroll * 0.85
+    const desiredPositionX = lerp(frameOffsetX + aimX, TIGERS_NEST_TARGET.x * 0.5, nestBlend)
+    const desiredTargetX = lerp(frameOffsetX + aimX * 0.42, TIGERS_NEST_TARGET.x, nestBlend)
+    const desiredTargetY = lerp(aimY, TIGERS_NEST_TARGET.y, nestBlend)
+    const desiredTargetZ = lerp(-28 + scroll * 7, TIGERS_NEST_TARGET.z, nestBlend)
+
+    camera.position.x += (desiredPositionX - camera.position.x) * 0.012
     camera.position.y += (BASE_CAMERA_Y + aimY * 0.04 - camera.position.y) * 0.01
 
     const target = targetRef.current
-    target.x += (frameOffsetX + aimX * 0.42 - target.x) * 0.008
-    target.y += (aimY - target.y) * 0.008
-    target.z += (-28 + scrollRef.current * 7 - target.z) * 0.01
+    target.x += (desiredTargetX - target.x) * 0.008
+    target.y += (desiredTargetY - target.y) * 0.008
+    target.z += (desiredTargetZ - target.z) * 0.01
 
     camera.lookAt(target.x, target.y, target.z)
   })

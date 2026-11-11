@@ -62,7 +62,7 @@ export function HeroCanvas({ onReady }: HeroCanvasProps): JSX.Element {
         shadow-bias={-0.0015}
       />
       <directionalLight position={[20, 10, -35]} intensity={0.75} color="#8ca5b2" />
-      <HimalayanLandscape showMist={!isMobile} />
+      <HimalayanLandscape isDesktop={!isMobile} />
       <CameraRig />
     </Canvas>
   )
