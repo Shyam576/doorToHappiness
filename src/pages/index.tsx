@@ -263,7 +263,15 @@ const Index: React.FC = () => {
           image: `${SITE_URL}/logowhitebg.png`,
           address: {
             "@type": "PostalAddress",
+            addressLocality: "Thimphu",
             addressCountry: "Bhutan",
+          },
+          // Tourism Council of Bhutan license — no official schema.org property for this, so it's
+          // recorded as a generic identifier rather than invented/omitted.
+          identifier: {
+            "@type": "PropertyValue",
+            name: "Tourism Council of Bhutan License",
+            value: "1053196",
           },
           openingHours: "Mo,Tu,We,Th,Fr,Sa,Su 09:00-17:00",
           telephone: process.env.NEXT_PUBLIC_PHONE_NO,

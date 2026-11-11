@@ -44,10 +44,9 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
   return (
     <>
       <Seo
-        title={`${place.name} - Heritage Place in ${dzongkhag.name} | Door to Happiness`}
+        title={`${place.name}, ${dzongkhag.name}, Bhutan – History & How to Visit`}
         description={place.description}
         path={`/sacred-places/${place.slug}`}
-        ogTitle={`${place.name} - Heritage Place in ${dzongkhag.name}`}
         ogImage={place.image || '/backgroundbanner.jpg'}
         ogType="article"
       />
