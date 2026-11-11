@@ -9,10 +9,10 @@ jest.mock('next/head', () => {
   }
 })
 
-// Mock the WhatsApp button component
-jest.mock('../components/whatsAppButton', () => {
-  return function WhatsAppButton() {
-    return <div data-testid="whatsapp-button">WhatsApp Button</div>
+// Mock the chat widget component
+jest.mock('../components/ChatWidget', () => {
+  return function ChatWidget() {
+    return <div data-testid="chat-widget">Chat Widget</div>
   }
 })
 
@@ -36,8 +36,8 @@ describe('Homepage', () => {
     expect(document.body).toBeInTheDocument()
   })
 
-  it('contains the WhatsApp button', () => {
+  it('contains the chat widget', () => {
     render(<Index />)
-    expect(screen.getByTestId('whatsapp-button')).toBeInTheDocument()
+    expect(screen.getByTestId('chat-widget')).toBeInTheDocument()
   })
 })

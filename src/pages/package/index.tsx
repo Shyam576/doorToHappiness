@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Seo from "../../components/Seo";
 import Image from "next/image";
 import { Container } from "../../components/Container";
-import WhatsAppButton from "../../components/whatsAppButton";
+import ChatWidget from "../../components/ChatWidget";
 import majorCitiesPackage from "../../data/majorCitiesPackage.json";
 import festivalTours from "../../data/festivialTours.json";
 import culturalTours from "../../data/culturalTours.json";
@@ -662,9 +662,9 @@ function Index() {
         </div>
       )}
 
-      <WhatsAppButton
+      <ChatWidget
         phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string}
-        message="Hello! I have a question about Bhutan tours"
+        fallbackMessage="Hello! I have a question about Bhutan tours"
       />
     </div>
   );
