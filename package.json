@@ -13,6 +13,7 @@
 		"lint": "next lint",
 		"export": "next export",
 		"seo-check": "next build && next start",
+		"fetch-google-reviews": "node scripts/fetch-google-reviews.js",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage"
