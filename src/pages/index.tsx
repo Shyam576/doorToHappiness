@@ -305,7 +305,7 @@ const Index: React.FC = () => {
         <link
           rel="preload"
           as="image"
-          href="/homepagebg1.jpg"
+          href="/homepagebg1.webp"
           fetchPriority="high"
         />
       </Head>
@@ -316,7 +316,7 @@ const Index: React.FC = () => {
             reduced-motion/no-WebGL/save-data visitors. Hero3DOverlay crossfades on top of it. */}
         <div className="absolute inset-0">
           <Image
-            src="/homepagebg1.jpg"
+            src="/homepagebg1.webp"
             alt="Tiger's Nest Monastery Paro Bhutan"
             fill
             unoptimized
