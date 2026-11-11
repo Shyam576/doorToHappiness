@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import faqData from '../data/faq.json'
 import { findBestFaqMatch, FaqEntry } from '../lib/faq-matcher'
+import { getSmallTalkReply } from '../lib/small-talk'
 
 const faqs = faqData as FaqEntry[]
 const SUGGESTED_QUESTION_COUNT = 4
@@ -32,8 +33,11 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
     const trimmed = question.trim()
     if (!trimmed) return
 
-    const match = findBestFaqMatch(trimmed, faqs)
-    const botMessage: ChatMessage = match
+    const smallTalkReply = getSmallTalkReply(trimmed)
+    const match = smallTalkReply ? null : findBestFaqMatch(trimmed, faqs)
+    const botMessage: ChatMessage = smallTalkReply
+      ? { role: 'bot', text: smallTalkReply }
+      : match
       ? { role: 'bot', text: match.entry.answer }
       : {
           role: 'bot',

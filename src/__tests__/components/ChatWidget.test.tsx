@@ -35,6 +35,16 @@ describe('ChatWidget', () => {
     expect(screen.getByRole('textbox')).toBeInTheDocument()
   })
 
+  it('replies to a plain greeting instead of bouncing it to WhatsApp', () => {
+    render(<ChatWidget phoneNumber="9771234567" />)
+
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'hi' } })
+    fireEvent.click(screen.getByRole('button', { name: /^send$/i }))
+
+    expect(screen.getByText(/hi there/i)).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /continue on whatsapp/i })).not.toBeInTheDocument()
+  })
+
   it('answers a suggested question with its real FAQ answer', () => {
     render(<ChatWidget phoneNumber="9771234567" />)
     fireEvent.click(screen.getByRole('button', { name: 'Do I need a visa to visit Bhutan?' }))
