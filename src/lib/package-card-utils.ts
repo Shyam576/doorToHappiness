@@ -17,13 +17,15 @@ export function parseDifficulty(raw: string | undefined): Difficulty | null {
 }
 
 export interface ItineraryDay {
-  day: number
+  day: number | string
   title: string
   summary: string
 }
 
 interface DetailedItineraryDay {
-  day: number
+  // Usually a single day number, but some tours group several days into one
+  // itinerary entry with a range string like "3-4".
+  day: number | string
   title: string
   activities?: string[]
 }

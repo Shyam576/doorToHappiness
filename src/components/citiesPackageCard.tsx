@@ -16,7 +16,9 @@ interface TourPackage {
   inclusions?: string[];
   difficulty?: string;
   trek_details?: { difficulty?: string };
-  detailed_itinerary?: { day: number; title: string; activities?: string[] }[];
+  // `day` is usually a single day number, but some tours (e.g. group/trekking) group
+  // several days into one itinerary entry with a range string like "3-4".
+  detailed_itinerary?: { day: number | string; title: string; activities?: string[] }[];
   itinerary?: { title: string; description?: string }[];
   [key: string]: any;
 }
