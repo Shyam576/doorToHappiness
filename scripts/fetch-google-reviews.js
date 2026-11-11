@@ -79,6 +79,11 @@ function fetchReviews() {
             author: review.user && review.user.name ? review.user.name : 'Google reviewer',
             rating: Math.round(review.rating),
             source: 'Google',
+            // Deep link straight to this review on Google Maps, so visitors can
+            // verify it's real instead of taking the quoted snippet on faith.
+            ...(typeof review.link === 'string' && review.link.startsWith('https://www.google.com/')
+              ? { link: review.link }
+              : {}),
           }))
 
         // A real listing with existing reviews should never suddenly have zero —

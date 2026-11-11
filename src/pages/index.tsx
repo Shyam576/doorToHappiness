@@ -249,7 +249,11 @@ const Index: React.FC = () => {
       </Head>
 
       {/* Hero Section */}
-      <div className="relative h-screen max-h-[800px] overflow-hidden bg-gray-900">
+      {/* No fixed height here: the trip-cost picker card's content determines how
+          tall this needs to be, and the background image (object-cover, fill)
+          stretches to match. A fixed h-screen/overflow-hidden box previously clipped
+          the card's bottom edge once it grew taller than the cap. */}
+      <div className="relative min-h-[600px] bg-gray-900">
         <div className="absolute inset-0">
           <Image
             src="/homepagebg1.webp"
@@ -264,7 +268,7 @@ const Index: React.FC = () => {
           />
         </div>
 
-        <Container className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6">
+        <Container className="relative z-10 flex flex-col justify-center px-4 sm:px-6 py-12 sm:py-16">
           <div className="text-center text-white max-w-5xl mx-auto relative">
             {/* Gradient fade background - subtle and blends into background */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-transparent rounded-3xl blur-xl -z-10"></div>

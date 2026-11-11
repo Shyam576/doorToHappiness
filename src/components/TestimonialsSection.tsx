@@ -3,13 +3,14 @@ import { Container } from "./Container";
 import testimonials from "../data/testimonials.json";
 
 // Populate src/data/testimonials.json to activate this section. Each entry:
-// { "quote": "...", "author": "Name, Country", "rating": 5, "source": "TripAdvisor" }
+// { "quote": "...", "author": "Name, Country", "rating": 5, "source": "TripAdvisor", "link": "https://..." }
 // Only use real, permissioned guest reviews — never invented quotes or stock photos of people.
 interface Testimonial {
   quote: string;
   author: string;
   rating: number;
   source?: string;
+  link?: string;
 }
 
 const reviews = testimonials as Testimonial[];
@@ -58,6 +59,16 @@ const TestimonialsSection: React.FC = () => {
                 </span>
               )}
             </p>
+            {testimonial.link && (
+              <a
+                href={testimonial.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 sm:mt-3 text-sm font-medium text-amber-700 hover:text-amber-800 hover:underline"
+              >
+                Read full review →
+              </a>
+            )}
           </div>
         ))}
       </div>
