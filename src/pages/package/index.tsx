@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import Seo from "../../components/Seo";
 import Image from "next/image";
 import { Container } from "../../components/Container";
-import ChatWidget from "../../components/ChatWidget";
 import majorCitiesPackage from "../../data/majorCitiesPackage.json";
 import festivalTours from "../../data/festivialTours.json";
 import culturalTours from "../../data/culturalTours.json";
@@ -662,10 +661,6 @@ function Index() {
         </div>
       )}
 
-      <ChatWidget
-        phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string}
-        fallbackMessage="Hello! I have a question about Bhutan tours"
-      />
     </div>
   );
 }

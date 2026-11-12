@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Container } from "../components/Container";
 import Seo from "../components/Seo";
 import { SITE_URL } from "../config/site";
-import ChatWidget from "../components/ChatWidget";
 import majorCitiesPackage from "../data/majorCitiesPackage.json";
 import popularDestination from "../data/popularDestination.json";
 import { getTheme } from "../styles/themes";
@@ -758,10 +757,6 @@ const Index: React.FC = () => {
         </div>
       </Container>
 
-      <ChatWidget
-        phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string}
-        fallbackMessage="Hello! I have a question about your Bhutan tours"
-      />
     </div>
   );
 };

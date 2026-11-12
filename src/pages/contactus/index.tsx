@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import Seo from "../../components/Seo";
 import axios from "axios"; // Import axios
-import ChatWidget from "../../components/ChatWidget";
 import TripBuilderForm from "../../components/TripBuilderForm";
 import { getTheme } from "../../styles/themes";
 
@@ -453,10 +452,6 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-        <ChatWidget
-          phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string}
-          fallbackMessage="Hello! I have a question about"
-        />
       </div>
     </>
   );

@@ -13,6 +13,7 @@ import { Footer } from "../components/Footer";
 import { store } from "../store/store";
 import { NavBar } from "../components/NavBar";
 import { AdminNav } from "../components/AdminNav";
+import ChatWidget from "../components/ChatWidget";
 import "../components/styles/global.css";
 import "../FontAwesomeConfig";
 
@@ -74,6 +75,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                 <NavBar />
                 <Component {...pageProps} />
                 <Footer />
+                <ChatWidget phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string} />
               </IoProvider>
             )}
           </Provider>
