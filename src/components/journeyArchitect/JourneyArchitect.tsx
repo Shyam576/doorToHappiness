@@ -43,7 +43,7 @@ export function JourneyArchitect({ initialInput = DEFAULT_INPUT }: JourneyArchit
           onTravelerTypeChange={(travelerType: TravelerType) => setInput((prev) => ({ ...prev, travelerType }))}
         />
         <div>
-          <p className="text-sm font-medium text-gray-700 mb-3">Your route</p>
+          <p className="text-sm font-medium text-stone-700 mb-3">Your route</p>
           <RouteTimeline stops={routeStops} />
         </div>
       </div>

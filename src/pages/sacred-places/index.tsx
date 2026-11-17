@@ -46,14 +46,14 @@ const SacredPlacesIndex = () => {
   });
 
   const typeIcons = {
-    dzong: <FaBuilding className="text-lg text-gray-600" />,
-    monastery: <FaPrayingHands className="text-lg text-gray-600" />,
-    temple: <FaPrayingHands className="text-lg text-gray-600" />,
-    lhakhang: <FaPrayingHands className="text-lg text-gray-600" />,
+    dzong: <FaBuilding className="text-lg text-stone-600" />,
+    monastery: <FaPrayingHands className="text-lg text-stone-600" />,
+    temple: <FaPrayingHands className="text-lg text-stone-600" />,
+    lhakhang: <FaPrayingHands className="text-lg text-stone-600" />,
     chorten: <div className="w-4 h-4 bg-amber-500 rounded-full"></div>,
     stupa: <div className="w-4 h-4 bg-amber-500 rounded-full"></div>,
-    palace: <FaBuilding className="text-lg text-gray-600" />,
-    fortress: <FaBuilding className="text-lg text-gray-600" />,
+    palace: <FaBuilding className="text-lg text-stone-600" />,
+    fortress: <FaBuilding className="text-lg text-stone-600" />,
   };  return (
     <>
       <Seo
@@ -88,9 +88,9 @@ const SacredPlacesIndex = () => {
         />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
         {/* Hero Section */}
-        <div className="relative py-24 overflow-hidden bg-gray-900">
+        <div className="relative py-24 overflow-hidden bg-stone-900">
           {/* Background Image Layer */}
           <div
             className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
@@ -137,9 +137,9 @@ const SacredPlacesIndex = () => {
         <div className="max-w-7xl mx-auto px-4 py-8">
           {filteredPlaces.length === 0 ? (
             <div className="text-center py-16">
-              <FaPrayingHands className="text-6xl text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">No sacred places found</h3>
-              <p className="text-gray-500">Try adjusting your search terms or filters</p>
+              <FaPrayingHands className="text-6xl text-stone-300 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-stone-600 mb-2">No sacred places found</h3>
+              <p className="text-stone-500">Try adjusting your search terms or filters</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -162,20 +162,20 @@ const SacredPlacesIndex = () => {
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center">
                         {typeIcons[place.type as keyof typeof typeIcons] || typeIcons.temple}
-                        <span className="ml-2 text-sm font-medium text-gray-600 capitalize">{place.type}</span>
+                        <span className="ml-2 text-sm font-medium text-stone-600 capitalize">{place.type}</span>
                       </div>
                     </div>
                     
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{place.name}</h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3 flex-grow min-h-[4.5rem]">{place.description}</p>
+                    <h3 className="text-xl font-bold text-stone-900 mb-2">{place.name}</h3>
+                    <p className="text-stone-600 mb-4 line-clamp-3 flex-grow min-h-[4.5rem]">{place.description}</p>
                     
                     <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex items-center text-sm text-stone-500">
                         <FiMapPin className="mr-2 flex-shrink-0" />
                         <span>{place.dzongkhag} Dzongkhag, {place.region}</span>
                       </div>
                       {place.distance && (
-                        <div className="flex items-center text-sm text-gray-500">
+                        <div className="flex items-center text-sm text-stone-500">
                           <span className="mr-2">📍</span>
                           <span>{place.distance} from district center</span>
                         </div>
@@ -204,10 +204,10 @@ const SacredPlacesIndex = () => {
         </div>
 
         {/* SEO Content Section */}
-        <div className="bg-gray-50 py-16">
+        <div className="bg-stone-50 py-16">
           <div className="max-w-6xl mx-auto px-4">
             <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="font-heading text-3xl font-bold text-gray-900 mb-6">Sacred Architecture of Bhutan</h2>
+              <h2 className="font-heading text-3xl font-bold text-stone-900 mb-6">Sacred Architecture of Bhutan</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
@@ -215,7 +215,7 @@ const SacredPlacesIndex = () => {
                     <FaMountain className="mr-2 text-amber-500" />
                     Dzongs - Fortress Monasteries
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-stone-700 leading-relaxed">
                     Bhutan's dzongs are architectural masterpieces that serve as both administrative centers and monasteries. These massive fortified structures, built without a single nail, represent the pinnacle of traditional Bhutanese architecture and house both government offices and monastic communities.
                   </p>
                 </div>
@@ -225,7 +225,7 @@ const SacredPlacesIndex = () => {
                     <FaBuilding className="mr-2 text-blue-500" />
                     Lhakhangs - Sacred Temples
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-stone-700 leading-relaxed">
                     Lhakhangs are the sacred temples of Bhutan, often housing precious statues, ancient scriptures, and religious artifacts. These temples serve as centers for daily prayers, religious festivals, and spiritual guidance for local communities across all dzongkhags.
                   </p>
                 </div>
@@ -237,7 +237,7 @@ const SacredPlacesIndex = () => {
                     <FaPrayingHands className="mr-2 text-amber-500" />
                     Gompas - Monasteries
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-stone-700 leading-relaxed">
                     Monasteries or gompas are the spiritual heart of Buddhist practice in Bhutan. These institutions preserve ancient teachings, train monks, and serve as centers for meditation and religious study. Each dzongkhag has several important gompas that contribute to the spiritual landscape.
                   </p>
                 </div>
@@ -247,7 +247,7 @@ const SacredPlacesIndex = () => {
                     <div className="w-5 h-5 bg-amber-500 rounded-full mr-2"></div>
                     Chortens - Sacred Stupas
                   </h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-stone-700 leading-relaxed">
                     Chortens are Buddhist stupas found throughout Bhutan's landscape. These sacred structures contain relics and serve as focal points for circumambulation and prayers. They mark sacred spaces and provide spiritual protection for communities in every dzongkhag.
                   </p>
                 </div>

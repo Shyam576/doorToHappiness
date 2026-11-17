@@ -117,7 +117,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
         })}
       />
 
-      <div className="bg-gradient-to-b from-gray-50 to-white">
+      <div className="bg-gradient-to-b from-stone-50 to-white">
         {/* Hero Section with Image Gallery */}
         <div className="relative h-96 lg:h-[500px]">
           <div className="grid grid-cols-1 lg:grid-cols-4 h-full">
@@ -163,7 +163,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
               onClick={handleShare}
               className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
             >
-              <FiShare2 className="w-5 h-5 text-gray-700" />
+              <FiShare2 className="w-5 h-5 text-stone-700" />
             </button>
           </div>
         </div>
@@ -172,14 +172,14 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             {/* Header Info */}
-            <div className="p-6 lg:p-8 border-b border-gray-100">
+            <div className="p-6 lg:p-8 border-b border-stone-100">
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center space-x-2 text-sm text-amber-600 font-medium mb-2">
                     <HiOutlineUserGroup className="w-4 h-4" />
                     <span>Group Adventure</span>
                   </div>
-                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{tourData.title}</h1>
+                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-stone-900 mb-4">{tourData.title}</h1>
                   
                   {/* Group Benefits */}
                   <div className="bg-gradient-to-r from-amber-100 to-amber-200 p-4 rounded-xl mb-4">
@@ -200,7 +200,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
                   </div>
                   
                   {/* Quick Info */}
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+                  <div className="flex flex-wrap items-center gap-6 text-sm text-stone-600">
                     <div className="flex items-center space-x-2">
                       <FiMapPin className="w-4 h-4 text-amber-500" />
                       <span>{tourData.route}</span>
@@ -221,7 +221,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
                     <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
                     <button 
                       onClick={() => router.push('/contactus')}
-                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-stone-50 transition-colors duration-300"
                     >
                       Enquire Now
                     </button>
@@ -231,7 +231,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
             </div>
 
             {/* Navigation Tabs */}
-            <div className="border-b border-gray-100">
+            <div className="border-b border-stone-100">
               <nav className="flex space-x-8 px-6 lg:px-8">
                 {[
                   { key: 'overview', label: 'Overview' },
@@ -245,7 +245,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
                     className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
                       activeTab === tab.key
                         ? 'border-amber-500 text-amber-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        : 'border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300'
                     }`}
                   >
                     {tab.label}
@@ -258,63 +258,63 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
             <div className="p-6 lg:p-8">
               {activeTab === 'overview' && (
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-gray-700 leading-relaxed mb-6">{tourData.description}</p>
+                  <p className="text-stone-700 leading-relaxed mb-6">{tourData.description}</p>
                   
                   {/* Group Tour Features */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose mb-8">
                     <div className="text-center p-6 bg-amber-50 rounded-xl">
                       <FiDollarSign className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Cost-Effective</h3>
-                      <p className="text-sm text-gray-600">Share costs with fellow travelers for better value</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Cost-Effective</h3>
+                      <p className="text-sm text-stone-600">Share costs with fellow travelers for better value</p>
                     </div>
                     <div className="text-center p-6 bg-amber-100 rounded-xl">
                       <FiUsers className="w-8 h-8 text-amber-800 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Social Experience</h3>
-                      <p className="text-sm text-gray-600">Make new friends and share unforgettable memories</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Social Experience</h3>
+                      <p className="text-sm text-stone-600">Make new friends and share unforgettable memories</p>
                     </div>
                     <div className="text-center p-6 bg-amber-50 rounded-xl">
                       <FiShield className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Safe & Secure</h3>
-                      <p className="text-sm text-gray-600">Professional guides ensure safety and smooth travel</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Safe & Secure</h3>
+                      <p className="text-sm text-stone-600">Professional guides ensure safety and smooth travel</p>
                     </div>
                   </div>
 
                   {/* Group Size & Requirements */}
                   <div className="bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl not-prose mb-8">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Group Details</h3>
+                    <h3 className="text-xl font-semibold text-stone-900 mb-4">Group Details</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center p-4 bg-white rounded-lg">
                         <div className="text-2xl font-bold text-amber-600 mb-1">6-12</div>
-                        <div className="text-sm text-gray-600">Group Size</div>
+                        <div className="text-sm text-stone-600">Group Size</div>
                       </div>
                       <div className="text-center p-4 bg-white rounded-lg">
                         <div className="text-2xl font-bold text-amber-600 mb-1">All Ages</div>
-                        <div className="text-sm text-gray-600">Welcome</div>
+                        <div className="text-sm text-stone-600">Welcome</div>
                       </div>
                       <div className="text-center p-4 bg-white rounded-lg">
                         <div className="text-2xl font-bold text-amber-600 mb-1">English</div>
-                        <div className="text-sm text-gray-600">Guide Language</div>
+                        <div className="text-sm text-stone-600">Guide Language</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Tour Statistics */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 not-prose">
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">6-7</div>
-                      <div className="text-sm text-gray-600">Days</div>
+                      <div className="text-sm text-stone-600">Days</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">10+</div>
-                      <div className="text-sm text-gray-600">Attractions</div>
+                      <div className="text-sm text-stone-600">Attractions</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">4</div>
-                      <div className="text-sm text-gray-600">Cities</div>
+                      <div className="text-sm text-stone-600">Cities</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">4.8★</div>
-                      <div className="text-sm text-gray-600">Rating</div>
+                      <div className="text-sm text-stone-600">Rating</div>
                     </div>
                   </div>
                 </div>
@@ -322,7 +322,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
 
               {activeTab === 'itinerary' && (
                 <div className="space-y-6">
-                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Group Tour Daily Itinerary</h2>
+                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Group Tour Daily Itinerary</h2>
                   <div className="space-y-4">
                     {tourData.detailed_itinerary?.map((day, index) => (
                       <div key={index} className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
@@ -334,10 +334,10 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
                               </div>
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-xl font-semibold text-gray-900 mb-2">{day.title}</h3>
+                              <h3 className="text-xl font-semibold text-stone-900 mb-2">{day.title}</h3>
                               <ul className="space-y-2">
                                 {day.activities.map((activity, idx) => (
-                                  <li key={idx} className="flex items-start space-x-2 text-gray-700">
+                                  <li key={idx} className="flex items-start space-x-2 text-stone-700">
                                     <FiChevronRight className="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" />
                                     <span>{activity}</span>
                                   </li>
@@ -354,19 +354,19 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
 
               {activeTab === 'highlights' && (
                 <div>
-                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Group Tour Benefits & Highlights</h2>
+                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Group Tour Benefits & Highlights</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {tourData.highlights.map((highlight, index) => (
                       <div key={index} className="flex items-start space-x-3 p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg hover:from-amber-100 hover:to-amber-200 transition-colors duration-200">
                         <FiUsers className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                        <span className="text-gray-800 font-medium">{highlight}</span>
+                        <span className="text-stone-800 font-medium">{highlight}</span>
                       </div>
                     ))}
                   </div>
                   
                   {/* Additional Group Benefits */}
                   <div className="mt-8 bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Choose Group Tours?</h3>
+                    <h3 className="text-lg font-semibold text-stone-900 mb-4">Why Choose Group Tours?</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {[
                         "Shared experiences create lasting memories",
@@ -378,7 +378,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
                       ].map((benefit, index) => (
                         <div key={index} className="flex items-center space-x-3">
                           <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                          <span className="text-sm text-gray-700">{benefit}</span>
+                          <span className="text-sm text-stone-700">{benefit}</span>
                         </div>
                       ))}
                     </div>
@@ -390,7 +390,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Inclusions */}
                   <div className="bg-green-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
                       <FiCheck className="w-5 h-5 text-green-600 mr-2" />
                       Group Package Includes
                     </h3>
@@ -407,7 +407,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
                       ].map((item, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <FiCheck className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-gray-700">{item}</span>
+                          <span className="text-stone-700">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -415,7 +415,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
 
                   {/* Exclusions */}
                   <div className="bg-red-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
                       <FiX className="w-5 h-5 text-red-600 mr-2" />
                       Not Included
                     </h3>
@@ -431,7 +431,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
                       ].map((item, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <FiX className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                          <span className="text-gray-700">{item}</span>
+                          <span className="text-stone-700">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -447,7 +447,7 @@ const GroupTourDetails: React.FC<GroupTourDetailsProps> = ({ tourData }) => {
             <p className="text-lg opacity-90 mb-2">Share the adventure, split the costs, multiply the memories</p>
             <p className="text-sm opacity-80 mb-6">Groups forming now - secure your spot today!</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-50 transition-colors duration-300">
+              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-stone-50 transition-colors duration-300">
                 Join This Group Tour
               </button>
               <button className="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">

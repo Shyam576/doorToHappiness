@@ -64,20 +64,20 @@ const Unsubscribe: React.FC = () => {
         <meta name="description" content="Unsubscribe from our newsletter" />
       </Head>
 
-      <Container className="py-16 min-h-screen bg-gray-50">
+      <Container className="py-16 min-h-screen bg-stone-50">
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl font-bold text-stone-900 mb-4">
               Unsubscribe from Newsletter
             </h1>
-            <p className="text-gray-600">
+            <p className="text-stone-600">
               We're sorry to see you go! Enter your email address below to unsubscribe from our newsletter.
             </p>
           </div>
 
           <form onSubmit={handleUnsubscribe} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-stone-700 mb-2">
                 Email Address
               </label>
               <input
@@ -92,7 +92,7 @@ const Unsubscribe: React.FC = () => {
                     ? 'border-red-400 focus:ring-red-500'
                     : status === 'success'
                     ? 'border-green-400 focus:ring-green-500'
-                    : 'border-gray-300 focus:ring-amber-700'
+                    : 'border-stone-300 focus:ring-amber-700'
                 } ${isUnsubscribing ? 'opacity-50 cursor-not-allowed' : ''}`}
               />
             </div>
@@ -102,7 +102,7 @@ const Unsubscribe: React.FC = () => {
               disabled={isUnsubscribing || !email.trim()}
               className={`w-full font-bold py-3 px-4 rounded-lg transition ${
                 isUnsubscribing
-                  ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                  ? 'bg-stone-400 text-stone-200 cursor-not-allowed'
                   : status === 'success'
                   ? 'bg-green-600 hover:bg-green-700 text-white'
                   : 'bg-red-600 hover:bg-red-700 text-white'
@@ -135,7 +135,7 @@ const Unsubscribe: React.FC = () => {
           </form>
 
           <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-stone-500 mb-4">
               Changed your mind? You can always{' '}
               <a href="/" className="text-amber-800 hover:text-amber-800 font-medium">
                 subscribe again

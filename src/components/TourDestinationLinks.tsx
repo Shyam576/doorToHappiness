@@ -19,7 +19,7 @@ export default function TourDestinationLinks({ route, variant = 'light' }: TourD
   const links = getDzongkhagLinksForRoute(route)
   if (links.length === 0) return null
 
-  const labelClass = variant === 'onDark' ? 'text-sm text-white/80' : 'text-sm text-gray-500'
+  const labelClass = variant === 'onDark' ? 'text-sm text-white/80' : 'text-sm text-stone-500'
   const linkClass =
     variant === 'onDark'
       ? 'inline-flex items-center gap-1 text-sm font-medium text-white bg-white/20 hover:bg-white/30 backdrop-blur-sm px-3 py-1 rounded-full transition-colors'

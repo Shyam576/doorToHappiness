@@ -9,7 +9,7 @@ export function DurationSlider({ value, onChange }: DurationSliderProps) {
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <label htmlFor="ja-duration" className="text-sm font-medium text-gray-700">
+        <label htmlFor="ja-duration" className="text-sm font-medium text-stone-700">
           Trip length
         </label>
         <span className="text-sm font-semibold text-amber-700">

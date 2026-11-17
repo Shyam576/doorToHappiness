@@ -60,16 +60,16 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
         {/* Breadcrumb Navigation */}
         <div className="bg-white border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <nav className="flex items-center space-x-2 text-sm text-gray-600">
+            <nav className="flex items-center space-x-2 text-sm text-stone-600">
               <Link href="/" className="hover:text-amber-600 flex items-center">
                 <FiHome className="mr-1" /> Home
               </Link>
-              <FiChevronRight className="text-gray-400" />
+              <FiChevronRight className="text-stone-400" />
               <Link href={`/dzongkhag/${dzongkhag.slug}`} className="hover:text-amber-600">
                 {dzongkhag.name}
               </Link>
-              <FiChevronRight className="text-gray-400" />
-              <span className="text-gray-900 font-medium">{place.name}</span>
+              <FiChevronRight className="text-stone-400" />
+              <span className="text-stone-900 font-medium">{place.name}</span>
             </nav>
           </div>
         </div>
@@ -124,16 +124,16 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
             <div className="lg:col-span-2 space-y-8">
               {/* About Section */}
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">About {place.name}</h2>
+                <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">About {place.name}</h2>
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-stone-700 leading-relaxed mb-4">
                     {place.description}
                   </p>
                   
                   {place.history && (
                     <>
-                      <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Historical Background</h3>
-                      <p className="text-gray-700 leading-relaxed">
+                      <h3 className="text-xl font-semibold text-stone-900 mt-6 mb-3">Historical Background</h3>
+                      <p className="text-stone-700 leading-relaxed">
                         {place.history}
                       </p>
                     </>
@@ -141,8 +141,8 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
                   
                   {place.significance && (
                     <>
-                      <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Significance</h3>
-                      <p className="text-gray-700 leading-relaxed">
+                      <h3 className="text-xl font-semibold text-stone-900 mt-6 mb-3">Significance</h3>
+                      <p className="text-stone-700 leading-relaxed">
                         {place.significance}
                       </p>
                     </>
@@ -152,14 +152,14 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
 
               {/* What to Expect */}
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6 flex items-center">
                   {attractionInfo.icon}
                   <span className="ml-3">What to Expect</span>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3">Experience:</h4>
-                    <ul className="space-y-2 text-gray-600">
+                    <h4 className="font-medium text-stone-700 mb-3">Experience:</h4>
+                    <ul className="space-y-2 text-stone-600">
                       {attractionInfo.type === 'Natural Attraction' && (
                         <>
                           <li>• Scenic natural beauty</li>
@@ -212,8 +212,8 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
                   </div>
                   
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3">Tips for Visitors:</h4>
-                    <ul className="space-y-2 text-gray-600">
+                    <h4 className="font-medium text-stone-700 mb-3">Tips for Visitors:</h4>
+                    <ul className="space-y-2 text-stone-600">
                       <li>• Respect local customs and traditions</li>
                       <li>• Dress modestly and appropriately</li>
                       <li>• Bring appropriate gear for weather</li>
@@ -232,30 +232,30 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
                 <h3 className="text-lg font-bold mb-4">Quick Information</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 font-medium">Type</span>
-                    <span className="text-sm font-medium text-gray-700">{attractionInfo.type}</span>
+                    <span className="text-sm text-stone-500 font-medium">Type</span>
+                    <span className="text-sm font-medium text-stone-700">{attractionInfo.type}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 font-medium">Location</span>
-                    <span className="text-sm font-medium text-gray-700">{dzongkhag.name}</span>
+                    <span className="text-sm text-stone-500 font-medium">Location</span>
+                    <span className="text-sm font-medium text-stone-700">{dzongkhag.name}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 font-medium">Region</span>
-                    <span className="text-sm font-medium text-gray-700">{dzongkhag.location.region}</span>
+                    <span className="text-sm text-stone-500 font-medium">Region</span>
+                    <span className="text-sm font-medium text-stone-700">{dzongkhag.location.region}</span>
                   </div>
                   {place.rating && (
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500 font-medium">Rating</span>
+                      <span className="text-sm text-stone-500 font-medium">Rating</span>
                       <div className="flex items-center">
                         <FiStar className="w-4 h-4 text-amber-600 mr-1" />
-                        <span className="text-sm font-medium text-gray-700">{place.rating}/5</span>
+                        <span className="text-sm font-medium text-stone-700">{place.rating}/5</span>
                       </div>
                     </div>
                   )}
                   {place.distance && (
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500 font-medium">Distance</span>
-                      <span className="text-sm font-medium text-gray-700">{place.distance}</span>
+                      <span className="text-sm text-stone-500 font-medium">Distance</span>
+                      <span className="text-sm font-medium text-stone-700">{place.distance}</span>
                     </div>
                   )}
                 </div>
@@ -264,7 +264,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
               {/* Visit Dzongkhag */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h3 className="text-lg font-bold mb-4">Explore More in {dzongkhag.name}</h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-stone-600 text-sm mb-4">
                   Discover other attractions and places to visit in {dzongkhag.name} Dzongkhag.
                 </p>
                 <Link href={`/dzongkhag/${dzongkhag.slug}`}>
@@ -281,7 +281,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
                   <div className="space-y-4">
                     {relatedPlaces.map((relatedPlace: any) => (
                       <Link key={relatedPlace.slug} href={`/attractions/${relatedPlace.slug}`}>
-                        <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-stone-50 transition-colors">
                           {relatedPlace.image && (
                             <img 
                               src={relatedPlace.image} 
@@ -290,10 +290,10 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
                             />
                           )}
                           <div className="flex-grow min-w-0">
-                            <h4 className="font-medium text-gray-900 text-sm line-clamp-1">{relatedPlace.name}</h4>
-                            <p className="text-gray-500 text-xs">{getAttractionType(relatedPlace).type}</p>
+                            <h4 className="font-medium text-stone-900 text-sm line-clamp-1">{relatedPlace.name}</h4>
+                            <p className="text-stone-500 text-xs">{getAttractionType(relatedPlace).type}</p>
                             {relatedPlace.distance && (
-                              <p className="text-gray-500 text-xs">{relatedPlace.distance}</p>
+                              <p className="text-stone-500 text-xs">{relatedPlace.distance}</p>
                             )}
                           </div>
                         </div>
@@ -316,7 +316,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
               Discover more attractions, heritage sites, and experiences in this beautiful dzongkhag
             </p>
             <Link href={`/dzongkhag/${dzongkhag.slug}`}>
-              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors">
+              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-stone-100 transition-colors">
                 View All Attractions
               </button>
             </Link>

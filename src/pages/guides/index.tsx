@@ -18,7 +18,7 @@ const GuidesIndex = () => {
         ogTitle="Bhutan Travel Guides"
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
         <div className={`relative bg-gradient-to-r ${theme.gradient} py-16 sm:py-20`}>
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
@@ -54,10 +54,10 @@ const GuidesIndex = () => {
                   >
                     {guide.category}
                   </span>
-                  <h2 className="font-heading text-lg font-bold text-gray-900 mb-2 leading-snug">
+                  <h2 className="font-heading text-lg font-bold text-stone-900 mb-2 leading-snug">
                     {guide.title}
                   </h2>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm text-stone-600 leading-relaxed">
                     {guide.excerpt}
                   </p>
                 </div>

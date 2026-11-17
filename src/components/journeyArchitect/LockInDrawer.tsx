@@ -103,7 +103,7 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
           >
             <Dialog.Panel className="w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl p-6 shadow-warm-xl">
               <div className="flex items-start justify-between mb-4">
-                <Dialog.Title className="text-lg font-bold text-gray-800">Lock in this itinerary</Dialog.Title>
+                <Dialog.Title className="text-lg font-bold text-stone-800">Lock in this itinerary</Dialog.Title>
                 <button type="button" onClick={handleClose} aria-label="Close">
                   <FiX className="w-5 h-5 text-stone-500" />
                 </button>
@@ -116,7 +116,7 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
                   >
                     <FiCheck className={`w-6 h-6 ${theme.primaryText}`} />
                   </div>
-                  <p className="font-semibold text-gray-800 mb-1">Request sent!</p>
+                  <p className="font-semibold text-stone-800 mb-1">Request sent!</p>
                   <p className="text-sm text-stone-600">
                     Our team will confirm your itinerary and final quote shortly.
                   </p>
@@ -129,7 +129,7 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
                     estimated ${breakdown.totalUsd.toLocaleString()}
                   </p>
                   <div>
-                    <label htmlFor="ja-name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="ja-name" className="block text-sm font-medium text-stone-700 mb-1">
                       Full Name
                     </label>
                     <input
@@ -137,12 +137,12 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                      className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="ja-email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="ja-email" className="block text-sm font-medium text-stone-700 mb-1">
                       Email
                     </label>
                     <input
@@ -150,12 +150,12 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                      className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
                       placeholder="your@email.com"
                     />
                   </div>
                   <div>
-                    <label htmlFor="ja-phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="ja-phone" className="block text-sm font-medium text-stone-700 mb-1">
                       WhatsApp Number
                     </label>
                     <input
@@ -163,7 +163,7 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                      className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
                       placeholder="+1 234 567 8900"
                     />
                   </div>

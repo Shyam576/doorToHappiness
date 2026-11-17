@@ -80,7 +80,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
         })}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
         {/* Hero Section */}
         <div className="relative bg-gradient-to-br from-amber-500 via-amber-700 to-amber-600 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
           <div className="absolute inset-0 bg-black bg-opacity-10"></div>
@@ -120,7 +120,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                 <h3 className="text-3xl font-bold text-amber-600 mb-2">
                   {packageData.duration}
                 </h3>
-                <p className="text-gray-600 font-medium">Adventure Duration</p>
+                <p className="text-stone-600 font-medium">Adventure Duration</p>
               </div>
             </div>
           </div>
@@ -193,7 +193,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {/* Enhanced Navigation Tabs */}
               <div className="mb-8">
-                <div className="flex flex-wrap gap-2 p-2 bg-gray-100 rounded-xl">
+                <div className="flex flex-wrap gap-2 p-2 bg-stone-100 rounded-xl">
                   {[
                     { id: "overview", label: "Overview", icon: FiInfo },
                     { id: "itinerary", label: "Itinerary", icon: FiMap },
@@ -206,7 +206,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                       className={`flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                         activeTab === tab.id
                           ? "bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg"
-                          : "text-gray-600 hover:text-amber-600 hover:bg-white"
+                          : "text-stone-600 hover:text-amber-600 hover:bg-white"
                       }`}
                     >
                       <tab.icon className="w-4 h-4" />
@@ -219,10 +219,10 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
               {/* Tab Content */}
               {activeTab === "overview" && (
                 <section className="mb-12">
-                  <h2 className="font-heading text-3xl font-bold text-gray-800 mb-6">
+                  <h2 className="font-heading text-3xl font-bold text-stone-800 mb-6">
                     Package Overview
                   </h2>
-                  <div className="prose prose-lg max-w-none text-gray-700">
+                  <div className="prose prose-lg max-w-none text-stone-700">
                     {packageData.full_description ? (
                       packageData.full_description
                         .split("\n")
@@ -240,7 +240,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {activeTab === "itinerary" && (
                 <section className="mb-12">
-                  <h2 className="font-heading text-3xl font-bold text-gray-800 mb-8">
+                  <h2 className="font-heading text-3xl font-bold text-stone-800 mb-8">
                     Detailed Itinerary
                   </h2>
                   <div className="space-y-6">
@@ -255,11 +255,11 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                               <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full flex items-center justify-center text-white font-bold text-lg">
                                 {index + 1}
                               </div>
-                              <h3 className="text-2xl font-bold text-gray-800">
+                              <h3 className="text-2xl font-bold text-stone-800">
                                 {day.title}: {day.description}
                               </h3>
                             </div>
-                            <div className="prose prose-lg max-w-none text-gray-700 ml-16">
+                            <div className="prose prose-lg max-w-none text-stone-700 ml-16">
                               {day.details.split("\n").map((paragraph, i) => (
                                 <ReactMarkdown key={i}>
                                   {paragraph}
@@ -278,7 +278,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {activeTab === "highlights" && (
                 <section className="mb-12">
-                  <h2 className="font-heading text-3xl font-bold text-gray-800 mb-8">
+                  <h2 className="font-heading text-3xl font-bold text-stone-800 mb-8">
                     Package Highlights
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -288,7 +288,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                         className="flex items-start space-x-3 p-6 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl hover:from-amber-100 hover:to-amber-200 transition-all duration-300 shadow-lg hover:shadow-xl"
                       >
                         <FiTrendingUp className="w-6 h-6 text-amber-600 mt-1 flex-shrink-0" />
-                        <span className="text-gray-800 font-medium text-lg">
+                        <span className="text-stone-800 font-medium text-lg">
                           {highlight}
                         </span>
                       </div>
@@ -299,7 +299,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {activeTab === "gallery" && (
                 <section className="mb-12">
-                  <h2 className="font-heading text-3xl font-bold text-gray-800 mb-8">
+                  <h2 className="font-heading text-3xl font-bold text-stone-800 mb-8">
                     Photo Gallery ({packageData.images?.length || 0} images)
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -323,7 +323,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                         </div>
                       ))
                     ) : (
-                      <div className="col-span-full text-center text-gray-500 py-12">
+                      <div className="col-span-full text-center text-stone-500 py-12">
                         <p>No gallery images available</p>
                       </div>
                     )}
@@ -341,10 +341,10 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                     <HiOutlineSparkles className="w-4 h-4 mr-2" />
                     Premium Experience
                   </div>
-                  <h2 className="font-heading text-2xl font-bold text-gray-800 mb-2">
+                  <h2 className="font-heading text-2xl font-bold text-stone-800 mb-2">
                     Book This Journey
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-stone-600">
                     Experience the magic of Bhutan
                   </p>
                 </div>
@@ -365,10 +365,10 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                 <div className="grid grid-cols-1 gap-4 mb-6">
                   <div className="text-center p-4 bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl">
                     <FiClock className="w-6 h-6 text-amber-600 mx-auto mb-2" />
-                    <p className="text-sm text-gray-600 font-medium">
+                    <p className="text-sm text-stone-600 font-medium">
                       Duration
                     </p>
-                    <p className="text-lg font-bold text-gray-800">
+                    <p className="text-lg font-bold text-stone-800">
                       {packageData.duration}
                     </p>
                   </div>
@@ -377,7 +377,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {/* Enhanced Highlights */}
               <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h2 className="font-heading text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-stone-800 mb-6 flex items-center">
                   <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mr-3">
                     <FiStar className="w-4 h-4 text-amber-600" />
                   </div>
@@ -392,7 +392,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                         className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-amber-50 hover:to-amber-100 transition-all duration-200"
                       >
                         <div className="w-2 h-2 bg-gradient-to-r from-amber-500 to-amber-700 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-gray-700 font-medium">
+                        <span className="text-stone-700 font-medium">
                           {highlight}
                         </span>
                       </div>
@@ -402,7 +402,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {/* Enhanced Best Season */}
               <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h2 className="font-heading text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-stone-800 mb-6 flex items-center">
                   <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mr-3">
                     <FiCalendar className="w-4 h-4 text-amber-600" />
                   </div>
@@ -422,7 +422,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {/* Enhanced Inclusions & Exclusions */}
               <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h2 className="font-heading text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-stone-800 mb-6 flex items-center">
                   <div className="w-8 h-8 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mr-3">
                     <FiCheck className="w-4 h-4 text-green-600" />
                   </div>
@@ -434,12 +434,12 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                       <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <FiCheck className="w-3 h-3 text-green-600" />
                       </div>
-                      <span className="text-gray-700 font-medium">{item}</span>
+                      <span className="text-stone-700 font-medium">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                <h2 className="font-heading text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-stone-800 mb-6 flex items-center">
                   <div className="w-8 h-8 bg-gradient-to-br from-red-100 to-pink-100 rounded-full flex items-center justify-center mr-3">
                     <FiX className="w-4 h-4 text-red-600" />
                   </div>
@@ -451,7 +451,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                       <div className="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <FiX className="w-3 h-3 text-red-600" />
                       </div>
-                      <span className="text-gray-700 font-medium">{item}</span>
+                      <span className="text-stone-700 font-medium">{item}</span>
                     </div>
                   ))}
                 </div>

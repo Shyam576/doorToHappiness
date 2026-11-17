@@ -13,7 +13,7 @@ export function RouteTimeline({ stops }: RouteTimelineProps) {
             {stop.day}
           </div>
           <div>
-            <p className="font-semibold text-gray-800">{stop.location}</p>
+            <p className="font-semibold text-stone-800">{stop.location}</p>
             <p className="text-sm text-stone-600">{stop.description}</p>
           </div>
         </div>

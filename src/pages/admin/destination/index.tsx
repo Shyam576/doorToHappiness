@@ -351,7 +351,7 @@ const EditPopularDestinationsPage = () => {
     return (
       <div
         key={fullName}
-        className="border border-gray-200 rounded-lg p-4 mb-4 bg-gray-50"
+        className="border border-stone-200 rounded-lg p-4 mb-4 bg-stone-50"
       >
         <h4 className="font-medium text-lg mb-2">{field.label}</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -379,7 +379,7 @@ const EditPopularDestinationsPage = () => {
           {arrayData.map((item, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-lg p-4 bg-white"
+              className="border border-stone-200 rounded-lg p-4 bg-white"
             >
               <div className="flex justify-between items-center mb-3">
                 <h4 className="font-medium">
@@ -503,7 +503,7 @@ const EditPopularDestinationsPage = () => {
             }
             className={`px-4 py-2 rounded-md ${
               !field.itemFields?.every((f) => newNestedArrayItem[f.name])
-                ? "bg-gray-300 cursor-not-allowed"
+                ? "bg-stone-300 cursor-not-allowed"
                 : "bg-blue-600 text-white hover:bg-blue-700"
             }`}
           >
@@ -719,7 +719,7 @@ const EditPopularDestinationsPage = () => {
               {((currentValue as string[]) || []).map((item, index) => (
                 <div
                   key={index}
-                  className="bg-gray-100 px-3 py-1 rounded-full flex items-center"
+                  className="bg-stone-100 px-3 py-1 rounded-full flex items-center"
                 >
                   {item}
                   <button
@@ -861,7 +861,7 @@ const EditPopularDestinationsPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 disabled:bg-gray-400"
+              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 disabled:bg-stone-400"
             >
               {loading
                 ? "Saving..."
@@ -873,7 +873,7 @@ const EditPopularDestinationsPage = () => {
               <button
                 type="button"
                 onClick={handleCancelEdit}
-                className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600"
+                className="bg-stone-500 text-white px-6 py-2 rounded hover:bg-stone-600"
               >
                 Cancel
               </button>
@@ -891,36 +891,36 @@ const EditPopularDestinationsPage = () => {
           <div className="text-center py-8">Loading data...</div>
         ) : data.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-stone-200">
+              <thead className="bg-stone-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">
                     Tagline
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">
                     Rating
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-stone-200">
                 {data.map((item) => (
                   <tr key={item.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="font-medium">{item.name}</div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-stone-500">
                         {item.tagline?.substring(0, 50) || ""}...
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-stone-500">
                       {item.tagline?.substring(0, 50) || ""}...
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-stone-500">
                       {item.rating}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -943,7 +943,7 @@ const EditPopularDestinationsPage = () => {
             </table>
           </div>
         ) : (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-stone-500">
             No destinations found
           </div>
         )}

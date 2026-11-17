@@ -22,7 +22,7 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
         <svg
           key={i}
           className={`w-4 h-4 sm:w-5 sm:h-5 ${
-            i < testimonial.rating ? "text-amber-700" : "text-gray-300"
+            i < testimonial.rating ? "text-amber-700" : "text-stone-300"
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -32,13 +32,13 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
         </svg>
       ))}
     </div>
-    <blockquote className="text-gray-700 italic mb-4 sm:mb-6 text-base sm:text-lg">
+    <blockquote className="text-stone-700 italic mb-4 sm:mb-6 text-base sm:text-lg">
       &ldquo;{testimonial.quote}&rdquo;
     </blockquote>
-    <p className="font-medium text-gray-800 text-sm sm:text-base">
+    <p className="font-medium text-stone-800 text-sm sm:text-base">
       — {testimonial.author}
       {testimonial.source && (
-        <span className="text-gray-400 font-normal">
+        <span className="text-stone-400 font-normal">
           {" "}
           · {testimonial.source}
         </span>
@@ -63,10 +63,10 @@ const TestimonialsSection: React.FC = () => {
   return (
     <Container className="py-12 sm:py-16">
       <div className="text-center mb-8 sm:mb-12">
-        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+        <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
           What Travelers Say About Us
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto px-4 text-sm sm:text-base">
+        <p className="text-stone-600 max-w-2xl mx-auto px-4 text-sm sm:text-base">
           Real stories from travelers who explored Bhutan with us.
         </p>
       </div>

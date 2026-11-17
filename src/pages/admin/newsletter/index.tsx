@@ -66,10 +66,10 @@ const NewsletterManagement: React.FC = () => {
     <Container className="py-8">
       <div className="max-w-6xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-stone-900 mb-2">
             Newsletter Subscribers
           </h1>
-          <p className="text-gray-600">
+          <p className="text-stone-600">
             Total active subscribers: {subscribers.length}
           </p>
         </div>
@@ -80,34 +80,34 @@ const NewsletterManagement: React.FC = () => {
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden">
           {subscribers.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-500">No subscribers found.</p>
+              <p className="text-stone-500">No subscribers found.</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="w-full divide-y divide-stone-200">
+                <thead className="bg-stone-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">
                       Email Address
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">
                       Subscribed At
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-stone-200">
                   {subscribers.map((subscriber) => (
-                    <tr key={subscriber._id} className="hover:bg-gray-50">
+                    <tr key={subscriber._id} className="hover:bg-stone-50">
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
+                        <div className="text-sm font-medium text-stone-900">
                           {subscriber.email}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
+                        <div className="text-sm text-stone-900">
                           {formatDate(subscriber.subscribedAt)}
                         </div>
                       </td>

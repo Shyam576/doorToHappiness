@@ -111,7 +111,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="text"
               value={invoiceData.confirmationNumber}
               onChange={(e) => handleInputChange('confirmationNumber', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
           <div>
@@ -120,7 +120,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="date"
               value={invoiceData.invoiceDate}
               onChange={(e) => handleInputChange('invoiceDate', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
         </div>
@@ -130,7 +130,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
             type="text"
             value={invoiceData.companyName}
             onChange={(e) => handleInputChange('companyName', e.target.value)}
-            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
           />
         </div>
       </div>
@@ -147,7 +147,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="text"
               value={invoiceData.agentName}
               onChange={(e) => handleInputChange('agentName', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
           <div>
@@ -156,7 +156,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="text"
               value={invoiceData.agentAddress}
               onChange={(e) => handleInputChange('agentAddress', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
           <div>
@@ -165,7 +165,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="text"
               value={invoiceData.vatNumber}
               onChange={(e) => handleInputChange('vatNumber', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
         </div>
@@ -194,7 +194,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                     type="text"
                     value={traveler.fullName}
                     onChange={(e) => handleTravelerChange(traveler.id, 'fullName', e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-gray-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
                   />
                 </div>
                 <div>
@@ -203,7 +203,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                     type="text"
                     value={traveler.documentNumber}
                     onChange={(e) => handleTravelerChange(traveler.id, 'documentNumber', e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-gray-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-2">
@@ -213,7 +213,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                       type="date"
                       value={traveler.arrivalDate}
                       onChange={(e) => handleTravelerChange(traveler.id, 'arrivalDate', e.target.value)}
-                      className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-gray-200 outline-none focus:border-[#7b8cde]"
+                      className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
                     />
                   </div>
                   <div>
@@ -222,7 +222,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                       type="date"
                       value={traveler.departureDate}
                       onChange={(e) => handleTravelerChange(traveler.id, 'departureDate', e.target.value)}
-                      className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-gray-200 outline-none focus:border-[#7b8cde]"
+                      className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
                     />
                   </div>
                 </div>
@@ -232,7 +232,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                     type="text"
                     value={traveler.destination}
                     onChange={(e) => handleTravelerChange(traveler.id, 'destination', e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-gray-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
                   />
                 </div>
               </div>
@@ -270,7 +270,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                     type="text"
                     value={item.description}
                     onChange={(e) => handleCostItemChange(item.id, 'description', e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-gray-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
                   />
                 </div>
                 <div>
@@ -281,7 +281,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                     type="number"
                     value={item.amount}
                     onChange={(e) => handleCostItemChange(item.id, 'amount', parseFloat(e.target.value) || 0)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-gray-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
                     step="0.01"
                   />
                 </div>
@@ -307,7 +307,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
           <select
             value={invoiceData.currency}
             onChange={(e) => handleInputChange('currency', e.target.value)}
-            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
           >
             <option value="USD">USD ($)</option>
             <option value="INR">INR (₹)</option>
@@ -327,7 +327,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="text"
               value={invoiceData.beneficiaryName}
               onChange={(e) => handleInputChange('beneficiaryName', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
           <div className="grid grid-cols-2 gap-2">
@@ -337,7 +337,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                 type="text"
                 value={invoiceData.accountNumber}
                 onChange={(e) => handleInputChange('accountNumber', e.target.value)}
-                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
               />
             </div>
             <div>
@@ -345,7 +345,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               <select
                 value={invoiceData.accountType}
                 onChange={(e) => handleInputChange('accountType', e.target.value)}
-                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
               >
                 <option value="Dollar Account">Dollar Account</option>
                 <option value="INR Account">INR Account</option>
@@ -359,7 +359,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                 type="text"
                 value={invoiceData.bankName}
                 onChange={(e) => handleInputChange('bankName', e.target.value)}
-                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
               />
             </div>
             <div>
@@ -368,7 +368,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
                 type="text"
                 value={invoiceData.swiftCode}
                 onChange={(e) => handleInputChange('swiftCode', e.target.value)}
-                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
               />
             </div>
           </div>
@@ -378,7 +378,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="text"
               value={invoiceData.bankAddress}
               onChange={(e) => handleInputChange('bankAddress', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
         </div>
@@ -396,7 +396,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="text"
               value={invoiceData.website}
               onChange={(e) => handleInputChange('website', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
           <div>
@@ -405,7 +405,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="email"
               value={invoiceData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
           <div>
@@ -414,7 +414,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="tel"
               value={invoiceData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
           <div>
@@ -423,7 +423,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               type="text"
               value={invoiceData.location}
               onChange={(e) => handleInputChange('location', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-gray-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
             />
           </div>
         </div>

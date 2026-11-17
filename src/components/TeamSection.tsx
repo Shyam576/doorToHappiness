@@ -25,7 +25,7 @@ const TeamSection: React.FC = () => {
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mb-4">
             Meet the People Behind Your Bhutan Journey
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg">
+          <p className="text-stone-600 text-base sm:text-lg">
             You&apos;ll spend days, not minutes, with our team. Here&apos;s
             who you&apos;ll be travelling with.
           </p>
@@ -50,7 +50,7 @@ const TeamSection: React.FC = () => {
                 {member.role}
               </p>
               {member.bio && (
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-stone-600 text-sm leading-relaxed">
                   {member.bio}
                 </p>
               )}

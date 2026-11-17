@@ -55,20 +55,20 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
         {/* Breadcrumb Navigation */}
         <div className="bg-white border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <nav className="flex items-center space-x-2 text-sm text-gray-600">
+            <nav className="flex items-center space-x-2 text-sm text-stone-600">
               <Link href="/" className="hover:text-amber-600 flex items-center">
                 <FiHome className="mr-1" /> Home
               </Link>
-              <FiChevronRight className="text-gray-400" />
+              <FiChevronRight className="text-stone-400" />
               <Link href="/sacred-places" className="hover:text-amber-600">
                 Heritage Places
               </Link>
-              <FiChevronRight className="text-gray-400" />
+              <FiChevronRight className="text-stone-400" />
               <Link href={`/dzongkhag/${dzongkhag.slug}`} className="hover:text-amber-600">
                 {dzongkhag.name}
               </Link>
-              <FiChevronRight className="text-gray-400" />
-              <span className="text-gray-900 font-medium">{place.name}</span>
+              <FiChevronRight className="text-stone-400" />
+              <span className="text-stone-900 font-medium">{place.name}</span>
             </nav>
           </div>
         </div>
@@ -117,16 +117,16 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
             <div className="lg:col-span-2 space-y-8">
               {/* About Section */}
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">About {place.name}</h2>
+                <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">About {place.name}</h2>
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-stone-700 leading-relaxed mb-4">
                     {place.description}
                   </p>
                   
                   {place.history && (
                     <>
-                      <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Historical Significance</h3>
-                      <p className="text-gray-700 leading-relaxed">
+                      <h3 className="text-xl font-semibold text-stone-900 mt-6 mb-3">Historical Significance</h3>
+                      <p className="text-stone-700 leading-relaxed">
                         {place.history}
                       </p>
                     </>
@@ -134,8 +134,8 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                   
                   {place.significance && (
                     <>
-                      <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Cultural Significance</h3>
-                      <p className="text-gray-700 leading-relaxed">
+                      <h3 className="text-xl font-semibold text-stone-900 mt-6 mb-3">Cultural Significance</h3>
+                      <p className="text-stone-700 leading-relaxed">
                         {place.significance}
                       </p>
                     </>
@@ -145,31 +145,31 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
 
               {/* Architecture & Features */}
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6 flex items-center">
                   <FaBuilding className="mr-3 text-amber-500" />
                   Architecture & Features
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3">Architectural Style:</h4>
-                    <p className="text-gray-600 mb-4">
+                    <h4 className="font-medium text-stone-700 mb-3">Architectural Style:</h4>
+                    <p className="text-stone-600 mb-4">
                       Traditional Bhutanese architecture featuring intricate woodwork, 
                       painted motifs, and distinctive roof designs typical of {place.type}s.
                     </p>
                   </div>
                   
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3">Special Features:</h4>
+                    <h4 className="font-medium text-stone-700 mb-3">Special Features:</h4>
                     <ul className="space-y-2">
-                      <li className="text-gray-600 flex items-center">
+                      <li className="text-stone-600 flex items-center">
                         <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
                         Traditional construction without nails
                       </li>
-                      <li className="text-gray-600 flex items-center">
+                      <li className="text-stone-600 flex items-center">
                         <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
                         Intricate wood carvings and paintings
                       </li>
-                      <li className="text-gray-600 flex items-center">
+                      <li className="text-stone-600 flex items-center">
                         <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
                         Sacred Buddhist artifacts
                       </li>
@@ -180,14 +180,14 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
 
               {/* Visiting Information */}
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6 flex items-center">
                   <FiInfo className="mr-3 text-amber-500" />
                   Visiting Information
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3">Access & Timing:</h4>
-                    <ul className="space-y-2 text-gray-600">
+                    <h4 className="font-medium text-stone-700 mb-3">Access & Timing:</h4>
+                    <ul className="space-y-2 text-stone-600">
                       <li>• Open to visitors during daylight hours</li>
                       <li>• Guided tours available</li>
                       <li>• Photography permitted in designated areas</li>
@@ -196,8 +196,8 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                   </div>
                   
                   <div>
-                    <h4 className="font-medium text-gray-700 mb-3">What to Expect:</h4>
-                    <ul className="space-y-2 text-gray-600">
+                    <h4 className="font-medium text-stone-700 mb-3">What to Expect:</h4>
+                    <ul className="space-y-2 text-stone-600">
                       <li>• Sacred prayer halls and shrines</li>
                       <li>• Traditional architectural details</li>
                       <li>• Peaceful meditation spaces</li>
@@ -215,17 +215,17 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                 <h3 className="text-lg font-bold mb-4">Quick Information</h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 font-medium">Type</span>
-                    <span className="text-sm font-medium text-gray-700 capitalize">{place.type}</span>
+                    <span className="text-sm text-stone-500 font-medium">Type</span>
+                    <span className="text-sm font-medium text-stone-700 capitalize">{place.type}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 font-medium">Location</span>
-                    <span className="text-sm font-medium text-gray-700">{dzongkhag.name}</span>
+                    <span className="text-sm text-stone-500 font-medium">Location</span>
+                    <span className="text-sm font-medium text-stone-700">{dzongkhag.name}</span>
                   </div>
                   {place.distance && (
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500 font-medium">Distance</span>
-                      <span className="text-sm font-medium text-gray-700">{place.distance}</span>
+                      <span className="text-sm text-stone-500 font-medium">Distance</span>
+                      <span className="text-sm font-medium text-stone-700">{place.distance}</span>
                     </div>
                   )}
                 </div>
@@ -236,7 +236,7 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
               {/* Visit Dzongkhag */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h3 className="text-lg font-bold mb-4">Explore the Region</h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-stone-600 text-sm mb-4">
                   Discover more attractions and heritage sites in {dzongkhag.name} Dzongkhag.
                 </p>
                 <Link href={`/dzongkhag/${dzongkhag.slug}`}>
@@ -253,7 +253,7 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                   <div className="space-y-4">
                     {relatedPlaces.map((relatedPlace: any) => (
                       <Link key={relatedPlace.slug} href={`/sacred-places/${relatedPlace.slug}`}>
-                        <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-stone-50 transition-colors">
                           {relatedPlace.image && (
                             <img 
                               src={relatedPlace.image} 
@@ -265,9 +265,9 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
                             />
                           )}
                           <div className="flex-grow min-w-0">
-                            <h4 className="font-medium text-gray-900 text-sm line-clamp-1">{relatedPlace.name}</h4>
-                            <p className="text-gray-500 text-xs capitalize">{relatedPlace.type}</p>
-                            <p className="text-gray-500 text-xs">{relatedPlace.dzongkhag}</p>
+                            <h4 className="font-medium text-stone-900 text-sm line-clamp-1">{relatedPlace.name}</h4>
+                            <p className="text-stone-500 text-xs capitalize">{relatedPlace.type}</p>
+                            <p className="text-stone-500 text-xs">{relatedPlace.dzongkhag}</p>
                           </div>
                         </div>
                       </Link>
@@ -289,7 +289,7 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
               Discover the rich cultural heritage of Bhutan's sacred sites
             </p>
             <Link href="/sacred-places">
-              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors">
+              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-stone-100 transition-colors">
                 Browse All Heritage Places
               </button>
             </Link>

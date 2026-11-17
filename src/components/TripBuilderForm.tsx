@@ -170,10 +170,10 @@ const TripBuilderForm: React.FC = () => {
         <div className={`inline-flex items-center justify-center w-14 h-14 rounded-full ${theme.primaryLight} mb-4`}>
           <FiCheck className={`w-7 h-7 ${theme.primaryText}`} />
         </div>
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+        <h3 className="text-xl sm:text-2xl font-bold text-stone-800 mb-2">
           Thanks — your Bhutan trip request is in!
         </h3>
-        <p className="text-gray-600 mb-6 text-sm sm:text-base max-w-md mx-auto">
+        <p className="text-stone-600 mb-6 text-sm sm:text-base max-w-md mx-auto">
           Our team will review your preferences and reach out on WhatsApp or
           email within 24 hours with a tailored itinerary.
         </p>
@@ -209,7 +209,7 @@ const TripBuilderForm: React.FC = () => {
           <div>
             <label
               htmlFor="travelMonth"
-              className="block text-lg sm:text-xl font-bold text-gray-800 mb-4"
+              className="block text-lg sm:text-xl font-bold text-stone-800 mb-4"
             >
               When do you want to visit?
             </label>
@@ -222,14 +222,14 @@ const TripBuilderForm: React.FC = () => {
                 setData((prev) => ({ ...prev, travelMonth: e.target.value }))
               }
               min={new Date().toISOString().slice(0, 7)}
-              className="w-full sm:w-64 px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+              className="w-full sm:w-64 px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
             />
           </div>
         )}
 
         {step === 1 && (
           <div>
-            <p className="text-lg sm:text-xl font-bold text-gray-800 mb-4">
+            <p className="text-lg sm:text-xl font-bold text-stone-800 mb-4">
               How long?
             </p>
             <div
@@ -249,7 +249,7 @@ const TripBuilderForm: React.FC = () => {
                   className={`px-4 py-3 rounded-lg border-2 text-sm sm:text-base font-medium text-left transition-colors ${
                     data.tripLength === option
                       ? `${theme.primaryBorder} ${theme.primaryLight} ${theme.primaryText}`
-                      : "border-gray-300 text-gray-700 hover:border-amber-300"
+                      : "border-stone-300 text-stone-700 hover:border-amber-300"
                   }`}
                 >
                   {option}
@@ -261,7 +261,7 @@ const TripBuilderForm: React.FC = () => {
 
         {step === 2 && (
           <div>
-            <p className="text-lg sm:text-xl font-bold text-gray-800 mb-4">
+            <p className="text-lg sm:text-xl font-bold text-stone-800 mb-4">
               What interests you?
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -277,7 +277,7 @@ const TripBuilderForm: React.FC = () => {
                     className={`px-4 py-3 rounded-lg border-2 text-sm sm:text-base font-medium text-left transition-colors ${
                       checked
                         ? `${theme.primaryBorder} ${theme.primaryLight} ${theme.primaryText}`
-                        : "border-gray-300 text-gray-700 hover:border-amber-300"
+                        : "border-stone-300 text-stone-700 hover:border-amber-300"
                     }`}
                   >
                     {interest}
@@ -290,7 +290,7 @@ const TripBuilderForm: React.FC = () => {
 
         {step === 3 && (
           <div>
-            <p className="text-lg sm:text-xl font-bold text-gray-800 mb-4">
+            <p className="text-lg sm:text-xl font-bold text-stone-800 mb-4">
               Who are you travelling with?
             </p>
             <div
@@ -310,7 +310,7 @@ const TripBuilderForm: React.FC = () => {
                   className={`px-4 py-3 rounded-lg border-2 text-sm sm:text-base font-medium text-left transition-colors ${
                     data.travelParty === option
                       ? `${theme.primaryBorder} ${theme.primaryLight} ${theme.primaryText}`
-                      : "border-gray-300 text-gray-700 hover:border-amber-300"
+                      : "border-stone-300 text-stone-700 hover:border-amber-300"
                   }`}
                 >
                   {option}
@@ -322,13 +322,13 @@ const TripBuilderForm: React.FC = () => {
 
         {step === 4 && (
           <div className="space-y-4">
-            <p className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+            <p className="text-lg sm:text-xl font-bold text-stone-800 mb-2">
               Almost there — how should we reach you?
             </p>
             <div>
               <label
                 htmlFor="tb-name"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-stone-700 mb-1"
               >
                 Full Name <span className="text-red-500">*</span>
               </label>
@@ -340,7 +340,7 @@ const TripBuilderForm: React.FC = () => {
                   setData((prev) => ({ ...prev, name: e.target.value }))
                 }
                 required
-                className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
                 placeholder="Your name"
               />
             </div>
@@ -348,7 +348,7 @@ const TripBuilderForm: React.FC = () => {
               <div>
                 <label
                   htmlFor="tb-phone"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-stone-700 mb-1"
                 >
                   WhatsApp Number <span className="text-red-500">*</span>
                 </label>
@@ -360,14 +360,14 @@ const TripBuilderForm: React.FC = () => {
                     setData((prev) => ({ ...prev, phone: e.target.value }))
                   }
                   required
-                  className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                  className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
                   placeholder="+1 234 567 8900"
                 />
               </div>
               <div>
                 <label
                   htmlFor="tb-email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-stone-700 mb-1"
                 >
                   Email <span className="text-red-500">*</span>
                 </label>
@@ -379,7 +379,7 @@ const TripBuilderForm: React.FC = () => {
                     setData((prev) => ({ ...prev, email: e.target.value }))
                   }
                   required
-                  className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                  className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
                   placeholder="your@email.com"
                 />
               </div>

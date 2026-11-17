@@ -125,7 +125,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
         })}
       />
 
-      <div className="bg-gradient-to-b from-gray-50 to-white">
+      <div className="bg-gradient-to-b from-stone-50 to-white">
         {/* Hero Section with Image Gallery */}
         <div className="relative h-96 lg:h-[500px]">
           <div className="grid grid-cols-1 lg:grid-cols-4 h-full">
@@ -170,7 +170,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
               onClick={handleShare}
               className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
             >
-              <FiShare2 className="w-5 h-5 text-gray-700" />
+              <FiShare2 className="w-5 h-5 text-stone-700" />
             </button>
           </div>
         </div>
@@ -179,14 +179,14 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             {/* Header Info */}
-            <div className="p-6 lg:p-8 border-b border-gray-100">
+            <div className="p-6 lg:p-8 border-b border-stone-100">
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center space-x-2 text-sm text-amber-600 font-medium mb-2">
                     <FiMusic className="w-4 h-4" />
                     <span>Festival Experience</span>
                   </div>
-                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{tourData.title}</h1>
+                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-stone-900 mb-4">{tourData.title}</h1>
                   
                   {/* Festival Dates Banner */}
                   <div className="bg-gradient-to-r from-amber-100 to-amber-200 p-4 rounded-xl mb-4">
@@ -197,7 +197,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                   </div>
                   
                   {/* Quick Info */}
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+                  <div className="flex flex-wrap items-center gap-6 text-sm text-stone-600">
                     <div className="flex items-center space-x-2">
                       <FiMapPin className="w-4 h-4 text-amber-500" />
                       <span>{tourData.route}</span>
@@ -218,7 +218,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                     <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
                     <button 
                       onClick={() => router.push('/contactus')}
-                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-stone-50 transition-colors duration-300"
                     >
                       Enquire Now
                     </button>
@@ -228,7 +228,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
             </div>
 
             {/* Navigation Tabs */}
-            <div className="border-b border-gray-100">
+            <div className="border-b border-stone-100">
               <nav className="flex space-x-8 px-6 lg:px-8">
                 {[
                   { key: 'overview', label: 'Overview' },
@@ -242,7 +242,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                     className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
                       activeTab === tab.key
                         ? 'border-amber-500 text-amber-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        : 'border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300'
                     }`}
                   >
                     {tab.label}
@@ -255,63 +255,63 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
             <div className="p-6 lg:p-8">
               {activeTab === 'overview' && (
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-gray-700 leading-relaxed mb-6">{tourData.description}</p>
+                  <p className="text-stone-700 leading-relaxed mb-6">{tourData.description}</p>
                   
                   {/* Festival Experience Features */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose mb-8">
                     <div className="text-center p-6 bg-amber-50 rounded-xl">
                       <FiMusic className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Sacred Performances</h3>
-                      <p className="text-sm text-gray-600">Witness traditional Cham dances and sacred musical performances</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Sacred Performances</h3>
+                      <p className="text-sm text-stone-600">Witness traditional Cham dances and sacred musical performances</p>
                     </div>
                     <div className="text-center p-6 bg-amber-100 rounded-xl">
                       <HiOutlineColorSwatch className="w-8 h-8 text-amber-800 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Colorful Costumes</h3>
-                      <p className="text-sm text-gray-600">Marvel at elaborate traditional costumes and ancient masks</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Colorful Costumes</h3>
+                      <p className="text-sm text-stone-600">Marvel at elaborate traditional costumes and ancient masks</p>
                     </div>
                     <div className="text-center p-6 bg-amber-50 rounded-xl">
                       <FiUsers className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Local Celebration</h3>
-                      <p className="text-sm text-gray-600">Join locals in authentic festival celebrations and rituals</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Local Celebration</h3>
+                      <p className="text-sm text-stone-600">Join locals in authentic festival celebrations and rituals</p>
                     </div>
                   </div>
 
                   {/* Festival Facts */}
                   <div className="bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl not-prose mb-8">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Festival Facts</h3>
+                    <h3 className="text-xl font-semibold text-stone-900 mb-4">Festival Facts</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                        <span className="text-sm text-gray-700">Ancient tradition dating back centuries</span>
+                        <span className="text-sm text-stone-700">Ancient tradition dating back centuries</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-amber-700 rounded-full"></div>
-                        <span className="text-sm text-gray-700">Sacred Thongdrel blessing ceremony</span>
+                        <span className="text-sm text-stone-700">Sacred Thongdrel blessing ceremony</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                        <span className="text-sm text-gray-700">Mask dances by monastery monks</span>
+                        <span className="text-sm text-stone-700">Mask dances by monastery monks</span>
                       </div>
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-amber-700 rounded-full"></div>
-                        <span className="text-sm text-gray-700">Limited access cultural experience</span>
+                        <span className="text-sm text-stone-700">Limited access cultural experience</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Festival Statistics */}
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 not-prose">
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">5-6</div>
-                      <div className="text-sm text-gray-600">Festival Days</div>
+                      <div className="text-sm text-stone-600">Festival Days</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">15+</div>
-                      <div className="text-sm text-gray-600">Performances</div>
+                      <div className="text-sm text-stone-600">Performances</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">3</div>
-                      <div className="text-sm text-gray-600">Sacred Sites</div>
+                      <div className="text-sm text-stone-600">Sacred Sites</div>
                     </div>
                   </div>
                 </div>
@@ -319,7 +319,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
 
               {activeTab === 'itinerary' && (
                 <div className="space-y-6">
-                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Festival Schedule & Daily Itinerary</h2>
+                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Festival Schedule & Daily Itinerary</h2>
                   <div className="space-y-4">
                     {tourData.detailed_itinerary?.map((day, index) => (
                       <div key={index} className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
@@ -331,10 +331,10 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                               </div>
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-xl font-semibold text-gray-900 mb-2">{day.title}</h3>
+                              <h3 className="text-xl font-semibold text-stone-900 mb-2">{day.title}</h3>
                               <ul className="space-y-2">
                                 {day.activities.map((activity, idx) => (
-                                  <li key={idx} className="flex items-start space-x-2 text-gray-700">
+                                  <li key={idx} className="flex items-start space-x-2 text-stone-700">
                                     <FiChevronRight className="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" />
                                     <span>{activity}</span>
                                   </li>
@@ -351,12 +351,12 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
 
               {activeTab === 'highlights' && (
                 <div>
-                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Festival Highlights</h2>
+                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Festival Highlights</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {tourData.highlights.map((highlight, index) => (
                       <div key={index} className="flex items-start space-x-3 p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg hover:from-amber-100 hover:to-amber-200 transition-colors duration-200">
                         <FiMusic className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                        <span className="text-gray-800 font-medium">{highlight}</span>
+                        <span className="text-stone-800 font-medium">{highlight}</span>
                       </div>
                     ))}
                   </div>
@@ -367,7 +367,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Inclusions */}
                   <div className="bg-green-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
                       <FiCheck className="w-5 h-5 text-green-600 mr-2" />
                       Festival Package Includes
                     </h3>
@@ -384,7 +384,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                       ].map((item, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <FiCheck className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-gray-700">{item}</span>
+                          <span className="text-stone-700">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -392,7 +392,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
 
                   {/* Exclusions */}
                   <div className="bg-red-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
                       <FiX className="w-5 h-5 text-red-600 mr-2" />
                       Not Included
                     </h3>
@@ -408,7 +408,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                       ].map((item, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <FiX className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                          <span className="text-gray-700">{item}</span>
+                          <span className="text-stone-700">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -424,7 +424,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
             <p className="text-lg opacity-90 mb-2">Join us for {tourData.dates}</p>
             <p className="text-sm opacity-80 mb-6">Secure your spot for this once-in-a-lifetime cultural celebration</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-50 transition-colors duration-300">
+              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-stone-50 transition-colors duration-300">
                 Book Festival Tour Now
               </button>
               <button className="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">

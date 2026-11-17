@@ -20,10 +20,10 @@ const DayPlan: React.FC<DayPlanProps> = ({ day, title, children }) => {
         {day}
       </div>
       <div className="flex-1 min-w-0">
-        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+        <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mb-2">
           {title}
         </h3>
-        <div className="text-gray-700 leading-relaxed space-y-2">
+        <div className="text-stone-700 leading-relaxed space-y-2">
           {children}
         </div>
       </div>
@@ -80,7 +80,7 @@ const SevenDayItinerary = () => {
         <div className="max-w-4xl mx-auto px-4 py-12">
           {/* Intro */}
           <section className="mb-12">
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-lg text-stone-700 leading-relaxed mb-6">
               This is the classic first-time route through Bhutan — the one
               most travelers take on their first visit, and the one we build
               the most private itineraries around. It covers Bhutan's three
@@ -91,28 +91,28 @@ const SevenDayItinerary = () => {
               without feeling rushed, and it's easy to extend if you want to
               add Bumthang, Gangtey, or a short trek.
             </p>
-            <div className="bg-gray-50 rounded-lg p-6 flex flex-wrap gap-6">
+            <div className="bg-stone-50 rounded-lg p-6 flex flex-wrap gap-6">
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-1">
                   Best for
                 </p>
-                <p className="text-gray-800 font-medium">
+                <p className="text-stone-800 font-medium">
                   First-time visitors
                 </p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-1">
                   Route
                 </p>
-                <p className="text-gray-800 font-medium">
+                <p className="text-stone-800 font-medium">
                   Paro → Thimphu → Punakha → Paro
                 </p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-1">
                   Pace
                 </p>
-                <p className="text-gray-800 font-medium">
+                <p className="text-stone-800 font-medium">
                   Relaxed, 1–2 activities per day
                 </p>
               </div>
@@ -121,7 +121,7 @@ const SevenDayItinerary = () => {
 
           {/* Day by day */}
           <section className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-8 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-8 text-stone-900 flex items-center gap-3">
               <FiClock className={theme.primaryText} /> Day-by-Day
             </h2>
 
@@ -280,10 +280,10 @@ const SevenDayItinerary = () => {
 
           {/* Make it your own */}
           <section className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-stone-900">
               Make It Your Own
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-stone-700 leading-relaxed">
               This route is a starting point, not a fixed package — it's
               easy to extend it toward Bumthang and Gangtey for a longer
               cultural trip, slow it down for a more relaxed pace, or add a
@@ -309,7 +309,7 @@ const SevenDayItinerary = () => {
               around you.
             </p>
             <Link href="/contactus">
-              <button className={`${theme.primaryText} bg-white font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors`}>
+              <button className={`${theme.primaryText} bg-white font-bold py-3 px-8 rounded-lg hover:bg-stone-100 transition-colors`}>
                 Plan My Bhutan Trip
               </button>
             </Link>

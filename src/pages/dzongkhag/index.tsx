@@ -57,9 +57,9 @@ const DzongkhagIndex = () => {
         />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
         {/* Hero Section */}
-        <div className="relative py-24 overflow-hidden bg-gray-900">
+        <div className="relative py-24 overflow-hidden bg-stone-900">
           {/* Background Image Layer */}
           <div
             className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
@@ -85,11 +85,11 @@ const DzongkhagIndex = () => {
         {/* Introduction */}
         <div className="max-w-4xl mx-auto px-4 py-16">
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="font-heading text-3xl font-bold text-gray-900 mb-6">Understanding Bhutan's Dzongkhags</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <h2 className="font-heading text-3xl font-bold text-stone-900 mb-6">Understanding Bhutan's Dzongkhags</h2>
+            <p className="text-lg text-stone-700 leading-relaxed mb-6">
               Bhutan is divided into 20 <strong>dzongkhags</strong> (districts), each serving as both administrative and spiritual centers. The word "dzongkhag" literally means "dzong district," highlighting the central role these fortress-monasteries play in Bhutanese governance and religious life.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-lg text-stone-700 leading-relaxed mb-6">
               Each dzongkhag contains numerous heritage sites including <strong>dzongs</strong>, <strong>lhakhangs</strong> (temples), <strong>gompas</strong> (monasteries), and <strong>chortens</strong> (stupas) that represent centuries of Buddhist tradition and architectural mastery.
             </p>
           </div>
@@ -98,7 +98,7 @@ const DzongkhagIndex = () => {
         {/* Regional Breakdown */}
         {Object.entries(regions).map(([regionName, dzongkhagList]) => (
           <div key={regionName} className="max-w-7xl mx-auto px-4 py-8">
-            <h2 className="font-heading text-3xl font-bold text-center mb-12 text-gray-900">
+            <h2 className="font-heading text-3xl font-bold text-center mb-12 text-stone-900">
               {regionName}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -131,30 +131,30 @@ const DzongkhagIndex = () => {
                   </div>
                   
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold mb-3 text-gray-900">{dzongkhag.name} Dzongkhag</h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3 flex-grow min-h-[4.5rem]">{dzongkhag.description}</p>
+                    <h3 className="text-xl font-bold mb-3 text-stone-900">{dzongkhag.name} Dzongkhag</h3>
+                    <p className="text-stone-600 mb-4 line-clamp-3 flex-grow min-h-[4.5rem]">{dzongkhag.description}</p>
                     
                     <div className="space-y-3 mb-6">
-                      <div className="flex items-center text-sm text-gray-600">
+                      <div className="flex items-center text-sm text-stone-600">
                         <FiMapPin className="mr-2 text-blue-500 flex-shrink-0" />
                         <span>{dzongkhag.location.region}</span>
                       </div>
                       
                       {dzongkhag.culture.dzongs.length > 0 && (
-                        <div className="flex items-center text-sm text-gray-600">
+                        <div className="flex items-center text-sm text-stone-600">
                           <FaMountain className="mr-2 text-green-500 flex-shrink-0" />
                           <span>{dzongkhag.culture.dzongs.length} Historic Dzongs</span>
                         </div>
                       )}
                       
-                      <div className="flex items-center text-sm text-gray-600">
+                      <div className="flex items-center text-sm text-stone-600">
                         <FiCompass className="mr-2 text-purple-500 flex-shrink-0" />
                         <span>{dzongkhag.highlights.length} Key Highlights</span>
                       </div>
                     </div>
 
                     <div className="mb-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">Top Highlights:</h4>
+                      <h4 className="font-semibold text-stone-900 mb-2">Top Highlights:</h4>
                       <div className="flex flex-wrap gap-1">
                         {dzongkhag.highlights.slice(0, 3).map((highlight: string) => (
                           <span key={highlight} className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">
@@ -162,7 +162,7 @@ const DzongkhagIndex = () => {
                           </span>
                         ))}
                         {dzongkhag.highlights.length > 3 && (
-                          <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+                          <span className="bg-stone-100 text-stone-600 px-2 py-1 rounded text-xs">
                             +{dzongkhag.highlights.length - 3} more
                           </span>
                         )}
@@ -183,24 +183,24 @@ const DzongkhagIndex = () => {
         ))}
 
         {/* SEO Rich Content Section
-        <div className="bg-gray-50 py-16">
+        <div className="bg-stone-50 py-16">
           <div className="max-w-6xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="text-4xl font-bold text-blue-600 mb-2">20</div>
-                <div className="text-gray-700">Dzongkhags (Districts)</div>
+                <div className="text-stone-700">Dzongkhags (Districts)</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-green-600 mb-2">200+</div>
-                <div className="text-gray-700">Heritage Sites</div>
+                <div className="text-stone-700">Heritage Sites</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-purple-600 mb-2">50+</div>
-                <div className="text-gray-700">Ancient Dzongs</div>
+                <div className="text-stone-700">Ancient Dzongs</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-amber-600 mb-2">1000+</div>
-                <div className="text-gray-700">Years of History</div>
+                <div className="text-stone-700">Years of History</div>
               </div>
             </div>
           </div>

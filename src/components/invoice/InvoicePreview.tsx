@@ -99,7 +99,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
   return (
     <div className="flex flex-col items-center p-8">
       {/* Preview Label */}
-      <div className="text-[11px] uppercase tracking-[2px] text-gray-500 mb-4">
+      <div className="text-[11px] uppercase tracking-[2px] text-stone-500 mb-4">
         Live Preview
       </div>
 

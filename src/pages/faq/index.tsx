@@ -60,7 +60,7 @@ const FAQPage = () => {
               Frequently Asked Questions
             </h1>
           </div>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-stone-700 max-w-3xl mx-auto leading-relaxed">
             Find answers to common questions about traveling to Bhutan and booking your perfect tour
           </p>
         </div>
@@ -74,7 +74,7 @@ const FAQPage = () => {
             type="text"
             aria-label="Search FAQs"
             placeholder="Search FAQs..."
-            className="block w-full pl-10 pr-3 py-3 border-2 border-amber-200 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-amber-300 focus:border-amber-400 text-base shadow-sm transition-all duration-200"
+            className="block w-full pl-10 pr-3 py-3 border-2 border-amber-200 rounded-xl leading-5 bg-white placeholder-stone-500 focus:outline-none focus:placeholder-stone-400 focus:ring-2 focus:ring-amber-300 focus:border-amber-400 text-base shadow-sm transition-all duration-200"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -95,7 +95,7 @@ const FAQPage = () => {
                   aria-controls={`faq-answer-${index}`}
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-800 pr-4">
+                    <h3 className="text-lg font-semibold text-stone-800 pr-4">
                       {faq.question}
                     </h3>
                     {expandedItems.includes(index) ? (
@@ -113,7 +113,7 @@ const FAQPage = () => {
                   }`}
                 >
                   <div className="prose prose-gray max-w-none">
-                    <p className="text-gray-700 leading-relaxed text-base">
+                    <p className="text-stone-700 leading-relaxed text-base">
                       {faq.answer}
                     </p>
                   </div>
@@ -123,7 +123,7 @@ const FAQPage = () => {
           ) : (
             searchTerm && (
               <div className="text-center py-16 bg-white rounded-xl shadow-lg border border-amber-100">
-                <h3 className="text-xl font-semibold text-gray-700 mb-6">
+                <h3 className="text-xl font-semibold text-stone-700 mb-6">
                   No FAQs found matching your search
                 </h3>
                 <button
@@ -142,7 +142,7 @@ const FAQPage = () => {
           <h2 className="font-heading text-2xl font-bold bg-gradient-to-r from-amber-500 to-amber-700 bg-clip-text text-transparent mb-4">
             Still have questions?
           </h2>
-          <p className="text-gray-700 mb-8 text-lg">
+          <p className="text-stone-700 mb-8 text-lg">
             Can&apos;t find what you&apos;re looking for? We&apos;re here to help you plan your perfect Bhutan adventure.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

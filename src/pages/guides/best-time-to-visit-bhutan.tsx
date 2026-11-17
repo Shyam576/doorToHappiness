@@ -63,7 +63,7 @@ const BestTimeToVisitBhutan = () => {
 
         <div className="max-w-4xl mx-auto px-4 py-12">
           {/* Table of Contents */}
-          <div className="bg-gray-50 rounded-lg p-6 mb-12">
+          <div className="bg-stone-50 rounded-lg p-6 mb-12">
             <h2 className="font-heading text-2xl font-bold mb-4">Table of Contents</h2>
             <ul className="space-y-2">
               <li>
@@ -101,11 +101,11 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Quick Answer */}
           <section id="quick-answer" className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-stone-900">
               Quick Answer
             </h2>
             <div className={`${theme.primaryLight} border-l-4 ${theme.primaryBorder} p-6 my-6`}>
-              <p className="text-lg text-gray-800 leading-relaxed">
+              <p className="text-lg text-stone-800 leading-relaxed">
                 For most travelers, <strong>late September to November</strong> and{" "}
                 <strong>March to May</strong> are the best windows — clear
                 mountain views, comfortable daytime temperatures, and Bhutan's
@@ -114,7 +114,7 @@ const BestTimeToVisitBhutan = () => {
                 another (quiet, or lower rates).
               </p>
             </div>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-stone-700 leading-relaxed">
               Bhutan's festival dates follow the Bhutanese lunar calendar and
               shift every year, so exact dates below are approximate — if a
               specific tsechu is the reason for your trip,{" "}
@@ -127,10 +127,10 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Spring */}
           <section id="spring" className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-stone-900 flex items-center gap-3">
               <FiSun className={`${theme.primaryText}`} /> Spring (March – May)
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-lg text-stone-700 leading-relaxed mb-6">
               Spring is when Bhutan's valleys turn colorful — rhododendrons
               and magnolias bloom across the hillsides, and daytime
               temperatures in Paro, Thimphu, and Punakha are comfortably
@@ -139,16 +139,16 @@ const BestTimeToVisitBhutan = () => {
               festivals, typically falls within this window.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-bold text-gray-900 mb-1">Good for</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-stone-50 rounded-lg p-5">
+                <h3 className="font-bold text-stone-900 mb-1">Good for</h3>
+                <p className="text-stone-600 text-sm">
                   First-time visitors, photography, moderate trekking, the
                   Paro Tshechu
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-bold text-gray-900 mb-1">Trade-off</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-stone-50 rounded-lg p-5">
+                <h3 className="font-bold text-stone-900 mb-1">Trade-off</h3>
+                <p className="text-stone-600 text-sm">
                   One of the busier seasons — book accommodation and permits
                   early
                 </p>
@@ -158,11 +158,11 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Summer / Monsoon */}
           <section id="summer" className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-stone-900 flex items-center gap-3">
               <FiCloudRain className={`${theme.primaryText}`} /> Summer / Monsoon
               (June – August)
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-lg text-stone-700 leading-relaxed mb-6">
               Bhutan's monsoon brings regular afternoon rain, especially in
               lower and southern regions, and cloud cover that can obscure
               mountain views. It's also when the valleys are at their
@@ -173,16 +173,16 @@ const BestTimeToVisitBhutan = () => {
               doable.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-bold text-gray-900 mb-1">Good for</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-stone-50 rounded-lg p-5">
+                <h3 className="font-bold text-stone-900 mb-1">Good for</h3>
+                <p className="text-stone-600 text-sm">
                   Quiet cultural touring, lush landscapes, travelers who don't
                   mind rain
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-bold text-gray-900 mb-1">Trade-off</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-stone-50 rounded-lg p-5">
+                <h3 className="font-bold text-stone-900 mb-1">Trade-off</h3>
+                <p className="text-stone-600 text-sm">
                   Cloud cover can hide mountain views; high-altitude trekking
                   is difficult
                 </p>
@@ -192,11 +192,11 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Autumn */}
           <section id="autumn" className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-stone-900 flex items-center gap-3">
               <FiWind className={`${theme.primaryText}`} /> Autumn (September –
               November)
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-lg text-stone-700 leading-relaxed mb-6">
               Widely considered Bhutan's peak season, and for good reason:
               skies clear after the monsoon, mountain views are at their
               best, and the harvest season paints the valleys gold. The
@@ -205,16 +205,16 @@ const BestTimeToVisitBhutan = () => {
               the country are generally at their best.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-bold text-gray-900 mb-1">Good for</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-stone-50 rounded-lg p-5">
+                <h3 className="font-bold text-stone-900 mb-1">Good for</h3>
+                <p className="text-stone-600 text-sm">
                   Trekking, mountain photography, the Thimphu Tshechu,
                   first-time visitors
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-bold text-gray-900 mb-1">Trade-off</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-stone-50 rounded-lg p-5">
+                <h3 className="font-bold text-stone-900 mb-1">Trade-off</h3>
+                <p className="text-stone-600 text-sm">
                   Bhutan's busiest season — flights and permits should be
                   booked well ahead
                 </p>
@@ -224,11 +224,11 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Winter */}
           <section id="winter" className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-stone-900 flex items-center gap-3">
               <FiCloud className={`${theme.primaryText}`} /> Winter (December –
               February)
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-lg text-stone-700 leading-relaxed mb-6">
               Winter brings crisp, clear skies and Bhutan's coldest
               temperatures, particularly at higher elevations — Thimphu and
               Paro can be quite cold at night, while Punakha, at a lower
@@ -240,16 +240,16 @@ const BestTimeToVisitBhutan = () => {
               falls in February or March.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-bold text-gray-900 mb-1">Good for</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-stone-50 rounded-lg p-5">
+                <h3 className="font-bold text-stone-900 mb-1">Good for</h3>
+                <p className="text-stone-600 text-sm">
                   Clear photography, fewer crowds, black-necked cranes in
                   Phobjikha
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-bold text-gray-900 mb-1">Trade-off</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-stone-50 rounded-lg p-5">
+                <h3 className="font-bold text-stone-900 mb-1">Trade-off</h3>
+                <p className="text-stone-600 text-sm">
                   Cold at higher altitudes; some high mountain passes may
                   close after snowfall
                 </p>
@@ -259,11 +259,11 @@ const BestTimeToVisitBhutan = () => {
 
           {/* By interest */}
           <section id="by-interest" className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-stone-900">
               Which Season Fits You?
             </h2>
             <div className="bg-amber-100 border border-amber-300 rounded-lg p-6">
-              <ul className="text-gray-700 space-y-3">
+              <ul className="text-stone-700 space-y-3">
                 <li>
                   <strong>Chasing festivals (tsechus):</strong> spring or
                   autumn — check exact dates with us before booking flights
@@ -299,7 +299,7 @@ const BestTimeToVisitBhutan = () => {
               suggest the right season and build an itinerary around it.
             </p>
             <Link href="/contactus">
-              <button className={`${theme.primaryText} bg-white font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors`}>
+              <button className={`${theme.primaryText} bg-white font-bold py-3 px-8 rounded-lg hover:bg-stone-100 transition-colors`}>
                 Plan My Bhutan Trip
               </button>
             </Link>

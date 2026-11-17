@@ -131,7 +131,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
         })}
       />
 
-      <div className="bg-gradient-to-b from-gray-50 to-white">
+      <div className="bg-gradient-to-b from-stone-50 to-white">
         {/* Hero Section with Image Gallery */}
         <div className="relative h-96 lg:h-[500px]">
           <div className="grid grid-cols-1 lg:grid-cols-4 h-full">
@@ -169,7 +169,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
               onClick={handleShare}
               className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
             >
-              <FiShare2 className="w-5 h-5 text-gray-700" />
+              <FiShare2 className="w-5 h-5 text-stone-700" />
             </button>
           </div>
         </div>
@@ -178,17 +178,17 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             {/* Header Info */}
-            <div className="p-6 lg:p-8 border-b border-gray-100">
+            <div className="p-6 lg:p-8 border-b border-stone-100">
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center space-x-2 text-sm text-amber-600 font-medium mb-2">
                     <HiOutlineBuildingLibrary className="w-4 h-4" />
                     <span>Cultural Experience</span>
                   </div>
-                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{tourData.title}</h1>
+                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-stone-900 mb-4">{tourData.title}</h1>
                   
                   {/* Quick Info */}
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+                  <div className="flex flex-wrap items-center gap-6 text-sm text-stone-600">
                     <div className="flex items-center space-x-2">
                       <FiMapPin className="w-4 h-4 text-amber-500" />
                       <span>{tourData.route}</span>
@@ -209,7 +209,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                     <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
                     <button 
                       onClick={() => router.push('/contactus')}
-                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-stone-50 transition-colors duration-300"
                     >
                       Enquire Now
                     </button>
@@ -219,7 +219,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
             </div>
 
             {/* Navigation Tabs */}
-            <div className="border-b border-gray-100">
+            <div className="border-b border-stone-100">
               <nav className="flex space-x-8 px-6 lg:px-8">
                 {[
                   { key: 'overview', label: 'Overview' },
@@ -233,7 +233,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                     className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
                       activeTab === tab.key
                         ? 'border-amber-500 text-amber-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        : 'border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300'
                     }`}
                   >
                     {tab.label}
@@ -246,44 +246,44 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
             <div className="p-6 lg:p-8">
               {activeTab === 'overview' && (
                 <div className="prose prose-lg max-w-none">
-                  <p className="text-gray-700 leading-relaxed mb-6">{tourData.description}</p>
+                  <p className="text-stone-700 leading-relaxed mb-6">{tourData.description}</p>
                   
                   {/* Cultural Experience Features */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose mb-8">
                     <div className="text-center p-6 bg-amber-50 rounded-xl">
                       <HiOutlineBuildingLibrary className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Ancient Monasteries</h3>
-                      <p className="text-sm text-gray-600">Explore sacred Buddhist temples and monasteries with centuries of history</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Ancient Monasteries</h3>
+                      <p className="text-sm text-stone-600">Explore sacred Buddhist temples and monasteries with centuries of history</p>
                     </div>
                     <div className="text-center p-6 bg-amber-100 rounded-xl">
                       <HiOutlineColorSwatch className="w-8 h-8 text-amber-800 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Traditional Arts</h3>
-                      <p className="text-sm text-gray-600">Witness authentic Bhutanese crafts, painting, and traditional arts</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Traditional Arts</h3>
+                      <p className="text-sm text-stone-600">Witness authentic Bhutanese crafts, painting, and traditional arts</p>
                     </div>
                     <div className="text-center p-6 bg-green-50 rounded-xl">
                       <FiUsers className="w-8 h-8 text-green-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-gray-900 mb-2">Local Culture</h3>
-                      <p className="text-sm text-gray-600">Immerse in authentic Bhutanese lifestyle and traditions</p>
+                      <h3 className="font-semibold text-stone-900 mb-2">Local Culture</h3>
+                      <p className="text-sm text-stone-600">Immerse in authentic Bhutanese lifestyle and traditions</p>
                     </div>
                   </div>
 
                   {/* Tour Statistics */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 not-prose">
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">8-9</div>
-                      <div className="text-sm text-gray-600">Days</div>
+                      <div className="text-sm text-stone-600">Days</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">12+</div>
-                      <div className="text-sm text-gray-600">Attractions</div>
+                      <div className="text-sm text-stone-600">Attractions</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">5</div>
-                      <div className="text-sm text-gray-600">Cities</div>
+                      <div className="text-sm text-stone-600">Cities</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 bg-stone-50 rounded-lg">
                       <div className="text-2xl font-bold text-amber-600">4.8★</div>
-                      <div className="text-sm text-gray-600">Rating</div>
+                      <div className="text-sm text-stone-600">Rating</div>
                     </div>
                   </div>
                 </div>
@@ -291,10 +291,10 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
 
               {activeTab === 'itinerary' && (
                 <div className="space-y-6">
-                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Detailed Day-by-Day Itinerary</h2>
+                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Detailed Day-by-Day Itinerary</h2>
                   <div className="space-y-4">
                     {tourData.detailed_itinerary?.map((day, index) => (
-                      <div key={index} className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
+                      <div key={index} className="bg-stone-50 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
                         <div className="p-6">
                           <div className="flex items-start space-x-4">
                             <div className="flex-shrink-0">
@@ -303,10 +303,10 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                               </div>
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-xl font-semibold text-gray-900 mb-2">{day.title}</h3>
+                              <h3 className="text-xl font-semibold text-stone-900 mb-2">{day.title}</h3>
                               <ul className="space-y-2">
                                 {day.activities.map((activity, idx) => (
-                                  <li key={idx} className="flex items-start space-x-2 text-gray-700">
+                                  <li key={idx} className="flex items-start space-x-2 text-stone-700">
                                     <FiChevronRight className="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" />
                                     <span>{activity}</span>
                                   </li>
@@ -323,12 +323,12 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
 
               {activeTab === 'highlights' && (
                 <div>
-                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Tour Highlights</h2>
+                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Tour Highlights</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {tourData.highlights.map((highlight, index) => (
                       <div key={index} className="flex items-start space-x-3 p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors duration-200">
                         <FiAward className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                        <span className="text-gray-800 font-medium">{highlight}</span>
+                        <span className="text-stone-800 font-medium">{highlight}</span>
                       </div>
                     ))}
                   </div>
@@ -339,7 +339,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Inclusions */}
                   <div className="bg-green-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
                       <FiCheck className="w-5 h-5 text-green-600 mr-2" />
                       What's Included
                     </h3>
@@ -355,7 +355,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                       ].map((item, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <FiCheck className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-gray-700">{item}</span>
+                          <span className="text-stone-700">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -363,7 +363,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
 
                   {/* Exclusions */}
                   <div className="bg-red-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
                       <FiX className="w-5 h-5 text-red-600 mr-2" />
                       What's Not Included
                     </h3>
@@ -379,7 +379,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                       ].map((item, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <FiX className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                          <span className="text-gray-700">{item}</span>
+                          <span className="text-stone-700">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -394,7 +394,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
             <h2 className="font-heading text-2xl font-bold mb-4">Ready to Experience Bhutan's Rich Culture?</h2>
             <p className="text-lg opacity-90 mb-6">Join us on this transformative journey through the Heart of the Himalayas</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-50 transition-colors duration-300">
+              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-stone-50 transition-colors duration-300">
                 Book This Cultural Tour
               </button>
               <button className="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">

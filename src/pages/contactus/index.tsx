@@ -90,9 +90,9 @@ const ContactPage = () => {
         />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
         {/* Hero Section - Mobile Optimized */}
-      <div className="relative py-16 sm:py-24 overflow-hidden bg-gray-900">
+      <div className="relative py-16 sm:py-24 overflow-hidden bg-stone-900">
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
           <img
@@ -119,14 +119,14 @@ const ContactPage = () => {
             {/* Contact Form - Mobile Optimized */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden">
               <div className="p-6 sm:p-8">
-                <div className="flex items-center gap-6 border-b border-gray-200 mb-6 sm:mb-8">
+                <div className="flex items-center gap-6 border-b border-stone-200 mb-6 sm:mb-8">
                   <button
                     type="button"
                     onClick={() => setActiveTab("plan")}
                     className={`pb-3 text-sm sm:text-base font-semibold border-b-2 transition-colors ${
                       activeTab === "plan"
                         ? `${theme.primaryText} ${theme.primaryBorder}`
-                        : "text-gray-400 border-transparent hover:text-gray-600"
+                        : "text-stone-400 border-transparent hover:text-stone-600"
                     }`}
                   >
                     Plan My Trip
@@ -137,7 +137,7 @@ const ContactPage = () => {
                     className={`pb-3 text-sm sm:text-base font-semibold border-b-2 transition-colors ${
                       activeTab === "general"
                         ? `${theme.primaryText} ${theme.primaryBorder}`
-                        : "text-gray-400 border-transparent hover:text-gray-600"
+                        : "text-stone-400 border-transparent hover:text-stone-600"
                     }`}
                   >
                     General Enquiry
@@ -148,10 +148,10 @@ const ContactPage = () => {
                   <TripBuilderForm />
                 ) : (
                   <>
-                    <h2 className="font-heading text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+                    <h2 className="font-heading text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
                       Send us a message
                     </h2>
-                    <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
+                    <p className="text-stone-600 mb-6 sm:mb-8 text-sm sm:text-base">
                       Fill out the form below and our team will get back to
                       you within 24 hours.
                     </p>
@@ -177,7 +177,7 @@ const ContactPage = () => {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-stone-700 mb-1"
                     >
                       Full Name <span className="text-red-500">*</span>
                     </label>
@@ -188,7 +188,7 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
+                      className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
                       placeholder="Your name"
                     />
                   </div>
@@ -197,7 +197,7 @@ const ContactPage = () => {
                     <div>
                       <label
                         htmlFor="email"
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-stone-700 mb-1"
                       >
                         Email <span className="text-red-500">*</span>
                       </label>
@@ -208,7 +208,7 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
+                        className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -216,7 +216,7 @@ const ContactPage = () => {
                     <div>
                       <label
                         htmlFor="phone"
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-stone-700 mb-1"
                       >
                         Phone Number
                       </label>
@@ -226,7 +226,7 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
+                        className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
                         placeholder="+975 12345678"
                       />
                     </div>
@@ -235,7 +235,7 @@ const ContactPage = () => {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-stone-700 mb-1"
                     >
                       Message <span className="text-red-500">*</span>
                     </label>
@@ -246,7 +246,7 @@ const ContactPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base resize-none"
+                      className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base resize-none"
                       placeholder="Tell us about your travel plans..."
                     ></textarea>
                   </div>
@@ -298,7 +298,7 @@ const ContactPage = () => {
             <div className="space-y-6 sm:space-y-8">
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
                 <div className="p-6 sm:p-8">
-                  <h2 className="font-heading text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
+                  <h2 className="font-heading text-2xl sm:text-3xl font-bold text-stone-800 mb-4 sm:mb-6">
                     Our Information
                   </h2>
 
@@ -327,10 +327,10 @@ const ContactPage = () => {
                         </svg>
                       </div>
                       <div className="ml-3 sm:ml-4">
-                        <h3 className="text-base sm:text-lg font-medium text-gray-800">
+                        <h3 className="text-base sm:text-lg font-medium text-stone-800">
                           Our Address
                         </h3>
-                        <p className="mt-1 text-gray-600 text-sm sm:text-base">
+                        <p className="mt-1 text-stone-600 text-sm sm:text-base">
                           Olokha, Thimphu, Bhutan
                         </p>
                       </div>
@@ -354,10 +354,10 @@ const ContactPage = () => {
                         </svg>
                       </div>
                       <div className="ml-3 sm:ml-4">
-                        <h3 className="text-base sm:text-lg font-medium text-gray-800">
+                        <h3 className="text-base sm:text-lg font-medium text-stone-800">
                           Phone Number
                         </h3>
-                        <p className="mt-1 text-gray-600 text-sm sm:text-base">
+                        <p className="mt-1 text-stone-600 text-sm sm:text-base">
                           {process.env.NEXT_PUBLIC_PHONE_NO}
                         </p>
                       </div>
@@ -381,7 +381,7 @@ const ContactPage = () => {
                         </svg>
                       </div>
                       <div className="ml-3 sm:ml-4">
-                        <h3 className="text-base sm:text-lg font-medium text-gray-800">
+                        <h3 className="text-base sm:text-lg font-medium text-stone-800">
                           Email Address
                         </h3>
                         <a
@@ -413,10 +413,10 @@ const ContactPage = () => {
                         </svg>
                       </div>
                       <div className="ml-3 sm:ml-4">
-                        <h3 className="text-base sm:text-lg font-medium text-gray-800">
+                        <h3 className="text-base sm:text-lg font-medium text-stone-800">
                           Working Hours
                         </h3>
-                        <p className="mt-1 text-gray-600 text-sm sm:text-base">
+                        <p className="mt-1 text-stone-600 text-sm sm:text-base">
                           Monday - Friday: 9:00 AM - 5:00 PM
                           <br />
                           Saturday: 9:00 AM - 1:00 PM
@@ -432,7 +432,7 @@ const ContactPage = () => {
               {/* Map - Mobile Optimized */}
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
                 <div className="p-4 sm:p-6">
-                  <h2 className="font-heading text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+                  <h2 className="font-heading text-xl sm:text-2xl font-bold text-stone-800 mb-3 sm:mb-4">
                     Our Location
                   </h2>
                   <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">

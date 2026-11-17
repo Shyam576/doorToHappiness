@@ -59,7 +59,7 @@ const PhotoStorySection: React.FC = () => {
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-stone-900 mb-4">
             Bhutan Is More Than Places
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg">
+          <p className="text-stone-600 text-base sm:text-lg">
             Moments from the road — captured on our own trips across the
             kingdom.
           </p>

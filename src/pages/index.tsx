@@ -167,7 +167,7 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
+    <div className="bg-gradient-to-b from-stone-50 to-white overflow-x-hidden">
       <Seo
         title="Door to Happiness Holidays | Licensed Bhutan Tour Operator in Thimphu"
         description="Licensed Bhutan tour operator in Thimphu (TCB #1053196). Cultural tours, trekking, and festival trips across all 20 dzongkhags, with visa/SDF handled for you."
@@ -252,7 +252,7 @@ const Index: React.FC = () => {
           tall this needs to be, and the background image (object-cover, fill)
           stretches to match. A fixed h-screen/overflow-hidden box previously clipped
           the card's bottom edge once it grew taller than the cap. */}
-      <div className="relative min-h-[600px] bg-gray-900">
+      <div className="relative min-h-[600px] bg-stone-900">
         <div className="absolute inset-0">
           <Image
             src="/homepagebg1.webp"
@@ -307,7 +307,7 @@ const Index: React.FC = () => {
               >
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
               </svg>
-              <span className="text-gray-800 font-semibold text-sm sm:text-base">
+              <span className="text-stone-800 font-semibold text-sm sm:text-base">
                 Certified Excellence in Bhutan Tourism
               </span>
             </div> */}
@@ -331,7 +331,7 @@ const Index: React.FC = () => {
               <h2 className="font-heading text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
                 Our Most Popular Bhutan Tours
               </h2>
-              <p className="text-gray-600 text-sm sm:text-base">
+              <p className="text-stone-600 text-sm sm:text-base">
                 {sortedPackages.length} tours available
               </p>
             </div>
@@ -417,8 +417,8 @@ const Index: React.FC = () => {
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-900 mb-4 sm:mb-6 leading-tight">
               Your Gateway to Authentic Bhutan Travel Experiences
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed text-left sm:text-center">
-              <strong className="text-gray-900">Door to Happiness Holiday</strong> is a licensed
+            <p className="text-base sm:text-lg lg:text-xl text-stone-600 leading-relaxed text-left sm:text-center">
+              <strong className="text-stone-900">Door to Happiness Holiday</strong> is a licensed
               Bhutan-based tour operator connecting travelers with authentic
               cultural tours, trekking adventures, and sacred sites like{" "}
               <Link href="/dzongkhag/paro" className="relative inline-block group cursor-pointer">
@@ -447,10 +447,10 @@ const Index: React.FC = () => {
                     className="object-contain"
                   />
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
+                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-stone-900 mb-1">
                   Licensed Bhutanese Operator
                 </h4>
-                <p className="text-xs sm:text-xs lg:text-sm text-gray-600 leading-snug">
+                <p className="text-xs sm:text-xs lg:text-sm text-stone-600 leading-snug">
                   Fully authorized by the Tourism Council of Bhutan with certified local guides
                 </p>
               </div>
@@ -466,10 +466,10 @@ const Index: React.FC = () => {
                     className="object-cover rounded-lg"
                   />
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
+                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-stone-900 mb-1">
                   Complete Dzongkhag Coverage
                 </h4>
-                <p className="text-xs sm:text-xs lg:text-sm text-gray-600 leading-snug">
+                <p className="text-xs sm:text-xs lg:text-sm text-stone-600 leading-snug">
                   Tours across all 20 districts from Haa to Trashigang
                 </p>
               </div>
@@ -485,10 +485,10 @@ const Index: React.FC = () => {
                     className="object-cover rounded-lg"
                   />
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
+                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-stone-900 mb-1">
                   Sustainable Tourism
                 </h4>
-                <p className="text-xs sm:text-xs lg:text-sm text-gray-600 leading-snug">
+                <p className="text-xs sm:text-xs lg:text-sm text-stone-600 leading-snug">
                   Committed to carbon-neutral travel and preserving Bhutan&apos;s cultural integrity
                 </p>
               </div>
@@ -503,10 +503,10 @@ const Index: React.FC = () => {
                     className="object-contain"
                   />
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-gray-900 mb-1">
+                <h4 className="font-bold text-xs sm:text-sm lg:text-base text-stone-900 mb-1">
                   Custom Itineraries
                 </h4>
-                <p className="text-xs sm:text-xs lg:text-sm text-gray-600 leading-snug">
+                <p className="text-xs sm:text-xs lg:text-sm text-stone-600 leading-snug">
                   Personalized Bhutan vacation packages designed around your interests and schedule
                 </p>
               </div>
@@ -521,10 +521,10 @@ const Index: React.FC = () => {
       {/* Dzongkhags & Heritage Places Section */}
       <Container className="py-12 sm:py-16 bg-gradient-to-b from-stone-50 to-amber-50">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 mb-4">
             Explore Bhutan&apos;s Historic Dzongkhags
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+          <p className="text-stone-600 max-w-3xl mx-auto text-lg">
             Discover the cultural heart of Bhutan through its 20 dzongkhags,
             each home to ancient dzongs, monasteries, and timeless Buddhist
             traditions.
@@ -542,10 +542,10 @@ const Index: React.FC = () => {
                 className="object-cover rounded-lg"
               />
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+            <h3 className="text-2xl font-bold mb-3 text-stone-800">
               Historic Dzongs
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-stone-600 mb-6">
               Explore over 50 fortress-monasteries that serve as both
               administrative centers and spiritual sanctuaries across all 20
               dzongkhags.
@@ -567,10 +567,10 @@ const Index: React.FC = () => {
                 className="object-cover rounded-lg"
               />
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+            <h3 className="text-2xl font-bold mb-3 text-stone-800">
               Monasteries & Temples
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-stone-600 mb-6">
               Visit ancient lhakhangs, gompas, and temples that preserve 1,000+
               years of Buddhist wisdom and serve as centers of cultural
               practice.
@@ -592,10 +592,10 @@ const Index: React.FC = () => {
                 className="object-cover rounded-lg"
               />
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-800">
+            <h3 className="text-2xl font-bold mb-3 text-stone-800">
               Cultural Heritage
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-stone-600 mb-6">
               Experience living traditions through tsechu festivals, traditional
               architecture, and time-honored customs preserved in each
               dzongkhag.
@@ -610,7 +610,7 @@ const Index: React.FC = () => {
 
         {/* Featured Dzongkhags */}
         <div className="bg-white rounded-2xl shadow-lg p-8">
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-800">
+          <h3 className="text-2xl font-bold text-center mb-8 text-stone-800">
             Most Visited Dzongkhags
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -633,13 +633,13 @@ const Index: React.FC = () => {
                       <h4 className="font-bold text-white text-sm">
                         {dzongkhag.name}
                       </h4>
-                      <p className="text-xs text-gray-200">
+                      <p className="text-xs text-stone-200">
                         {dzongkhag.tagline}
                       </p>
                     </div>
                   </div>
                   {/* <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">{dzongkhag.culture.dzongs.length} Historic Dzongs</span>
+                    <span className="text-sm text-stone-600">{dzongkhag.culture.dzongs.length} Historic Dzongs</span>
                   </div> */}
                 </div>
               </Link>
@@ -699,7 +699,7 @@ const Index: React.FC = () => {
                   disabled={isSubscribing || !email.trim()}
                   className={`w-full font-bold py-3 px-4 rounded-lg transition text-base ${
                     isSubscribing
-                      ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                      ? "bg-stone-400 text-stone-200 cursor-not-allowed"
                       : subscriptionStatus === "success"
                       ? "bg-green-600 hover:bg-green-700 text-white"
                       : "bg-amber-600 hover:bg-amber-700 text-white"
@@ -748,7 +748,7 @@ const Index: React.FC = () => {
                   </div>
                 )}
 
-                <p className="text-xs text-gray-500 mt-3">
+                <p className="text-xs text-stone-500 mt-3">
                   We respect your privacy. Unsubscribe at any time.
                 </p>
               </form>

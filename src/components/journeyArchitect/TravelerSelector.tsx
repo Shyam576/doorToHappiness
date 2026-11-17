@@ -30,14 +30,14 @@ export function TravelerSelector({
   return (
     <div className="space-y-5">
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-2">Travelers</p>
+        <p className="text-sm font-medium text-stone-700 mb-2">Travelers</p>
         <div className="flex items-center gap-6">
           <Stepper label="Adults" value={adults} min={MIN_ADULTS} onChange={onAdultsChange} />
           <Stepper label="Children" value={childrenCount} min={MIN_CHILDREN} onChange={onChildrenCountChange} />
         </div>
       </div>
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-2">Traveling as</p>
+        <p className="text-sm font-medium text-stone-700 mb-2">Traveling as</p>
         <div role="radiogroup" aria-label="Traveler type" className="grid grid-cols-2 gap-3">
           {TRAVELER_TYPE_OPTIONS.map((option) => (
             <button
@@ -49,7 +49,7 @@ export function TravelerSelector({
               className={`px-4 py-3 rounded-lg border-2 text-sm font-medium text-left transition-colors ${
                 travelerType === option.value
                   ? `${theme.primaryBorder} ${theme.primaryLight} ${theme.primaryText}`
-                  : 'border-gray-300 text-gray-700 hover:border-amber-300'
+                  : 'border-stone-300 text-stone-700 hover:border-amber-300'
               }`}
             >
               {option.label}
@@ -77,16 +77,16 @@ function Stepper({ label, value, min, onChange }: StepperProps) {
           type="button"
           aria-label={`Decrease ${label.toLowerCase()}`}
           onClick={() => onChange(Math.max(min, value - 1))}
-          className="w-8 h-8 rounded-full border border-gray-300 text-gray-700 hover:border-amber-400 flex items-center justify-center"
+          className="w-8 h-8 rounded-full border border-stone-300 text-stone-700 hover:border-amber-400 flex items-center justify-center"
         >
           −
         </button>
-        <span className="w-6 text-center font-semibold text-gray-800">{value}</span>
+        <span className="w-6 text-center font-semibold text-stone-800">{value}</span>
         <button
           type="button"
           aria-label={`Increase ${label.toLowerCase()}`}
           onClick={() => onChange(value + 1)}
-          className="w-8 h-8 rounded-full border border-gray-300 text-gray-700 hover:border-amber-400 flex items-center justify-center"
+          className="w-8 h-8 rounded-full border border-stone-300 text-stone-700 hover:border-amber-400 flex items-center justify-center"
         >
           +
         </button>

@@ -148,7 +148,7 @@ function Index() {
             {category}
           </h3>
           {searchTerm && tours.length > 0 && (
-            <p className="text-lg text-gray-600 mt-2">
+            <p className="text-lg text-stone-600 mt-2">
               Showing {tours.length} {category.toLowerCase()} matching "
               {searchTerm}"
             </p>
@@ -165,7 +165,7 @@ function Index() {
           </div>
         ) : searchTerm ? (
           <div className="text-center py-8">
-            <h3 className="text-xl font-medium text-gray-600 mb-6">
+            <h3 className="text-xl font-medium text-stone-600 mb-6">
               No {category.toLowerCase()} found matching your search
             </h3>
           </div>
@@ -175,7 +175,7 @@ function Index() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white">
+    <div className="bg-gradient-to-b from-stone-50 to-white">
       <Seo
         title="Bhutan Tour Packages | Cultural, Trekking & Festival Tours"
         description="Browse curated Bhutan tour packages: cultural tours, trekking adventures, festival tours, and group tours from a licensed Bhutanese operator."
@@ -185,7 +185,7 @@ function Index() {
       />
 
       {/* Hero Section with Search */}
-      <div className="relative py-24 overflow-hidden bg-gray-900">
+      <div className="relative py-24 overflow-hidden bg-stone-900">
         {/* Background Image Layer */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
@@ -211,7 +211,7 @@ function Index() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <FiSearch className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+            <FiSearch className="absolute right-6 top-1/2 transform -translate-y-1/2 text-stone-500 w-5 h-5" />
           </div>
         </div>
         </div>
@@ -221,10 +221,10 @@ function Index() {
       {!searchTerm && (
         <Container className="py-16">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-stone-800 mb-4">
               Choose Your Perfect Bhutan Experience
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-stone-600 max-w-3xl mx-auto">
               From cultural immersion to mountain adventures, discover our
               carefully curated tour categories designed for every type of
               traveler.
@@ -360,17 +360,17 @@ function Index() {
                     allTours.adventureTours.length +
                     allTours.groupTours.length}
                 </div>
-                <div className="text-gray-600 font-medium">Total Packages</div>
+                <div className="text-stone-600 font-medium">Total Packages</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-amber-600 mb-2">5</div>
-                <div className="text-gray-600 font-medium">Tour Categories</div>
+                <div className="text-stone-600 font-medium">Tour Categories</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-amber-600 mb-2">
                   3-15
                 </div>
-                <div className="text-gray-600 font-medium">Days Duration</div>
+                <div className="text-stone-600 font-medium">Days Duration</div>
               </div>
             </div>
           </div>
@@ -385,7 +385,7 @@ function Index() {
               <FiCamera className="w-4 h-4 mr-2" />
               Category Filter Active
             </div>
-            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-stone-800 mb-4">
               {activeCategory === "city" &&
                 "Bhutan Tour Packages from Major Cities"}
               {activeCategory === "festival" && "Bhutan Festival Tours"}
@@ -418,10 +418,10 @@ function Index() {
       {searchTerm && (
         <Container className="py-8">
           <div className="text-center mb-8">
-            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-gray-800">
+            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-stone-800">
               Search Results
             </h2>
-            <p className="text-lg text-gray-600 mt-2">
+            <p className="text-lg text-stone-600 mt-2">
               Found {allFilteredTours.length} packages matching "{searchTerm}"
             </p>
           </div>
@@ -436,7 +436,7 @@ function Index() {
             </div>
           ) : (
             <div className="text-center py-16">
-              <h3 className="text-xl font-medium text-gray-600 mb-6">
+              <h3 className="text-xl font-medium text-stone-600 mb-6">
                 No packages found matching your search
               </h3>
               <button
@@ -512,28 +512,28 @@ function Index() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mb-4 shadow-lg animate-pulse">
                   <FiCreditCard className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-stone-800 mb-3">
                   Important Payment Information
                 </h2>
-                <p className="text-lg text-gray-600">
+                <p className="text-lg text-stone-600">
                   Please read carefully to ensure a smooth payment experience during your Bhutan journey
                 </p>
               </div>
 
               {/* Welcome Message */}
               <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 border-l-4 border-indigo-500 transform hover:scale-[1.02] transition-transform duration-300">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <h3 className="text-2xl font-bold text-stone-800 mb-4 flex items-center">
                   <span className="mr-3">🇧🇹</span>
                   Welcome to Bhutan – The Land of the Thunder Dragon!
                 </h3>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-stone-700 leading-relaxed">
                   We are delighted to have you in our beautiful country. To make your stay truly memorable and ensure a smooth payment experience, please take note of the following important guidelines:
                 </p>
               </div>
 
               {/* Smart Tips Section */}
               <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 transform hover:scale-[1.02] transition-transform duration-300">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <h3 className="text-xl font-bold text-stone-800 mb-6 flex items-center">
                   <FiCheckCircle className="w-6 h-6 text-green-500 mr-3 animate-pulse" />
                   Smart Tips for Hassle-Free Payments
                 </h3>
@@ -545,8 +545,8 @@ function Index() {
                       <span className="text-indigo-600 font-bold">1</span>
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Enable Your Cards for International Use</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-bold text-stone-800 mb-2">Enable Your Cards for International Use</h4>
+                      <p className="text-stone-600">
                         Before traveling, confirm with your bank (or via your mobile banking app) that your debit/credit cards are enabled for international transactions, including use in Bhutan.
                       </p>
                     </div>
@@ -558,8 +558,8 @@ function Index() {
                       <span className="text-indigo-600 font-bold">2</span>
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Inform Your Bank About Your Travel Plans</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-bold text-stone-800 mb-2">Inform Your Bank About Your Travel Plans</h4>
+                      <p className="text-stone-600">
                         Notify your bank of your travel dates and destination to prevent transaction declines and ensure smooth payments.
                       </p>
                     </div>
@@ -571,8 +571,8 @@ function Index() {
                       <span className="text-indigo-600 font-bold">3</span>
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Check Card Network Compatibility</h4>
-                      <p className="text-gray-600 mb-3">
+                      <h4 className="font-bold text-stone-800 mb-2">Check Card Network Compatibility</h4>
+                      <p className="text-stone-600 mb-3">
                         Ensure your card network — e.g. Visa, Mastercard, UnionPay, JCB, or American Express — is supported by banks in Bhutan.
                       </p>
                       <a 
@@ -590,7 +590,7 @@ function Index() {
 
               {/* Key Things to Do Section */}
               <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 transform hover:scale-[1.02] transition-transform duration-300">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <h3 className="text-xl font-bold text-stone-800 mb-6 flex items-center">
                   <FiInfo className="w-6 h-6 text-blue-500 mr-3 animate-pulse" />
                   Key Things to Do Before You Pay
                 </h3>
@@ -602,8 +602,8 @@ function Index() {
                       <span className="text-blue-600 font-bold">1</span>
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Be Aware of Transaction & Withdrawal Limits</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-bold text-stone-800 mb-2">Be Aware of Transaction & Withdrawal Limits</h4>
+                      <p className="text-stone-600">
                         Check your bank&apos;s transaction limit. At ATMs in Bhutan, follow on-screen instructions to note withdrawal limits per transaction.
                       </p>
                     </div>
@@ -615,8 +615,8 @@ function Index() {
                       <span className="text-blue-600 font-bold">2</span>
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Consult Merchants, Guides, or Banks</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-bold text-stone-800 mb-2">Consult Merchants, Guides, or Banks</h4>
+                      <p className="text-stone-600">
                         If a payment is declined, consult your merchant or guide for assistance. If the issue persists, contact the nearest bank.
                       </p>
                     </div>
@@ -628,8 +628,8 @@ function Index() {
                       <span className="text-blue-600 font-bold">3</span>
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Important Note for Regional (Indian) Tourists</h4>
-                      <p className="text-gray-600">
+                      <h4 className="font-bold text-stone-800 mb-2">Important Note for Regional (Indian) Tourists</h4>
+                      <p className="text-stone-600">
                         Cards issued in India denominated in USD will not work in Bhutan due to FEMA regulations by the Reserve Bank of India. Please carry cards valid for India, Bhutan, and Nepal to avoid payment issues.
                       </p>
                     </div>
@@ -653,7 +653,7 @@ function Index() {
               Contact our travel experts to customize your perfect trip
             </p>
             <button
-              className={`bg-white ${theme.primaryText} font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors`}
+              className={`bg-white ${theme.primaryText} font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-stone-100 transition-colors`}
             >
               Get a Custom Quote
             </button>

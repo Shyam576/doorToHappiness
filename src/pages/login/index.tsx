@@ -53,7 +53,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                 <meta name="description" content="Access your Bhutan travel account" />
             </Head>
 
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-stone-50">
                 {/* Hero Section with Bhutanese imagery */}
                 <div className="relative h-64 bg-blue-600 overflow-hidden">
                     <Image 
@@ -76,13 +76,13 @@ const Login: React.FC<LoginProps> = ({}) => {
                     <div className="flex border-b">
                         <button
                             onClick={() => setFormType('login')}
-                            className={`flex-1 py-4 font-medium ${formType === 'login' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'}`}
+                            className={`flex-1 py-4 font-medium ${formType === 'login' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-stone-500'}`}
                         >
                             Sign In
                         </button>
                         <button
                             onClick={() => setFormType('register')}
-                            className={`flex-1 py-4 font-medium ${formType === 'register' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'}`}
+                            className={`flex-1 py-4 font-medium ${formType === 'register' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-stone-500'}`}
                         >
                             Create Account
                         </button>
@@ -90,7 +90,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
                     {/* Form Content */}
                     <div className="p-8">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+                        <h2 className="text-2xl font-bold text-stone-800 mb-6">
                             {formType === 'login' ? 'Welcome Back' : 'Join Our Journey'}
                         </h2>
 
@@ -104,7 +104,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                             {({ isSubmitting, errors, touched }) => (
                                 <Form className="space-y-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-stone-700 mb-1">
                                             Email address
                                         </label>
                                         <Field
@@ -120,7 +120,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
                                     <div>
                                         <div className="flex justify-between items-center mb-1">
-                                            <label className="block text-sm font-medium text-gray-700">
+                                            <label className="block text-sm font-medium text-stone-700">
                                                 Password
                                             </label>
                                             {formType === 'login' && (
@@ -151,7 +151,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
                                     {formType === 'register' && (
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                            <label className="block text-sm font-medium text-stone-700 mb-1">
                                                 Account Type
                                             </label>
                                             <Field
