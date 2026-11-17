@@ -106,7 +106,7 @@ const Index: React.FC<InviteProps> = ({}) => {
                                             </div>
                                             <div className="flex pb-6 flex-col items-center my-5 max-w-7xl sm:flex-row lg:mx-[8rem]">
                                                 <div className="inline-flex flex-shrink-0 w-20 h-20 rounded-full text-neutral-600 sm:mr-10">
-                                                    <img className="mask mask-squircle" src={ApiResponse.room.owner.image}/>
+                                                    <img className="mask mask-squircle" src={ApiResponse.room.owner.image} alt={`${ApiResponse.room.owner.displayName} profile picture`}/>
                                                 </div>
                                                 <div className="flex-grow mt-6 prose text-center sm:text-left sm:mt-0 prose-md">
                                                 <h2>Owned by:</h2>
@@ -115,7 +115,7 @@ const Index: React.FC<InviteProps> = ({}) => {
                                             </div>
                                             <div className="flex pb-6 flex-col items-center my-5 max-w-7xl sm:flex-row lg:mx-[8rem]">
                                                 <div className="inline-flex flex-shrink-0 w-20 h-20 rounded-full text-neutral-600 sm:mr-10">
-                                                    <img className="mask mask-squircle" src={ApiResponse.user.image}/>
+                                                    <img className="mask mask-squircle" src={ApiResponse.user.image} alt={`${ApiResponse.user.displayName} profile picture`}/>
                                                 </div>
                                                 <div className="flex-grow mt-6 prose text-center sm:text-left sm:mt-0 prose-md">
                                                 <h2>Invited by:</h2>
