@@ -156,17 +156,21 @@ function generateSiteMapXML() {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    if (req.method === 'GET') {
+    if (req.method === 'GET' || req.method === 'HEAD') {
       const sitemap = generateSiteMapXML();
-      
+
       // Enhanced caching and headers for better SEO
       res.setHeader('Content-Type', 'application/xml; charset=utf-8');
       res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=43200'); // 24h cache, 12h stale
       res.setHeader('X-Robots-Tag', 'noindex'); // Don't index the sitemap itself
-      
-      res.status(200).send(sitemap);
+
+      if (req.method === 'HEAD') {
+        res.status(200).end();
+      } else {
+        res.status(200).send(sitemap);
+      }
     } else {
-      res.setHeader('Allow', ['GET']);
+      res.setHeader('Allow', ['GET', 'HEAD']);
       res.status(405).json({ message: 'Method not allowed' });
     }
   } catch (error) {
