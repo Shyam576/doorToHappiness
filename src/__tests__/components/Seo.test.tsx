@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import Seo from '../../components/Seo';
 
 // This repo's convention (see src/__tests__/index.test.tsx): next/head doesn't portal
@@ -124,5 +125,20 @@ describe('Seo', () => {
     );
     scripts = container.querySelectorAll('script[type="application/ld+json"]');
     expect(scripts).toHaveLength(2);
+  });
+
+  it('serializes JSON-LD as raw JSON in actual server-rendered HTML, not HTML-escaped entities', () => {
+    // Regression test: rendering {JSON.stringify(schema)} as JSX text content (instead of
+    // dangerouslySetInnerHTML) HTML-escapes quotes to &quot; when next/head serializes the
+    // page to a real HTML string. <script> content is raw text per the HTML spec, so browsers
+    // and JSON-LD parsers (Rich Results Test, Googlebot) never decode those entities back —
+    // the schema silently fails to parse. @testing-library's jsdom render doesn't go through
+    // this serialization step, so it can't catch this; renderToStaticMarkup does.
+    const html = renderToStaticMarkup(
+      <Seo title="T" description="D" path="/" jsonLd={{ '@type': 'Organization', name: 'Door to Happiness' }} />
+    );
+
+    expect(html).not.toContain('&quot;');
+    expect(html).toContain('"@type":"Organization"');
   });
 });

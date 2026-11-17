@@ -10,3 +10,12 @@ if (typeof global.ResizeObserver === 'undefined') {
     disconnect() {}
   }
 }
+
+// jsdom doesn't provide TextEncoder/TextDecoder, but react-dom/server's build
+// resolution under the jsdom test environment needs them. Only tests that
+// render through react-dom/server (e.g. to catch HTML-escaping bugs) hit this.
+if (typeof global.TextEncoder === 'undefined') {
+  const { TextEncoder, TextDecoder } = require('util')
+  global.TextEncoder = TextEncoder
+  global.TextDecoder = TextDecoder
+}
