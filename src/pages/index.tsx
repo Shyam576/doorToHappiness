@@ -170,7 +170,7 @@ const Index: React.FC = () => {
     <div className="bg-gradient-to-b from-gray-50 to-white overflow-x-hidden">
       <Seo
         title="Door to Happiness Holidays | Licensed Bhutan Tour Operator in Thimphu"
-        description="Licensed Bhutan tour operator based in Thimphu (TCB license #1053196). Expert-guided cultural tours, trekking, and festival trips across all 20 dzongkhags, with visa/SDF handled for you. Contact us to plan your trip."
+        description="Licensed Bhutan tour operator in Thimphu (TCB #1053196). Cultural tours, trekking, and festival trips across all 20 dzongkhags, with visa/SDF handled for you."
         path=""
         ogTitle="Door to Happiness Holiday - Bhutan's Premier Tour Operator"
         ogDescription="Experience authentic Bhutan with Door to Happiness Holiday. Cultural tours across 20 dzongkhags, sacred monasteries & festival experiences. Expert local guides, sustainable tourism."

@@ -26,7 +26,7 @@ const DzongkhagIndex = () => {
     <>
       <Seo
         title="Complete Guide to Bhutan's 20 Dzongkhags (Districts) | Cultural Heritage & Travel"
-        description="Comprehensive guide to all 20 dzongkhags of Bhutan. Explore dzongs, monasteries, and cultural heritage sites in each district. Plan your journey through the Land of the Thunder Dragon."
+        description="Guide to all 20 dzongkhags of Bhutan: dzongs, monasteries, and cultural heritage sites in each district of the Land of the Thunder Dragon."
         path="/dzongkhag"
         keywords="Bhutan dzongkhags, Bhutan districts, dzong Bhutan, sacred places Bhutan, monasteries Bhutan, Bhutan cultural heritage, Thimphu dzongkhag, Paro dzongkhag, Punakha dzongkhag, traditional architecture Bhutan"
         ogTitle="Complete Guide to Bhutan's 20 Dzongkhags - Sacred Places & Cultural Heritage"

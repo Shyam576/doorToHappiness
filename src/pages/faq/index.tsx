@@ -33,7 +33,7 @@ const FAQPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-100 py-12">
       <Seo
         title="Frequently Asked Questions - Door To Happiness"
-        description="Find answers to commonly asked questions about Bhutan tours, travel requirements, best times to visit, and booking procedures with Door To Happiness."
+        description="Answers to common questions about Bhutan tours: travel requirements, best time to visit, and booking procedures with Door to Happiness."
         path="/faq"
         keywords="Bhutan FAQ, travel questions, tour booking, visa requirements, best time visit Bhutan, Bhutan travel guide"
         ogTitle="Frequently Asked Questions | Door to Happiness Holiday"

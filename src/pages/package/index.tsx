@@ -178,7 +178,7 @@ function Index() {
     <div className="bg-gradient-to-b from-gray-50 to-white">
       <Seo
         title="Bhutan Tour Packages | Cultural, Trekking & Festival Tours"
-        description="Browse curated Bhutan tour packages: cultural tours, trekking adventures, festival tours, and group tours. Licensed Bhutanese operator with tailor-made itineraries."
+        description="Browse curated Bhutan tour packages: cultural tours, trekking adventures, festival tours, and group tours from a licensed Bhutanese operator."
         path="/package"
         ogTitle="Bhutan Tour Packages | Door to Happiness Holiday"
         ogDescription="Discover curated travel experiences to the Land of the Thunder Dragon — cultural, trekking, festival, and group tours."
