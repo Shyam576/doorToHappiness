@@ -38,6 +38,18 @@ const FAQPage = () => {
         keywords="Bhutan FAQ, travel questions, tour booking, visa requirements, best time visit Bhutan, Bhutan travel guide"
         ogTitle="Frequently Asked Questions | Door to Happiness Holiday"
         ogDescription="Find answers to commonly asked questions about Bhutan tours, travel requirements, best times to visit, and booking procedures."
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq: FAQItem) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer,
+            },
+          })),
+        }}
       />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
@@ -93,15 +105,19 @@ const FAQPage = () => {
                     )}
                   </div>
                 </button>
-                {expandedItems.includes(index) && (
-                  <div id={`faq-answer-${index}`} className="px-6 pb-5 pt-2 bg-gradient-to-r from-orange-25 to-yellow-25">
-                    <div className="prose prose-gray max-w-none">
-                      <p className="text-gray-700 leading-relaxed text-base">
-                        {faq.answer}
-                      </p>
-                    </div>
+                <div
+                  id={`faq-answer-${index}`}
+                  aria-hidden={!expandedItems.includes(index)}
+                  className={`px-6 pb-5 pt-2 bg-gradient-to-r from-orange-25 to-yellow-25 ${
+                    expandedItems.includes(index) ? '' : 'hidden'
+                  }`}
+                >
+                  <div className="prose prose-gray max-w-none">
+                    <p className="text-gray-700 leading-relaxed text-base">
+                      {faq.answer}
+                    </p>
                   </div>
-                )}
+                </div>
               </div>
             ))
           ) : (
