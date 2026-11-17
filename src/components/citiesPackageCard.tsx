@@ -33,8 +33,8 @@ const PREVIEW_TABS: { key: PreviewTab; label: string }[] = [
 
 const CATEGORY_CONFIG: Record<string, { label: string; color: string }> = {
   city:      { label: 'City Tour',    color: 'bg-amber-500' },
-  festival:  { label: 'Festival',     color: 'bg-orange-500' },
-  cultural:  { label: 'Cultural',     color: 'bg-yellow-600' },
+  festival:  { label: 'Festival',     color: 'bg-amber-500' },
+  cultural:  { label: 'Cultural',     color: 'bg-amber-800' },
   trekking:  { label: 'Trekking',     color: 'bg-emerald-700' },
   adventure: { label: 'Adventure',    color: 'bg-emerald-700' },
   group:     { label: 'Group Tour',   color: 'bg-amber-600' },

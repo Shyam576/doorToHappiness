@@ -140,7 +140,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
               
               {/* Festival Badge */}
               <div className="absolute top-4 left-4">
-                <div className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                <div className="bg-gradient-to-r from-amber-500 to-amber-700 text-white px-4 py-2 rounded-full text-sm font-semibold">
                   🎭 Festival Special
                 </div>
               </div>
@@ -182,15 +182,15 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
             <div className="p-6 lg:p-8 border-b border-gray-100">
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center space-x-2 text-sm text-orange-600 font-medium mb-2">
+                  <div className="flex items-center space-x-2 text-sm text-amber-600 font-medium mb-2">
                     <FiMusic className="w-4 h-4" />
                     <span>Festival Experience</span>
                   </div>
-                  <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{tourData.title}</h1>
+                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{tourData.title}</h1>
                   
                   {/* Festival Dates Banner */}
-                  <div className="bg-gradient-to-r from-orange-100 to-yellow-100 p-4 rounded-xl mb-4">
-                    <div className="flex items-center space-x-2 text-orange-800">
+                  <div className="bg-gradient-to-r from-amber-100 to-amber-200 p-4 rounded-xl mb-4">
+                    <div className="flex items-center space-x-2 text-amber-800">
                       <FiCalendar className="w-5 h-5" />
                       <span className="font-semibold">Festival Dates: {tourData.dates}</span>
                     </div>
@@ -199,11 +199,11 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                   {/* Quick Info */}
                   <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
                     <div className="flex items-center space-x-2">
-                      <FiMapPin className="w-4 h-4 text-orange-500" />
+                      <FiMapPin className="w-4 h-4 text-amber-500" />
                       <span>{tourData.route}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <FiClock className="w-4 h-4 text-orange-500" />
+                      <FiClock className="w-4 h-4 text-amber-500" />
                       <span>{tourData.duration}</span>
                     </div>
                   </div>
@@ -211,14 +211,14 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                 </div>
 
                 {/* Booking Card */}
-                <div className="w-full lg:w-auto lg:min-w-[280px] bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-6 rounded-xl shadow-lg">
+                <div className="w-full lg:w-auto lg:min-w-[280px] bg-gradient-to-r from-amber-500 to-amber-700 text-white p-6 rounded-xl shadow-lg">
                   <div className="text-center">
                     <p className="text-lg font-semibold mb-2">Festival Experience</p>
                     <p className="text-sm opacity-90 mb-2">Join this sacred celebration</p>
                     <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
                     <button 
                       onClick={() => router.push('/contactus')}
-                      className="w-full bg-white text-orange-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
                     >
                       Enquire Now
                     </button>
@@ -241,7 +241,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                     onClick={() => setActiveTab(tab.key)}
                     className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
                       activeTab === tab.key
-                        ? 'border-orange-500 text-orange-600'
+                        ? 'border-amber-500 text-amber-600'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
@@ -259,41 +259,41 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                   
                   {/* Festival Experience Features */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose mb-8">
-                    <div className="text-center p-6 bg-orange-50 rounded-xl">
-                      <FiMusic className="w-8 h-8 text-orange-600 mx-auto mb-3" />
+                    <div className="text-center p-6 bg-amber-50 rounded-xl">
+                      <FiMusic className="w-8 h-8 text-amber-600 mx-auto mb-3" />
                       <h3 className="font-semibold text-gray-900 mb-2">Sacred Performances</h3>
                       <p className="text-sm text-gray-600">Witness traditional Cham dances and sacred musical performances</p>
                     </div>
-                    <div className="text-center p-6 bg-yellow-50 rounded-xl">
-                      <HiOutlineColorSwatch className="w-8 h-8 text-yellow-600 mx-auto mb-3" />
+                    <div className="text-center p-6 bg-amber-100 rounded-xl">
+                      <HiOutlineColorSwatch className="w-8 h-8 text-amber-800 mx-auto mb-3" />
                       <h3 className="font-semibold text-gray-900 mb-2">Colorful Costumes</h3>
                       <p className="text-sm text-gray-600">Marvel at elaborate traditional costumes and ancient masks</p>
                     </div>
-                    <div className="text-center p-6 bg-orange-50 rounded-xl">
-                      <FiUsers className="w-8 h-8 text-orange-600 mx-auto mb-3" />
+                    <div className="text-center p-6 bg-amber-50 rounded-xl">
+                      <FiUsers className="w-8 h-8 text-amber-600 mx-auto mb-3" />
                       <h3 className="font-semibold text-gray-900 mb-2">Local Celebration</h3>
                       <p className="text-sm text-gray-600">Join locals in authentic festival celebrations and rituals</p>
                     </div>
                   </div>
 
                   {/* Festival Facts */}
-                  <div className="bg-gradient-to-r from-orange-50 to-yellow-50 p-6 rounded-xl not-prose mb-8">
+                  <div className="bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl not-prose mb-8">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Festival Facts</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                         <span className="text-sm text-gray-700">Ancient tradition dating back centuries</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-amber-700 rounded-full"></div>
                         <span className="text-sm text-gray-700">Sacred Thongdrel blessing ceremony</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
                         <span className="text-sm text-gray-700">Mask dances by monastery monks</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-amber-700 rounded-full"></div>
                         <span className="text-sm text-gray-700">Limited access cultural experience</span>
                       </div>
                     </div>
@@ -302,15 +302,15 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                   {/* Festival Statistics */}
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 not-prose">
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">5-6</div>
+                      <div className="text-2xl font-bold text-amber-600">5-6</div>
                       <div className="text-sm text-gray-600">Festival Days</div>
                     </div>
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">15+</div>
+                      <div className="text-2xl font-bold text-amber-600">15+</div>
                       <div className="text-sm text-gray-600">Performances</div>
                     </div>
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">3</div>
+                      <div className="text-2xl font-bold text-amber-600">3</div>
                       <div className="text-sm text-gray-600">Sacred Sites</div>
                     </div>
                   </div>
@@ -319,14 +319,14 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
 
               {activeTab === 'itinerary' && (
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Festival Schedule & Daily Itinerary</h2>
+                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Festival Schedule & Daily Itinerary</h2>
                   <div className="space-y-4">
                     {tourData.detailed_itinerary?.map((day, index) => (
-                      <div key={index} className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
+                      <div key={index} className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
                         <div className="p-6">
                           <div className="flex items-start space-x-4">
                             <div className="flex-shrink-0">
-                              <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-full flex items-center justify-center font-bold">
+                              <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-amber-700 text-white rounded-full flex items-center justify-center font-bold">
                                 {day.day}
                               </div>
                             </div>
@@ -335,7 +335,7 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
                               <ul className="space-y-2">
                                 {day.activities.map((activity, idx) => (
                                   <li key={idx} className="flex items-start space-x-2 text-gray-700">
-                                    <FiChevronRight className="w-4 h-4 text-orange-500 mt-1 flex-shrink-0" />
+                                    <FiChevronRight className="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" />
                                     <span>{activity}</span>
                                   </li>
                                 ))}
@@ -351,11 +351,11 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
 
               {activeTab === 'highlights' && (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Festival Highlights</h2>
+                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Festival Highlights</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {tourData.highlights.map((highlight, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-4 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg hover:from-orange-100 hover:to-yellow-100 transition-colors duration-200">
-                        <FiMusic className="w-5 h-5 text-orange-600 mt-1 flex-shrink-0" />
+                      <div key={index} className="flex items-start space-x-3 p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg hover:from-amber-100 hover:to-amber-200 transition-colors duration-200">
+                        <FiMusic className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
                         <span className="text-gray-800 font-medium">{highlight}</span>
                       </div>
                     ))}
@@ -419,12 +419,12 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
           </div>
 
           {/* Call to Action */}
-          {/* <div className="mt-8 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-center text-white">
-            <h2 className="text-2xl font-bold mb-4">Don't Miss This Sacred Festival Experience!</h2>
+          {/* <div className="mt-8 bg-gradient-to-r from-amber-500 to-amber-700 rounded-2xl p-8 text-center text-white">
+            <h2 className="font-heading text-2xl font-bold mb-4">Don't Miss This Sacred Festival Experience!</h2>
             <p className="text-lg opacity-90 mb-2">Join us for {tourData.dates}</p>
             <p className="text-sm opacity-80 mb-6">Secure your spot for this once-in-a-lifetime cultural celebration</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-orange-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-50 transition-colors duration-300">
+              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-50 transition-colors duration-300">
                 Book Festival Tour Now
               </button>
               <button className="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">

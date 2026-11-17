@@ -82,14 +82,14 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-br from-orange-500 via-yellow-500 to-orange-600 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-amber-500 via-amber-700 to-amber-600 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
           <div className="absolute inset-0 bg-black bg-opacity-10"></div>
           <div className="relative max-w-7xl mx-auto text-center">
             <div className="inline-flex items-center px-4 py-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6">
               <HiOutlineSparkles className="w-4 h-4 mr-2" />
               Premium City Experience
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
               {packageData.title}
             </h1>
             <p className="text-xl text-white opacity-90 max-w-3xl mx-auto mb-8">
@@ -114,10 +114,10 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-1 gap-6 mb-16 max-w-md mx-auto">
               <div className="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FiClock className="w-8 h-8 text-orange-600" />
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FiClock className="w-8 h-8 text-amber-600" />
                 </div>
-                <h3 className="text-3xl font-bold text-orange-600 mb-2">
+                <h3 className="text-3xl font-bold text-amber-600 mb-2">
                   {packageData.duration}
                 </h3>
                 <p className="text-gray-600 font-medium">Adventure Duration</p>
@@ -158,7 +158,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                         onClick={() => setSelectedImage(index)}
                         className={`rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
                           selectedImage === index
-                            ? "ring-4 ring-orange-500 transform scale-105"
+                            ? "ring-4 ring-amber-500 transform scale-105"
                             : "opacity-70 hover:opacity-100"
                         }`}
                       >
@@ -177,12 +177,12 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                     {packageData.images.length > 4 && (
                       <div 
                         onClick={() => setActiveTab("gallery")}
-                        className="rounded-xl overflow-hidden cursor-pointer transition-all duration-300 opacity-70 hover:opacity-100 bg-gradient-to-br from-orange-100 to-yellow-100 flex flex-col items-center justify-center text-center p-2"
+                        className="rounded-xl overflow-hidden cursor-pointer transition-all duration-300 opacity-70 hover:opacity-100 bg-gradient-to-br from-amber-100 to-amber-200 flex flex-col items-center justify-center text-center p-2"
                       >
-                        <span className="text-orange-600 text-xs font-medium">
+                        <span className="text-amber-600 text-xs font-medium">
                           +{packageData.images.length - 4} more
                         </span>
-                        <span className="text-orange-500 text-xs">
+                        <span className="text-amber-500 text-xs">
                           View Gallery
                         </span>
                       </div>
@@ -205,8 +205,8 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                         activeTab === tab.id
-                          ? "bg-gradient-to-r from-orange-500 to-yellow-500 text-white shadow-lg"
-                          : "text-gray-600 hover:text-orange-600 hover:bg-white"
+                          ? "bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg"
+                          : "text-gray-600 hover:text-amber-600 hover:bg-white"
                       }`}
                     >
                       <tab.icon className="w-4 h-4" />
@@ -219,7 +219,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
               {/* Tab Content */}
               {activeTab === "overview" && (
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                  <h2 className="font-heading text-3xl font-bold text-gray-800 mb-6">
                     Package Overview
                   </h2>
                   <div className="prose prose-lg max-w-none text-gray-700">
@@ -240,7 +240,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {activeTab === "itinerary" && (
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-8">
+                  <h2 className="font-heading text-3xl font-bold text-gray-800 mb-8">
                     Detailed Itinerary
                   </h2>
                   <div className="space-y-6">
@@ -248,11 +248,11 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                       packageData.itinerary.map((day, index) => (
                         <div
                           key={index}
-                          className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                          className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                         >
                           <div className="p-8">
                             <div className="flex items-center space-x-4 mb-6">
-                              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                              <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full flex items-center justify-center text-white font-bold text-lg">
                                 {index + 1}
                               </div>
                               <h3 className="text-2xl font-bold text-gray-800">
@@ -278,16 +278,16 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {activeTab === "highlights" && (
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-8">
+                  <h2 className="font-heading text-3xl font-bold text-gray-800 mb-8">
                     Package Highlights
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {packageData.highlights.map((highlight, index) => (
                       <div
                         key={index}
-                        className="flex items-start space-x-3 p-6 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl hover:from-orange-100 hover:to-yellow-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        className="flex items-start space-x-3 p-6 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl hover:from-amber-100 hover:to-amber-200 transition-all duration-300 shadow-lg hover:shadow-xl"
                       >
-                        <FiTrendingUp className="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" />
+                        <FiTrendingUp className="w-6 h-6 text-amber-600 mt-1 flex-shrink-0" />
                         <span className="text-gray-800 font-medium text-lg">
                           {highlight}
                         </span>
@@ -299,7 +299,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {activeTab === "gallery" && (
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-8">
+                  <h2 className="font-heading text-3xl font-bold text-gray-800 mb-8">
                     Photo Gallery ({packageData.images?.length || 0} images)
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -335,13 +335,13 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
             {/* Right Column - Enhanced Booking & Info */}
             <div className="space-y-8">
               {/* Enhanced Booking Card */}
-              <div className="bg-gradient-to-br from-white to-orange-50 rounded-2xl shadow-2xl p-8">
+              <div className="bg-gradient-to-br from-white to-amber-50 rounded-2xl shadow-2xl p-8">
                 <div className="text-center mb-8">
-                  <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-full text-sm font-medium mb-4">
+                  <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-700 text-white rounded-full text-sm font-medium mb-4">
                     <HiOutlineSparkles className="w-4 h-4 mr-2" />
                     Premium Experience
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                  <h2 className="font-heading text-2xl font-bold text-gray-800 mb-2">
                     Book This Journey
                   </h2>
                   <p className="text-gray-600">
@@ -352,7 +352,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                 <div className="space-y-4 mb-8">
                   <button 
                     onClick={() => router.push('/contactus')}
-                    className="w-full py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-bold rounded-xl shadow-lg transition duration-300 hover:from-orange-600 hover:to-yellow-600 transform hover:scale-105"
+                    className="w-full py-4 bg-gradient-to-r from-amber-500 to-amber-700 text-white font-bold rounded-xl shadow-lg transition duration-300 hover:from-amber-600 hover:to-amber-800 transform hover:scale-105"
                   >
                     <span className="flex items-center justify-center">
                       <FiInfo className="w-5 h-5 mr-2" />
@@ -363,8 +363,8 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
                 {/* Quick Info */}
                 <div className="grid grid-cols-1 gap-4 mb-6">
-                  <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-xl">
-                    <FiClock className="w-6 h-6 text-orange-600 mx-auto mb-2" />
+                  <div className="text-center p-4 bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl">
+                    <FiClock className="w-6 h-6 text-amber-600 mx-auto mb-2" />
                     <p className="text-sm text-gray-600 font-medium">
                       Duration
                     </p>
@@ -377,9 +377,9 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {/* Enhanced Highlights */}
               <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                  <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mr-3">
-                    <FiStar className="w-4 h-4 text-orange-600" />
+                <h2 className="font-heading text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mr-3">
+                    <FiStar className="w-4 h-4 text-amber-600" />
                   </div>
                   Key Highlights
                 </h2>
@@ -389,9 +389,9 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                     .map((highlight, index) => (
                       <div
                         key={index}
-                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-orange-50 hover:to-yellow-50 transition-all duration-200"
+                        className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-amber-50 hover:to-amber-100 transition-all duration-200"
                       >
-                        <div className="w-2 h-2 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-gradient-to-r from-amber-500 to-amber-700 rounded-full mt-2 flex-shrink-0"></div>
                         <span className="text-gray-700 font-medium">
                           {highlight}
                         </span>
@@ -402,9 +402,9 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {/* Enhanced Best Season */}
               <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                  <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-yellow-100 rounded-full flex items-center justify-center mr-3">
-                    <FiCalendar className="w-4 h-4 text-orange-600" />
+                <h2 className="font-heading text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                  <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mr-3">
+                    <FiCalendar className="w-4 h-4 text-amber-600" />
                   </div>
                   Best Travel Season
                 </h2>
@@ -412,7 +412,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                   {packageData.bestSeason.map((season, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-800 rounded-full text-sm font-medium border border-orange-200"
+                      className="px-4 py-2 bg-gradient-to-r from-amber-100 to-amber-200 text-amber-800 rounded-full text-sm font-medium border border-amber-200"
                     >
                       {season}
                     </span>
@@ -422,7 +422,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
 
               {/* Enhanced Inclusions & Exclusions */}
               <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-gray-800 mb-6 flex items-center">
                   <div className="w-8 h-8 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center mr-3">
                     <FiCheck className="w-4 h-4 text-green-600" />
                   </div>
@@ -439,7 +439,7 @@ const PackageDetailsPage: React.FC<PackageDetailsPageProps> = ({
                   ))}
                 </div>
 
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-gray-800 mb-6 flex items-center">
                   <div className="w-8 h-8 bg-gradient-to-br from-red-100 to-pink-100 rounded-full flex items-center justify-center mr-3">
                     <FiX className="w-4 h-4 text-red-600" />
                   </div>

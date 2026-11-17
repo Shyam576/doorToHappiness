@@ -32,14 +32,14 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
   // Determine attraction type and icon
   const getAttractionType = (place: any) => {
     const name = place.name.toLowerCase();
-    if (name.includes('dzong')) return { type: 'Dzong', icon: <FaBuilding className="text-orange-600" /> };
-    if (name.includes('monastery') || name.includes('lhakhang')) return { type: 'Monastery', icon: <FaPrayingHands className="text-orange-600" /> };
-    if (name.includes('temple')) return { type: 'Temple', icon: <FaPrayingHands className="text-orange-600" /> };
-    if (name.includes('valley') || name.includes('lake')) return { type: 'Natural Attraction', icon: <FaTree className="text-orange-600" /> };
-    if (name.includes('village') || name.includes('town')) return { type: 'Village/Town', icon: <FiHome className="text-orange-600" /> };
-    if (name.includes('trail') || name.includes('hike')) return { type: 'Trail', icon: <FaMountain className="text-orange-600" /> };
-    if (name.includes('viewpoint') || name.includes('view')) return { type: 'Viewpoint', icon: <FiCamera className="text-orange-600" /> };
-    return { type: 'Attraction', icon: <FiNavigation className="text-orange-600" /> };
+    if (name.includes('dzong')) return { type: 'Dzong', icon: <FaBuilding className="text-amber-600" /> };
+    if (name.includes('monastery') || name.includes('lhakhang')) return { type: 'Monastery', icon: <FaPrayingHands className="text-amber-600" /> };
+    if (name.includes('temple')) return { type: 'Temple', icon: <FaPrayingHands className="text-amber-600" /> };
+    if (name.includes('valley') || name.includes('lake')) return { type: 'Natural Attraction', icon: <FaTree className="text-amber-600" /> };
+    if (name.includes('village') || name.includes('town')) return { type: 'Village/Town', icon: <FiHome className="text-amber-600" /> };
+    if (name.includes('trail') || name.includes('hike')) return { type: 'Trail', icon: <FaMountain className="text-amber-600" /> };
+    if (name.includes('viewpoint') || name.includes('view')) return { type: 'Viewpoint', icon: <FiCamera className="text-amber-600" /> };
+    return { type: 'Attraction', icon: <FiNavigation className="text-amber-600" /> };
   };
 
   const attractionInfo = getAttractionType(place);
@@ -56,16 +56,16 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
         ogType="article"
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
         {/* Breadcrumb Navigation */}
         <div className="bg-white border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav className="flex items-center space-x-2 text-sm text-gray-600">
-              <Link href="/" className="hover:text-orange-600 flex items-center">
+              <Link href="/" className="hover:text-amber-600 flex items-center">
                 <FiHome className="mr-1" /> Home
               </Link>
               <FiChevronRight className="text-gray-400" />
-              <Link href={`/dzongkhag/${dzongkhag.slug}`} className="hover:text-orange-600">
+              <Link href={`/dzongkhag/${dzongkhag.slug}`} className="hover:text-amber-600">
                 {dzongkhag.name}
               </Link>
               <FiChevronRight className="text-gray-400" />
@@ -89,26 +89,26 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
             <div>
               <div className="flex items-center justify-center mb-4">
                 {attractionInfo.icon}
-                <span className="ml-2 text-lg font-medium bg-orange-600 bg-opacity-80 px-3 py-1 rounded-full">
+                <span className="ml-2 text-lg font-medium bg-amber-600 bg-opacity-80 px-3 py-1 rounded-full">
                   {attractionInfo.type}
                 </span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">{place.name}</h1>
+              <h1 className="font-heading text-4xl md:text-6xl font-bold mb-4">{place.name}</h1>
               <p className="text-xl md:text-2xl mb-6">{dzongkhag.name} Dzongkhag</p>
               
               <div className="flex flex-wrap justify-center gap-4 mb-6">
-                <div className="bg-orange-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
+                <div className="bg-amber-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
                   <FiMapPin className="mr-2" />
                   <span>{dzongkhag.location.region}</span>
                 </div>
                 {place.rating && (
-                  <div className="bg-yellow-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
+                  <div className="bg-amber-800 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
                     <FiStar className="mr-2" />
                     <span>{place.rating} Rating</span>
                   </div>
                 )}
                 {place.distance && (
-                  <div className="bg-orange-500 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
+                  <div className="bg-amber-500 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
                     <FiMapPin className="mr-2" />
                     <span>{place.distance}</span>
                   </div>
@@ -124,7 +124,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
             <div className="lg:col-span-2 space-y-8">
               {/* About Section */}
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">About {place.name}</h2>
+                <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">About {place.name}</h2>
                 <div className="prose prose-lg max-w-none">
                   <p className="text-gray-700 leading-relaxed mb-4">
                     {place.description}
@@ -152,7 +152,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
 
               {/* What to Expect */}
               <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6 flex items-center">
                   {attractionInfo.icon}
                   <span className="ml-3">What to Expect</span>
                 </h2>
@@ -247,7 +247,7 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500 font-medium">Rating</span>
                       <div className="flex items-center">
-                        <FiStar className="w-4 h-4 text-yellow-400 mr-1" />
+                        <FiStar className="w-4 h-4 text-amber-600 mr-1" />
                         <span className="text-sm font-medium text-gray-700">{place.rating}/5</span>
                       </div>
                     </div>
@@ -307,16 +307,16 @@ const AttractionPage: React.FC<AttractionPageProps> = ({ place, dzongkhag, relat
         </div>
 
         {/* Back to Dzongkhag */}
-        <div className="bg-gradient-to-r from-orange-500 to-yellow-400 py-12 px-4 text-center">
+        <div className="bg-gradient-to-r from-amber-500 to-amber-600 py-12 px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-6">
+            <h2 className="font-heading text-3xl font-bold text-white mb-6">
               Explore More of {dzongkhag.name}
             </h2>
             <p className="text-xl text-white mb-8">
               Discover more attractions, heritage sites, and experiences in this beautiful dzongkhag
             </p>
             <Link href={`/dzongkhag/${dzongkhag.slug}`}>
-              <button className="bg-white text-orange-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors">
+              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-colors">
                 View All Attractions
               </button>
             </Link>

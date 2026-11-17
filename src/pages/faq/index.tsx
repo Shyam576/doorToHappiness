@@ -30,7 +30,7 @@ const FAQPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-100 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-amber-100 to-amber-100 py-12">
       <Seo
         title="Frequently Asked Questions - Door To Happiness"
         description="Answers to common questions about Bhutan tours: travel requirements, best time to visit, and booking procedures with Door to Happiness."
@@ -55,8 +55,8 @@ const FAQPage = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <div className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+            <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
               Frequently Asked Questions
             </h1>
           </div>
@@ -68,13 +68,13 @@ const FAQPage = () => {
         {/* Search Bar */}
         <div className="relative mb-8 max-w-md mx-auto">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <FiSearch className="h-5 w-5 text-orange-400" />
+            <FiSearch className="h-5 w-5 text-amber-400" />
           </div>
           <input
             type="text"
             aria-label="Search FAQs"
             placeholder="Search FAQs..."
-            className="block w-full pl-10 pr-3 py-3 border-2 border-orange-200 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-orange-300 focus:border-orange-400 text-base shadow-sm transition-all duration-200"
+            className="block w-full pl-10 pr-3 py-3 border-2 border-amber-200 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-amber-300 focus:border-amber-400 text-base shadow-sm transition-all duration-200"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -86,10 +86,10 @@ const FAQPage = () => {
             filteredFAQs.map((faq: FAQItem, index: number) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg border border-orange-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:border-orange-200"
+                className="bg-white rounded-xl shadow-lg border border-amber-100 overflow-hidden hover:shadow-xl transition-all duration-300 hover:border-amber-200"
               >
                 <button
-                  className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-inset bg-gradient-to-r from-orange-50 to-yellow-50 hover:from-orange-100 hover:to-yellow-100 transition-all duration-200"
+                  className="w-full px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-inset bg-gradient-to-r from-amber-50 to-amber-100 hover:from-amber-100 hover:to-amber-200 transition-all duration-200"
                   onClick={() => toggleItem(index)}
                   aria-expanded={expandedItems.includes(index)}
                   aria-controls={`faq-answer-${index}`}
@@ -99,16 +99,16 @@ const FAQPage = () => {
                       {faq.question}
                     </h3>
                     {expandedItems.includes(index) ? (
-                      <FiChevronUp className="h-5 w-5 text-orange-500" />
+                      <FiChevronUp className="h-5 w-5 text-amber-500" />
                     ) : (
-                      <FiChevronDown className="h-5 w-5 text-orange-400" />
+                      <FiChevronDown className="h-5 w-5 text-amber-400" />
                     )}
                   </div>
                 </button>
                 <div
                   id={`faq-answer-${index}`}
                   aria-hidden={!expandedItems.includes(index)}
-                  className={`px-6 pb-5 pt-2 bg-gradient-to-r from-orange-25 to-yellow-25 ${
+                  className={`px-6 pb-5 pt-2 bg-gradient-to-r from-amber-100 to-amber-100 ${
                     expandedItems.includes(index) ? '' : 'hidden'
                   }`}
                 >
@@ -122,13 +122,13 @@ const FAQPage = () => {
             ))
           ) : (
             searchTerm && (
-              <div className="text-center py-16 bg-white rounded-xl shadow-lg border border-orange-100">
+              <div className="text-center py-16 bg-white rounded-xl shadow-lg border border-amber-100">
                 <h3 className="text-xl font-semibold text-gray-700 mb-6">
                   No FAQs found matching your search
                 </h3>
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="px-6 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-lg hover:from-orange-600 hover:to-yellow-600 transition-all duration-200 shadow-md"
+                  className="px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-700 text-white rounded-lg hover:from-amber-600 hover:to-amber-800 transition-all duration-200 shadow-md"
                 >
                   Clear Search
                 </button>
@@ -138,8 +138,8 @@ const FAQPage = () => {
         </div>
 
         {/* Contact Section */}
-        <div className="mt-16 text-center bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl shadow-lg border border-orange-100 p-8">
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent mb-4">
+        <div className="mt-16 text-center bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl shadow-lg border border-amber-100 p-8">
+          <h2 className="font-heading text-2xl font-bold bg-gradient-to-r from-amber-500 to-amber-700 bg-clip-text text-transparent mb-4">
             Still have questions?
           </h2>
           <p className="text-gray-700 mb-8 text-lg">
@@ -148,13 +148,13 @@ const FAQPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contactus"
-              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 transition-all duration-200 shadow-md"
+              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 transition-all duration-200 shadow-md"
             >
               Contact Us
             </a>
             <a
               href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NO}`}
-              className="inline-flex items-center justify-center px-8 py-3 border-2 border-orange-300 text-base font-medium rounded-lg text-orange-600 bg-white hover:bg-orange-50 hover:border-orange-400 transition-all duration-200"
+              className="inline-flex items-center justify-center px-8 py-3 border-2 border-amber-300 text-base font-medium rounded-lg text-amber-600 bg-white hover:bg-amber-50 hover:border-amber-400 transition-all duration-200"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -70,7 +70,7 @@ const SevenDayItinerary = () => {
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
             <FiMap className="text-6xl mx-auto mb-6" />
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6">
               7-Day Bhutan Itinerary
             </h1>
             <p className="text-xl mb-8">Paro, Thimphu & Punakha</p>
@@ -121,7 +121,7 @@ const SevenDayItinerary = () => {
 
           {/* Day by day */}
           <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-8 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-8 text-gray-900 flex items-center gap-3">
               <FiClock className={theme.primaryText} /> Day-by-Day
             </h2>
 
@@ -280,7 +280,7 @@ const SevenDayItinerary = () => {
 
           {/* Make it your own */}
           <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">
               Make It Your Own
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -300,7 +300,7 @@ const SevenDayItinerary = () => {
           <div
             className={`bg-gradient-to-r ${theme.gradient} rounded-xl p-8 text-center text-white`}
           >
-            <h2 className="text-2xl font-bold mb-4">
+            <h2 className="font-heading text-2xl font-bold mb-4">
               Want This Itinerary Tailored to Your Dates?
             </h2>
             <p className="text-lg mb-6">

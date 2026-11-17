@@ -144,7 +144,7 @@ function Index() {
     return (
       <Container className="py-8" ref={ref}>
         <div className="text-center mb-8">
-          <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-yellow-400 to-orange-400 inline-block py-2 px-4 rounded-lg shadow-md">
+          <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-amber-600 to-amber-400 inline-block py-2 px-4 rounded-lg shadow-md">
             {category}
           </h3>
           {searchTerm && tours.length > 0 && (
@@ -195,7 +195,7 @@ function Index() {
         
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
             Bhutan Tour Packages
           </h1>
           <p className="text-xl text-white opacity-90 mb-8">
@@ -207,7 +207,7 @@ function Index() {
               type="text"
               aria-label="Search tour packages"
               placeholder="Search all packages..."
-              className="w-full py-4 px-6 bg-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 pr-12"
+              className="w-full py-4 px-6 bg-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-600 pr-12"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -221,7 +221,7 @@ function Index() {
       {!searchTerm && (
         <Container className="py-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-4">
               Choose Your Perfect Bhutan Experience
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -246,7 +246,7 @@ function Index() {
                 icon: FiSearch,
                 description: "Browse everything",
                 bgImage: "all", // Special flag for mixed images
-                gradient: "from-orange-500/70 to-yellow-500/70",
+                gradient: "from-amber-500/70 to-amber-700/70",
               },
               {
                 id: "city",
@@ -255,7 +255,7 @@ function Index() {
                 icon: FiMapPin,
                 description: "From major cities",
                 bgImage: "/category1.jpg",
-                gradient: "from-yellow-400/70 to-orange-400/70",
+                gradient: "from-amber-600/70 to-amber-400/70",
               },
               {
                 id: "festival",
@@ -264,7 +264,7 @@ function Index() {
                 icon: FiCalendar,
                 description: "Cultural celebrations",
                 bgImage: "/category2.jpg",
-                gradient: "from-orange-400/70 to-red-400/70",
+                gradient: "from-amber-400/70 to-red-400/70",
               },
               {
                 id: "cultural",
@@ -273,7 +273,7 @@ function Index() {
                 icon: FiCamera,
                 description: "Heritage & traditions",
                 bgImage: "/category3.jpg",
-                gradient: "from-yellow-500/70 to-amber-500/70",
+                gradient: "from-amber-700/70 to-amber-500/70",
               },
               {
                 id: "adventure",
@@ -282,7 +282,7 @@ function Index() {
                 icon: FiTrendingUp,
                 description: "Treks & outdoor",
                 bgImage: "/category4.jpg",
-                gradient: "from-orange-600/70 to-yellow-400/70",
+                gradient: "from-amber-600/70 to-amber-600/70",
               },
               {
                 id: "group",
@@ -291,7 +291,7 @@ function Index() {
                 icon: FiUsers,
                 description: "Travel together",
                 bgImage: "/category5.jpg",
-                gradient: "from-amber-400/70 to-orange-500/70",
+                gradient: "from-amber-400/70 to-amber-500/70",
               },
             ].map((category) => (
               <div
@@ -299,7 +299,7 @@ function Index() {
                 onClick={() => scrollToCategory(category.id)}
                 className={`cursor-pointer transform hover:scale-105 transition-all duration-300 rounded-2xl overflow-hidden relative group ${
                   activeCategory === category.id
-                    ? "ring-4 ring-yellow-300 shadow-2xl scale-105"
+                    ? "ring-4 ring-amber-400 shadow-2xl scale-105"
                     : "hover:shadow-xl"
                 }`}
               >
@@ -350,10 +350,10 @@ function Index() {
           </div>
 
           {/* Quick Stats */}
-          <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-8">
+          <div className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-2xl p-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div>
-                <div className="text-3xl font-bold text-orange-600 mb-2">
+                <div className="text-3xl font-bold text-amber-600 mb-2">
                   {allTours.cityTours.length +
                     allTours.festivalTours.length +
                     allTours.culturalTours.length +
@@ -363,11 +363,11 @@ function Index() {
                 <div className="text-gray-600 font-medium">Total Packages</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-orange-600 mb-2">5</div>
+                <div className="text-3xl font-bold text-amber-600 mb-2">5</div>
                 <div className="text-gray-600 font-medium">Tour Categories</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-orange-600 mb-2">
+                <div className="text-3xl font-bold text-amber-600 mb-2">
                   3-15
                 </div>
                 <div className="text-gray-600 font-medium">Days Duration</div>
@@ -381,11 +381,11 @@ function Index() {
       {!searchTerm && activeCategory !== "all" && (
         <Container className="py-8" ref={filteredToursRef}>
           <div className="text-center mb-8">
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-orange-100 to-yellow-100 text-orange-800 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-100 to-amber-200 text-amber-800 rounded-full text-sm font-medium mb-4">
               <FiCamera className="w-4 h-4 mr-2" />
               Category Filter Active
             </div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">
+            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-gray-800 mb-4">
               {activeCategory === "city" &&
                 "Bhutan Tour Packages from Major Cities"}
               {activeCategory === "festival" && "Bhutan Festival Tours"}
@@ -398,7 +398,7 @@ function Index() {
                 setActiveCategory('all');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-orange-600 hover:text-orange-800 font-medium underline"
+              className="text-amber-600 hover:text-amber-800 font-medium underline"
             >
               ← Back to all categories
             </button> */}
@@ -418,7 +418,7 @@ function Index() {
       {searchTerm && (
         <Container className="py-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800">
+            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-gray-800">
               Search Results
             </h2>
             <p className="text-lg text-gray-600 mt-2">
@@ -512,7 +512,7 @@ function Index() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mb-4 shadow-lg animate-pulse">
                   <FiCreditCard className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                   Important Payment Information
                 </h2>
                 <p className="text-lg text-gray-600">
@@ -644,9 +644,9 @@ function Index() {
 
       {/* Call to Action */}
       {!searchTerm && (
-        <div className="bg-gradient-to-r from-orange-500 to-yellow-400 py-12 px-4 text-center">
+        <div className="bg-gradient-to-r from-amber-500 to-amber-600 py-12 px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-6">
+            <h2 className="font-heading text-3xl font-bold text-white mb-6">
               Ready for Your Bhutan Adventure?
             </h2>
             <p className="text-xl text-white mb-8">

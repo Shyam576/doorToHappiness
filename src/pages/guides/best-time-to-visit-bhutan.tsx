@@ -51,7 +51,7 @@ const BestTimeToVisitBhutan = () => {
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
             <FiCalendar className="text-6xl mx-auto mb-6" />
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6">
               Best Time to Visit Bhutan
             </h1>
             <p className="text-xl mb-8">
@@ -64,7 +64,7 @@ const BestTimeToVisitBhutan = () => {
         <div className="max-w-4xl mx-auto px-4 py-12">
           {/* Table of Contents */}
           <div className="bg-gray-50 rounded-lg p-6 mb-12">
-            <h2 className="text-2xl font-bold mb-4">Table of Contents</h2>
+            <h2 className="font-heading text-2xl font-bold mb-4">Table of Contents</h2>
             <ul className="space-y-2">
               <li>
                 <a href="#quick-answer" className={`${theme.primaryText} hover:underline`}>
@@ -101,7 +101,7 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Quick Answer */}
           <section id="quick-answer" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">
               Quick Answer
             </h2>
             <div className={`${theme.primaryLight} border-l-4 ${theme.primaryBorder} p-6 my-6`}>
@@ -127,7 +127,7 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Spring */}
           <section id="spring" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
               <FiSun className={`${theme.primaryText}`} /> Spring (March – May)
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -158,7 +158,7 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Summer / Monsoon */}
           <section id="summer" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
               <FiCloudRain className={`${theme.primaryText}`} /> Summer / Monsoon
               (June – August)
             </h2>
@@ -192,7 +192,7 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Autumn */}
           <section id="autumn" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
               <FiWind className={`${theme.primaryText}`} /> Autumn (September –
               November)
             </h2>
@@ -224,7 +224,7 @@ const BestTimeToVisitBhutan = () => {
 
           {/* Winter */}
           <section id="winter" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900 flex items-center gap-3">
               <FiCloud className={`${theme.primaryText}`} /> Winter (December –
               February)
             </h2>
@@ -259,10 +259,10 @@ const BestTimeToVisitBhutan = () => {
 
           {/* By interest */}
           <section id="by-interest" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">
               Which Season Fits You?
             </h2>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+            <div className="bg-amber-100 border border-amber-300 rounded-lg p-6">
               <ul className="text-gray-700 space-y-3">
                 <li>
                   <strong>Chasing festivals (tsechus):</strong> spring or
@@ -291,7 +291,7 @@ const BestTimeToVisitBhutan = () => {
           <div
             className={`bg-gradient-to-r ${theme.gradient} rounded-xl p-8 text-center text-white`}
           >
-            <h2 className="text-2xl font-bold mb-4">
+            <h2 className="font-heading text-2xl font-bold mb-4">
               Not Sure Which Season Is Right for You?
             </h2>
             <p className="text-lg mb-6">

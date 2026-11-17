@@ -34,11 +34,11 @@ const DzongArchitectureGuide = () => {
 
       <article className="min-h-screen bg-white">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-red-600 to-orange-600 py-20">
+        <div className="relative bg-gradient-to-r from-red-600 to-amber-600 py-20">
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
             <FaMountain className="text-6xl mx-auto mb-6" />
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6">
               Sacred Dzong Architecture of Bhutan
             </h1>
             <p className="text-xl mb-8">
@@ -50,7 +50,7 @@ const DzongArchitectureGuide = () => {
         <div className="max-w-4xl mx-auto px-4 py-12">
           {/* Table of Contents */}
           <div className="bg-gray-50 rounded-lg p-6 mb-12">
-            <h2 className="text-2xl font-bold mb-4">Table of Contents</h2>
+            <h2 className="font-heading text-2xl font-bold mb-4">Table of Contents</h2>
             <ul className="space-y-2">
               <li><a href="#what-is-dzong" className="text-blue-600 hover:underline">1. What is a Dzong?</a></li>
               <li><a href="#architectural-features" className="text-blue-600 hover:underline">2. Key Architectural Features</a></li>
@@ -63,7 +63,7 @@ const DzongArchitectureGuide = () => {
 
           {/* Content Sections */}
           <section id="what-is-dzong" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">What is a Dzong?</h2>
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">What is a Dzong?</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
                 A <strong>dzong</strong> (རྫོང་) is a distinctive type of fortress monastery unique to Bhutan and Tibet. The word "dzong" literally means "fortress" in Dzongkha, Bhutan's national language. These magnificent structures serve a dual purpose: they function as both administrative centers for district government and as monasteries housing monastic communities.
@@ -81,7 +81,7 @@ const DzongArchitectureGuide = () => {
           </section>
 
           <section id="architectural-features" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Key Architectural Features</h2>
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">Key Architectural Features</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="bg-white border rounded-lg p-6 shadow-md">
@@ -109,7 +109,7 @@ const DzongArchitectureGuide = () => {
           </section>
 
           <section id="construction-methods" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Traditional Construction Methods</h2>
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">Traditional Construction Methods</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
                 The construction of dzongs follows ancient techniques passed down through generations of master craftsmen. These methods reflect deep understanding of local materials, climate, and seismic conditions.
@@ -132,7 +132,7 @@ const DzongArchitectureGuide = () => {
           </section>
 
           <section id="famous-dzongs" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Most Famous Dzongs to Visit</h2>
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">Most Famous Dzongs to Visit</h2>
             
             <div className="space-y-8">
               <div className="bg-white border rounded-lg p-6 shadow-lg">
@@ -155,7 +155,7 @@ const DzongArchitectureGuide = () => {
                 <div className="flex flex-wrap gap-2">
                   <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">Former Capital</span>
                   <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">River Confluence</span>
-                  <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">Royal Weddings</span>
+                  <span className="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm">Royal Weddings</span>
                 </div>
               </div>
 
@@ -166,7 +166,7 @@ const DzongArchitectureGuide = () => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">15th Century</span>
-                  <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">Paro Tsechu</span>
+                  <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm">Paro Tsechu</span>
                   <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">Buddhist Relics</span>
                 </div>
               </div>
@@ -174,7 +174,7 @@ const DzongArchitectureGuide = () => {
           </section>
 
           <section id="cultural-significance" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Cultural and Spiritual Significance</h2>
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">Cultural and Spiritual Significance</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
                 Dzongs are far more than architectural marvels; they are the heart of Bhutanese culture and spirituality. Each dzong serves multiple critical functions in Bhutanese society:
@@ -182,7 +182,7 @@ const DzongArchitectureGuide = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
-                  <FaPrayingHands className="text-4xl text-orange-500 mx-auto mb-4" />
+                  <FaPrayingHands className="text-4xl text-amber-500 mx-auto mb-4" />
                   <h3 className="font-bold text-lg mb-2">Spiritual Center</h3>
                   <p className="text-gray-600 text-sm">Houses monastic communities and serves as centers for Buddhist practice and learning</p>
                 </div>
@@ -206,11 +206,11 @@ const DzongArchitectureGuide = () => {
           </section>
 
           <section id="visiting-dzongs" className="mb-12">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Tips for Visiting Dzongs</h2>
+            <h2 className="font-heading text-3xl font-bold mb-6 text-gray-900">Tips for Visiting Dzongs</h2>
             
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-8">
-              <h3 className="font-bold text-yellow-800 mb-4">Important Guidelines</h3>
-              <ul className="text-yellow-700 space-y-2">
+            <div className="bg-amber-100 border border-amber-300 rounded-lg p-6 mb-8">
+              <h3 className="font-bold text-amber-900 mb-4">Important Guidelines</h3>
+              <ul className="text-amber-800 space-y-2">
                 <li>• <strong>Dress Code:</strong> Long pants and shirts with sleeves required (no shorts or tank tops)</li>
                 <li>• <strong>Remove Shoes:</strong> Take off shoes before entering prayer halls and sacred areas</li>
                 <li>• <strong>Photography:</strong> Photography inside temples and prayer halls is usually prohibited</li>
@@ -229,13 +229,13 @@ const DzongArchitectureGuide = () => {
           </section>
 
           {/* Call to Action */}
-          <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-xl p-8 text-center text-white">
-            <h2 className="text-2xl font-bold mb-4">Ready to Explore Bhutan's Sacred Dzongs?</h2>
+          <div className="bg-gradient-to-r from-amber-500 to-red-500 rounded-xl p-8 text-center text-white">
+            <h2 className="font-heading text-2xl font-bold mb-4">Ready to Explore Bhutan's Sacred Dzongs?</h2>
             <p className="text-lg mb-6">
               Join our expert-guided tours to experience these architectural marvels and learn about their deep cultural significance from local guides.
             </p>
             <Link href="/package">
-              <button className="bg-white text-orange-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
+              <button className="bg-white text-amber-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
                 View Our Bhutan Tours
               </button>
             </Link>

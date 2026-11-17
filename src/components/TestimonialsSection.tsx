@@ -22,7 +22,7 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }
         <svg
           key={i}
           className={`w-4 h-4 sm:w-5 sm:h-5 ${
-            i < testimonial.rating ? "text-yellow-500" : "text-gray-300"
+            i < testimonial.rating ? "text-amber-700" : "text-gray-300"
           }`}
           fill="currentColor"
           viewBox="0 0 20 20"

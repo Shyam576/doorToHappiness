@@ -68,16 +68,16 @@ const DzongkhagIndex = () => {
           />
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+             <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
               Bhutan's 20 Dzongkhags
             </h1>
             <p className="text-xl text-white opacity-90 mb-8">
               Discover the cultural heart of the Thunder Dragon Kingdom through its 20 administrative districts, each home to ancient dzongs, monasteries, and timeless traditions.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-              <span className="bg-orange-500 bg-opacity-50 px-4 py-2 rounded-full">20 Dzongkhags</span>
-              <span className="bg-orange-500 bg-opacity-50 px-4 py-2 rounded-full">200+ Heritage Sites</span>
-              <span className="bg-orange-500 bg-opacity-50 px-4 py-2 rounded-full">Traditional Architecture</span>
+              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">20 Dzongkhags</span>
+              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">200+ Heritage Sites</span>
+              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">Traditional Architecture</span>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@ const DzongkhagIndex = () => {
         {/* Introduction */}
         <div className="max-w-4xl mx-auto px-4 py-16">
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Understanding Bhutan's Dzongkhags</h2>
+            <h2 className="font-heading text-3xl font-bold text-gray-900 mb-6">Understanding Bhutan's Dzongkhags</h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
               Bhutan is divided into 20 <strong>dzongkhags</strong> (districts), each serving as both administrative and spiritual centers. The word "dzongkhag" literally means "dzong district," highlighting the central role these fortress-monasteries play in Bhutanese governance and religious life.
             </p>
@@ -98,13 +98,13 @@ const DzongkhagIndex = () => {
         {/* Regional Breakdown */}
         {Object.entries(regions).map(([regionName, dzongkhagList]) => (
           <div key={regionName} className="max-w-7xl mx-auto px-4 py-8">
-            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+            <h2 className="font-heading text-3xl font-bold text-center mb-12 text-gray-900">
               {regionName}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {dzongkhagList.map((dzongkhag: any) => (
                 <div key={dzongkhag.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-                  <div className="h-48 bg-gradient-to-br from-orange-400 to-yellow-400 relative overflow-hidden flex-shrink-0">
+                  <div className="h-48 bg-gradient-to-br from-amber-400 to-amber-600 relative overflow-hidden flex-shrink-0">
                     {dzongkhag.media?.images && dzongkhag.media.images[0] ? (
                       <img 
                         src={dzongkhag.media.images[0]} 
@@ -124,7 +124,7 @@ const DzongkhagIndex = () => {
                       </div>
                     )}
                     <div className="absolute top-4 left-4">
-                      <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <span className="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                         {dzongkhag.tagline}
                       </span>
                     </div>
@@ -157,7 +157,7 @@ const DzongkhagIndex = () => {
                       <h4 className="font-semibold text-gray-900 mb-2">Top Highlights:</h4>
                       <div className="flex flex-wrap gap-1">
                         {dzongkhag.highlights.slice(0, 3).map((highlight: string) => (
-                          <span key={highlight} className="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">
+                          <span key={highlight} className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">
                             {highlight}
                           </span>
                         ))}
@@ -170,7 +170,7 @@ const DzongkhagIndex = () => {
                     </div>
 
                     <Link href={`/dzongkhag/${dzongkhag.slug}`} className="mt-auto">
-                      <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center">
+                      <button className="w-full bg-gradient-to-br from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center">
                         Explore District
                         <FiChevronRight className="ml-2" />
                       </button>
@@ -199,7 +199,7 @@ const DzongkhagIndex = () => {
                 <div className="text-gray-700">Ancient Dzongs</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-orange-600 mb-2">1000+</div>
+                <div className="text-4xl font-bold text-amber-600 mb-2">1000+</div>
                 <div className="text-gray-700">Years of History</div>
               </div>
             </div>

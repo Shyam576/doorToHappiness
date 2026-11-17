@@ -181,20 +181,20 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
             <div className="p-6 lg:p-8 border-b border-gray-100">
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center space-x-2 text-sm text-orange-600 font-medium mb-2">
+                  <div className="flex items-center space-x-2 text-sm text-amber-600 font-medium mb-2">
                     <HiOutlineBuildingLibrary className="w-4 h-4" />
                     <span>Cultural Experience</span>
                   </div>
-                  <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{tourData.title}</h1>
+                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{tourData.title}</h1>
                   
                   {/* Quick Info */}
                   <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
                     <div className="flex items-center space-x-2">
-                      <FiMapPin className="w-4 h-4 text-orange-500" />
+                      <FiMapPin className="w-4 h-4 text-amber-500" />
                       <span>{tourData.route}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <FiClock className="w-4 h-4 text-orange-500" />
+                      <FiClock className="w-4 h-4 text-amber-500" />
                       <span>{tourData.duration}</span>
                     </div>
                   </div>
@@ -202,14 +202,14 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                 </div>
 
                 {/* Booking Card */}
-                <div className="w-full lg:w-auto lg:min-w-[280px] bg-gradient-to-r from-orange-500 to-yellow-500 text-white p-6 rounded-xl shadow-lg">
+                <div className="w-full lg:w-auto lg:min-w-[280px] bg-gradient-to-r from-amber-500 to-amber-700 text-white p-6 rounded-xl shadow-lg">
                   <div className="text-center">
                     <p className="text-lg font-semibold mb-2">Cultural Experience</p>
                     <p className="text-sm opacity-90 mb-2">Discover Bhutan's rich heritage</p>
                     <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
                     <button 
                       onClick={() => router.push('/contactus')}
-                      className="w-full bg-white text-orange-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-300"
                     >
                       Enquire Now
                     </button>
@@ -232,7 +232,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                     onClick={() => setActiveTab(tab.key)}
                     className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
                       activeTab === tab.key
-                        ? 'border-orange-500 text-orange-600'
+                        ? 'border-amber-500 text-amber-600'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
@@ -250,13 +250,13 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                   
                   {/* Cultural Experience Features */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose mb-8">
-                    <div className="text-center p-6 bg-orange-50 rounded-xl">
-                      <HiOutlineBuildingLibrary className="w-8 h-8 text-orange-600 mx-auto mb-3" />
+                    <div className="text-center p-6 bg-amber-50 rounded-xl">
+                      <HiOutlineBuildingLibrary className="w-8 h-8 text-amber-600 mx-auto mb-3" />
                       <h3 className="font-semibold text-gray-900 mb-2">Ancient Monasteries</h3>
                       <p className="text-sm text-gray-600">Explore sacred Buddhist temples and monasteries with centuries of history</p>
                     </div>
-                    <div className="text-center p-6 bg-yellow-50 rounded-xl">
-                      <HiOutlineColorSwatch className="w-8 h-8 text-yellow-600 mx-auto mb-3" />
+                    <div className="text-center p-6 bg-amber-100 rounded-xl">
+                      <HiOutlineColorSwatch className="w-8 h-8 text-amber-800 mx-auto mb-3" />
                       <h3 className="font-semibold text-gray-900 mb-2">Traditional Arts</h3>
                       <p className="text-sm text-gray-600">Witness authentic Bhutanese crafts, painting, and traditional arts</p>
                     </div>
@@ -270,19 +270,19 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                   {/* Tour Statistics */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 not-prose">
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">8-9</div>
+                      <div className="text-2xl font-bold text-amber-600">8-9</div>
                       <div className="text-sm text-gray-600">Days</div>
                     </div>
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">12+</div>
+                      <div className="text-2xl font-bold text-amber-600">12+</div>
                       <div className="text-sm text-gray-600">Attractions</div>
                     </div>
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">5</div>
+                      <div className="text-2xl font-bold text-amber-600">5</div>
                       <div className="text-sm text-gray-600">Cities</div>
                     </div>
                     <div className="text-center p-4 bg-gray-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">4.8★</div>
+                      <div className="text-2xl font-bold text-amber-600">4.8★</div>
                       <div className="text-sm text-gray-600">Rating</div>
                     </div>
                   </div>
@@ -291,14 +291,14 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
 
               {activeTab === 'itinerary' && (
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Detailed Day-by-Day Itinerary</h2>
+                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Detailed Day-by-Day Itinerary</h2>
                   <div className="space-y-4">
                     {tourData.detailed_itinerary?.map((day, index) => (
                       <div key={index} className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
                         <div className="p-6">
                           <div className="flex items-start space-x-4">
                             <div className="flex-shrink-0">
-                              <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-full flex items-center justify-center font-bold">
+                              <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-amber-700 text-white rounded-full flex items-center justify-center font-bold">
                                 {day.day}
                               </div>
                             </div>
@@ -307,7 +307,7 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
                               <ul className="space-y-2">
                                 {day.activities.map((activity, idx) => (
                                   <li key={idx} className="flex items-start space-x-2 text-gray-700">
-                                    <FiChevronRight className="w-4 h-4 text-orange-500 mt-1 flex-shrink-0" />
+                                    <FiChevronRight className="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" />
                                     <span>{activity}</span>
                                   </li>
                                 ))}
@@ -323,11 +323,11 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
 
               {activeTab === 'highlights' && (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Tour Highlights</h2>
+                  <h2 className="font-heading text-2xl font-bold text-gray-900 mb-6">Tour Highlights</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {tourData.highlights.map((highlight, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors duration-200">
-                        <FiAward className="w-5 h-5 text-orange-600 mt-1 flex-shrink-0" />
+                      <div key={index} className="flex items-start space-x-3 p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors duration-200">
+                        <FiAward className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
                         <span className="text-gray-800 font-medium">{highlight}</span>
                       </div>
                     ))}
@@ -390,11 +390,11 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
           </div>
 
           {/* Call to Action
-          <div className="mt-8 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-8 text-center text-white">
-            <h2 className="text-2xl font-bold mb-4">Ready to Experience Bhutan's Rich Culture?</h2>
+          <div className="mt-8 bg-gradient-to-r from-amber-500 to-amber-700 rounded-2xl p-8 text-center text-white">
+            <h2 className="font-heading text-2xl font-bold mb-4">Ready to Experience Bhutan's Rich Culture?</h2>
             <p className="text-lg opacity-90 mb-6">Join us on this transformative journey through the Heart of the Himalayas</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-orange-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-50 transition-colors duration-300">
+              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-50 transition-colors duration-300">
                 Book This Cultural Tour
               </button>
               <button className="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">

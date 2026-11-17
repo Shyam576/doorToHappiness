@@ -276,7 +276,7 @@ const Index: React.FC = () => {
             <div className="relative p-6 sm:p-8 md:p-10 lg:p-12 space-y-4 sm:space-y-6">
               <HeroHeading />
 
-              <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto"></div>
+              <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto"></div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-1">
                 <Link
@@ -301,7 +301,7 @@ const Index: React.FC = () => {
 
             {/* <div className="inline-flex items-center bg-white bg-opacity-90 rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8 mx-4">
               <svg
-                className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-500 mr-2"
+                className="w-6 h-6 sm:w-8 sm:h-8 text-amber-700 mr-2"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -362,7 +362,7 @@ const Index: React.FC = () => {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-orange-200 rounded-lg shadow-lg z-50 overflow-hidden">
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-amber-200 rounded-lg shadow-lg z-50 overflow-hidden">
                     {sortOptions.map((option) => (
                       <button
                         key={option.value}
@@ -425,7 +425,7 @@ const Index: React.FC = () => {
                 <span className="relative z-10 font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500 group-hover:from-amber-800 group-hover:to-amber-600 transition-all duration-300">
                   Taktsang Monastery (Tiger&apos;s Nest)
                 </span>
-                <span className="absolute bottom-0 left-0 w-full h-2 bg-yellow-200 opacity-50 group-hover:opacity-70 group-hover:h-3 transition-all duration-300 -z-0"></span>
+                <span className="absolute bottom-0 left-0 w-full h-2 bg-amber-300 opacity-50 group-hover:opacity-70 group-hover:h-3 transition-all duration-300 -z-0"></span>
               </Link>
               , across all 20 dzongkhags of Bhutan.
             </p>

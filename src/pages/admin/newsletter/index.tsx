@@ -55,7 +55,7 @@ const NewsletterManagement: React.FC = () => {
     return (
       <Container className="py-8">
         <div className="flex items-center justify-center min-h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-500"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-700"></div>
           <span className="ml-2">Loading subscribers...</span>
         </div>
       </Container>
@@ -122,7 +122,7 @@ const NewsletterManagement: React.FC = () => {
         <div className="mt-6">
           <button
             onClick={fetchSubscribers}
-            className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
+            className="bg-amber-700 hover:bg-amber-800 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
           >
             Refresh Data
           </button>

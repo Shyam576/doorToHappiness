@@ -104,7 +104,7 @@ const ContactPage = () => {
 
 
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
               Contact Door to Happiness Holiday
             </h2>
             <p className="text-lg sm:text-xl text-white opacity-90 max-w-2xl mx-auto px-4">
@@ -148,7 +148,7 @@ const ContactPage = () => {
                   <TripBuilderForm />
                 ) : (
                   <>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+                    <h2 className="font-heading text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
                       Send us a message
                     </h2>
                     <p className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">
@@ -188,7 +188,7 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 text-base"
+                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
                       placeholder="Your name"
                     />
                   </div>
@@ -208,7 +208,7 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 text-base"
+                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -226,7 +226,7 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 text-base"
+                        className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base"
                         placeholder="+975 12345678"
                       />
                     </div>
@@ -246,7 +246,7 @@ const ContactPage = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 text-base resize-none"
+                      className="w-full px-4 py-3 bg-white border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-200 text-base resize-none"
                       placeholder="Tell us about your travel plans..."
                     ></textarea>
                   </div>
@@ -298,7 +298,7 @@ const ContactPage = () => {
             <div className="space-y-6 sm:space-y-8">
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
                 <div className="p-6 sm:p-8">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
+                  <h2 className="font-heading text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
                     Our Information
                   </h2>
 
@@ -337,9 +337,9 @@ const ContactPage = () => {
                     </div>
 
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 bg-orange-100 p-2 sm:p-3 rounded-lg">
+                      <div className="flex-shrink-0 bg-amber-100 p-2 sm:p-3 rounded-lg">
                         <svg
-                          className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500"
+                          className="h-5 w-5 sm:h-6 sm:w-6 text-amber-500"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -364,9 +364,9 @@ const ContactPage = () => {
                     </div>
 
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 bg-orange-100 p-2 sm:p-3 rounded-lg">
+                      <div className="flex-shrink-0 bg-amber-100 p-2 sm:p-3 rounded-lg">
                         <svg
-                          className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500"
+                          className="h-5 w-5 sm:h-6 sm:w-6 text-amber-500"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -388,7 +388,7 @@ const ContactPage = () => {
                           href="https://mail.google.com/mail/?view=cm&to=doortohappinessholiday@gmail.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-1 text-orange-600 hover:text-orange-700 text-sm sm:text-base transition-colors duration-200 cursor-pointer"
+                          className="mt-1 text-amber-600 hover:text-amber-700 text-sm sm:text-base transition-colors duration-200 cursor-pointer"
                         >
                            doortohappinessholiday@gmail.com
                         </a>
@@ -396,9 +396,9 @@ const ContactPage = () => {
                     </div>
 
                     <div className="flex items-start">
-                      <div className="flex-shrink-0 bg-orange-100 p-2 sm:p-3 rounded-lg">
+                      <div className="flex-shrink-0 bg-amber-100 p-2 sm:p-3 rounded-lg">
                         <svg
-                          className="h-5 w-5 sm:h-6 sm:w-6 text-orange-500"
+                          className="h-5 w-5 sm:h-6 sm:w-6 text-amber-500"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -432,7 +432,7 @@ const ContactPage = () => {
               {/* Map - Mobile Optimized */}
               <div className="bg-white rounded-xl shadow-xl overflow-hidden">
                 <div className="p-4 sm:p-6">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+                  <h2 className="font-heading text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
                     Our Location
                   </h2>
                   <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">

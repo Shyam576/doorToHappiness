@@ -51,10 +51,10 @@ export const AdminNav: React.FC<NavBarProps> = () => {
                             className="w-24 h-12 rounded-lg transition-transform duration-300 group-hover:scale-105 flex-shrink-0"
                         />
                         <div className="hidden sm:flex flex-col">
-                            <span className="font-bold text-base text-gray-800 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
+                            <span className="font-bold text-base text-gray-800 group-hover:text-amber-800 transition-colors duration-300 leading-tight">
                                 Admin Dashboard
                             </span>
-                            <span className="text-xs font-medium text-yellow-700 group-hover:text-yellow-600 transition-colors duration-300 leading-tight">
+                            <span className="text-xs font-medium text-amber-800 group-hover:text-amber-800 transition-colors duration-300 leading-tight">
                                 Management Portal
                             </span>
                         </div>
@@ -65,31 +65,31 @@ export const AdminNav: React.FC<NavBarProps> = () => {
                 <div className="hidden lg:flex items-center space-x-6 font-medium">
                     <Link
                         href="/admin/majorCityPackage"
-                        className={`hover:text-yellow-600 transition-colors duration-200 ${router.pathname === '/admin/majorCityPackage' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                        className={`hover:text-amber-800 transition-colors duration-200 ${router.pathname === '/admin/majorCityPackage' ? 'text-amber-800 font-semibold' : 'text-gray-700'}`}
                     >
                         Packages
                     </Link>
                     <Link
                         href="/admin/destination"
-                        className={`hover:text-yellow-600 transition-colors duration-200 ${router.pathname === '/admin/destination' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                        className={`hover:text-amber-800 transition-colors duration-200 ${router.pathname === '/admin/destination' ? 'text-amber-800 font-semibold' : 'text-gray-700'}`}
                     >
                         Destinations
                     </Link>
                     <Link
                         href="/invoice/generator"
-                        className={`hover:text-yellow-600 transition-colors duration-200 ${router.pathname === '/invoice/generator' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                        className={`hover:text-amber-800 transition-colors duration-200 ${router.pathname === '/invoice/generator' ? 'text-amber-800 font-semibold' : 'text-gray-700'}`}
                     >
                         Invoice Generator
                     </Link>
                     <Link
                         href="/admin/contactus"
-                        className={`hover:text-yellow-600 transition-colors duration-200 ${router.pathname === '/admin/contactus' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                        className={`hover:text-amber-800 transition-colors duration-200 ${router.pathname === '/admin/contactus' ? 'text-amber-800 font-semibold' : 'text-gray-700'}`}
                     >
                         Messages
                     </Link>
                     <button
                         onClick={handleLogout}
-                        className="hover:text-yellow-600 text-gray-700 transition-colors duration-200"
+                        className="hover:text-amber-800 text-gray-700 transition-colors duration-200"
                     >
                         Logout
                     </button>
@@ -105,31 +105,31 @@ export const AdminNav: React.FC<NavBarProps> = () => {
                 <ul className="flex flex-col space-y-1 p-4">
                     <Link 
                         href="/admin/majorCityPackage" 
-                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-yellow-600 ${router.pathname === '/admin/majorCityPackage' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-amber-800 ${router.pathname === '/admin/majorCityPackage' ? 'text-amber-800 font-semibold' : 'text-gray-700'}`}
                     >
                         Packages
                     </Link>
                     <Link 
                         href="/admin/destination" 
-                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-yellow-600 ${router.pathname === '/admin/destination' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-amber-800 ${router.pathname === '/admin/destination' ? 'text-amber-800 font-semibold' : 'text-gray-700'}`}
                     >
                         Destinations
                     </Link>
                     <Link 
                         href="/invoice/generator" 
-                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-yellow-600 ${router.pathname === '/invoice/generator' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-amber-800 ${router.pathname === '/invoice/generator' ? 'text-amber-800 font-semibold' : 'text-gray-700'}`}
                     >
                         Invoice Generator
                     </Link>
                     <Link 
                         href="/admin/contactus" 
-                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-yellow-600 ${router.pathname === '/admin/contactus' ? 'text-yellow-600 font-semibold' : 'text-gray-700'}`}
+                        className={`block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 hover:text-amber-800 ${router.pathname === '/admin/contactus' ? 'text-amber-800 font-semibold' : 'text-gray-700'}`}
                     >
                         Messages
                     </Link>
                     <button
                         onClick={handleLogout}
-                        className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-yellow-600"
+                        className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-amber-800"
                     >
                         Logout
                     </button>

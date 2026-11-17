@@ -99,15 +99,15 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
         <div className="bg-white border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <nav className="flex items-center space-x-2 text-sm text-gray-600">
-              <Link href="/" className="hover:text-orange-600 flex items-center">
+              <Link href="/" className="hover:text-amber-600 flex items-center">
                 <FiHome className="mr-1" /> Home
               </Link>
               <FiChevronRight className="text-gray-400" />
-              <Link href="/dzongkhag" className="hover:text-orange-600">
+              <Link href="/dzongkhag" className="hover:text-amber-600">
                 Dzongkhags
               </Link>
               <FiChevronRight className="text-gray-400" />
-              <Link href={`/dzongkhag/${dzongkhag.slug}`} className="hover:text-orange-600">
+              <Link href={`/dzongkhag/${dzongkhag.slug}`} className="hover:text-amber-600">
                 {dzongkhag.location.region}
               </Link>
               <FiChevronRight className="text-gray-400" />
@@ -129,18 +129,18 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
           
           <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              <h1 className="font-heading text-4xl md:text-6xl font-bold mb-4">
                 {dzongkhag.name} Dzongkhag
               </h1>
               <p className="text-xl md:text-2xl mb-2">{dzongkhag.tagline}</p>
               <p className="text-lg mb-6 max-w-3xl mx-auto">{dzongkhag.description}</p>
               
               <div className="flex flex-wrap justify-center gap-4 mb-6">
-                <div className="bg-orange-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
+                <div className="bg-amber-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
                   <FiMapPin className="mr-2" />
                   <span>{dzongkhag.location.region}</span>
                 </div>
-                <div className="bg-orange-500 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
+                <div className="bg-amber-500 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
                   <FaPrayingHands className="mr-2" />
                   <span>{sacredPlaces.length} Heritage Sites</span>
                 </div>
@@ -153,19 +153,19 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
           {/* Quick Info Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-white rounded-lg p-6 shadow-md text-center">
-              <div className="text-3xl font-bold text-orange-600">{dzongkhag.culture.dzongs.length}</div>
+              <div className="text-3xl font-bold text-amber-600">{dzongkhag.culture.dzongs.length}</div>
               <div className="text-gray-600">Historic Dzongs</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-md text-center">
-              <div className="text-3xl font-bold text-yellow-600">{sacredPlaces.length}</div>
+              <div className="text-3xl font-bold text-amber-800">{sacredPlaces.length}</div>
               <div className="text-gray-600">Heritage Sites</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-md text-center">
-              <div className="text-3xl font-bold text-orange-500">{dzongkhag.highlights.length}</div>
+              <div className="text-3xl font-bold text-amber-500">{dzongkhag.highlights.length}</div>
               <div className="text-gray-600">Key Highlights</div>
             </div>
             <div className="bg-white rounded-lg p-6 shadow-md text-center">
-              <div className="text-3xl font-bold text-orange-600">{dzongkhag.placesToVisit?.length || 0}</div>
+              <div className="text-3xl font-bold text-amber-600">{dzongkhag.placesToVisit?.length || 0}</div>
               <div className="text-gray-600">Places to Visit</div>
             </div>
           </div>
@@ -176,7 +176,7 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
               {/* Overview Section */}
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">About {dzongkhag.name} Dzongkhag</h2>
+                  <h2 className="font-heading text-2xl font-bold text-gray-900">About {dzongkhag.name} Dzongkhag</h2>
                   <button 
                     onClick={() => toggleSection('overview')}
                     aria-label={expandedSections.overview ? 'Collapse overview' : 'Expand overview'}
@@ -209,8 +209,8 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
               {dzongkhag.placesToVisit && dzongkhag.placesToVisit.length > 0 && (
                 <div className="bg-white rounded-xl shadow-lg p-8">
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-                      <FaPrayingHands className="mr-3 text-orange-500" />
+                    <h2 className="font-heading text-2xl font-bold text-gray-900 flex items-center">
+                      <FaPrayingHands className="mr-3 text-amber-500" />
                       Heritage Places & Attractions ({dzongkhag.placesToVisit.length})
                     </h2>
                     <button 
@@ -246,10 +246,10 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                               />
                             )}
                             {place.distance && (
-                              <p className="text-orange-600 text-sm font-medium mb-3">📍 {place.distance} from center</p>
+                              <p className="text-amber-600 text-sm font-medium mb-3">📍 {place.distance} from center</p>
                             )}
                             <Link href={`/attractions/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`} className="mt-auto">
-                              <button className="w-full bg-gradient-to-br from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
+                              <button className="w-full bg-gradient-to-br from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
                                 View Details
                               </button>
                             </Link>
@@ -264,7 +264,7 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
               {/* Cultural Heritage Section */}
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">Cultural Heritage</h2>
+                  <h2 className="font-heading text-2xl font-bold text-gray-900">Cultural Heritage</h2>
                   <button 
                     onClick={() => toggleSection('culture')}
                     aria-label={expandedSections.culture ? 'Collapse cultural heritage' : 'Expand cultural heritage'}
@@ -280,13 +280,13 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div>
                         <h4 className="font-medium text-gray-700 mb-3 flex items-center">
-                          <FaMountain className="mr-2 text-orange-500" />
+                          <FaMountain className="mr-2 text-amber-500" />
                           Dzongs & Monasteries:
                         </h4>
                         <ul className="space-y-2">
                           {dzongkhag.culture.dzongs.map((dzong: string, idx: number) => (
                             <li key={idx} className="text-gray-600 flex items-center">
-                              <span className="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>
+                              <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
                               {dzong}
                             </li>
                           ))}
@@ -298,7 +298,7 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                         <ul className="space-y-2">
                           {dzongkhag.culture.festivals.map((festival: string, idx: number) => (
                             <li key={idx} className="text-gray-600 flex items-center">
-                              <FiCalendar className="w-4 h-4 mr-2 text-yellow-500" />
+                              <FiCalendar className="w-4 h-4 mr-2 text-amber-700" />
                               {festival}
                             </li>
                           ))}
@@ -318,8 +318,8 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
               {dzongkhag.nature && (
                 <div className="bg-white rounded-xl shadow-lg p-8">
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-                      <FaTree className="mr-3 text-orange-500" />
+                    <h2 className="font-heading text-2xl font-bold text-gray-900 flex items-center">
+                      <FaTree className="mr-3 text-amber-500" />
                       Natural Wonders
                     </h2>
                     <button 
@@ -340,7 +340,7 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                           <ul className="space-y-2">
                             {dzongkhag.nature.trekkingRoutes.map((route: string, idx: number) => (
                               <li key={idx} className="text-gray-600 flex items-center">
-                                <FaMountain className="w-4 h-4 mr-2 text-orange-500" />
+                                <FaMountain className="w-4 h-4 mr-2 text-amber-500" />
                                 {route}
                               </li>
                             ))}
@@ -386,7 +386,7 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
                 </div>
                 
                 <Link href={`https://www.google.com/maps?q=${dzongkhag.location.coordinates.lat},${dzongkhag.location.coordinates.lng}`}>
-                  <button className="w-full mt-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
+                  <button className="w-full mt-4 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
                     View on Map
                   </button>
                 </Link>

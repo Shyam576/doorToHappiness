@@ -22,7 +22,7 @@ const GuidesIndex = () => {
         <div className={`relative bg-gradient-to-r ${theme.gradient} py-16 sm:py-20`}>
           <div className="absolute inset-0 bg-black opacity-20"></div>
           <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
-            <h1 className="text-3xl sm:text-5xl font-bold mb-4">
+            <h1 className="font-heading text-3xl sm:text-5xl font-bold mb-4">
               Bhutan Travel Guides
             </h1>
             <p className="text-lg sm:text-xl">
@@ -54,7 +54,7 @@ const GuidesIndex = () => {
                   >
                     {guide.category}
                   </span>
-                  <h2 className="text-lg font-bold text-gray-900 mb-2 leading-snug">
+                  <h2 className="font-heading text-lg font-bold text-gray-900 mb-2 leading-snug">
                     {guide.title}
                   </h2>
                   <p className="text-sm text-gray-600 leading-relaxed">

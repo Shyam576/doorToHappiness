@@ -92,7 +92,7 @@ const Unsubscribe: React.FC = () => {
                     ? 'border-red-400 focus:ring-red-500'
                     : status === 'success'
                     ? 'border-green-400 focus:ring-green-500'
-                    : 'border-gray-300 focus:ring-yellow-500'
+                    : 'border-gray-300 focus:ring-amber-700'
                 } ${isUnsubscribing ? 'opacity-50 cursor-not-allowed' : ''}`}
               />
             </div>
@@ -137,7 +137,7 @@ const Unsubscribe: React.FC = () => {
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-500 mb-4">
               Changed your mind? You can always{' '}
-              <a href="/" className="text-yellow-600 hover:text-yellow-700 font-medium">
+              <a href="/" className="text-amber-800 hover:text-amber-800 font-medium">
                 subscribe again
               </a>{' '}
               from our homepage.
