@@ -50,7 +50,7 @@ export default function TripCostPreview() {
 
   return (
     <div className="mx-auto w-full max-w-6xl rounded-lg bg-brand-ivory p-5 shadow-warm-xl ring-1 ring-stone-200 sm:p-7 lg:p-8">
-      <div className="grid gap-7 lg:grid-cols-[0.9fr_1fr_1.1fr_1fr] lg:items-end lg:gap-9">
+      <div className="grid gap-7 lg:grid-cols-[0.8fr_0.9fr_1.1fr_1.3fr] lg:items-end lg:gap-9">
         {/* Intro */}
         <div>
           <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-600">
@@ -122,10 +122,16 @@ export default function TripCostPreview() {
           <button
             type="button"
             onClick={handleSeeFullItinerary}
-            className="min-h-[48px] w-full rounded-full bg-emerald-900 px-5 text-[13px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-emerald-800"
+            className="min-h-[48px] w-full whitespace-nowrap rounded-full bg-emerald-900 px-4 text-[12px] font-semibold uppercase tracking-[0.1em] text-white transition-colors hover:bg-emerald-800 sm:text-[13px]"
           >
             See My Full Itinerary & Price
           </button>
+          <Link
+            href="/contactus"
+            className="mt-3 flex min-h-[48px] w-full items-center justify-center whitespace-nowrap rounded-full border border-emerald-900 px-4 text-[12px] font-semibold uppercase tracking-[0.1em] text-emerald-900 transition-colors hover:bg-emerald-900 hover:text-white sm:text-[13px]"
+          >
+            Enquire Now
+          </Link>
         </div>
       </div>
 

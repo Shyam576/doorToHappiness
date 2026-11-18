@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
 import logo from "../../public/logo.svg";
+// White version with the D's keyhole and the dragon linework cut out (transparent), so the D reads hollow like the O's.
+import logoWhite from "../../public/logo-white.svg";
 
 const NAV_LINKS = [
   { href: "/dzongkhag",     label: "Destinations",    match: (p: string) => p.startsWith("/dzongkhag") || p.startsWith("/attractions") },
@@ -90,12 +92,10 @@ export const NavBar: React.FC = () => {
           aria-label="Door To Happiness Holidays — home"
         >
           <Image
-            src={logo}
+            src={overHero || isMenuOpen ? logoWhite : logo}
             alt="Door To Happiness Holidays"
             height={64}
-            className={`w-auto transition-all duration-500 ${
-              overHero || isMenuOpen ? "brightness-0 invert" : ""
-            } ${overHero ? "h-11 sm:h-14" : "h-9 sm:h-11"}`}
+            className={`w-auto transition-all duration-500 ${overHero ? "h-11 sm:h-14" : "h-9 sm:h-11"}`}
           />
         </Link>
 

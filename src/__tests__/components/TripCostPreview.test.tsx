@@ -43,4 +43,9 @@ describe('TripCostPreview', () => {
       query: { duration: 10, adults: 2, children: 2, travelerType: 'family' },
     })
   })
+
+  it('offers a direct Enquire Now link to the contact page next to the itinerary button', () => {
+    render(<TripCostPreview />)
+    expect(screen.getByRole('link', { name: /enquire now/i })).toHaveAttribute('href', '/contactus')
+  })
 })
