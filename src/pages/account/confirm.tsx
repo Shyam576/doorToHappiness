@@ -59,8 +59,10 @@ const Confirm: React.FC<ConfirmProps> = ({}) => {
                 <title>Confirm account</title>
                 <meta name="description" content="Profile page" />
             </Head>
-            <Container>
-                {!ApiResponse ? <button onClick={confirmAccount} className="btn btn-primary btn-outline">Confirm account</button> 
+            <Container className="mx-auto flex min-h-[55vh] max-w-xl flex-col items-center justify-center py-20 text-center">
+                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">Your account</p>
+                <h1 className="mb-8 font-heading text-4xl font-medium text-stone-900">Confirm your <em className="text-emerald-900">account</em></h1>
+                {!ApiResponse ? <button onClick={confirmAccount} className="btn rounded-full border border-emerald-900 bg-transparent text-emerald-900 hover:bg-emerald-900 hover:text-white">Confirm account</button> 
                 : 
                 <div>
                     {!ApiResponse.success 

@@ -330,7 +330,7 @@ const EditPackagesPage = () => {
                     setNewArrayItem({ ...newArrayItem, [field.name]: "" });
                   }
                 }}
-                className="bg-blue-500 text-white px-4 rounded-r"
+                className="bg-stone-900 text-white px-4 rounded-r"
               >
                 Add
               </button>
@@ -387,7 +387,7 @@ const EditPackagesPage = () => {
                         <button
                           type="button"
                           onClick={() => handleMoveItineraryItem(index, "up")}
-                          className="text-blue-600 hover:text-blue-800 text-sm"
+                          className="text-amber-700 hover:text-amber-700 text-sm"
                         >
                           Move Up
                         </button>
@@ -396,7 +396,7 @@ const EditPackagesPage = () => {
                         <button
                           type="button"
                           onClick={() => handleMoveItineraryItem(index, "down")}
-                          className="text-blue-600 hover:text-blue-800 text-sm"
+                          className="text-amber-700 hover:text-amber-700 text-sm"
                         >
                           Move Down
                         </button>
@@ -460,8 +460,8 @@ const EditPackagesPage = () => {
               ))}
             </div>
 
-            <div className="border-2 border-dashed border-blue-200 rounded-lg p-6 bg-blue-50">
-              <h4 className="text-lg font-medium text-blue-800 mb-4">
+            <div className="border-2 border-dashed border-amber-200 rounded-lg p-6 bg-amber-50">
+              <h4 className="text-lg font-medium text-amber-700 mb-4">
                 Add New Itinerary Day
               </h4>
 
@@ -533,7 +533,7 @@ const EditPackagesPage = () => {
                   !newItineraryItem.description ||
                   !newItineraryItem.details
                     ? "bg-stone-300 cursor-not-allowed"
-                    : "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-stone-900 text-white hover:bg-stone-900"
                 }`}
               >
                 Add Day to Itinerary
@@ -560,7 +560,7 @@ const EditPackagesPage = () => {
         <title>Edit Packages - Admin</title>
       </Head>
 
-      <h1 className="text-3xl font-bold mb-6">Edit Package Data</h1>
+      <h1 className="text-3xl font-semibold mb-6">Edit Package Data</h1>
 
       <div className="mb-6">
         <label htmlFor="file-select" className="block mb-2 font-medium">
@@ -619,7 +619,7 @@ const EditPackagesPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 disabled:bg-stone-400"
+              className="bg-emerald-900 text-white px-6 py-2 rounded hover:bg-emerald-800 disabled:bg-stone-400"
             >
               {loading
                 ? "Saving..."
@@ -684,7 +684,7 @@ const EditPackagesPage = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <button
                         onClick={() => handleEdit(item)}
-                        className="text-blue-600 hover:text-blue-900 mr-4"
+                        className="text-amber-700 hover:text-amber-700 mr-4"
                       >
                         Edit
                       </button>

@@ -101,71 +101,71 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
 
       {/* Invoice Info */}
       <div className="mb-6">
-        <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
+        <h3 className="text-[#C9AE7E] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2B5442]">
           Invoice Info
         </h3>
         <div className="grid grid-cols-2 gap-2 mb-2">
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Confirmation No.</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Confirmation No.</label>
             <input
               type="text"
               value={invoiceData.confirmationNumber}
               onChange={(e) => handleInputChange('confirmationNumber', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Date</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Date</label>
             <input
               type="date"
               value={invoiceData.invoiceDate}
               onChange={(e) => handleInputChange('invoiceDate', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
         </div>
         <div>
-          <label className="block text-[11px] text-[#9a9abf] mb-1">Company Name</label>
+          <label className="block text-[11px] text-[#BBD3C6] mb-1">Company Name</label>
           <input
             type="text"
             value={invoiceData.companyName}
             onChange={(e) => handleInputChange('companyName', e.target.value)}
-            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
           />
         </div>
       </div>
 
       {/* Bill To */}
       <div className="mb-6">
-        <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
+        <h3 className="text-[#C9AE7E] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2B5442]">
           Bill To :
         </h3>
         <div className="space-y-2">
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Agent / Company Name</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Agent / Company Name</label>
             <input
               type="text"
               value={invoiceData.agentName}
               onChange={(e) => handleInputChange('agentName', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Address</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Address</label>
             <input
               type="text"
               value={invoiceData.agentAddress}
               onChange={(e) => handleInputChange('agentAddress', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">VAT No.</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">VAT No.</label>
             <input
               type="text"
               value={invoiceData.vatNumber}
               onChange={(e) => handleInputChange('vatNumber', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
         </div>
@@ -173,12 +173,12 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
 
       {/* Travelers */}
       <div className="mb-6">
-        <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
+        <h3 className="text-[#C9AE7E] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2B5442]">
           Travelers
         </h3>
         <div className="space-y-2">
           {invoiceData.travelers.map((traveler: Traveler) => (
-            <div key={traveler.id} className="relative bg-[#12122a] border border-[#2e3155] rounded-lg p-3">
+            <div key={traveler.id} className="relative bg-[#0F2720] border border-[#2B5442] rounded-lg p-3">
               {invoiceData.travelers.length > 1 && (
                 <button
                   onClick={() => removeTraveler(traveler.id)}
@@ -189,50 +189,50 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               )}
               <div className="space-y-2">
                 <div>
-                  <label className="block text-[11px] text-[#9a9abf] mb-1">Full Name</label>
+                  <label className="block text-[11px] text-[#BBD3C6] mb-1">Full Name</label>
                   <input
                     type="text"
                     value={traveler.fullName}
                     onChange={(e) => handleTravelerChange(traveler.id, 'fullName', e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0A1A15] text-stone-200 outline-none focus:border-[#C9AE7E]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] text-[#9a9abf] mb-1">Document / Passport No.</label>
+                  <label className="block text-[11px] text-[#BBD3C6] mb-1">Document / Passport No.</label>
                   <input
                     type="text"
                     value={traveler.documentNumber}
                     onChange={(e) => handleTravelerChange(traveler.id, 'documentNumber', e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0A1A15] text-stone-200 outline-none focus:border-[#C9AE7E]"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-[11px] text-[#9a9abf] mb-1">Arrival Date</label>
+                    <label className="block text-[11px] text-[#BBD3C6] mb-1">Arrival Date</label>
                     <input
                       type="date"
                       value={traveler.arrivalDate}
                       onChange={(e) => handleTravelerChange(traveler.id, 'arrivalDate', e.target.value)}
-                      className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
+                      className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0A1A15] text-stone-200 outline-none focus:border-[#C9AE7E]"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] text-[#9a9abf] mb-1">Departure Date</label>
+                    <label className="block text-[11px] text-[#BBD3C6] mb-1">Departure Date</label>
                     <input
                       type="date"
                       value={traveler.departureDate}
                       onChange={(e) => handleTravelerChange(traveler.id, 'departureDate', e.target.value)}
-                      className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
+                      className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0A1A15] text-stone-200 outline-none focus:border-[#C9AE7E]"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[11px] text-[#9a9abf] mb-1">Destination</label>
+                  <label className="block text-[11px] text-[#BBD3C6] mb-1">Destination</label>
                   <input
                     type="text"
                     value={traveler.destination}
                     onChange={(e) => handleTravelerChange(traveler.id, 'destination', e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0A1A15] text-stone-200 outline-none focus:border-[#C9AE7E]"
                   />
                 </div>
               </div>
@@ -241,7 +241,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
         </div>
         <button
           onClick={addTraveler}
-          className="w-full mt-2 px-3 py-2 rounded-md border border-dashed border-[#7b8cde] bg-transparent text-[#7b8cde] text-xs hover:bg-[#2e3155] transition"
+          className="w-full mt-2 px-3 py-2 rounded-md border border-dashed border-[#C9AE7E] bg-transparent text-[#C9AE7E] text-xs hover:bg-[#2B5442] transition"
         >
           + Add Traveler
         </button>
@@ -249,12 +249,12 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
 
       {/* Cost Breakdown */}
       <div className="mb-6">
-        <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
+        <h3 className="text-[#C9AE7E] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2B5442]">
           Cost Breakdown
         </h3>
         <div className="space-y-2">
           {invoiceData.costItems.map((item: CostItem) => (
-            <div key={item.id} className="relative bg-[#12122a] border border-[#2e3155] rounded-lg p-3">
+            <div key={item.id} className="relative bg-[#0F2720] border border-[#2B5442] rounded-lg p-3">
               {invoiceData.costItems.length > 1 && (
                 <button
                   onClick={() => removeCostItem(item.id)}
@@ -265,23 +265,23 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
               )}
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[11px] text-[#9a9abf] mb-1">Description</label>
+                  <label className="block text-[11px] text-[#BBD3C6] mb-1">Description</label>
                   <input
                     type="text"
                     value={item.description}
                     onChange={(e) => handleCostItemChange(item.id, 'description', e.target.value)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0A1A15] text-stone-200 outline-none focus:border-[#C9AE7E]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] text-[#9a9abf] mb-1">
+                  <label className="block text-[11px] text-[#BBD3C6] mb-1">
                     Amount ({invoiceData.currency === 'INR' ? 'INR' : 'USD'})
                   </label>
                   <input
                     type="number"
                     value={item.amount}
                     onChange={(e) => handleCostItemChange(item.id, 'amount', parseFloat(e.target.value) || 0)}
-                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#0a0a18] text-stone-200 outline-none focus:border-[#7b8cde]"
+                    className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0A1A15] text-stone-200 outline-none focus:border-[#C9AE7E]"
                     step="0.01"
                   />
                 </div>
@@ -291,7 +291,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
         </div>
         <button
           onClick={addCostItem}
-          className="w-full mt-2 px-3 py-2 rounded-md border border-dashed border-[#7b8cde] bg-transparent text-[#7b8cde] text-xs hover:bg-[#2e3155] transition"
+          className="w-full mt-2 px-3 py-2 rounded-md border border-dashed border-[#C9AE7E] bg-transparent text-[#C9AE7E] text-xs hover:bg-[#2B5442] transition"
         >
           + Add Cost Item
         </button>
@@ -299,15 +299,15 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
 
       {/* Currency Selector */}
       <div className="mb-6">
-        <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
+        <h3 className="text-[#C9AE7E] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2B5442]">
           Currency
         </h3>
         <div>
-          <label className="block text-[11px] text-[#9a9abf] mb-1">Currency</label>
+          <label className="block text-[11px] text-[#BBD3C6] mb-1">Currency</label>
           <select
             value={invoiceData.currency}
             onChange={(e) => handleInputChange('currency', e.target.value)}
-            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+            className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
           >
             <option value="USD">USD ($)</option>
             <option value="INR">INR (₹)</option>
@@ -317,35 +317,35 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
 
       {/* Beneficiary Details */}
       <div className="mb-6">
-        <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
+        <h3 className="text-[#C9AE7E] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2B5442]">
           Beneficiary Details
         </h3>
         <div className="space-y-2">
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Name</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Name</label>
             <input
               type="text"
               value={invoiceData.beneficiaryName}
               onChange={(e) => handleInputChange('beneficiaryName', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-[11px] text-[#9a9abf] mb-1">Account No.</label>
+              <label className="block text-[11px] text-[#BBD3C6] mb-1">Account No.</label>
               <input
                 type="text"
                 value={invoiceData.accountNumber}
                 onChange={(e) => handleInputChange('accountNumber', e.target.value)}
-                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
               />
             </div>
             <div>
-              <label className="block text-[11px] text-[#9a9abf] mb-1">Account Type</label>
+              <label className="block text-[11px] text-[#BBD3C6] mb-1">Account Type</label>
               <select
                 value={invoiceData.accountType}
                 onChange={(e) => handleInputChange('accountType', e.target.value)}
-                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
               >
                 <option value="Dollar Account">Dollar Account</option>
                 <option value="INR Account">INR Account</option>
@@ -354,31 +354,31 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-[11px] text-[#9a9abf] mb-1">Bank Name</label>
+              <label className="block text-[11px] text-[#BBD3C6] mb-1">Bank Name</label>
               <input
                 type="text"
                 value={invoiceData.bankName}
                 onChange={(e) => handleInputChange('bankName', e.target.value)}
-                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
               />
             </div>
             <div>
-              <label className="block text-[11px] text-[#9a9abf] mb-1">Swift Code</label>
+              <label className="block text-[11px] text-[#BBD3C6] mb-1">Swift Code</label>
               <input
                 type="text"
                 value={invoiceData.swiftCode}
                 onChange={(e) => handleInputChange('swiftCode', e.target.value)}
-                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+                className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
               />
             </div>
           </div>
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Bank Address</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Bank Address</label>
             <input
               type="text"
               value={invoiceData.bankAddress}
               onChange={(e) => handleInputChange('bankAddress', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
         </div>
@@ -386,44 +386,44 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({ invoiceData, setInvoiceData }
 
       {/* Company Footer */}
       <div className="mb-6">
-        <h3 className="text-[#7b8cde] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2e3155]">
+        <h3 className="text-[#C9AE7E] text-[11px] uppercase tracking-[1.5px] mb-3 pb-2 border-b border-[#2B5442]">
           Company Footer
         </h3>
         <div className="space-y-2">
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Website</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Website</label>
             <input
               type="text"
               value={invoiceData.website}
               onChange={(e) => handleInputChange('website', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Email</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Email</label>
             <input
               type="email"
               value={invoiceData.email}
               onChange={(e) => handleInputChange('email', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Phone</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Phone</label>
             <input
               type="tel"
               value={invoiceData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
           <div>
-            <label className="block text-[11px] text-[#9a9abf] mb-1">Location</label>
+            <label className="block text-[11px] text-[#BBD3C6] mb-1">Location</label>
             <input
               type="text"
               value={invoiceData.location}
               onChange={(e) => handleInputChange('location', e.target.value)}
-              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2e3155] bg-[#12122a] text-stone-200 outline-none focus:border-[#7b8cde]"
+              className="w-full px-3 py-1.5 text-xs rounded-md border border-[#2B5442] bg-[#0F2720] text-stone-200 outline-none focus:border-[#C9AE7E]"
             />
           </div>
         </div>

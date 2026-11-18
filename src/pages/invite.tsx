@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Container } from '../components/Container'
 import { RootState } from '../store/store'
 import { useAuthenticatedSocket } from '../utils/useSocket'
 
@@ -89,56 +88,46 @@ const Index: React.FC<InviteProps> = ({}) => {
                 <title>Create Account - Door to Happiness Holiday</title>
                 <meta name="robots" content="noindex, nofollow" />
             </Head>
-            <Container>
-                <div>
-                    <div>
+            <main className="bg-brand-ivory py-20 sm:py-28">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-10">
                     {ApiResponse &&
-                        <>
-                            <div className="min-h-[40vh]hero bg-base-200">
-                                <div className="flex-col">
-                                    <section>
-                                        <div className="flex flex-col px-5 py-8 sm:px-6 lg:px-8">
-                                            <div className="flex flex-col items-center w-full max-w-3xl mx-auto prose prose-blue">
-                                                <div className="w-full">
-                                                    <h1>{ApiResponse.room.name}</h1>
-                                                    <p>{ApiResponse.room.description}</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex pb-6 flex-col items-center my-5 max-w-7xl sm:flex-row lg:mx-[8rem]">
-                                                <div className="inline-flex flex-shrink-0 w-20 h-20 rounded-full text-neutral-600 sm:mr-10">
-                                                    <img className="mask mask-squircle" src={ApiResponse.room.owner.image} alt={`${ApiResponse.room.owner.displayName} profile picture`}/>
-                                                </div>
-                                                <div className="flex-grow mt-6 prose text-center sm:text-left sm:mt-0 prose-md">
-                                                <h2>Owned by:</h2>
-                                                <p>{ApiResponse.room.owner.displayName}</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex pb-6 flex-col items-center my-5 max-w-7xl sm:flex-row lg:mx-[8rem]">
-                                                <div className="inline-flex flex-shrink-0 w-20 h-20 rounded-full text-neutral-600 sm:mr-10">
-                                                    <img className="mask mask-squircle" src={ApiResponse.user.image} alt={`${ApiResponse.user.displayName} profile picture`}/>
-                                                </div>
-                                                <div className="flex-grow mt-6 prose text-center sm:text-left sm:mt-0 prose-md">
-                                                <h2>Invited by:</h2>
-                                                <p>{ApiResponse.user.displayName}</p>
-                                                </div>
-                                            </div>
-                                            {JoinRoomResponse &&
-                                                <div className="p-4 mx-auto my-10 text-sm font-bold border text-success rounded-xl border-success">
-                                                    <p className="text-sm">{JoinRoomResponse.message}</p>
-                                                </div>
-                                            }
-                                            <div className="flex flex-col items-center pb-10 mx-auto my-10 max-w-7xl sm:flex-row">
-                                                <button onClick={() => joinRoom(ApiResponse.room)} className="w-64 btn btn-lg">Join</button>
-                                            </div>
-                                        </div>
-                                    </section>
+                        <section className="max-w-3xl animate-page-in">
+                            <p className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">
+                                <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                                You&apos;re invited
+                            </p>
+                            <h1 className="font-heading text-4xl font-medium leading-[1.05] text-stone-900 sm:text-6xl">{ApiResponse.room.name}</h1>
+                            <p className="mt-6 max-w-xl text-base leading-relaxed text-stone-600">{ApiResponse.room.description}</p>
+
+                            <div className="mt-12 grid gap-8 border-y border-stone-300 py-8 sm:grid-cols-2">
+                                <div className="flex items-center gap-5">
+                                    <img className="h-16 w-16 shrink-0 rounded-full object-cover" src={ApiResponse.room.owner.image} alt={`${ApiResponse.room.owner.displayName} profile picture`}/>
+                                    <div>
+                                        <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Owned by</h2>
+                                        <p className="mt-1 font-heading text-xl text-stone-900">{ApiResponse.room.owner.displayName}</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-5">
+                                    <img className="h-16 w-16 shrink-0 rounded-full object-cover" src={ApiResponse.user.image} alt={`${ApiResponse.user.displayName} profile picture`}/>
+                                    <div>
+                                        <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Invited by</h2>
+                                        <p className="mt-1 font-heading text-xl text-stone-900">{ApiResponse.user.displayName}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </>
+
+                            {JoinRoomResponse &&
+                                <div role="status" className="mt-8 border-l-2 border-green-600 bg-green-50 p-4 text-sm font-medium text-green-800">
+                                    <p>{JoinRoomResponse.message}</p>
+                                </div>
+                            }
+                            <div className="mt-10">
+                                <button onClick={() => joinRoom(ApiResponse.room)} className="inline-flex min-h-[52px] items-center justify-center rounded-full bg-emerald-900 px-10 text-[13px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-emerald-800">Join</button>
+                            </div>
+                        </section>
                     }
-                    </div>
                 </div>
-            </Container>
+            </main>
         </>
     )
 }

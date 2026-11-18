@@ -1,48 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Seo from '../../components/Seo';
 import VisitOnTourCTA from '../../components/VisitOnTourCTA';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
-import PlacePlaceholder from '../../components/PlacePlaceholder';
-import { 
-  FiMapPin, 
-  FiCalendar, 
-  FiClock, 
-  FiUsers, 
-  FiChevronRight,
-  FiCompass,
-  FiCamera,
-  FiHeart,
-  FiShare2,
-  FiChevronDown,
-  FiChevronUp,
-  FiHome
-} from 'react-icons/fi';
-import { FaMountain, FaTree, FaPrayingHands } from 'react-icons/fa';
+import PageHero from '../../components/PageHero';
+import SectionHeading from '../../components/SectionHeading';
+import PlaceGallery, { GalleryImage } from '../../components/PlaceGallery';
+import { Reveal } from '../../components/motion/Reveal';
+import { RevealImage } from '../../components/motion/RevealImage';
+import { Parallax } from '../../components/motion/Parallax';
+import { PlaceImage, dzongkhagHero, dzongkhagImage, useResolvedImage } from '../../components/PlacePlaceholder';
 
 interface DzongkhagPageProps {
   dzongkhag: any;
   relatedDzongkhags: any[];
 }
 
-const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkhags }) => {
-  const [showAllPlaces, setShowAllPlaces] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState<any>(null);
-  const [expandedSections, setExpandedSections] = useState({
-    overview: true,
-    places: true,
-    culture: true,
-    nature: true,
-    practical: false
-  });
+const placeSlug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const pad = (n: number) => String(n).padStart(2, '0');
+const firstParagraph = (text: string) => (text || '').split('\n').map((p) => p.trim()).filter(Boolean)[0] || '';
 
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section as keyof typeof prev]
-    }));
-  };
+const pillOnDark =
+  'inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-8 py-3.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-emerald-950 transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+const linkOnDark =
+  'inline-flex min-h-[44px] items-center text-[13px] font-semibold uppercase tracking-[0.14em] text-white underline decoration-1 underline-offset-[6px] transition-colors hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white';
+const subheading = 'mb-6 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600';
+
+const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkhags }) => {
+  const [activeSection, setActiveSection] = useState('overview');
+  const hero = dzongkhagHero(dzongkhag);
+  const heroSrc = useResolvedImage(hero.src, hero.fallback);
 
   const sacredPlaces = dzongkhag.placesToVisit?.filter((place: any) => 
     place.name.toLowerCase().includes('dzong') || 
@@ -57,11 +45,59 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
     (place.type && ['dzong', 'monastery', 'temple', 'lhakhang', 'chorten', 'stupa', 'palace', 'fortress'].includes(place.type.toLowerCase()))
   ) || [];
 
-  const culturalPlaces = dzongkhag.placesToVisit?.filter((place: any) => 
-    !sacredPlaces.includes(place)
-  ) || [];
+  const places: any[] = dzongkhag.placesToVisit || [];
+  const featured = places.slice(0, 3);
+  const rest = places.slice(3);
+  const experiences: any[] = Array.isArray(dzongkhag.experiences) ? dzongkhag.experiences : [];
+  const practical = dzongkhag.practicalInfo;
+  const practicalGroups: { label: string; items: string[] }[] = practical
+    ? [
+        { label: 'Best time to visit', items: practical.bestTimeToVisit },
+        { label: 'Accommodation', items: practical.accommodation },
+        { label: 'Getting there', items: practical.transportation },
+      ].filter((g) => Array.isArray(g.items) && g.items.length > 0)
+    : [];
 
-  const displayedPlaces = showAllPlaces ? dzongkhag.placesToVisit : dzongkhag.placesToVisit?.slice(0, 6);
+  const galleryImages: GalleryImage[] = [];
+  const seen = new Set<string>([hero.src]);
+  const addImage = (src: any, alt: string, caption?: string) => {
+    if (typeof src === 'string' && /^https?:\/\//.test(src) && !seen.has(src) && galleryImages.length < 6) {
+      seen.add(src);
+      galleryImages.push({ src, alt, caption });
+    }
+  };
+  (dzongkhag.media?.images || []).forEach((src: string) => addImage(src, `${dzongkhag.name} dzongkhag`));
+  rest.forEach((p: any) => addImage(p.image, p.name, p.name));
+
+  const sections = [
+    { id: 'overview', label: 'Overview', show: true },
+    { id: 'places', label: 'Places to visit', show: places.length > 0 },
+    { id: 'culture', label: 'Culture', show: true },
+    { id: 'nature', label: 'Nature', show: !!dzongkhag.nature },
+    { id: 'experiences', label: 'Experiences', show: experiences.length > 0 },
+    { id: 'practical', label: 'Practical info', show: practicalGroups.length > 0 },
+    { id: 'plan', label: 'Plan your visit', show: true },
+  ].filter((x) => x.show);
+
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection(e.target.id);
+        });
+      },
+      { rootMargin: '-30% 0px -60% 0px' },
+    );
+    sections.forEach((x) => {
+      const el = document.getElementById(x.id);
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dzongkhag.slug]);
+
+  const mapUrl = `https://www.google.com/maps?q=${dzongkhag.location.coordinates.lat},${dzongkhag.location.coordinates.lng}`;
 
   return (
     <>
@@ -94,341 +130,401 @@ const DzongkhagPage: React.FC<DzongkhagPageProps> = ({ dzongkhag, relatedDzongkh
         }}
       />
 
-      <div className="min-h-screen bg-stone-50">
-        {/* Breadcrumb Navigation */}
-        <div className="bg-white border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <nav className="flex items-center space-x-2 text-sm text-stone-600">
-              <Link href="/" className="hover:text-amber-600 flex items-center">
-                <FiHome className="mr-1" /> Home
-              </Link>
-              <FiChevronRight className="text-stone-400" />
-              <Link href="/dzongkhag" className="hover:text-amber-600">
-                Dzongkhags
-              </Link>
-              <FiChevronRight className="text-stone-400" />
-              <Link href={`/dzongkhag/${dzongkhag.slug}`} className="hover:text-amber-600">
-                {dzongkhag.location.region}
-              </Link>
-              <FiChevronRight className="text-stone-400" />
-              <span className="text-stone-900 font-medium">{dzongkhag.name}</span>
+      <PageHero
+        size="lg"
+        eyebrow={dzongkhag.location.region}
+        title={<>{dzongkhag.name} <em>Dzongkhag</em></>}
+        intro={dzongkhag.tagline}
+        image={heroSrc}
+        imageAlt={`${dzongkhag.name} dzongkhag landscape`}
+      >
+        <a href="#plan" className={pillOnDark}>Plan your visit</a>
+        {places.length > 0 && <a href="#places" className={linkOnDark}>Places to visit</a>}
+      </PageHero>
+
+      <div className="bg-brand-ivory">
+        {/* Sticky in-page navigation */}
+        <nav
+          aria-label={`${dzongkhag.name} page sections`}
+          className="sticky top-16 z-30 border-b border-stone-300 bg-brand-ivory/[0.94] backdrop-blur sm:top-[4.5rem]"
+        >
+          <div className="container mx-auto flex items-center justify-between gap-6 px-4 sm:px-6 lg:px-10">
+            <ul className="flex gap-x-7 overflow-x-auto">
+              {sections.map((x) => (
+                <li key={x.id} className="shrink-0">
+                  <a
+                    href={`#${x.id}`}
+                    aria-current={activeSection === x.id ? 'true' : undefined}
+                    className={`inline-flex min-h-[48px] items-center border-b-2 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-emerald-900 ${
+                      activeSection === x.id ? 'border-amber-500 text-emerald-900' : 'border-transparent text-stone-500 hover:text-emerald-900'
+                    }`}
+                  >
+                    {x.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+
+        {/* Overview */}
+        <section id="overview" aria-labelledby="overview-heading" className="scroll-mt-32 py-20 sm:py-28">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <nav aria-label="Breadcrumb" className="mb-14 text-xs uppercase tracking-[0.16em] text-stone-500">
+              <ol className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <li><Link href="/" className="inline-flex min-h-[44px] items-center hover:text-emerald-900">Home</Link></li>
+                <li aria-hidden="true">/</li>
+                <li><Link href="/dzongkhag" className="inline-flex min-h-[44px] items-center hover:text-emerald-900">Dzongkhags</Link></li>
+                <li aria-hidden="true">/</li>
+                <li>{dzongkhag.location.region}</li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="font-semibold text-stone-900">{dzongkhag.name}</li>
+              </ol>
             </nav>
-          </div>
-        </div>
 
-        {/* Hero Section */}
-        <div className="relative h-96 overflow-hidden">
-          <div className="absolute inset-0">
-            <img
-              src={dzongkhag.images?.[0] || '/backgroundbanner.jpg'}
-              alt={`${dzongkhag.name} dzongkhag landscape`}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-40" />
-          </div>
-          
-          <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
-            <div>
-              <h1 className="font-heading text-4xl md:text-6xl font-bold mb-4">
-                {dzongkhag.name} Dzongkhag
-              </h1>
-              <p className="text-xl md:text-2xl mb-2">{dzongkhag.tagline}</p>
-              <p className="text-lg mb-6 max-w-3xl mx-auto">{dzongkhag.description}</p>
-              
-              <div className="flex flex-wrap justify-center gap-4 mb-6">
-                <div className="bg-amber-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
-                  <FiMapPin className="mr-2" />
-                  <span>{dzongkhag.location.region}</span>
-                </div>
-                <div className="bg-amber-500 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
-                  <FaPrayingHands className="mr-2" />
-                  <span>{sacredPlaces.length} Heritage Sites</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+              <Reveal className="lg:col-span-7">
+                <SectionHeading
+                  id="overview-heading"
+                  eyebrow={dzongkhag.location.region}
+                  title={<>About <em>{dzongkhag.name}</em> Dzongkhag</>}
+                />
+                <p className="mt-10 font-heading text-2xl font-normal leading-[1.45] text-stone-800 sm:text-3xl">
+                  {dzongkhag.description}
+                </p>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Quick Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-lg p-6 shadow-md text-center">
-              <div className="text-3xl font-bold text-amber-600">{dzongkhag.culture.dzongs.length}</div>
-              <div className="text-stone-600">Historic Dzongs</div>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-md text-center">
-              <div className="text-3xl font-bold text-amber-800">{sacredPlaces.length}</div>
-              <div className="text-stone-600">Heritage Sites</div>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-md text-center">
-              <div className="text-3xl font-bold text-amber-500">{dzongkhag.highlights.length}</div>
-              <div className="text-stone-600">Key Highlights</div>
-            </div>
-            <div className="bg-white rounded-lg p-6 shadow-md text-center">
-              <div className="text-3xl font-bold text-amber-600">{dzongkhag.placesToVisit?.length || 0}</div>
-              <div className="text-stone-600">Places to Visit</div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Overview Section */}
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="font-heading text-2xl font-bold text-stone-900">About {dzongkhag.name} Dzongkhag</h2>
-                  <button 
-                    onClick={() => toggleSection('overview')}
-                    aria-label={expandedSections.overview ? 'Collapse overview' : 'Expand overview'}
-                    aria-expanded={expandedSections.overview}
-                    className="text-stone-400 hover:text-stone-600"
-                  >
-                    {expandedSections.overview ? <FiChevronUp /> : <FiChevronDown />}
-                  </button>
-                </div>
-                
-                {expandedSections.overview && (
-                  <div className="space-y-4">
-                    <p className="text-stone-700 leading-relaxed">{dzongkhag.description}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <h4 className="font-semibold text-stone-900 mb-2">Location:</h4>
-                        <p className="text-stone-600">{dzongkhag.location.region}</p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-stone-900 mb-2">Nearby Dzongkhags:</h4>
-                        <p className="text-stone-600">{dzongkhag.location.nearbyDzongkhags.join(', ')}</p>
-                      </div>
-                    </div>
+                <dl className="mt-14 grid gap-x-10 gap-y-8 border-t border-stone-300 pt-8 sm:grid-cols-3">
+                  <div>
+                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Region</dt>
+                    <dd className="mt-2 text-stone-900">{dzongkhag.location.region}</dd>
                   </div>
-                )}
-              </div>
-
-              {/* Heritage Places Section */}
-              {/* Heritage Places & Dzongs Section - Show all places temporarily */}
-              {dzongkhag.placesToVisit && dzongkhag.placesToVisit.length > 0 && (
-                <div className="bg-white rounded-xl shadow-lg p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="font-heading text-2xl font-bold text-stone-900 flex items-center">
-                      <FaPrayingHands className="mr-3 text-amber-500" />
-                      Heritage Places & Attractions ({dzongkhag.placesToVisit.length})
-                    </h2>
-                    <button 
-                      onClick={() => toggleSection('places')}
-                      className="text-stone-400 hover:text-stone-600"
-                    >
-                      {expandedSections.places ? <FiChevronUp /> : <FiChevronDown />}
-                    </button>
+                  <div>
+                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Nearby dzongkhags</dt>
+                    <dd className="mt-2 text-stone-900">{dzongkhag.location.nearbyDzongkhags.join(', ')}</dd>
                   </div>
-                  
-                  {expandedSections.places && (
-                    <div className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {dzongkhag.placesToVisit.map((place: any, index: number) => (
-                          <div key={index} className="border border-stone-200 rounded-lg p-6 hover:shadow-md transition-shadow flex flex-col h-full">
-                            <div className="flex items-start justify-between mb-3">
-                              <h3 className="font-semibold text-stone-900 text-lg">{place.name}</h3>
-                            </div>
-                            <p className="text-stone-600 text-sm mb-4 line-clamp-3 flex-grow">{place.description}</p>
-                            {place.image ? (
-                              <img
-                                src={place.image}
-                                alt={place.name}
-                                className="w-full h-32 object-cover rounded-md mb-3"
-                                loading="lazy"
-                                width={400}
-                                height={128}
-                              />
-                            ) : (
-                              <PlacePlaceholder
-                                name={place.name}
-                                className="w-full h-32 rounded-md mb-3"
-                              />
-                            )}
-                            {place.distance && (
-                              <p className="text-amber-600 text-sm font-medium mb-3">📍 {place.distance} from center</p>
-                            )}
-                            <Link href={`/attractions/${place.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`} className="mt-auto">
-                              <button className="w-full bg-gradient-to-br from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200">
-                                View Details
-                              </button>
-                            </Link>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Cultural Heritage Section */}
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="font-heading text-2xl font-bold text-stone-900">Cultural Heritage</h2>
-                  <button 
-                    onClick={() => toggleSection('culture')}
-                    aria-label={expandedSections.culture ? 'Collapse cultural heritage' : 'Expand cultural heritage'}
-                    aria-expanded={expandedSections.culture}
-                    className="text-stone-400 hover:text-stone-600"
-                  >
-                    {expandedSections.culture ? <FiChevronUp /> : <FiChevronDown />}
-                  </button>
-                </div>
-                
-                {expandedSections.culture && (
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div>
-                        <h4 className="font-medium text-stone-700 mb-3 flex items-center">
-                          <FaMountain className="mr-2 text-amber-500" />
-                          Dzongs & Monasteries:
-                        </h4>
-                        <ul className="space-y-2">
-                          {dzongkhag.culture.dzongs.map((dzong: string, idx: number) => (
-                            <li key={idx} className="text-stone-600 flex items-center">
-                              <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                              {dzong}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-medium text-stone-700 mb-3">Festivals:</h4>
-                        <ul className="space-y-2">
-                          {dzongkhag.culture.festivals.map((festival: string, idx: number) => (
-                            <li key={idx} className="text-stone-600 flex items-center">
-                              <FiCalendar className="w-4 h-4 mr-2 text-amber-700" />
-                              {festival}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-medium text-stone-700 mb-3">Local Specialty:</h4>
-                        <p className="text-stone-600">{dzongkhag.culture.localDish}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Natural Attractions */}
-              {dzongkhag.nature && (
-                <div className="bg-white rounded-xl shadow-lg p-8">
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="font-heading text-2xl font-bold text-stone-900 flex items-center">
-                      <FaTree className="mr-3 text-amber-500" />
-                      Natural Wonders
-                    </h2>
-                    <button 
-                      onClick={() => toggleSection('nature')}
-                      aria-label={expandedSections.nature ? 'Collapse natural wonders' : 'Expand natural wonders'}
-                      aria-expanded={expandedSections.nature}
-                      className="text-stone-400 hover:text-stone-600"
-                    >
-                      {expandedSections.nature ? <FiChevronUp /> : <FiChevronDown />}
-                    </button>
-                  </div>
-                  
-                  {expandedSections.nature && dzongkhag.nature && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {dzongkhag.nature.trekkingRoutes && (
-                        <div>
-                          <h4 className="font-medium text-stone-700 mb-3">Trekking Routes:</h4>
-                          <ul className="space-y-2">
-                            {dzongkhag.nature.trekkingRoutes.map((route: string, idx: number) => (
-                              <li key={idx} className="text-stone-600 flex items-center">
-                                <FaMountain className="w-4 h-4 mr-2 text-amber-500" />
-                                {route}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      
-                      <div>
-                        <h4 className="font-medium text-stone-700 mb-3">Wildlife & Scenery:</h4>
-                        {dzongkhag.nature.wildlife && (
-                          <p className="text-stone-600 mb-2">🐾 {dzongkhag.nature.wildlife}</p>
-                        )}
-                        {dzongkhag.nature.scenicSpots && (
-                          <ul className="space-y-1">
-                            {dzongkhag.nature.scenicSpots.map((spot: string, idx: number) => (
-                              <li key={idx} className="text-stone-600">🏞️ {spot}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Location Info */}
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-lg font-bold mb-4">Location Information</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-stone-500 font-medium">Region</span>
-                    <span className="text-sm font-medium text-stone-700">{dzongkhag.location.region}</span>
-                  </div>
-                  <div className="pt-3 border-t">
-                    <p className="text-sm text-stone-500 font-medium mb-2">Coordinates</p>
-                    <p className="text-xs text-stone-600">
+                  <div>
+                    <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Coordinates</dt>
+                    <dd className="mt-2 text-stone-900">
                       {dzongkhag.location.coordinates.lat}°N, {dzongkhag.location.coordinates.lng}°E
-                    </p>
+                      <a
+                        href={mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 flex min-h-[44px] items-center text-[12px] font-semibold uppercase tracking-[0.14em] text-emerald-900 underline decoration-1 underline-offset-[6px] hover:text-amber-600"
+                      >
+                        View on map
+                      </a>
+                    </dd>
                   </div>
-                </div>
-                
-                <Link href={`https://www.google.com/maps?q=${dzongkhag.location.coordinates.lat},${dzongkhag.location.coordinates.lng}`}>
-                  <button className="w-full mt-4 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
-                    View on Map
-                  </button>
-                </Link>
-              </div>
+                </dl>
+              </Reveal>
 
-              {/* Key Highlights */}
-              <VisitOnTourCTA dzongkhagName={dzongkhag.name} pageLabel={`${dzongkhag.name} Dzongkhag`} />
-
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-lg font-bold mb-4">Key Highlights</h3>
-                <div className="space-y-2">
-                  {dzongkhag.highlights.map((highlight: string, index: number) => (
-                    <div key={index} className="flex items-center">
-                      <span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
-                      <span className="text-sm text-stone-700">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Related Dzongkhags */}
-              {relatedDzongkhags.length > 0 && (
-                <div className="bg-white rounded-xl shadow-lg p-6">
-                  <h3 className="text-lg font-bold mb-4">Nearby Dzongkhags</h3>
-                  <div className="space-y-3">
-                    {relatedDzongkhags.map((related: any) => (
-                      <Link key={related.id} href={`/dzongkhag/${related.slug}`}>
-                        <div className="flex items-center p-3 border border-stone-200 rounded-lg hover:bg-stone-50 transition-colors cursor-pointer">
-                          <div className="flex-1">
-                            <h4 className="text-sm font-medium text-stone-900">{related.name}</h4>
-                            <p className="text-xs text-stone-500">{related.tagline}</p>
-                          </div>
-                          <FiChevronRight className="text-stone-400" />
-                        </div>
-                      </Link>
+              <Reveal delay={90} className="lg:col-span-4 lg:col-start-9">
+                <div className="lg:sticky lg:top-40">
+                  <p className={subheading}>
+                    <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                    Key highlights
+                  </p>
+                  <ol className="border-t border-stone-300">
+                    {dzongkhag.highlights.map((highlight: string, index: number) => (
+                      <Reveal as="li" key={index} delay={index * 70} className="flex items-baseline gap-5 border-b border-stone-300 py-4">
+                        <span className="font-heading text-sm text-amber-600" aria-hidden="true">{pad(index + 1)}</span>
+                        <span className="font-heading text-xl font-medium text-stone-900">{highlight}</span>
+                      </Reveal>
                     ))}
-                  </div>
+                  </ol>
+                  <dl className="mt-10 grid grid-cols-2 gap-6">
+                    <div>
+                      <dd className="font-heading text-5xl font-medium text-emerald-900">{dzongkhag.culture.dzongs.length}</dd>
+                      <dt className="mt-1 text-xs uppercase tracking-[0.16em] text-stone-500">Historic dzongs</dt>
+                    </div>
+                    <div>
+                      <dd className="font-heading text-5xl font-medium text-emerald-900">{sacredPlaces.length}</dd>
+                      <dt className="mt-1 text-xs uppercase tracking-[0.16em] text-stone-500">Heritage sites</dt>
+                    </div>
+                    <div>
+                      <dd className="font-heading text-5xl font-medium text-emerald-900">{dzongkhag.highlights.length}</dd>
+                      <dt className="mt-1 text-xs uppercase tracking-[0.16em] text-stone-500">Key highlights</dt>
+                    </div>
+                    <div>
+                      <dd className="font-heading text-5xl font-medium text-emerald-900">{places.length}</dd>
+                      <dt className="mt-1 text-xs uppercase tracking-[0.16em] text-stone-500">Places to visit</dt>
+                    </div>
+                  </dl>
                 </div>
-              )}
+              </Reveal>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Places to visit */}
+        {places.length > 0 && (
+          <section id="places" aria-labelledby="places-heading" className="scroll-mt-32 border-t border-stone-300 py-24 sm:py-32">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+              <Reveal className="mb-16 sm:mb-24">
+                <SectionHeading
+                  id="places-heading"
+                  eyebrow={`${places.length} places`}
+                  title={<>Heritage places &amp; <em>attractions</em></>}
+                />
+              </Reveal>
+
+              <ol className="space-y-24 sm:space-y-32">
+                {featured.map((place: any, i: number) => (
+                  <li key={place.name}>
+                    <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-16">
+                      <RevealImage
+                        from={i % 2 === 1 ? 'right' : 'left'}
+                        className={`relative bg-stone-200 aspect-[4/3] lg:col-span-7 ${i % 2 === 1 ? 'lg:order-2' : ''}`}
+                      >
+                        <Link
+                          href={`/attractions/${placeSlug(place.name)}`}
+                          tabIndex={-1}
+                          aria-hidden="true"
+                          className="group relative block h-full w-full overflow-hidden"
+                        >
+                          <Parallax speed={0.07} className="absolute inset-x-0 -inset-y-[7%]">
+                            <PlaceImage
+                              src={place.image}
+                              name={place.name}
+                              alt=""
+                              className="duration-[1400ms] group-hover:scale-[1.05]"
+                            />
+                          </Parallax>
+                        </Link>
+                      </RevealImage>
+                      <Reveal delay={250} className={`lg:col-span-5 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                        <p className="font-heading text-6xl font-normal text-amber-500/60" aria-hidden="true">{pad(i + 1)}</p>
+                        <h3 className="mt-3 font-heading text-3xl font-medium leading-tight text-stone-900 sm:text-4xl">{place.name}</h3>
+                        {place.distance && (
+                          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-600">{place.distance} from center</p>
+                        )}
+                        <p className="mt-5 line-clamp-5 leading-[1.8] text-stone-600">{firstParagraph(place.description)}</p>
+                        <Link
+                          href={`/attractions/${placeSlug(place.name)}`}
+                          className="group mt-7 inline-flex min-h-[44px] items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-emerald-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-900"
+                        >
+                          View details<span className="sr-only"> for {place.name}</span>
+                          <span className="inline-block h-px w-14 origin-left scale-x-[0.57] bg-emerald-900 transition-transform duration-500 ease-out group-hover:scale-x-100" aria-hidden="true" />
+                        </Link>
+                      </Reveal>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              {rest.length > 0 && (
+                <Reveal className="mt-24 sm:mt-32">
+                  <p className={subheading}>
+                    <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                    More to explore
+                  </p>
+                  <ol className="grid gap-x-16 border-t border-stone-300 lg:grid-cols-2" start={4}>
+                    {rest.map((place: any, i: number) => (
+                      <li key={place.name} className="border-b border-stone-300">
+                        <Link
+                          href={`/attractions/${placeSlug(place.name)}`}
+                          className="group flex items-start gap-5 py-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-emerald-900"
+                        >
+                          <span className="pt-1 font-heading text-sm text-amber-600" aria-hidden="true">{pad(i + 4)}</span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block font-heading text-xl font-medium text-stone-900 transition-colors group-hover:text-emerald-900">{place.name}</span>
+                            {place.distance && (
+                              <span className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-600">{place.distance} from center</span>
+                            )}
+                            <span className="mt-2 line-clamp-2 block text-sm leading-relaxed text-stone-600">{firstParagraph(place.description)}</span>
+                          </span>
+                          <span className="mt-2 hidden h-px w-12 shrink-0 origin-left scale-x-[0.67] bg-emerald-900 transition-transform duration-500 ease-out group-hover:scale-x-100 sm:block" aria-hidden="true" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ol>
+                </Reveal>
+              )}
+            </div>
+          </section>
+        )}
+
+        <PlaceGallery
+          id="gallery"
+          images={galleryImages}
+          className="border-t border-stone-300 py-24 sm:py-32"
+          header={<SectionHeading eyebrow="Gallery" title={<>Glimpses of <em>{dzongkhag.name}</em></>} />}
+        />
+
+        {/* Cultural heritage */}
+        <section id="culture" aria-labelledby="culture-heading" className="scroll-mt-32 bg-emerald-950 py-24 text-white sm:py-32">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <Reveal className="mb-16 sm:mb-20">
+              <SectionHeading id="culture-heading" tone="dark" eyebrow="Living tradition" title={<>Cultural <em>heritage</em></>} />
+            </Reveal>
+            <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
+              <Reveal className="lg:col-span-5">
+                <h3 className="border-t border-white/25 pt-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-300">Dzongs &amp; monasteries</h3>
+                <ul className="mt-6 space-y-4">
+                  {dzongkhag.culture.dzongs.map((dzong: string, idx: number) => (
+                    <Reveal as="li" key={idx} delay={idx * 80} className="flex items-baseline gap-5 font-heading text-2xl font-medium">
+                      <span className="text-sm text-amber-300" aria-hidden="true">{pad(idx + 1)}</span>
+                      {dzong}
+                    </Reveal>
+                  ))}
+                </ul>
+              </Reveal>
+              <Reveal delay={90} className="lg:col-span-4">
+                <h3 className="border-t border-white/25 pt-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-300">Festivals</h3>
+                <ul className="mt-6 space-y-4">
+                  {dzongkhag.culture.festivals.map((festival: string, idx: number) => (
+                    <li key={idx} className="font-heading text-2xl font-medium">{festival}</li>
+                  ))}
+                </ul>
+              </Reveal>
+              <Reveal delay={180} className="lg:col-span-3">
+                <h3 className="border-t border-white/25 pt-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-300">Local specialty</h3>
+                <p className="mt-6 font-heading text-3xl font-normal italic leading-snug text-amber-200">{dzongkhag.culture.localDish}</p>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* Natural wonders */}
+        {dzongkhag.nature && (
+          <section id="nature" aria-labelledby="nature-heading" className="scroll-mt-32 py-24 sm:py-32">
+            <div className="container mx-auto grid gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
+              <Reveal className="lg:col-span-5">
+                <div className="lg:sticky lg:top-40">
+                  <SectionHeading id="nature-heading" eyebrow="Landscape" title={<>Natural <em>wonders</em></>} />
+                </div>
+              </Reveal>
+              <div className="space-y-14 lg:col-span-6 lg:col-start-7">
+                {dzongkhag.nature.trekkingRoutes && (
+                  <Reveal>
+                    <h3 className={subheading}><span className="h-px w-10 bg-amber-500" aria-hidden="true" />Trekking routes</h3>
+                    <ul className="border-t border-stone-300">
+                      {dzongkhag.nature.trekkingRoutes.map((route: string, idx: number) => (
+                        <Reveal as="li" key={idx} delay={idx * 80} className="flex items-baseline gap-5 border-b border-stone-300 py-4 font-heading text-2xl font-medium text-stone-900">
+                          <span className="text-sm text-amber-600" aria-hidden="true">{pad(idx + 1)}</span>
+                          {route}
+                        </Reveal>
+                      ))}
+                    </ul>
+                  </Reveal>
+                )}
+                {(dzongkhag.nature.wildlife || dzongkhag.nature.scenicSpots) && (
+                  <Reveal>
+                    <h3 className={subheading}><span className="h-px w-10 bg-amber-500" aria-hidden="true" />Wildlife &amp; scenery</h3>
+                    {dzongkhag.nature.wildlife && (
+                      <p className="font-heading text-2xl font-normal italic text-emerald-900">{dzongkhag.nature.wildlife}</p>
+                    )}
+                    {dzongkhag.nature.scenicSpots && (
+                      <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-lg text-stone-700">
+                        {dzongkhag.nature.scenicSpots.map((spot: string, idx: number) => (
+                          <li key={idx} className="flex items-center gap-3">
+                            <span className="h-px w-5 bg-amber-500" aria-hidden="true" />{spot}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </Reveal>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Experiences */}
+        {experiences.length > 0 && (
+          <section id="experiences" aria-labelledby="experiences-heading" className="scroll-mt-32 border-y border-stone-300 bg-stone-100 py-24 sm:py-28">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+              <Reveal className="mb-14">
+                <SectionHeading id="experiences-heading" eyebrow="Do & discover" title={<>Signature <em>experiences</em></>} />
+              </Reveal>
+              <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+                {experiences.map((exp: any, i: number) => (
+                  <Reveal key={exp.type + i} delay={i * 90}>
+                    <h3 className="border-t border-stone-400 pt-5 font-heading text-3xl font-medium text-emerald-900">{exp.type}</h3>
+                    <ul className="mt-5 space-y-2 text-stone-700">
+                      {(exp.activities || []).map((a: string) => (
+                        <li key={a} className="flex items-center gap-3">
+                          <span className="h-px w-5 bg-amber-500" aria-hidden="true" />{a}
+                        </li>
+                      ))}
+                    </ul>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Practical information */}
+        {practicalGroups.length > 0 && (
+          <section id="practical" aria-labelledby="practical-heading" className="scroll-mt-32 py-24 sm:py-28">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+              <Reveal className="mb-14">
+                <SectionHeading id="practical-heading" eyebrow="Before you go" title={<>Practical <em>information</em></>} />
+              </Reveal>
+              <dl className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+                {practicalGroups.map((g, i) => (
+                  <Reveal key={g.label} delay={i * 90}>
+                    <dt className="border-t border-stone-400 pt-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">{g.label}</dt>
+                    <dd>
+                      <ul className="mt-5 space-y-2 font-heading text-xl font-medium text-stone-900">
+                        {g.items.map((item) => (<li key={item}>{item}</li>))}
+                      </ul>
+                    </dd>
+                  </Reveal>
+                ))}
+              </dl>
+            </div>
+          </section>
+        )}
+
+        {/* Plan your visit */}
+        <section id="plan" aria-labelledby="plan-heading" className="scroll-mt-32 bg-emerald-950 py-24 text-white sm:py-32">
+          <div className="container mx-auto grid gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
+            <Reveal className="lg:col-span-6">
+              <SectionHeading
+                id="plan-heading"
+                tone="dark"
+                eyebrow="Plan your visit"
+                title={<>Let us take you to <em>{dzongkhag.name}</em></>}
+                intro="Our Thimphu team designs every journey by hand, around the places and pace you care about."
+              />
+            </Reveal>
+            <Reveal delay={90} className="lg:col-span-5 lg:col-start-8">
+              <VisitOnTourCTA dzongkhagName={dzongkhag.name} pageLabel={`${dzongkhag.name} Dzongkhag`} tone="dark" />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Related dzongkhags */}
+        {relatedDzongkhags.length > 0 && (
+          <section aria-labelledby="related-heading" className="py-24 sm:py-28">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+              <Reveal className="mb-12">
+                <SectionHeading id="related-heading" eyebrow={dzongkhag.location.region} title={<>Nearby <em>dzongkhags</em></>} />
+              </Reveal>
+              <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-3">
+                {relatedDzongkhags.map((related: any, i: number) => {
+                  const img = dzongkhagImage(related);
+                  return (
+                    <li key={related.id}>
+                      <Reveal delay={i * 90}>
+                        <Link href={`/dzongkhag/${related.slug}`} className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-emerald-900">
+                          <RevealImage from="bottom" delay={i * 120} className="relative aspect-[4/5] bg-stone-200">
+                            <PlaceImage src={img.src} fallbackSrc={img.fallback} name={related.name} alt={`${related.name} dzongkhag`} className="duration-[1400ms] group-hover:scale-[1.05]" />
+                          </RevealImage>
+                          <h3 className="mt-5 font-heading text-2xl font-medium text-stone-900">{related.name}</h3>
+                          <p className="mt-1 text-sm text-stone-600">{related.tagline}</p>
+                        </Link>
+                      </Reveal>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </section>
+        )}
       </div>
     </>
   );

@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Seo from '../../components/Seo';
 import Link from 'next/link';
-import Image from 'next/image';
+import PageHero from '../../components/PageHero';
+import SectionHeading from '../../components/SectionHeading';
+import { Reveal } from '../../components/motion/Reveal';
+import { RevealImage } from '../../components/motion/RevealImage';
 import popularDestination from '../../data/popularDestination.json';
-import PlacePlaceholder from '../../components/PlacePlaceholder';
-import { FiMapPin, FiSearch } from 'react-icons/fi';
-import { FaPrayingHands, FaMountain, FaBuilding } from 'react-icons/fa';
-import { getTheme } from '../../styles/themes';
+import { PlaceImage, placeLocalPhoto } from '../../components/PlacePlaceholder';
+import { FiSearch } from 'react-icons/fi';
 
 const SacredPlacesIndex = () => {
-  // Get unified theme
-  const theme = getTheme();
-  
   const [searchTerm, setSearchTerm] = useState('');
 
   // Extract all sacred places from all dzongkhags
@@ -45,16 +43,17 @@ const SacredPlacesIndex = () => {
     return matchesSearch;
   });
 
-  const typeIcons = {
-    dzong: <FaBuilding className="text-lg text-stone-600" />,
-    monastery: <FaPrayingHands className="text-lg text-stone-600" />,
-    temple: <FaPrayingHands className="text-lg text-stone-600" />,
-    lhakhang: <FaPrayingHands className="text-lg text-stone-600" />,
-    chorten: <div className="w-4 h-4 bg-amber-500 rounded-full"></div>,
-    stupa: <div className="w-4 h-4 bg-amber-500 rounded-full"></div>,
-    palace: <FaBuilding className="text-lg text-stone-600" />,
-    fortress: <FaBuilding className="text-lg text-stone-600" />,
-  };  return (
+  // Wall of places: varied photo proportions give the masonry its editorial rhythm.
+  const SHAPES = ['aspect-[4/5]', 'aspect-square', 'aspect-[3/4]', 'aspect-[5/4]', 'aspect-[4/5]', 'aspect-[3/4]'];
+
+  const architecture = [
+    { term: 'Dzongs', gloss: 'Fortress monasteries', text: "Bhutan's dzongs are architectural masterpieces that serve as both administrative centers and monasteries. These massive fortified structures, built without a single nail, represent the pinnacle of traditional Bhutanese architecture and house both government offices and monastic communities." },
+    { term: 'Lhakhangs', gloss: 'Sacred temples', text: 'Lhakhangs are the sacred temples of Bhutan, often housing precious statues, ancient scriptures, and religious artifacts. These temples serve as centers for daily prayers, religious festivals, and spiritual guidance for local communities across all dzongkhags.' },
+    { term: 'Gompas', gloss: 'Monasteries', text: 'Monasteries or gompas are the spiritual heart of Buddhist practice in Bhutan. These institutions preserve ancient teachings, train monks, and serve as centers for meditation and religious study. Each dzongkhag has several important gompas that contribute to the spiritual landscape.' },
+    { term: 'Chortens', gloss: 'Sacred stupas', text: "Chortens are Buddhist stupas found throughout Bhutan's landscape. These sacred structures contain relics and serve as focal points for circumambulation and prayers. They mark sacred spaces and provide spiritual protection for communities in every dzongkhag." },
+  ];
+
+  return (
     <>
       <Seo
         title="Heritage Places in Bhutan | Complete Guide to Dzongs, Monasteries & Temples"
@@ -84,177 +83,128 @@ const SacredPlacesIndex = () => {
           rel="preload"
           as="image"
           href="/heritagebg.jpg"
-          fetchPriority="high"
+          {...({ fetchpriority: "high" } as Record<string, string>)}
         />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
-        {/* Hero Section */}
-        <div className="relative py-24 overflow-hidden bg-stone-900">
-          {/* Background Image Layer */}
-          <div
-            className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: "url('/heritagebg.jpg')" }}
-            aria-hidden="true"
-          />
-          
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-             <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
-              Heritage Places of Bhutan
-            </h1>
-            <p className="text-xl text-white opacity-90 mb-8">
-              Journey through the cultural landscape of the Thunder Dragon Kingdom. Discover ancient dzongs, monasteries, and temples that have guided Bhutanese Buddhism for centuries.
+      <Head>
+        {/* Preload hero image for faster LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/heritagebg.jpg"
+          {...({ fetchpriority: "high" } as Record<string, string>)}
+        />
+      </Head>
+
+      <PageHero
+        eyebrow="Heritage"
+        title={<>Heritage places of <em>Bhutan</em></>}
+        intro="Journey through the cultural landscape of the Thunder Dragon Kingdom. Discover ancient dzongs, monasteries, and temples that have guided Bhutanese Buddhism for centuries."
+        image="/heritagebg.jpg"
+        imageAlt="Taktsang monastery clinging to a cliff above the Paro valley"
+        focus="center 40%"
+      >
+        <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/85">
+          {allSacredPlaces.length} places <span className="mx-2 text-amber-300" aria-hidden="true">/</span> 20 dzongkhags
+        </p>
+      </PageHero>
+
+      <div className="bg-brand-ivory">
+        {/* Search */}
+        <div className="sticky top-16 z-30 border-b border-stone-300 bg-brand-ivory/[0.94] backdrop-blur sm:top-[4.5rem]">
+          <div className="container mx-auto flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:px-6 lg:px-10">
+            <div className="relative w-full max-w-xl">
+              <FiSearch className="pointer-events-none absolute left-1 top-1/2 -translate-y-1/2 text-amber-600" aria-hidden="true" />
+              <input
+                type="search"
+                aria-label="Search sacred places"
+                placeholder="Search sacred places, dzongs, monasteries..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="min-h-[48px] w-full border-0 border-b border-stone-400 bg-transparent pl-8 pr-2 text-base text-stone-900 placeholder:text-stone-400 focus:border-emerald-900 focus:outline-none focus:ring-0"
+              />
+            </div>
+            <p role="status" aria-live="polite" className="shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
+              {filteredPlaces.length} {filteredPlaces.length === 1 ? 'place' : 'places'}
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">{allSacredPlaces.length}+ Heritage Sites</span>
-              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">20 Dzongkhags</span>
-              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">1000+ Years of History</span>
-            </div>
           </div>
         </div>
 
-        {/* Search and Filters */}
-        <div className="bg-white shadow-md sticky top-0 z-10">
-          <div className="max-w-7xl mx-auto px-4 py-4 sm:py-6">
-            <div className="flex justify-center">
-              {/* Search */}
-              <div className="relative w-full max-w-2xl">
-                <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-400" />
-                <input
-                  type="text"
-                  aria-label="Search sacred places"
-                  placeholder="Search sacred places, dzongs, monasteries..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-300 text-base bg-white hover:border-amber-300 transition-colors"
-                />
+        {/* Places wall */}
+        <section aria-label="Heritage places" className="py-16 sm:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            {filteredPlaces.length === 0 ? (
+              <div className="mx-auto max-w-xl py-24 text-center">
+                <h2 className="font-heading text-4xl font-medium text-stone-900">No sacred places <em className="font-normal text-emerald-900">found</em></h2>
+                <p className="mt-4 text-stone-600">Try adjusting your search terms or filters</p>
               </div>
-            </div>
+            ) : (
+              <ul className="columns-1 gap-x-8 sm:columns-2 lg:columns-3 [&>li]:mb-14">
+                {filteredPlaces.map((place: any, index: number) => (
+                  <li key={index} className="break-inside-avoid">
+                    <Link
+                      href={`/sacred-places/${place.slug}`}
+                      className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-emerald-900"
+                    >
+                      <RevealImage className={`relative bg-stone-200 ${SHAPES[index % SHAPES.length]}`} from="bottom" delay={(index % 3) * 140}>
+                        <PlaceImage
+                          src={place.image}
+                          fallbackSrc={placeLocalPhoto(place.name)}
+                          name={place.name}
+                          alt={place.name}
+                          className="duration-[1600ms] group-hover:scale-[1.05]"
+                        />
+                        <span className="pointer-events-none absolute inset-0 bg-emerald-950/0 transition-colors duration-700 group-hover:bg-emerald-950/10" aria-hidden="true" />
+                      </RevealImage>
+                      <Reveal delay={(index % 3) * 140 + 150} className="mt-5">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-600">
+                          {place.type ? <span className="capitalize">{place.type} · </span> : null}
+                          {place.dzongkhag} · {place.region.replace(' Bhutan', '')}
+                        </p>
+                        <h3 className="mt-2 font-heading text-2xl font-medium leading-tight text-stone-900 sm:text-[1.7rem]">{place.name}</h3>
+                        <p className="mt-3 line-clamp-3 text-[15px] leading-relaxed text-stone-600">{place.description}</p>
+                        {place.distance && (
+                          <p className="mt-3 text-xs uppercase tracking-[0.14em] text-stone-500">{place.distance} from district center</p>
+                        )}
+                        <span className="mt-4 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-emerald-900">
+                          Read more<span className="sr-only"> about {place.name}</span>
+                          <span className="inline-block h-px w-14 origin-left scale-x-[0.57] bg-emerald-900 transition-transform duration-500 ease-out group-hover:scale-x-100" aria-hidden="true" />
+                        </span>
+                      </Reveal>
+                    </Link>
+                    <Link
+                      href={`/dzongkhag/${place.dzongkhagSlug}`}
+                      className="mt-1 inline-flex min-h-[44px] items-center text-xs font-semibold uppercase tracking-[0.14em] text-stone-500 underline decoration-1 underline-offset-[6px] hover:text-emerald-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-900"
+                    >
+                      Explore {place.dzongkhag}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        </div>
+        </section>
 
-        {/* Sacred Places Grid */}
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          {filteredPlaces.length === 0 ? (
-            <div className="text-center py-16">
-              <FaPrayingHands className="text-6xl text-stone-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-stone-600 mb-2">No sacred places found</h3>
-              <p className="text-stone-500">Try adjusting your search terms or filters</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPlaces.map((place: any, index: number) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-                  <div className="h-48 overflow-hidden flex-shrink-0">
-                    {place.image ? (
-                      <img
-                        src={place.image}
-                        alt={place.name}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <PlacePlaceholder name={place.name} className="w-full h-full" />
-                    )}
-                  </div>
-                  
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center">
-                        {typeIcons[place.type as keyof typeof typeIcons] || typeIcons.temple}
-                        <span className="ml-2 text-sm font-medium text-stone-600 capitalize">{place.type}</span>
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-stone-900 mb-2">{place.name}</h3>
-                    <p className="text-stone-600 mb-4 line-clamp-3 flex-grow min-h-[4.5rem]">{place.description}</p>
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-sm text-stone-500">
-                        <FiMapPin className="mr-2 flex-shrink-0" />
-                        <span>{place.dzongkhag} Dzongkhag, {place.region}</span>
-                      </div>
-                      {place.distance && (
-                        <div className="flex items-center text-sm text-stone-500">
-                          <span className="mr-2">📍</span>
-                          <span>{place.distance} from district center</span>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                      <Link href={`/sacred-places/${place.slug}`} className="flex-1">
-                        <button className="w-full bg-gradient-to-br from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-200 min-h-[40px] flex items-center justify-center text-sm shadow-md hover:shadow-lg">
-                          Read More
-                        </button>
-                      </Link>
-                      <Link href={`/dzongkhag/${place.dzongkhagSlug}`} className="flex-1">
-                        <button className="w-full bg-gradient-to-br from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-200 min-h-[40px] flex items-center justify-center text-center leading-tight text-sm overflow-hidden shadow-md hover:shadow-lg">
-                          <span className="truncate whitespace-nowrap max-w-full">
-                            {place.dzongkhag.length > 15 ? `${place.dzongkhag.substring(0, 12)}...` : `Explore ${place.dzongkhag}`}
-                          </span>
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+        {/* Sacred architecture */}
+        <section aria-labelledby="architecture-heading" className="bg-emerald-950 py-24 text-white sm:py-32">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <Reveal className="mb-16 sm:mb-20">
+              <SectionHeading id="architecture-heading" tone="dark" eyebrow="A short glossary" title={<>Sacred <em>architecture</em> of Bhutan</>} />
+            </Reveal>
+            <dl className="border-t border-white/25">
+              {architecture.map((a, i) => (
+                <Reveal key={a.term} delay={i * 60} className="grid gap-4 border-b border-white/25 py-10 lg:grid-cols-12 lg:gap-12">
+                  <dt className="lg:col-span-5">
+                    <span className="font-heading text-5xl font-medium sm:text-6xl">{a.term}</span>
+                    <span className="mt-2 block text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-300">{a.gloss}</span>
+                  </dt>
+                  <dd className="max-w-xl leading-[1.8] text-white/75 lg:col-span-6 lg:col-start-7">{a.text}</dd>
+                </Reveal>
               ))}
-            </div>
-          )}
-        </div>
-
-        {/* SEO Content Section */}
-        <div className="bg-stone-50 py-16">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="font-heading text-3xl font-bold text-stone-900 mb-6">Sacred Architecture of Bhutan</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 flex items-center">
-                    <FaMountain className="mr-2 text-amber-500" />
-                    Dzongs - Fortress Monasteries
-                  </h3>
-                  <p className="text-stone-700 leading-relaxed">
-                    Bhutan's dzongs are architectural masterpieces that serve as both administrative centers and monasteries. These massive fortified structures, built without a single nail, represent the pinnacle of traditional Bhutanese architecture and house both government offices and monastic communities.
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 flex items-center">
-                    <FaBuilding className="mr-2 text-blue-500" />
-                    Lhakhangs - Sacred Temples
-                  </h3>
-                  <p className="text-stone-700 leading-relaxed">
-                    Lhakhangs are the sacred temples of Bhutan, often housing precious statues, ancient scriptures, and religious artifacts. These temples serve as centers for daily prayers, religious festivals, and spiritual guidance for local communities across all dzongkhags.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 flex items-center">
-                    <FaPrayingHands className="mr-2 text-amber-500" />
-                    Gompas - Monasteries
-                  </h3>
-                  <p className="text-stone-700 leading-relaxed">
-                    Monasteries or gompas are the spiritual heart of Buddhist practice in Bhutan. These institutions preserve ancient teachings, train monks, and serve as centers for meditation and religious study. Each dzongkhag has several important gompas that contribute to the spiritual landscape.
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 flex items-center">
-                    <div className="w-5 h-5 bg-amber-500 rounded-full mr-2"></div>
-                    Chortens - Sacred Stupas
-                  </h3>
-                  <p className="text-stone-700 leading-relaxed">
-                    Chortens are Buddhist stupas found throughout Bhutan's landscape. These sacred structures contain relics and serve as focal points for circumambulation and prayers. They mark sacred spaces and provide spiritual protection for communities in every dzongkhag.
-                  </p>
-                </div>
-              </div>
-            </div>
+            </dl>
           </div>
-        </div>
+        </section>
       </div>
     </>
   );

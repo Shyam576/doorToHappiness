@@ -1,13 +1,14 @@
 import React from "react";
 import Seo from "../../components/Seo";
 import Link from "next/link";
-import Image from "next/image";
 import guides from "../../data/guides.json";
-import { getTheme } from "../../styles/themes";
-import { Container } from "../../components/Container";
+import PageHero from "../../components/PageHero";
+import { Reveal } from "../../components/motion/Reveal";
+import { RevealImage } from "../../components/motion/RevealImage";
+import Photo from "../../components/Photo";
 
 const GuidesIndex = () => {
-  const theme = getTheme();
+  const [featured, ...rest] = guides;
 
   return (
     <>
@@ -18,54 +19,89 @@ const GuidesIndex = () => {
         ogTitle="Bhutan Travel Guides"
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
-        <div className={`relative bg-gradient-to-r ${theme.gradient} py-16 sm:py-20`}>
-          <div className="absolute inset-0 bg-black opacity-20"></div>
-          <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
-            <h1 className="font-heading text-3xl sm:text-5xl font-bold mb-4">
-              Bhutan Travel Guides
-            </h1>
-            <p className="text-lg sm:text-xl">
-              Practical, honest guides to help you plan your trip
-            </p>
-          </div>
-        </div>
+      <PageHero
+        eyebrow="The Journal"
+        title={
+          <>
+            Bhutan Travel <em>Guides</em>
+          </>
+        }
+        intro="Practical, honest guides to help you plan your trip"
+        image="/homepagebg2.jpg"
+        focus="center 60%"
+      />
 
-        <Container className="py-12 sm:py-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {guides.map((guide) => (
+      <main className="bg-brand-ivory py-20 sm:py-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+          {featured && (
+            <Reveal>
               <Link
-                key={guide.slug}
-                href={`/guides/${guide.slug}`}
-                className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col"
+                href={`/guides/${featured.slug}`}
+                className="group grid items-center gap-8 border-b border-stone-300 pb-16 lg:grid-cols-12 lg:gap-14"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={guide.image}
-                    alt={guide.title}
-                    fill
-                    unoptimized
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                <RevealImage className="aspect-[4/3] bg-stone-200 lg:col-span-7">
+                  <Photo
+                    src={featured.image}
+                    alt={featured.title}
+                    className="h-full w-full"
+                    sizes="(min-width: 1024px) 58vw, 100vw"
+                    imgClassName="h-full w-full object-cover group-hover:scale-105"
                   />
-                </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <span
-                    className={`text-xs font-semibold uppercase tracking-wide ${theme.primaryText} mb-2`}
-                  >
-                    {guide.category}
-                  </span>
-                  <h2 className="font-heading text-lg font-bold text-stone-900 mb-2 leading-snug">
-                    {guide.title}
-                  </h2>
-                  <p className="text-sm text-stone-600 leading-relaxed">
-                    {guide.excerpt}
+                </RevealImage>
+                <div className="lg:col-span-5">
+                  <p className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">
+                    <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                    {featured.category}
                   </p>
+                  <h2 className="font-heading text-3xl font-medium leading-[1.08] text-stone-900 group-hover:text-emerald-900 sm:text-5xl">
+                    {featured.title}
+                  </h2>
+                  <p className="mt-5 text-base leading-relaxed text-stone-600">{featured.excerpt}</p>
+                  <span className="mt-8 inline-flex items-center gap-3 text-[12.5px] font-semibold uppercase tracking-[0.16em] text-stone-900">
+                    Read the guide
+                    <span className="inline-block h-px w-10 origin-left bg-stone-900 transition-transform duration-300 group-hover:scale-x-150" />
+                  </span>
                 </div>
               </Link>
+            </Reveal>
+          )}
+
+          <ol className="divide-y divide-stone-300">
+            {rest.map((guide, i) => (
+              <Reveal as="li" key={guide.slug} delay={i * 60}>
+                <Link
+                  href={`/guides/${guide.slug}`}
+                  className="group grid items-center gap-6 py-10 sm:grid-cols-[3rem_220px_1fr] sm:gap-10"
+                >
+                  <span className="hidden font-heading text-2xl text-amber-600 sm:block">
+                    {String(i + 2).padStart(2, "0")}
+                  </span>
+                  <RevealImage from="left" delay={i * 60} className="aspect-[4/3] bg-stone-200">
+                    <Photo
+                      src={guide.image}
+                      alt={guide.title}
+                      className="h-full w-full"
+                      sizes="(min-width: 640px) 220px, 100vw"
+                      imgClassName="h-full w-full object-cover group-hover:scale-105"
+                    />
+                  </RevealImage>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">
+                      {guide.category}
+                    </p>
+                    <h2 className="mt-2 font-heading text-2xl font-medium leading-tight text-stone-900 group-hover:text-emerald-900 sm:text-3xl">
+                      {guide.title}
+                    </h2>
+                    <p className="mt-3 max-w-xl text-sm leading-relaxed text-stone-600 sm:text-base">
+                      {guide.excerpt}
+                    </p>
+                  </div>
+                </Link>
+              </Reveal>
             ))}
-          </div>
-        </Container>
-      </div>
+          </ol>
+        </div>
+      </main>
     </>
   );
 };

@@ -3,8 +3,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import axios from 'axios'
 import { FiCheck, FiX } from 'react-icons/fi'
 import { CalculatorInput, CostBreakdown as CostBreakdownData, RouteStop } from '../../lib/calculator-utils'
-import { ErrorField } from '../ErrorField'
-import { getTheme } from '../../styles/themes'
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -17,7 +15,6 @@ interface LockInDrawerProps {
 }
 
 export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: LockInDrawerProps) {
-  const theme = getTheme()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -88,7 +85,7 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
+          <div className="fixed inset-0 bg-emerald-950/70" aria-hidden="true" />
         </Transition.Child>
 
         <div className="fixed inset-0 flex items-end sm:items-center justify-center">
@@ -101,61 +98,65 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-8 sm:translate-y-0 sm:scale-95"
           >
-            <Dialog.Panel className="w-full sm:max-w-md bg-white rounded-t-2xl sm:rounded-2xl p-6 shadow-warm-xl">
-              <div className="flex items-start justify-between mb-4">
-                <Dialog.Title className="text-lg font-bold text-stone-800">Lock in this itinerary</Dialog.Title>
-                <button type="button" onClick={handleClose} aria-label="Close">
-                  <FiX className="w-5 h-5 text-stone-500" />
+            <Dialog.Panel className="max-h-[92vh] w-full overflow-y-auto bg-brand-ivory p-6 sm:max-w-md sm:p-8">
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <Dialog.Title className="font-heading text-3xl font-medium leading-tight text-stone-900">Lock in this itinerary</Dialog.Title>
+                <button type="button" onClick={handleClose} aria-label="Close" className="-mr-2 -mt-2 flex h-11 w-11 items-center justify-center text-stone-600 hover:text-emerald-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-900">
+                  <FiX className="h-5 w-5" aria-hidden="true" />
                 </button>
               </div>
 
               {submitStatus === 'success' ? (
-                <div className="text-center py-6">
-                  <div
-                    className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${theme.primaryLight} mb-3`}
-                  >
-                    <FiCheck className={`w-6 h-6 ${theme.primaryText}`} />
+                <div className="py-6" role="status">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-900 text-amber-200">
+                    <FiCheck className="h-6 w-6" aria-hidden="true" />
                   </div>
-                  <p className="font-semibold text-stone-800 mb-1">Request sent!</p>
-                  <p className="text-sm text-stone-600">
+                  <p className="mb-1 font-heading text-2xl font-medium text-stone-900">Request sent!</p>
+                  <p className="text-sm text-stone-700">
                     Our team will confirm your itinerary and final quote shortly.
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <p className="text-sm text-stone-600">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <p className="border-y border-stone-300 py-3 text-sm text-stone-700">
                     {input.durationDays} days · {input.adults} adult{input.adults === 1 ? '' : 's'}
                     {input.children > 0 ? `, ${input.children} child${input.children === 1 ? '' : 'ren'}` : ''} ·
                     estimated ${breakdown.totalUsd.toLocaleString()}
                   </p>
                   <div>
-                    <label htmlFor="ja-name" className="block text-sm font-medium text-stone-700 mb-1">
+                    <label htmlFor="ja-name" className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
                       Full Name
                     </label>
                     <input
                       id="ja-name"
+                      autoComplete="name"
+                      aria-invalid={fieldError ? true : undefined}
+                      aria-describedby={fieldError ? 'ja-error' : undefined}
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                      className="block min-h-[48px] w-full border-0 border-b border-stone-400 bg-transparent px-0 py-3 text-base text-stone-900 placeholder:text-stone-400 focus:border-emerald-900 focus:outline-none focus:ring-0 focus-visible:shadow-[0_1px_0_0_#183C32]"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="ja-email" className="block text-sm font-medium text-stone-700 mb-1">
+                    <label htmlFor="ja-email" className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
                       Email
                     </label>
                     <input
                       id="ja-email"
+                      autoComplete="email"
+                      aria-invalid={fieldError ? true : undefined}
+                      aria-describedby={fieldError ? 'ja-error' : undefined}
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                      className="block min-h-[48px] w-full border-0 border-b border-stone-400 bg-transparent px-0 py-3 text-base text-stone-900 placeholder:text-stone-400 focus:border-emerald-900 focus:outline-none focus:ring-0 focus-visible:shadow-[0_1px_0_0_#183C32]"
                       placeholder="your@email.com"
                     />
                   </div>
                   <div>
-                    <label htmlFor="ja-phone" className="block text-sm font-medium text-stone-700 mb-1">
+                    <label htmlFor="ja-phone" className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
                       WhatsApp Number
                     </label>
                     <input
@@ -163,14 +164,18 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                      className="block min-h-[48px] w-full border-0 border-b border-stone-400 bg-transparent px-0 py-3 text-base text-stone-900 placeholder:text-stone-400 focus:border-emerald-900 focus:outline-none focus:ring-0 focus-visible:shadow-[0_1px_0_0_#183C32]"
                       placeholder="+1 234 567 8900"
                     />
                   </div>
 
-                  {fieldError && <ErrorField error={fieldError} />}
+                  {fieldError && (
+                    <p id="ja-error" role="alert" className="text-sm font-medium text-red-700">
+                      {fieldError}
+                    </p>
+                  )}
                   {submitStatus === 'error' && (
-                    <p className="text-sm text-red-600">
+                    <p role="alert" className="text-sm font-medium text-red-700">
                       Something went wrong sending your request. Please try again.
                     </p>
                   )}
@@ -178,9 +183,7 @@ export function LockInDrawer({ isOpen, onClose, input, breakdown, routeStops }: 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold text-white transition ${theme.primary} ${theme.primaryHover} ${
-                      isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                    }`}
+                    className="inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-full bg-emerald-900 px-8 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-900 disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {isSubmitting ? 'Sending...' : 'Confirm Request'}
                   </button>

@@ -107,7 +107,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
       <button
         id="download-pdf-btn"
         onClick={downloadPDF}
-        className="mb-6 px-6 py-3 bg-[#7b8cde] text-white rounded-lg font-semibold text-sm tracking-wide hover:bg-[#5a6abf] transition-colors"
+        className="mb-6 px-6 py-3 bg-[#C9AE7E] text-white rounded-lg font-semibold text-sm tracking-wide hover:bg-[#8A6E3F] transition-colors"
       >
         ⬇ Download PDF
       </button>
@@ -119,7 +119,7 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
         style={{ fontFamily: "'Segoe UI', Arial, sans-serif" }}
       >
         {/* A4 size container with footer at bottom */}
-        <div className="p-12 flex flex-col" style={{ fontSize: '15px', color: '#1a1a2e', minHeight: '1270px' }}>
+        <div className="p-12 flex flex-col" style={{ fontSize: '15px', color: '#183C32', minHeight: '1270px' }}>
           
           {/* Main Content */}
           <div className="flex-grow">
@@ -136,24 +136,24 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
               />
             </div>
             <div className="flex-1 text-center">
-              <div className="text-[28px] font-extrabold tracking-[3px] mt-6" style={{ color: '#1a1a2e' }}>
+              <div className="text-[28px] font-extrabold tracking-[3px] mt-6" style={{ color: '#183C32' }}>
                 INVOICE
               </div>
             </div>
             <div className="text-right text-sm leading-relaxed" style={{ color: '#333' }}>
-              <div><strong style={{ color: '#1a1a2e' }}>Confirmation No:</strong> {invoiceData.confirmationNumber}</div>
-              <div><strong style={{ color: '#1a1a2e' }}>Date:</strong> {formatInvoiceDate(invoiceData.invoiceDate)}</div>
+              <div><strong style={{ color: '#183C32' }}>Confirmation No:</strong> {invoiceData.confirmationNumber}</div>
+              <div><strong style={{ color: '#183C32' }}>Date:</strong> {formatInvoiceDate(invoiceData.invoiceDate)}</div>
             </div>
           </div>
 
-          <hr className="border-t-2 border-[#1a1a2e] my-4" />
+          <hr className="border-t-2 border-[#183C32] my-4" />
 
           {/* Bill To */}
           <div className="mb-8">
-            <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#1a1a2e' }}>
+            <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#183C32' }}>
               Bill To
             </div>
-            <div className="bg-[#f5f6fa] rounded p-3 text-xs leading-relaxed min-h-[60px]">
+            <div className="bg-[#F1F6F3] rounded p-3 text-xs leading-relaxed min-h-[60px]">
               {invoiceData.agentName && (
                 <div><strong>Agent Name :</strong> {invoiceData.agentName}</div>
               )}
@@ -168,33 +168,33 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
 
           {/* Travel Details Table */}
           <div className="mb-8">
-            <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#1a1a2e' }}>
+            <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#183C32' }}>
               Travel Details
             </div>
             <table className="w-full border-collapse text-xs">
               <thead>
-                <tr className="bg-[#1a1a2e] text-white">
-                  <th className="border border-[#1a1a2e] px-2.5 py-2 text-left font-semibold text-[11.5px]">S/N</th>
-                  <th className="border border-[#1a1a2e] px-2.5 py-2 text-left font-semibold text-[11.5px]">Name</th>
-                  <th className="border border-[#1a1a2e] px-2.5 py-2 text-left font-semibold text-[11.5px]">Document No.</th>
-                  <th className="border border-[#1a1a2e] px-2.5 py-2 text-left font-semibold text-[11.5px]">Arrival Date</th>
-                  <th className="border border-[#1a1a2e] px-2.5 py-2 text-left font-semibold text-[11.5px]">Departure Date</th>
-                  <th className="border border-[#1a1a2e] px-2.5 py-2 text-left font-semibold text-[11.5px]">Nights</th>
-                  <th className="border border-[#1a1a2e] px-2.5 py-2 text-left font-semibold text-[11.5px]">Destination</th>
+                <tr className="bg-[#183C32] text-white">
+                  <th className="border border-[#183C32] px-2.5 py-2 text-left font-semibold text-[11.5px]">S/N</th>
+                  <th className="border border-[#183C32] px-2.5 py-2 text-left font-semibold text-[11.5px]">Name</th>
+                  <th className="border border-[#183C32] px-2.5 py-2 text-left font-semibold text-[11.5px]">Document No.</th>
+                  <th className="border border-[#183C32] px-2.5 py-2 text-left font-semibold text-[11.5px]">Arrival Date</th>
+                  <th className="border border-[#183C32] px-2.5 py-2 text-left font-semibold text-[11.5px]">Departure Date</th>
+                  <th className="border border-[#183C32] px-2.5 py-2 text-left font-semibold text-[11.5px]">Nights</th>
+                  <th className="border border-[#183C32] px-2.5 py-2 text-left font-semibold text-[11.5px]">Destination</th>
                 </tr>
               </thead>
               <tbody>
                 {invoiceData.travelers.map((traveler: Traveler, index: number) => {
                   const nights = nightsBetween(traveler.arrivalDate, traveler.departureDate);
                   return (
-                    <tr key={traveler.id} className={index % 2 === 1 ? 'bg-[#f9f9fc]' : ''}>
-                      <td className="border border-[#d0d4e8] px-2.5 py-2">{traveler.serial}</td>
-                      <td className="border border-[#d0d4e8] px-2.5 py-2">{traveler.fullName || '–'}</td>
-                      <td className="border border-[#d0d4e8] px-2.5 py-2">{traveler.documentNumber || '–'}</td>
-                      <td className="border border-[#d0d4e8] px-2.5 py-2">{formatDisplayDate(traveler.arrivalDate)}</td>
-                      <td className="border border-[#d0d4e8] px-2.5 py-2">{formatDisplayDate(traveler.departureDate)}</td>
-                      <td className="border border-[#d0d4e8] px-2.5 py-2">{nights} Night{nights !== 1 ? 's' : ''}</td>
-                      <td className="border border-[#d0d4e8] px-2.5 py-2">{traveler.destination || '–'}</td>
+                    <tr key={traveler.id} className={index % 2 === 1 ? 'bg-[#F7F5EF]' : ''}>
+                      <td className="border border-[#E2DDD0] px-2.5 py-2">{traveler.serial}</td>
+                      <td className="border border-[#E2DDD0] px-2.5 py-2">{traveler.fullName || '–'}</td>
+                      <td className="border border-[#E2DDD0] px-2.5 py-2">{traveler.documentNumber || '–'}</td>
+                      <td className="border border-[#E2DDD0] px-2.5 py-2">{formatDisplayDate(traveler.arrivalDate)}</td>
+                      <td className="border border-[#E2DDD0] px-2.5 py-2">{formatDisplayDate(traveler.departureDate)}</td>
+                      <td className="border border-[#E2DDD0] px-2.5 py-2">{nights} Night{nights !== 1 ? 's' : ''}</td>
+                      <td className="border border-[#E2DDD0] px-2.5 py-2">{traveler.destination || '–'}</td>
                     </tr>
                   );
                 })}
@@ -204,32 +204,32 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
 
           {/* Cost Breakdown Table */}
           <div className="mb-8">
-            <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#1a1a2e' }}>
+            <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#183C32' }}>
               Cost Breakdown
             </div>
             <table className="w-full border-collapse text-xs">
               <thead>
-                <tr className="bg-[#1a1a2e] text-white">
-                  <th className="border border-[#1a1a2e] px-3.5 py-2 text-left font-semibold text-[11.5px]" style={{ width: '70%' }}>
+                <tr className="bg-[#183C32] text-white">
+                  <th className="border border-[#183C32] px-3.5 py-2 text-left font-semibold text-[11.5px]" style={{ width: '70%' }}>
                     Description
                   </th>
-                  <th className="border border-[#1a1a2e] px-3.5 py-2 text-right font-semibold text-[11.5px]">
+                  <th className="border border-[#183C32] px-3.5 py-2 text-right font-semibold text-[11.5px]">
                     Amount ({getCurrencyLabel()})
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {invoiceData.costItems.map((item: CostItem, index: number) => (
-                  <tr key={item.id} className={index % 2 === 1 ? 'bg-[#f9f9fc]' : ''}>
-                    <td className="border border-[#d0d4e8] px-3.5 py-2">{item.description || '–'}</td>
-                    <td className="border border-[#d0d4e8] px-3.5 py-2 text-right">{getCurrencySymbol()}{item.amount.toFixed(2)}</td>
+                  <tr key={item.id} className={index % 2 === 1 ? 'bg-[#F7F5EF]' : ''}>
+                    <td className="border border-[#E2DDD0] px-3.5 py-2">{item.description || '–'}</td>
+                    <td className="border border-[#E2DDD0] px-3.5 py-2 text-right">{getCurrencySymbol()}{item.amount.toFixed(2)}</td>
                   </tr>
                 ))}
                 <tr>
-                  <td className="border border-[#d0d4e8] px-3.5 py-2.5 text-right font-bold text-[13px]" style={{ color: '#1a1a2e' }}>
+                  <td className="border border-[#E2DDD0] px-3.5 py-2.5 text-right font-bold text-[13px]" style={{ color: '#183C32' }}>
                     Total Amount Payable
                   </td>
-                  <td className="border border-[#d0d4e8] px-3.5 py-2.5 text-right font-bold text-[15px]" style={{ color: '#1a1a2e' }}>
+                  <td className="border border-[#E2DDD0] px-3.5 py-2.5 text-right font-bold text-[15px]" style={{ color: '#183C32' }}>
                     {getCurrencySymbol()}{calculateTotal().toFixed(2)}
                   </td>
                 </tr>
@@ -239,32 +239,32 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
 
           {/* Beneficiary Details */}
           <div className="mb-10">
-            <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#1a1a2e' }}>
+            <div className="text-xs font-bold tracking-[1.5px] uppercase mb-2.5" style={{ color: '#183C32' }}>
               Beneficiary Details
             </div>
             <div className="text-xs space-y-1.5">
               <div>
-                <strong className="font-bold" style={{ color: '#1a1a2e' }}>Name:</strong>{' '}
+                <strong className="font-bold" style={{ color: '#183C32' }}>Name:</strong>{' '}
                 <span className="text-[#444]">{invoiceData.beneficiaryName}</span>
               </div>
               <div>
-                <strong className="font-bold" style={{ color: '#1a1a2e' }}>Account No:</strong>{' '}
+                <strong className="font-bold" style={{ color: '#183C32' }}>Account No:</strong>{' '}
                 <span className="text-[#444]">{invoiceData.accountNumber}</span>
               </div>
               <div>
-                <strong className="font-bold" style={{ color: '#1a1a2e' }}>Account Type:</strong>{' '}
+                <strong className="font-bold" style={{ color: '#183C32' }}>Account Type:</strong>{' '}
                 <span className="text-[#444]">{invoiceData.accountType}</span>
               </div>
               <div>
-                <strong className="font-bold" style={{ color: '#1a1a2e' }}>Bank Name:</strong>{' '}
+                <strong className="font-bold" style={{ color: '#183C32' }}>Bank Name:</strong>{' '}
                 <span className="text-[#444]">{invoiceData.bankName}</span>
               </div>
               <div>
-                <strong className="font-bold" style={{ color: '#1a1a2e' }}>Swift Code:</strong>{' '}
+                <strong className="font-bold" style={{ color: '#183C32' }}>Swift Code:</strong>{' '}
                 <span className="text-[#444]">{invoiceData.swiftCode}</span>
               </div>
               <div>
-                <strong className="font-bold" style={{ color: '#1a1a2e' }}>Address:</strong>{' '}
+                <strong className="font-bold" style={{ color: '#183C32' }}>Address:</strong>{' '}
                 <span className="text-[#444]">{invoiceData.bankAddress}</span>
               </div>
             </div>
@@ -273,15 +273,15 @@ const InvoicePreview: React.FC<InvoicePreviewProps> = ({ invoiceData }) => {
           {/* Signature */}
           <div className="flex justify-end mb-6">
             <div className="text-right">
-              <div className="w-[220px] border-t-[1.5px] border-[#1a1a2e] mb-1.5"></div>
-              <div className="text-xs font-bold" style={{ color: '#1a1a2e' }}>Authorised Signature</div>
+              <div className="w-[220px] border-t-[1.5px] border-[#183C32] mb-1.5"></div>
+              <div className="text-xs font-bold" style={{ color: '#183C32' }}>Authorised Signature</div>
             </div>
           </div>
           </div>
 
           {/* Footer - Fixed at bottom of A4 page */}
-          <div className="border-t-2 border-[#1a1a2e] pt-3 text-center mt-auto">
-            <div className="font-bold text-[13px] mb-1.5" style={{ color: '#1a1a2e' }}>
+          <div className="border-t-2 border-[#183C32] pt-3 text-center mt-auto">
+            <div className="font-bold text-[13px] mb-1.5" style={{ color: '#183C32' }}>
               {invoiceData.companyName}
             </div>
             <div className="flex justify-center gap-7 flex-wrap text-[11.5px] text-[#555]">

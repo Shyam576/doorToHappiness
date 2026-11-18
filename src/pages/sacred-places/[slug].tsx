@@ -1,22 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Seo from '../../components/Seo';
 import VisitOnTourCTA from '../../components/VisitOnTourCTA';
 import Link from 'next/link';
 import popularDestination from '../../data/popularDestination.json';
-import { 
-  FiMapPin, 
-  FiCalendar, 
-  FiClock, 
-  FiChevronRight,
-  FiHome,
-  FiShare2,
-  FiHeart,
-  FiCamera,
-  FiInfo
-} from 'react-icons/fi';
-import { FaPrayingHands, FaMountain, FaBuilding } from 'react-icons/fa';
-import { getTheme } from '../../styles/themes';
+import PageHero from '../../components/PageHero';
+import SectionHeading from '../../components/SectionHeading';
+import PlaceGallery from '../../components/PlaceGallery';
+import { Reveal } from '../../components/motion/Reveal';
+import { RevealImage } from '../../components/motion/RevealImage';
+import { PlaceImage, GENERIC_LANDSCAPE, placeLocalPhoto, useResolvedImage } from '../../components/PlacePlaceholder';
 
 interface HeritagePlacePageProps {
   place: any;
@@ -24,22 +17,38 @@ interface HeritagePlacePageProps {
   relatedPlaces: any[];
 }
 
-const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag, relatedPlaces }) => {
-  const theme = getTheme();
-  const [selectedImage, setSelectedImage] = useState(0);
+const pad = (n: number) => String(n).padStart(2, '0');
+const subheading = 'mb-6 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600';
 
-  const typeIcons: { [key: string]: React.ReactElement } = {
-    dzong: <FaBuilding className="text-lg text-amber-600" />,
-    monastery: <FaPrayingHands className="text-lg text-amber-600" />,
-    temple: <FaPrayingHands className="text-lg text-amber-600" />,
-    lhakhang: <FaPrayingHands className="text-lg text-amber-600" />,
-    chorten: <FaMountain className="text-lg text-amber-600" />,
-    stupa: <FaMountain className="text-lg text-amber-600" />,
-    palace: <FaBuilding className="text-lg text-amber-600" />,
-    fortress: <FaBuilding className="text-lg text-amber-600" />,
-  };
+const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag, relatedPlaces }) => {
+  const isUrl = (u?: string) => !!u && /^(https?:\/\/|\/)/.test(u);
+  // Photo of the place itself > local photo of the real place > the district's licensed photo (labelled) > generic banner.
+  const districtPhoto = ((dzongkhag as any)?.media?.images ?? []).find(isUrl) as string | undefined;
+  const ownPhoto = isUrl(place.image) ? place.image : undefined;
+  const fallback = placeLocalPhoto(place.name) || districtPhoto || GENERIC_LANDSCAPE;
+  const heroSrc = useResolvedImage(ownPhoto || fallback, fallback);
+  const showsDistrictPhoto = !ownPhoto && !placeLocalPhoto(place.name) && !!districtPhoto;
+  const districtLabel = String((dzongkhag as any)?.name ?? '').replace(/\s*Dzongkhag$/i, '');
 
   const images = place.images || [place.image].filter(Boolean);
+
+  const architectureFeatures = [
+    'Traditional construction without nails',
+    'Intricate wood carvings and paintings',
+    'Sacred Buddhist artifacts',
+  ];
+  const access = [
+    'Open to visitors during daylight hours',
+    'Guided tours available',
+    'Photography permitted in designated areas',
+    'Respectful dress code required',
+  ];
+  const expect = [
+    'Sacred prayer halls and shrines',
+    'Traditional architectural details',
+    'Peaceful meditation spaces',
+    'Views of surrounding landscape',
+  ];
 
   return (
     <>
@@ -51,250 +60,208 @@ const HeritagePlacePage: React.FC<HeritagePlacePageProps> = ({ place, dzongkhag,
         ogType="article"
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
-        {/* Breadcrumb Navigation */}
-        <div className="bg-white border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <nav className="flex items-center space-x-2 text-sm text-stone-600">
-              <Link href="/" className="hover:text-amber-600 flex items-center">
-                <FiHome className="mr-1" /> Home
-              </Link>
-              <FiChevronRight className="text-stone-400" />
-              <Link href="/sacred-places" className="hover:text-amber-600">
-                Heritage Places
-              </Link>
-              <FiChevronRight className="text-stone-400" />
-              <Link href={`/dzongkhag/${dzongkhag.slug}`} className="hover:text-amber-600">
-                {dzongkhag.name}
-              </Link>
-              <FiChevronRight className="text-stone-400" />
-              <span className="text-stone-900 font-medium">{place.name}</span>
+      <PageHero
+        size="lg"
+        eyebrow={`${place.type ? place.type + ' · ' : ''}${dzongkhag.name} Dzongkhag`}
+        title={place.name}
+        intro={`${place.region}${place.distance ? ` · ${place.distance} from center` : ''}`}
+        image={heroSrc}
+        imageAlt={showsDistrictPhoto ? `${districtLabel} district` : `${place.name} heritage site`}
+      >
+        {showsDistrictPhoto && (
+          <span className="bg-emerald-950/70 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+            Photo: {districtLabel} district
+          </span>
+        )}
+      </PageHero>
+
+      <div className="bg-brand-ivory">
+        <section aria-labelledby="about-heading" className="py-20 sm:py-28">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <nav aria-label="Breadcrumb" className="mb-14 text-xs uppercase tracking-[0.16em] text-stone-500">
+              <ol className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <li><Link href="/" className="inline-flex min-h-[44px] items-center hover:text-emerald-900">Home</Link></li>
+                <li aria-hidden="true">/</li>
+                <li><Link href="/sacred-places" className="inline-flex min-h-[44px] items-center hover:text-emerald-900">Heritage places</Link></li>
+                <li aria-hidden="true">/</li>
+                <li><Link href={`/dzongkhag/${dzongkhag.slug}`} className="inline-flex min-h-[44px] items-center hover:text-emerald-900">{dzongkhag.name}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="font-semibold text-stone-900">{place.name}</li>
+              </ol>
             </nav>
-          </div>
-        </div>
 
-        {/* Hero Section */}
-        <div className="relative h-96 overflow-hidden">
-          <div className="absolute inset-0">
-            <img
-              src={place.image || '/backgroundbanner.jpg'}
-              alt={`${place.name} heritage site`}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-30" />
-          </div>
-          
-          <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
-            <div>
-              <div className="flex items-center justify-center mb-4">
-                {typeIcons[place.type]}
-                <span className="ml-2 text-lg font-medium capitalize bg-amber-600 bg-opacity-80 px-3 py-1 rounded-full">
-                  {place.type}
-                </span>
-              </div>
-              <h1 className="font-heading text-4xl md:text-6xl font-bold mb-4">{place.name}</h1>
-              <p className="text-xl md:text-2xl mb-6">{dzongkhag.name} Dzongkhag</p>
-              
-              <div className="flex flex-wrap justify-center gap-4 mb-6">
-                <div className="bg-amber-600 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
-                  <FiMapPin className="mr-2" />
-                  <span>{place.region}</span>
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+              {/* Facts rail */}
+              <aside aria-label="Quick information" className="lg:col-span-3">
+                <div className="lg:sticky lg:top-32">
+                  <Reveal delay={200}><p className={subheading}><span className="h-px w-10 bg-amber-500" aria-hidden="true" />At a glance</p></Reveal>
+                  <Reveal delay={350}>
+                  <dl className="divide-y divide-stone-300 border-y border-stone-300">
+                    {place.type && (
+                      <div className="py-4">
+                        <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Type</dt>
+                        <dd className="mt-1 font-heading text-xl font-medium capitalize text-stone-900">{place.type}</dd>
+                      </div>
+                    )}
+                    <div className="py-4">
+                      <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Location</dt>
+                      <dd className="mt-1 font-heading text-xl font-medium text-stone-900">{dzongkhag.name}</dd>
+                    </div>
+                    {place.distance && (
+                      <div className="py-4">
+                        <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500">Distance</dt>
+                        <dd className="mt-1 font-heading text-xl font-medium text-stone-900">{place.distance}</dd>
+                      </div>
+                    )}
+                  </dl>
+                  </Reveal>
+                  <Link
+                    href={`/dzongkhag/${dzongkhag.slug}`}
+                    className="mt-6 inline-flex min-h-[44px] items-center text-[12px] font-semibold uppercase tracking-[0.14em] text-emerald-900 underline decoration-1 underline-offset-[6px] hover:text-amber-600"
+                  >
+                    Visit {dzongkhag.name}
+                  </Link>
                 </div>
-                {place.distance && (
-                  <div className="bg-amber-500 bg-opacity-80 px-4 py-2 rounded-full flex items-center">
-                    <FiMapPin className="mr-2" />
-                    <span>{place.distance} from center</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+              </aside>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* About Section */}
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">About {place.name}</h2>
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-stone-700 leading-relaxed mb-4">
+              {/* Long-form */}
+              <div className="lg:col-span-8 lg:col-start-5">
+                <SectionHeading id="about-heading" eyebrow="The story" title={<>About <em>{place.name}</em></>} className="max-w-3xl" />
+                <div className="mt-10 max-w-2xl space-y-6 text-lg leading-[1.85] text-stone-700">
+                  <Reveal delay={250}>
+                  <p className="first-letter:float-left first-letter:mr-3 first-letter:font-heading first-letter:text-7xl first-letter:font-medium first-letter:leading-[0.85] first-letter:text-emerald-900">
                     {place.description}
                   </p>
-                  
+                  </Reveal>
                   {place.history && (
-                    <>
-                      <h3 className="text-xl font-semibold text-stone-900 mt-6 mb-3">Historical Significance</h3>
-                      <p className="text-stone-700 leading-relaxed">
-                        {place.history}
-                      </p>
-                    </>
+                    <Reveal delay={150}>
+                      <h3 className="pt-6 font-heading text-3xl font-medium text-stone-900">Historical <em className="font-normal text-emerald-900">significance</em></h3>
+                      <p className="mt-6">{place.history}</p>
+                    </Reveal>
                   )}
-                  
                   {place.significance && (
-                    <>
-                      <h3 className="text-xl font-semibold text-stone-900 mt-6 mb-3">Cultural Significance</h3>
-                      <p className="text-stone-700 leading-relaxed">
-                        {place.significance}
-                      </p>
-                    </>
+                    <Reveal delay={150}>
+                      <h3 className="pt-6 font-heading text-3xl font-medium text-stone-900">Cultural <em className="font-normal text-emerald-900">significance</em></h3>
+                      <p className="mt-6">{place.significance}</p>
+                    </Reveal>
                   )}
-                </div>
-              </div>
-
-              {/* Architecture & Features */}
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6 flex items-center">
-                  <FaBuilding className="mr-3 text-amber-500" />
-                  Architecture & Features
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-medium text-stone-700 mb-3">Architectural Style:</h4>
-                    <p className="text-stone-600 mb-4">
-                      Traditional Bhutanese architecture featuring intricate woodwork, 
-                      painted motifs, and distinctive roof designs typical of {place.type}s.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-medium text-stone-700 mb-3">Special Features:</h4>
-                    <ul className="space-y-2">
-                      <li className="text-stone-600 flex items-center">
-                        <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                        Traditional construction without nails
-                      </li>
-                      <li className="text-stone-600 flex items-center">
-                        <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                        Intricate wood carvings and paintings
-                      </li>
-                      <li className="text-stone-600 flex items-center">
-                        <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                        Sacred Buddhist artifacts
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Visiting Information */}
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6 flex items-center">
-                  <FiInfo className="mr-3 text-amber-500" />
-                  Visiting Information
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-medium text-stone-700 mb-3">Access & Timing:</h4>
-                    <ul className="space-y-2 text-stone-600">
-                      <li>• Open to visitors during daylight hours</li>
-                      <li>• Guided tours available</li>
-                      <li>• Photography permitted in designated areas</li>
-                      <li>• Respectful dress code required</li>
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-medium text-stone-700 mb-3">What to Expect:</h4>
-                    <ul className="space-y-2 text-stone-600">
-                      <li>• Sacred prayer halls and shrines</li>
-                      <li>• Traditional architectural details</li>
-                      <li>• Peaceful meditation spaces</li>
-                      <li>• Views of surrounding landscape</li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Quick Info */}
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-lg font-bold mb-4">Quick Information</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-stone-500 font-medium">Type</span>
-                    <span className="text-sm font-medium text-stone-700 capitalize">{place.type}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-stone-500 font-medium">Location</span>
-                    <span className="text-sm font-medium text-stone-700">{dzongkhag.name}</span>
-                  </div>
-                  {place.distance && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-stone-500 font-medium">Distance</span>
-                      <span className="text-sm font-medium text-stone-700">{place.distance}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
+        {images.length > 1 && (
+          <PlaceGallery
+            images={images.map((src: string) => ({ src, alt: place.name }))}
+            className="border-t border-stone-300 py-24"
+            header={<SectionHeading eyebrow="Gallery" title={<>Seen <em>up close</em></>} />}
+          />
+        )}
 
-              <VisitOnTourCTA dzongkhagName={dzongkhag.name} pageLabel={place.name} />
+        {/* Architecture & features */}
+        <section aria-labelledby="architecture-heading" className="bg-emerald-950 py-24 text-white sm:py-32">
+          <div className="container mx-auto grid gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
+            <Reveal className="lg:col-span-6">
+              <SectionHeading id="architecture-heading" tone="dark" eyebrow="Built to endure" title={<>Architecture &amp; <em>features</em></>} />
+              <h3 className="mt-10 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-300">Architectural style</h3>
+              <p className="mt-4 max-w-md font-heading text-2xl font-normal italic leading-snug text-white/90">
+                Traditional Bhutanese architecture featuring intricate woodwork, painted motifs, and distinctive roof designs typical of {place.type || 'heritage site'}s.
+              </p>
+            </Reveal>
+            <Reveal delay={90} className="lg:col-span-5 lg:col-start-8">
+              <h3 className="border-t border-white/25 pt-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-300">Special features</h3>
+              <ol className="mt-4">
+                {architectureFeatures.map((f, i) => (
+                  <Reveal as="li" key={f} delay={i * 120} className="flex items-baseline gap-5 border-b border-white/25 py-5 font-heading text-xl font-medium">
+                    <span className="text-sm text-amber-300" aria-hidden="true">{pad(i + 1)}</span>{f}
+                  </Reveal>
+                ))}
+              </ol>
+            </Reveal>
+          </div>
+        </section>
 
-              {/* Visit Dzongkhag */}
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-lg font-bold mb-4">Explore the Region</h3>
-                <p className="text-stone-600 text-sm mb-4">
-                  Discover more attractions and heritage sites in {dzongkhag.name} Dzongkhag.
-                </p>
-                <Link href={`/dzongkhag/${dzongkhag.slug}`}>
-                  <button className={`w-full ${theme.primary} ${theme.primaryHover} text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200`}>
-                    Visit {dzongkhag.name}
-                  </button>
+        {/* Visiting information */}
+        <section aria-labelledby="visiting-heading" className="py-24 sm:py-32">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <Reveal className="mb-14">
+              <SectionHeading id="visiting-heading" eyebrow="Before you go" title={<>Visiting <em>information</em></>} />
+            </Reveal>
+            <div className="grid gap-12 md:grid-cols-2 lg:gap-24">
+              <Reveal>
+                <h3 className="border-t border-stone-400 pt-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">Access &amp; timing</h3>
+                <ul className="mt-5 space-y-3 text-lg text-stone-700">
+                  {access.map((x, i) => (<Reveal as="li" key={x} delay={i * 100} className="flex items-baseline gap-3"><span className="h-px w-5 shrink-0 translate-y-[-4px] bg-amber-500" aria-hidden="true" />{x}</Reveal>))}
+                </ul>
+              </Reveal>
+              <Reveal delay={90}>
+                <h3 className="border-t border-stone-400 pt-5 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">What to expect</h3>
+                <ul className="mt-5 space-y-3 text-lg text-stone-700">
+                  {expect.map((x, i) => (<Reveal as="li" key={x} delay={i * 100} className="flex items-baseline gap-3"><span className="h-px w-5 shrink-0 translate-y-[-4px] bg-amber-500" aria-hidden="true" />{x}</Reveal>))}
+                </ul>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* Related heritage places */}
+        {relatedPlaces.length > 0 && (
+          <section aria-labelledby="related-heading" className="border-t border-stone-300 bg-stone-100 py-24 sm:py-28">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+              <Reveal className="mb-12">
+                <SectionHeading id="related-heading" eyebrow={dzongkhag.name} title={<>Related heritage <em>places</em></>} />
+              </Reveal>
+              <ul className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
+                {relatedPlaces.map((relatedPlace: any, ri: number) => (
+                  <li key={relatedPlace.slug} className="w-[72%] shrink-0 snap-start sm:w-auto">
+                    <Link href={`/sacred-places/${relatedPlace.slug}`} className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-emerald-900">
+                      <RevealImage from="bottom" delay={ri * 150} className="relative aspect-[4/5] bg-stone-200">
+                        <PlaceImage src={relatedPlace.image} fallbackSrc={placeLocalPhoto(relatedPlace.name)} name={relatedPlace.name} alt={relatedPlace.name} className="duration-[1600ms] group-hover:scale-[1.05]" />
+                      </RevealImage>
+                      <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-600">
+                        {relatedPlace.type ? <span className="capitalize">{relatedPlace.type} · </span> : null}{relatedPlace.dzongkhag}
+                      </p>
+                      <h3 className="mt-1 font-heading text-xl font-medium leading-snug text-stone-900">{relatedPlace.name}</h3>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
+        {/* Visit + explore the region */}
+        <section aria-labelledby="visit-heading" className="bg-emerald-950 py-24 text-white sm:py-32">
+          <div className="container mx-auto grid gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
+            <Reveal className="lg:col-span-6">
+              <SectionHeading
+                id="visit-heading"
+                tone="dark"
+                eyebrow="Explore the region"
+                title={<>More to discover in <em>{dzongkhag.name}</em></>}
+                intro={`Discover more attractions and heritage sites in ${dzongkhag.name} Dzongkhag.`}
+              />
+              <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-2">
+                <Link
+                  href={`/dzongkhag/${dzongkhag.slug}`}
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-8 py-3.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-emerald-950 transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  Visit {dzongkhag.name}
+                </Link>
+                <Link
+                  href="/sacred-places"
+                  className="inline-flex min-h-[44px] items-center text-[13px] font-semibold uppercase tracking-[0.14em] text-white underline decoration-1 underline-offset-[6px] hover:text-amber-200"
+                >
+                  Browse all heritage places
                 </Link>
               </div>
-
-              {/* Related Heritage Places */}
-              {relatedPlaces.length > 0 && (
-                <div className="bg-white rounded-xl shadow-lg p-6">
-                  <h3 className="text-lg font-bold mb-4">Related Heritage Places</h3>
-                  <div className="space-y-4">
-                    {relatedPlaces.map((relatedPlace: any) => (
-                      <Link key={relatedPlace.slug} href={`/sacred-places/${relatedPlace.slug}`}>
-                        <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-stone-50 transition-colors">
-                          {relatedPlace.image && (
-                            <img 
-                              src={relatedPlace.image} 
-                              alt={relatedPlace.name}
-                              className="w-12 h-12 object-cover rounded-lg flex-shrink-0"
-                              loading="lazy"
-                              width={48}
-                              height={48}
-                            />
-                          )}
-                          <div className="flex-grow min-w-0">
-                            <h4 className="font-medium text-stone-900 text-sm line-clamp-1">{relatedPlace.name}</h4>
-                            <p className="text-stone-500 text-xs capitalize">{relatedPlace.type}</p>
-                            <p className="text-stone-500 text-xs">{relatedPlace.dzongkhag}</p>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+            </Reveal>
+            <Reveal delay={90} className="lg:col-span-5 lg:col-start-8">
+              <VisitOnTourCTA dzongkhagName={dzongkhag.name} pageLabel={place.name} tone="dark" />
+            </Reveal>
           </div>
-        </div>
-
-        {/* Back to Heritage Places */}
-        <div className="bg-gradient-to-r from-amber-500 to-amber-600 py-12 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl font-bold text-white mb-6">
-              Explore More Heritage Places
-            </h2>
-            <p className="text-xl text-white mb-8">
-              Discover the rich cultural heritage of Bhutan's sacred sites
-            </p>
-            <Link href="/sacred-places">
-              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-stone-100 transition-colors">
-                Browse All Heritage Places
-              </button>
-            </Link>
-          </div>
-        </div>
+        </section>
       </div>
     </>
   );

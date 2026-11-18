@@ -72,12 +72,12 @@ const InvoiceGeneratorPage: NextPage = () => {
   return (
     <div className="flex min-h-screen">
       {/* Form Section - Dark Sidebar */}
-      <div className="w-[420px] min-w-[420px] bg-[#1a1a2e] text-stone-200 overflow-y-auto max-h-screen sticky top-0">
+      <div className="w-[420px] min-w-[420px] bg-[#183C32] text-stone-200 overflow-y-auto max-h-screen sticky top-0">
         <InvoiceForm invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
       </div>
       
       {/* Preview Section */}
-      <div className="flex-1 bg-[#e8eaf0] overflow-y-auto">
+      <div className="flex-1 bg-[#EFECE3] overflow-y-auto">
         <InvoicePreview invoiceData={invoiceData} />
       </div>
     </div>

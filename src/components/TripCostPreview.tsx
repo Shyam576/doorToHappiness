@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { calculateCost, TravelerType, MIN_DURATION_DAYS, MAX_DURATION_DAYS } from '../lib/calculator-utils'
 
@@ -9,13 +10,18 @@ const TRAVELER_TYPE_OPTIONS: { value: TravelerType; label: string; adults: numbe
   { value: 'trekking-group', label: 'Group', adults: 4, children: 0 },
 ]
 
+const QUICK_DESTINATIONS = [
+  { href: '/dzongkhag/paro', label: 'Paro' },
+  { href: '/dzongkhag/thimphu', label: 'Thimphu' },
+  { href: '/dzongkhag/punakha', label: 'Punakha' },
+  { href: '/dzongkhag/bumthang', label: 'Bumthang' },
+]
+
 /**
- * A compact, hero-sized version of the Journey Architect calculator: trip length + traveler type
- * only (no adult/children fine-tuning — that's what the full /plan-your-trip page is for), showing
- * a live estimated price so the hero itself demonstrates the site's main conversion tool instead of
- * just linking to it. Each traveler type maps to a representative headcount (see
- * TRAVELER_TYPE_OPTIONS) purely to produce an illustrative starting estimate; the full calculator
- * page lets visitors adjust adults/children exactly once they land there via the deep link below.
+ * The home page's trip planner: trip length + traveler type with a live estimate from the real
+ * calculator, deep-linking into /plan-your-trip (the full Journey Architect) with the chosen values.
+ * Each traveler type maps to a representative headcount (see TRAVELER_TYPE_OPTIONS) purely to
+ * produce an illustrative starting estimate; the full page lets visitors set adults/children exactly.
  */
 export default function TripCostPreview() {
   const router = useRouter()
@@ -43,67 +49,97 @@ export default function TripCostPreview() {
   }
 
   return (
-    <div className="mt-4 sm:mt-6 md:mt-8 bg-white rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-5 md:p-6 bg-opacity-95 mx-2 sm:mx-4">
-      <h2 className="text-base sm:text-xl md:text-2xl font-bold text-stone-900 mb-3 sm:mb-4">
-        Build Your Bhutan Trip
-      </h2>
+    <div className="mx-auto w-full max-w-6xl rounded-lg bg-brand-ivory p-5 shadow-warm-xl ring-1 ring-stone-200 sm:p-7 lg:p-8">
+      <div className="grid gap-7 lg:grid-cols-[0.9fr_1fr_1.1fr_1fr] lg:items-end lg:gap-9">
+        {/* Intro */}
+        <div>
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-600">
+            Plan your journey
+          </p>
+          <h2 className="font-heading text-2xl font-medium leading-tight text-stone-900 sm:text-3xl">
+            Build Your Bhutan Trip
+          </h2>
+        </div>
 
-      <div className="flex items-center justify-between mb-2">
-        <label htmlFor="hero-duration" className="text-sm font-medium text-stone-700">
-          Trip length
-        </label>
-        <span className="text-sm font-semibold text-amber-700">
-          {durationDays} {durationDays === 1 ? 'day' : 'days'}
-        </span>
-      </div>
-      <input
-        id="hero-duration"
-        type="range"
-        min={MIN_DURATION_DAYS}
-        max={MAX_DURATION_DAYS}
-        step={1}
-        value={durationDays}
-        onChange={(e) => setDurationDays(Number(e.target.value))}
-        className="w-full accent-amber-600"
-        aria-valuemin={MIN_DURATION_DAYS}
-        aria-valuemax={MAX_DURATION_DAYS}
-        aria-valuenow={durationDays}
-      />
+        {/* Trip length */}
+        <div>
+          <div className="mb-3 flex items-baseline justify-between">
+            <label htmlFor="hero-duration" className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">
+              Trip length
+            </label>
+            <span className="text-sm font-semibold text-emerald-900">
+              {durationDays} {durationDays === 1 ? 'day' : 'days'}
+            </span>
+          </div>
+          <input
+            id="hero-duration"
+            type="range"
+            min={MIN_DURATION_DAYS}
+            max={MAX_DURATION_DAYS}
+            step={1}
+            value={durationDays}
+            onChange={(e) => setDurationDays(Number(e.target.value))}
+            className="h-11 w-full accent-emerald-900"
+            aria-valuemin={MIN_DURATION_DAYS}
+            aria-valuemax={MAX_DURATION_DAYS}
+            aria-valuenow={durationDays}
+          />
+        </div>
 
-      <div role="radiogroup" aria-label="Traveler type" className="grid grid-cols-4 gap-2 mt-4 mb-4">
-        {TRAVELER_TYPE_OPTIONS.map((option) => (
+        {/* Travelers */}
+        <div>
+          <p id="traveler-type-label" className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">
+            Travelling as
+          </p>
+          <div role="radiogroup" aria-labelledby="traveler-type-label" className="grid grid-cols-4 gap-2">
+            {TRAVELER_TYPE_OPTIONS.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                role="radio"
+                aria-checked={travelerType === option.value}
+                onClick={() => setTravelerType(option.value)}
+                className={`min-h-[44px] rounded-md border px-2 text-xs font-medium transition-colors sm:text-sm ${
+                  travelerType === option.value
+                    ? 'border-emerald-900 bg-emerald-900 text-white'
+                    : 'border-stone-300 bg-white text-stone-700 hover:border-emerald-800'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Estimate + action */}
+        <div>
+          <div className="mb-3 flex items-baseline justify-between">
+            <span className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">Estimated total</span>
+            <span className="font-heading text-3xl font-medium text-stone-900">
+              ${breakdown.totalUsd.toLocaleString()}
+            </span>
+          </div>
           <button
-            key={option.value}
             type="button"
-            role="radio"
-            aria-checked={travelerType === option.value}
-            onClick={() => setTravelerType(option.value)}
-            className={`px-2 py-2 rounded-lg border-2 text-xs sm:text-sm font-medium transition-colors ${
-              travelerType === option.value
-                ? 'border-amber-600 bg-amber-50 text-amber-800'
-                : 'border-stone-300 text-stone-700 hover:border-amber-300'
-            }`}
+            onClick={handleSeeFullItinerary}
+            className="min-h-[48px] w-full rounded-full bg-emerald-900 px-5 text-[13px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-emerald-800"
           >
-            {option.label}
+            See My Full Itinerary & Price
           </button>
-        ))}
+        </div>
       </div>
 
-      <div className="flex items-baseline justify-between bg-stone-50 rounded-lg px-4 py-3 mb-4">
-        <span className="text-sm font-medium text-stone-700">Estimated total</span>
-        <span className="text-2xl font-bold text-amber-700">${breakdown.totalUsd.toLocaleString()}</span>
+      <div className="mt-6 flex flex-col gap-3 border-t border-stone-200 pt-5 text-xs text-stone-500 sm:flex-row sm:items-center sm:justify-between">
+        <p>Estimate only — your final quote will be confirmed by our team.</p>
+        <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <span className="uppercase tracking-[0.16em] text-stone-500">Or start with a place:</span>
+          {QUICK_DESTINATIONS.map(({ href, label }) => (
+            <Link key={href} href={href} className="font-medium text-emerald-900 underline-offset-4 hover:underline">
+              {label}
+            </Link>
+          ))}
+        </p>
       </div>
-
-      <button
-        type="button"
-        onClick={handleSeeFullItinerary}
-        className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 sm:py-3 px-4 rounded-lg transition text-sm sm:text-base"
-      >
-        See My Full Itinerary & Price
-      </button>
-      <p className="text-xs text-stone-500 mt-2 text-center">
-        Estimate only — your final quote will be confirmed by our team.
-      </p>
     </div>
   )
 }

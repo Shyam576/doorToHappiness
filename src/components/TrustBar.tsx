@@ -1,12 +1,13 @@
 import React from "react";
 import { SOCIAL_LINKS } from "./Footer";
+import { Reveal } from "./motion/Reveal";
 
 const TrustBar: React.FC = () => {
   return (
-    <div className="w-full bg-stone-50 border-y border-stone-200">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10 text-xs sm:text-sm font-medium text-stone-700">
-          <span className="inline-flex items-center gap-2">
+    <div className="w-full border-b border-stone-300 bg-brand-ivory">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-10 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-700">
+          <Reveal delay={0} className="inline-flex items-center gap-2">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -22,9 +23,9 @@ const TrustBar: React.FC = () => {
               />
             </svg>
             Licensed Bhutanese Tour Operator
-          </span>
+          </Reveal>
 
-          <span className="inline-flex items-center gap-2">
+          <Reveal delay={100} className="inline-flex items-center gap-2">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -45,9 +46,9 @@ const TrustBar: React.FC = () => {
               />
             </svg>
             Based in Thimphu, Bhutan
-          </span>
+          </Reveal>
 
-          <span className="inline-flex items-center gap-2">
+          <Reveal delay={200} className="inline-flex items-center gap-2">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -63,9 +64,9 @@ const TrustBar: React.FC = () => {
               />
             </svg>
             Operating Since 2020
-          </span>
+          </Reveal>
 
-          <div className="flex items-center gap-3">
+          <Reveal delay={300} className="flex items-center gap-3">
             {SOCIAL_LINKS.map(({ href, label, icon }) => (
               <a
                 key={href}
@@ -73,12 +74,12 @@ const TrustBar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-stone-200 text-stone-500 hover:text-amber-600 hover:border-amber-300 transition-colors"
+                className="flex items-center justify-center h-11 w-11 text-stone-500 transition-colors hover:text-emerald-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-900"
               >
                 {icon}
               </a>
             ))}
-          </div>
+          </Reveal>
         </div>
       </div>
     </div>

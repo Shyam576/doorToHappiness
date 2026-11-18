@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Seo from "../../components/Seo";
 import Link from "next/link";
-import Image from "next/image";
-import { Container } from "../../components/Container";
+import PageHero from "../../components/PageHero";
+import SectionHeading from "../../components/SectionHeading";
+import { Reveal } from "../../components/motion/Reveal";
+import { RevealImage } from "../../components/motion/RevealImage";
+import { StaggerText } from "../../components/motion/StaggerText";
+import { PlaceImage, dzongkhagImage } from "../../components/PlacePlaceholder";
 import popularDestination from "../../data/popularDestination.json";
-import { FiMapPin, FiUsers, FiCompass, FiChevronRight } from "react-icons/fi";
-import { FaMountain } from "react-icons/fa";
-import { getTheme } from "../../styles/themes";
 
 const DzongkhagIndex = () => {
-  // Get unified theme
-  const theme = getTheme();
   const dzongkhags = popularDestination;
 
   const regions = {
@@ -21,6 +20,39 @@ const DzongkhagIndex = () => {
     'Southern Bhutan': dzongkhags.filter(d => d.location.region === 'Southern Bhutan'),
     'Northern Bhutan': dzongkhags.filter(d => d.location.region === 'Northern Bhutan')
   };
+
+  // Each tile has its own proportion and offset (12-col rhythm repeating every 5) so a region reads
+  // like a magazine spread rather than a grid of equal cards.
+  const TILES = [
+    { col: "lg:col-span-7", aspect: "aspect-[4/5] lg:aspect-[7/6]", offset: "" },
+    { col: "lg:col-span-5", aspect: "aspect-[4/5]", offset: "lg:mt-24" },
+    { col: "lg:col-span-4", aspect: "aspect-[4/5]", offset: "" },
+    { col: "lg:col-span-4", aspect: "aspect-square", offset: "lg:mt-16" },
+    { col: "lg:col-span-4", aspect: "aspect-[3/4]", offset: "lg:mt-6" },
+  ];
+  const regionId = (name: string) => `region-${name.split(" ")[0].toLowerCase()}`;
+  const regionEntries = Object.entries(regions).filter(([, list]) => list.length > 0);
+  const FROMS = ["left", "bottom", "right", "bottom", "top"] as const;
+
+  // Which region is in view, for the sticky jump bar (IntersectionObserver, no scroll listener).
+  const [activeRegion, setActiveRegion] = useState<string | null>(null);
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveRegion(e.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" },
+    );
+    regionEntries.forEach(([name]) => {
+      const el = document.getElementById(regionId(name));
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -53,158 +85,162 @@ const DzongkhagIndex = () => {
           rel="preload"
           as="image"
           href="/dzongkhag.jpg"
-          fetchPriority="high"
+          {...({ fetchpriority: "high" } as Record<string, string>)}
         />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
-        {/* Hero Section */}
-        <div className="relative py-24 overflow-hidden bg-stone-900">
-          {/* Background Image Layer */}
-          <div
-            className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: "url('/dzongkhag.jpg')" }}
-            aria-hidden="true"
-          />
-          
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-             <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
-              Bhutan's 20 Dzongkhags
-            </h1>
-            <p className="text-xl text-white opacity-90 mb-8">
-              Discover the cultural heart of the Thunder Dragon Kingdom through its 20 administrative districts, each home to ancient dzongs, monasteries, and timeless traditions.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
-              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">20 Dzongkhags</span>
-              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">200+ Heritage Sites</span>
-              <span className="bg-amber-500 bg-opacity-50 px-4 py-2 rounded-full">Traditional Architecture</span>
-            </div>
-          </div>
-        </div>
+      <PageHero
+        eyebrow="Destinations"
+        title={<>Bhutan&apos;s 20 <em>Dzongkhags</em></>}
+        intro="Discover the cultural heart of the Thunder Dragon Kingdom through its 20 administrative districts, each home to ancient dzongs, monasteries, and timeless traditions."
+        image="/dzongkhag.jpg"
+        imageAlt="Dzong beneath the Himalayan foothills of Bhutan"
+      >
+        <a
+          href={`#${regionId(regionEntries[0]?.[0] ?? "Western Bhutan")}`}
+          className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-8 py-3.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-emerald-950 transition-colors hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Begin exploring
+        </a>
+        <Link
+          href="/sacred-places"
+          className="inline-flex min-h-[44px] items-center text-[13px] font-semibold uppercase tracking-[0.14em] text-white underline decoration-1 underline-offset-[6px] transition-colors hover:text-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+        >
+          Heritage places
+        </Link>
+      </PageHero>
 
+      <div className="bg-brand-ivory">
         {/* Introduction */}
-        <div className="max-w-4xl mx-auto px-4 py-16">
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="font-heading text-3xl font-bold text-stone-900 mb-6">Understanding Bhutan's Dzongkhags</h2>
-            <p className="text-lg text-stone-700 leading-relaxed mb-6">
-              Bhutan is divided into 20 <strong>dzongkhags</strong> (districts), each serving as both administrative and spiritual centers. The word "dzongkhag" literally means "dzong district," highlighting the central role these fortress-monasteries play in Bhutanese governance and religious life.
-            </p>
-            <p className="text-lg text-stone-700 leading-relaxed mb-6">
-              Each dzongkhag contains numerous heritage sites including <strong>dzongs</strong>, <strong>lhakhangs</strong> (temples), <strong>gompas</strong> (monasteries), and <strong>chortens</strong> (stupas) that represent centuries of Buddhist tradition and architectural mastery.
-            </p>
+        <section aria-labelledby="understanding-heading" className="py-24 sm:py-32">
+          <div className="container mx-auto grid gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
+            <Reveal className="lg:col-span-5">
+              <SectionHeading
+                id="understanding-heading"
+                eyebrow="The districts"
+                title={<>Understanding Bhutan&apos;s <em>dzongkhags</em></>}
+              />
+            </Reveal>
+            <Reveal delay={90} className="space-y-6 text-lg leading-[1.8] text-stone-700 lg:col-span-6 lg:col-start-7">
+              <p className="first-letter:float-left first-letter:mr-3 first-letter:font-heading first-letter:text-6xl first-letter:font-medium first-letter:leading-[0.85] first-letter:text-emerald-900">
+                Bhutan is divided into 20 <strong className="font-semibold text-stone-900">dzongkhags</strong> (districts), each serving as both administrative and spiritual centers. The word &quot;dzongkhag&quot; literally means &quot;dzong district,&quot; highlighting the central role these fortress-monasteries play in Bhutanese governance and religious life.
+              </p>
+              <p>
+                Each dzongkhag contains numerous heritage sites including <strong className="font-semibold text-stone-900">dzongs</strong>, <strong className="font-semibold text-stone-900">lhakhangs</strong> (temples), <strong className="font-semibold text-stone-900">gompas</strong> (monasteries), and <strong className="font-semibold text-stone-900">chortens</strong> (stupas) that represent centuries of Buddhist tradition and architectural mastery.
+              </p>
+            </Reveal>
           </div>
-        </div>
+        </section>
 
-        {/* Regional Breakdown */}
-        {Object.entries(regions).map(([regionName, dzongkhagList]) => (
-          <div key={regionName} className="max-w-7xl mx-auto px-4 py-8">
-            <h2 className="font-heading text-3xl font-bold text-center mb-12 text-stone-900">
-              {regionName}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {dzongkhagList.map((dzongkhag: any) => (
-                <div key={dzongkhag.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-                  <div className="h-48 bg-gradient-to-br from-amber-400 to-amber-600 relative overflow-hidden flex-shrink-0">
-                    {dzongkhag.media?.images && dzongkhag.media.images[0] ? (
-                      <img 
-                        src={dzongkhag.media.images[0]} 
-                        alt={`${dzongkhag.name} dzongkhag landscape`}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <div className="text-center text-white">
-                          <FaMountain className="w-16 h-16 mx-auto mb-2 opacity-80" />
-                          <p className="text-sm font-medium">{dzongkhag.name}</p>
-                        </div>
-                      </div>
-                    )}
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        {dzongkhag.tagline}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold mb-3 text-stone-900">{dzongkhag.name} Dzongkhag</h3>
-                    <p className="text-stone-600 mb-4 line-clamp-3 flex-grow min-h-[4.5rem]">{dzongkhag.description}</p>
-                    
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-center text-sm text-stone-600">
-                        <FiMapPin className="mr-2 text-blue-500 flex-shrink-0" />
-                        <span>{dzongkhag.location.region}</span>
-                      </div>
-                      
-                      {dzongkhag.culture.dzongs.length > 0 && (
-                        <div className="flex items-center text-sm text-stone-600">
-                          <FaMountain className="mr-2 text-green-500 flex-shrink-0" />
-                          <span>{dzongkhag.culture.dzongs.length} Historic Dzongs</span>
-                        </div>
-                      )}
-                      
-                      <div className="flex items-center text-sm text-stone-600">
-                        <FiCompass className="mr-2 text-purple-500 flex-shrink-0" />
-                        <span>{dzongkhag.highlights.length} Key Highlights</span>
-                      </div>
-                    </div>
+        {/* Region jump bar */}
+        <nav
+          aria-label="Jump to a region"
+          className="sticky top-16 z-30 border-y border-stone-300 bg-brand-ivory/[0.94] backdrop-blur sm:top-[4.5rem]"
+        >
+          <ul className="container mx-auto flex gap-x-8 overflow-x-auto px-4 sm:px-6 lg:px-10">
+            {regionEntries.map(([regionName, list]) => (
+              <li key={regionName} className="shrink-0">
+                <a
+                  href={`#${regionId(regionName)}`}
+                  aria-current={activeRegion === regionId(regionName) ? "true" : undefined}
+                  className={`relative inline-flex min-h-[48px] items-center text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors duration-500 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-amber-500 after:transition-transform after:duration-500 hover:text-emerald-900 ${
+                    activeRegion === regionId(regionName) ? "text-emerald-900 after:scale-x-100" : "text-stone-600 after:scale-x-0"
+                  } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-emerald-900`}
+                >
+                  {regionName}
+                  <span className="ml-2 text-amber-600">{list.length}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-                    <div className="mb-4">
-                      <h4 className="font-semibold text-stone-900 mb-2">Top Highlights:</h4>
-                      <div className="flex flex-wrap gap-1">
-                        {dzongkhag.highlights.slice(0, 3).map((highlight: string) => (
-                          <span key={highlight} className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">
-                            {highlight}
-                          </span>
-                        ))}
-                        {dzongkhag.highlights.length > 3 && (
-                          <span className="bg-stone-100 text-stone-600 px-2 py-1 rounded text-xs">
-                            +{dzongkhag.highlights.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <Link href={`/dzongkhag/${dzongkhag.slug}`} className="mt-auto">
-                      <button className="w-full bg-gradient-to-br from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center">
-                        Explore District
-                        <FiChevronRight className="ml-2" />
-                      </button>
-                    </Link>
-                  </div>
+        {/* Regional breakdown */}
+        {regionEntries.map(([regionName, dzongkhagList], r) => (
+          <section
+            key={regionName}
+            id={regionId(regionName)}
+            aria-labelledby={`${regionId(regionName)}-heading`}
+            className="scroll-mt-32 py-20 sm:py-28"
+          >
+            <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+              <Reveal className="mb-12 flex items-end justify-between gap-6 border-b border-stone-300 pb-6 sm:mb-16">
+                <div>
+                  <p className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">
+                    <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                    {String(r + 1).padStart(2, "0")} / {String(regionEntries.length).padStart(2, "0")}
+                  </p>
+                  <h2
+                    id={`${regionId(regionName)}-heading`}
+                    className="font-heading text-4xl font-medium leading-[1.05] text-stone-900 sm:text-5xl lg:text-6xl"
+                  >
+                    <StaggerText>
+                      {regionName.replace(" Bhutan", "")} <em className="font-normal text-emerald-900">Bhutan</em>
+                    </StaggerText>
+                  </h2>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
+                <p className="shrink-0 text-sm text-stone-500">
+                  {dzongkhagList.length} {dzongkhagList.length === 1 ? "dzongkhag" : "dzongkhags"}
+                </p>
+              </Reveal>
 
-        {/* SEO Rich Content Section
-        <div className="bg-stone-50 py-16">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">20</div>
-                <div className="text-stone-700">Dzongkhags (Districts)</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-green-600 mb-2">200+</div>
-                <div className="text-stone-700">Heritage Sites</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-purple-600 mb-2">50+</div>
-                <div className="text-stone-700">Ancient Dzongs</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-amber-600 mb-2">1000+</div>
-                <div className="text-stone-700">Years of History</div>
-              </div>
+              <ul className="grid grid-cols-1 gap-x-8 gap-y-14 lg:grid-cols-12 lg:gap-y-16">
+                {dzongkhagList.map((dzongkhag: any, i: number) => {
+                  const t = TILES[i % TILES.length];
+                  const { src, fallback } = dzongkhagImage(dzongkhag);
+                  return (
+                    <li key={dzongkhag.id} className={`${t.col} ${t.offset}`}>
+                      <>
+                        <Link
+                          href={`/dzongkhag/${dzongkhag.slug}`}
+                          className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-emerald-900"
+                        >
+                          <RevealImage className={`relative bg-stone-200 ${t.aspect}`} from={FROMS[i % FROMS.length]} delay={(i % 3) * 120}>
+                            <PlaceImage
+                              src={src}
+                              fallbackSrc={fallback}
+                              name={dzongkhag.name}
+                              alt={`${dzongkhag.name} dzongkhag landscape`}
+                              className="duration-[1400ms] group-hover:scale-[1.06]"
+                            />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-950/50 via-transparent to-transparent opacity-70 transition-opacity duration-700 group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden="true" />
+                            <p className="absolute bottom-4 left-4 right-4 translate-y-0 text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-200 transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] sm:group-hover:-translate-y-1">
+                              {dzongkhag.tagline}
+                            </p>
+                          </RevealImage>
+                          <Reveal delay={(i % 3) * 120 + 200} className="mt-6 flex items-start justify-between gap-6">
+                            <div className="min-w-0">
+                              <h3 className="font-heading text-3xl font-medium leading-tight text-stone-900 sm:text-4xl">
+                                {dzongkhag.name}
+                              </h3>
+                              <p className="mt-3 line-clamp-3 max-w-md text-[15px] leading-relaxed text-stone-600">
+                                {dzongkhag.description}
+                              </p>
+                              {dzongkhag.highlights.length > 0 && (
+                                <p className="mt-4 text-xs uppercase tracking-[0.14em] text-stone-500">
+                                  {dzongkhag.highlights.slice(0, 3).join(" · ")}
+                                  {dzongkhag.highlights.length > 3 && ` · +${dzongkhag.highlights.length - 3} more`}
+                                </p>
+                              )}
+                            </div>
+                            <span className="mt-2 hidden shrink-0 items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-emerald-900 sm:inline-flex">
+                              Discover
+                              <span className="inline-block h-px w-14 origin-left scale-x-[0.57] bg-emerald-900 transition-transform duration-500 ease-out group-hover:scale-x-100" aria-hidden="true" />
+                            </span>
+                          </Reveal>
+                          <span className="mt-4 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-emerald-900 sm:hidden">
+                            Discover {dzongkhag.name}
+                            <span className="inline-block h-px w-8 bg-emerald-900" aria-hidden="true" />
+                          </span>
+                        </Link>
+                      </>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-          </div>
-        </div> */}
+          </section>
+        ))}
       </div>
     </>
   );

@@ -10,25 +10,27 @@
    ───────────────────────────────────────────────────────────────────────────── */
 
 :root {
-  /* Color tokens */
-  --color-primary:       #D97706;  /* Warm gold / CTA */
-  --color-primary-dark:  #B45309;  /* Deep amber */
-  --color-primary-light: #FEF3C7;  /* Amber tint */
-  --color-forest:        #064E3B;  /* Deep forest green */
-  --color-forest-mid:    #065F46;
-  --color-cream:         #FFFBEB;  /* Warm page background */
-  --color-text:          #1C1917;  /* Deep charcoal */
-  --color-text-muted:    #78716C;  /* Warm gray */
-  --color-border:        #E7E5E4;  /* Warm sand */
+  /* Color tokens — drawn from the logo (ink, saffron gold, door brown on ivory) */
+  --color-primary:       #183C32;  /* Deep forest / CTA */
+  --color-primary-dark:  #0F2720;  /* Darker forest */
+  --color-primary-light: #DDEAE3;  /* Forest tint */
+  --color-forest:        #183C32;  /* Deep forest */
+  --color-forest-mid:    #20453A;
+  --color-cream:         #F7F5EF;  /* Warm ivory page background */
+  --color-gold:          #B99A64;  /* Soft gold accent */
+  --color-sand:          #D8C8AE;  /* Muted sand */
+  --color-text:          #202522;  /* Charcoal */
+  --color-text-muted:    #6F6B60;  /* Warm gray */
+  --color-border:        #E2DDD0;  /* Warm sand */
 
   /* Typography */
-  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-heading: 'Fraunces', Georgia, serif;
   --font-body:    'Inter', system-ui, -apple-system, sans-serif;
 
   /* Shadows */
-  --shadow-card:       0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
-  --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
-  --shadow-warm:       0 4px 12px rgba(180, 83, 9, 0.10), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-card:       0 2px 10px rgba(32,37,34,0.06), 0 1px 3px rgba(32,37,34,0.04);
+  --shadow-card-hover: 0 12px 30px rgba(32,37,34,0.12), 0 4px 8px rgba(32,37,34,0.06);
+  --shadow-warm:       0 4px 14px rgba(32,37,34,0.10), 0 2px 4px rgba(32,37,34,0.05);
 
   /* Transitions */
   --transition-base: 200ms ease-in-out;
@@ -44,10 +46,32 @@
   }
 
   body {
+    background-color: var(--color-cream);
+    color: var(--color-text);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: #D8C8AE;
+    color: #202522;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   /* Focus ring — visible but styled */
@@ -82,7 +106,7 @@
   .btn-primary:hover {
     background-color: var(--color-primary-dark);
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(180, 83, 9, 0.20);
+    box-shadow: 0 8px 20px rgba(32, 37, 34, 0.18);
   }
   .btn-primary:active {
     transform: translateY(0);
@@ -317,7 +341,7 @@
   
   /* Improved mobile gradients */
   .mobile-gradient {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    background: linear-gradient(135deg, #F2E9D6 0%, #E6D6B5 100%);
   }
   
   /* Better mobile animations */
@@ -372,5 +396,65 @@
   /* Radial gradient utility for hero background */
   .bg-gradient-radial {
     background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Motion system — shared keyframes and micro-interactions.
+   Only transform/opacity are animated. The prefers-reduced-motion block in the
+   base layer above collapses every duration, so none of this runs for those users.
+   ───────────────────────────────────────────────────────────────────────────── */
+@keyframes word-rise {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+
+@layer components {
+  /* Pill CTAs: arrow glides forward on hover, button presses in on click.
+     Uses the individual `translate`/`scale` properties so it never overrides an
+     element's own transform (e.g. a rotated "previous" arrow). */
+  a[class*="rounded-full"] > svg,
+  button[class*="rounded-full"] > svg {
+    transition: translate 320ms cubic-bezier(.2,.7,.2,1);
+  }
+  a[class*="rounded-full"]:hover > svg,
+  button[class*="rounded-full"]:hover > svg {
+    translate: 4px 0;
+  }
+  a[class*="rounded-full"],
+  button[class*="rounded-full"] {
+    transition-property: background-color, color, border-color, box-shadow, scale;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(.2,.7,.2,1);
+  }
+  a[class*="rounded-full"]:active,
+  button[class*="rounded-full"]:active {
+    scale: 0.97;
+  }
+
+  /* Text link with an underline that draws in from the left */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: background-size 350ms cubic-bezier(.2,.7,.2,1), color 250ms ease;
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* Form fields: smooth border/background/shadow transitions on focus */
+  input, select, textarea {
+    transition: border-color 250ms ease, box-shadow 250ms ease, background-color 250ms ease;
+  }
+
+  /* Image hover: slow, small zoom (apply with .img-zoom on the frame, or group-hover utilities) */
+  .img-zoom img {
+    transition: transform 1200ms cubic-bezier(.2,.7,.2,1);
+  }
+  .img-zoom:hover img {
+    transform: scale(1.04);
   }
 }

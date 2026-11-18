@@ -26,29 +26,9 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ phoneNumber, message = 
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 1000,
-        textDecoration: 'none', // remove default a tag styling
-      }}
+      className="fixed bottom-4 right-4 z-[1000] no-underline sm:bottom-6 sm:right-6"
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '60px',
-          height: '60px',
-          backgroundColor: '#25D366',
-          borderRadius: '50%',
-          color: 'white',
-          fontSize: '24px',
-          boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
-          animation: 'whatsappBounce 1.5s infinite alternate',
-        }}
-      >
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-900 text-2xl text-amber-200 shadow-[0_10px_30px_-8px_rgba(10,40,30,0.6)] ring-1 ring-amber-300/40 transition-colors hover:bg-emerald-800">
         <FontAwesomeIcon icon={['fab', 'whatsapp']} />
       </div>
     </Link>

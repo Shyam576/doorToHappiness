@@ -2,12 +2,31 @@ import Link from 'next/link';
 
 const FOOTER_LINKS = [
   { href: '/',              label: 'Home' },
-  { href: '/package',       label: 'Packages' },
-  { href: '/dzongkhag',     label: 'Dzongkhags' },
+  { href: '/dzongkhag',     label: 'Destinations' },
+  { href: '/package',       label: 'Holiday Packages' },
   { href: '/sacred-places', label: 'Heritage Places' },
   { href: '/guides',        label: 'Travel Guides' },
+  { href: '/about',         label: 'About Us' },
   { href: '/faq',           label: 'FAQ' },
   { href: '/contactus',     label: 'Contact' },
+];
+
+// What the company actually offers (see /package categories and the FAQ for visa/SDF).
+const FOOTER_SERVICES = [
+  { href: '/package', label: 'Cultural Tours' },
+  { href: '/package', label: 'Trekking & Adventure' },
+  { href: '/package', label: 'Festival Tours' },
+  { href: '/package', label: 'Group Tours' },
+  { href: '/package', label: 'City Tours' },
+  { href: '/faq',     label: 'Visa & SDF Assistance' },
+];
+
+const FOOTER_DESTINATIONS = [
+  { href: '/dzongkhag/paro',      label: 'Paro' },
+  { href: '/dzongkhag/thimphu',   label: 'Thimphu' },
+  { href: '/dzongkhag/punakha',   label: 'Punakha' },
+  { href: '/dzongkhag/bumthang',  label: 'Bumthang' },
+  { href: '/dzongkhag',           label: 'All 20 Dzongkhags' },
 ];
 
 export const SOCIAL_LINKS = [
@@ -42,25 +61,61 @@ export const SOCIAL_LINKS = [
 
 export const Footer = () => {
   const year = new Date().getFullYear();
+  const phone = process.env.NEXT_PUBLIC_PHONE_NO;
+
+  const column = (title: string, links: { href: string; label: string }[]) => (
+    <div>
+      <h3 className="text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-400 mb-5">{title}</h3>
+      <ul className="space-y-3">
+        {links.map(({ href, label }) => (
+          <li key={label}>
+            <Link
+              href={href}
+              className="link-underline pb-0.5 text-sm text-stone-300 hover:text-white"
+            >
+              {label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 
   return (
-    <footer className="bg-stone-900 text-stone-300">
+    <footer className="bg-emerald-950 text-stone-300">
+      {/* Closing statement */}
+      <div className="border-b border-white/10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 py-14 lg:py-20 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.05] text-white max-w-2xl">
+            Every journey begins <span className="italic text-amber-300">at the door.</span>
+          </h2>
+          <Link
+            href="/plan-your-trip"
+            className="inline-flex items-center gap-3 self-start lg:self-auto rounded-full bg-white px-8 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-emerald-950 transition-colors hover:bg-amber-200"
+          >
+            Plan Your Trip
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-4 h-4" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+
       {/* Main footer content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
-
-          {/* ── Brand column ── */}
-          <div className="md:col-span-1">
-            <h2 className="font-heading text-2xl font-semibold text-white mb-2 leading-tight">
-              Door To Happiness<br />
-              <span className="text-amber-400">Holiday</span>
-            </h2>
-            <p className="text-sm text-stone-400 leading-relaxed mb-6">
-              Licensed Bhutanese tour operator crafting authentic cultural experiences since 2020.
-              Your happiness is our priority.
+      <div className="container mx-auto px-4 sm:px-6 lg:px-10 py-14 lg:py-16">
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12">
+          {/* Brand column */}
+          <div className="col-span-2 lg:col-span-4">
+            <p className="font-heading text-2xl text-white leading-tight mb-4">
+              Door To Happiness <span className="italic text-amber-300">Holiday</span>
             </p>
-
-            {/* Social links */}
+            <p className="text-sm text-stone-400 leading-relaxed max-w-sm mb-6">
+              A licensed Bhutanese tour operator based in Thimphu, crafting authentic cultural
+              journeys across all twenty dzongkhags since 2020.
+            </p>
+            <p className="text-xs uppercase tracking-[0.18em] text-stone-400 mb-6">
+              Tourism Council of Bhutan · License #1053196
+            </p>
             <div className="flex items-center gap-3">
               {SOCIAL_LINKS.map(({ href, label, icon }) => (
                 <a
@@ -69,7 +124,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex items-center justify-center w-9 h-9 rounded-lg bg-stone-800 text-stone-400 hover:bg-amber-600 hover:text-white transition-colors duration-200"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-stone-300 transition-colors duration-200 hover:border-amber-300 hover:bg-amber-300 hover:text-emerald-950"
                 >
                   {icon}
                 </a>
@@ -77,66 +132,42 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* ── Navigation column ── */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-amber-500 mb-4">
-              Explore
-            </h3>
-            <ul className="space-y-2.5">
-              {FOOTER_LINKS.map(({ href, label }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-stone-400 hover:text-white transition-colors duration-150"
-                  >
-                    {label}
-                  </Link>
+          <div className="lg:col-span-2">{column('Explore', FOOTER_LINKS)}</div>
+          <div className="lg:col-span-2">{column('Journeys', FOOTER_SERVICES)}</div>
+          <div className="lg:col-span-2">{column('Destinations', FOOTER_DESTINATIONS)}</div>
+
+          {/* Contact */}
+          <div className="col-span-2 lg:col-span-2">
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-400 mb-5">Contact</h3>
+            <ul className="space-y-3 text-sm text-stone-300">
+              <li>Thimphu, Bhutan</li>
+              <li>
+                <a href="mailto:doortohappinessholiday@gmail.com" className="break-all hover:text-white">
+                  doortohappinessholiday@gmail.com
+                </a>
+              </li>
+              {phone && (
+                <li>
+                  <a href={`tel:${phone.replace(/\s+/g, '')}`} className="hover:text-white">
+                    {phone}
+                  </a>
                 </li>
-              ))}
+              )}
             </ul>
-          </div>
-
-          {/* ── Contact column ── */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-amber-500 mb-4">
-              Get in Touch
-            </h3>
-            <ul className="space-y-3 text-sm text-stone-400">
-              <li className="flex items-start gap-2">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-500" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                </svg>
-                Thimphu, Bhutan
-              </li>
-              <li className="flex items-start gap-2">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-500" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                </svg>
-                doortohappinessholiday@gmail.com
-              </li>
-            </ul>
-
-            <div className="mt-6">
-              <Link
-                href="/contactus"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 transition-colors duration-150"
-              >
-                Plan Your Trip
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-stone-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-500">
+      <div className="border-t border-white/10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-400">
           <p>© {year} Door To Happiness Holiday. All rights reserved.</p>
-          <p>Licensed Tour Operator · Sustainable Tourism · Bhutan</p>
+          <p>
+            Licensed Tour Operator · Sustainable Tourism · Bhutan ·{' '}
+            <Link href="/photo-credits" className="link-underline pb-0.5 hover:text-white">
+              Photo credits
+            </Link>
+          </p>
         </div>
       </div>
     </footer>

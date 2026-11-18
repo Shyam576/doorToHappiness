@@ -53,9 +53,9 @@ const Login: React.FC<LoginProps> = ({}) => {
                 <meta name="description" content="Access your Bhutan travel account" />
             </Head>
 
-            <div className="min-h-screen bg-stone-50">
+            <div className="min-h-screen bg-brand-ivory pb-16">
                 {/* Hero Section with Bhutanese imagery */}
-                <div className="relative h-64 bg-blue-600 overflow-hidden">
+                <div className="relative h-64 bg-emerald-950 overflow-hidden">
                     <Image 
                         src={beautifulMoutain.src}
                         alt="Beautiful Dagana, Bhutan"
@@ -64,25 +64,25 @@ const Login: React.FC<LoginProps> = ({}) => {
                         className="opacity-70"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <h1 className="text-4xl font-bold text-white">
+                        <h1 className="font-heading text-4xl font-medium text-white">
                             Discover Bhutan's Magic
                         </h1>
                     </div>
                 </div>
 
                 {/* Auth Container */}
-                <div className="max-w-md mx-auto -mt-16 bg-white rounded-xl shadow-lg overflow-hidden">
+                <div className="relative z-10 max-w-md mx-auto -mt-16 bg-white border border-stone-200 overflow-hidden">
                     {/* Form Toggle */}
                     <div className="flex border-b">
                         <button
                             onClick={() => setFormType('login')}
-                            className={`flex-1 py-4 font-medium ${formType === 'login' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-stone-500'}`}
+                            className={`flex-1 py-4 font-medium transition-colors duration-300 ${formType === 'login' ? 'text-emerald-900 border-b-2 border-emerald-900' : 'text-stone-500'}`}
                         >
                             Sign In
                         </button>
                         <button
                             onClick={() => setFormType('register')}
-                            className={`flex-1 py-4 font-medium ${formType === 'register' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-stone-500'}`}
+                            className={`flex-1 py-4 font-medium transition-colors duration-300 ${formType === 'register' ? 'text-emerald-900 border-b-2 border-emerald-900' : 'text-stone-500'}`}
                         >
                             Create Account
                         </button>
@@ -90,7 +90,7 @@ const Login: React.FC<LoginProps> = ({}) => {
 
                     {/* Form Content */}
                     <div className="p-8">
-                        <h2 className="text-2xl font-bold text-stone-800 mb-6">
+                        <h2 key={formType} className="animate-page-in font-heading text-3xl font-medium text-stone-900 mb-6">
                             {formType === 'login' ? 'Welcome Back' : 'Join Our Journey'}
                         </h2>
 
@@ -110,11 +110,11 @@ const Login: React.FC<LoginProps> = ({}) => {
                                         <Field
                                             name="email"
                                             type="email"
-                                            className="w-full px-4 py-2 border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                                            className="w-full px-4 py-3 text-base border border-stone-300 rounded-lg bg-white focus:ring-emerald-700 focus:border-emerald-700"
                                             placeholder="your@email.com"
                                         />
                                         {errors.email && touched.email && (
-                                            <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                                            <p className="mt-1 text-sm text-red-700">{errors.email}</p>
                                         )}
                                     </div>
 
@@ -124,7 +124,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                                 Password
                                             </label>
                                             {formType === 'login' && (
-                                                <a href="/account/password/reset" className="text-sm text-blue-600 hover:underline">
+                                                <a href="/account/password/reset" className="text-sm text-emerald-900 hover:underline">
                                                     Forgot password?
                                                 </a>
                                             )}
@@ -133,7 +133,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             <Field
                                                 name="password"
                                                 type={showPassword ? 'text' : 'password'}
-                                                className="w-full px-4 py-2 border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
+                                                className="w-full px-4 py-3 text-base border border-stone-300 rounded-lg bg-white focus:ring-emerald-700 focus:border-emerald-700"
                                                 placeholder="••••••••"
                                             />
                                             <button
@@ -145,7 +145,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             </button>
                                         </div>
                                         {errors.password && touched.password && (
-                                            <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+                                            <p className="mt-1 text-sm text-red-700">{errors.password}</p>
                                         )}
                                     </div>
 
@@ -157,7 +157,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                             <Field
                                                 as="select"
                                                 name="role"
-                                                className="w-full px-4 py-2 border rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                                className="w-full px-4 py-3 text-base border border-stone-300 rounded-lg focus:ring-emerald-700 focus:border-emerald-700"
                                             >
                                                 <option value="">Select role</option>
                                                 <option value="traveler">Traveler</option>
@@ -165,7 +165,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                                 <option value="vendor">Local Vendor</option>
                                             </Field>
                                             {errors.role && touched.role && (
-                                                <p className="mt-1 text-sm text-red-600">{errors.role}</p>
+                                                <p className="mt-1 text-sm text-red-700">{errors.role}</p>
                                             )}
                                         </div>
                                     )}
@@ -173,7 +173,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200"
+                                        className="w-full bg-emerald-900 text-white py-3 px-4 rounded-full text-[12px] font-semibold uppercase tracking-[0.14em] hover:bg-emerald-800 transition-colors duration-200 disabled:opacity-70"
                                     >
                                         {isSubmitting ? 'Processing...' : 
                                          formType === 'login' ? 'Sign In' : 'Create Account'}
@@ -188,7 +188,7 @@ const Login: React.FC<LoginProps> = ({}) => {
                 <div className="mt-8 text-center">
                     <a 
                         href="/" 
-                        className="inline-flex items-center text-blue-600 hover:underline"
+                        className="inline-flex items-center text-emerald-900 hover:underline"
                     >
                         <FiArrowLeft className="mr-1" />
                         Back to Bhutan Tourism

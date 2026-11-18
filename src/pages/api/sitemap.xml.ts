@@ -14,12 +14,14 @@ function generateSiteMapXML() {
     { url: '', changefreq: 'weekly', priority: '1.0' },
     { url: '/package', changefreq: 'weekly', priority: '0.9' },
     { url: '/contactus', changefreq: 'monthly', priority: '0.7' },
+    { url: '/about', changefreq: 'monthly', priority: '0.7' },
     { url: '/faq', changefreq: 'monthly', priority: '0.6' },
     { url: '/dzongkhag', changefreq: 'weekly', priority: '0.9' },
     { url: '/sacred-places', changefreq: 'weekly', priority: '0.9' },
     { url: '/guides', changefreq: 'weekly', priority: '0.7' },
     { url: '/invite', changefreq: 'yearly', priority: '0.3' },
     { url: '/unsubscribe', changefreq: 'yearly', priority: '0.1' },
+    { url: '/photo-credits', changefreq: 'monthly', priority: '0.2' },
   ];
 
   // Guide articles (kept in sync with src/data/guides.json)

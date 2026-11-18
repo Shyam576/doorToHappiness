@@ -19,23 +19,21 @@ export default function TourDestinationLinks({ route, variant = 'light' }: TourD
   const links = getDzongkhagLinksForRoute(route)
   if (links.length === 0) return null
 
-  const labelClass = variant === 'onDark' ? 'text-sm text-white/80' : 'text-sm text-stone-500'
-  const linkClass =
-    variant === 'onDark'
-      ? 'inline-flex items-center gap-1 text-sm font-medium text-white bg-white/20 hover:bg-white/30 backdrop-blur-sm px-3 py-1 rounded-full transition-colors'
-      : 'inline-flex items-center gap-1 text-sm font-medium text-amber-700 bg-amber-50 hover:bg-amber-100 px-3 py-1 rounded-full transition-colors'
-
-  const wrapperClass =
-    variant === 'onDark'
-      ? 'flex flex-wrap items-center justify-center gap-2 mt-3'
-      : 'flex flex-wrap items-center gap-2 mt-3'
+  const onDark = variant === 'onDark'
+  const labelClass = `text-[11px] font-semibold uppercase tracking-[0.2em] ${onDark ? 'text-white/80' : 'text-stone-500'}`
+  const linkClass = `inline-flex min-h-[44px] items-center gap-1.5 border-b px-0.5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
+    onDark
+      ? 'border-white/50 text-white hover:border-amber-200 hover:text-amber-200 focus-visible:outline-white'
+      : 'border-amber-500 text-emerald-900 hover:border-emerald-900 hover:text-amber-600 focus-visible:outline-emerald-900'
+  }`
+  const wrapperClass = `flex flex-wrap items-center gap-x-5 gap-y-1 mt-3 ${onDark ? 'justify-center' : ''}`
 
   return (
     <div className={wrapperClass}>
       <span className={labelClass}>Places you&apos;ll visit:</span>
       {links.map((link) => (
         <Link key={link.slug} href={`/dzongkhag/${link.slug}`} className={linkClass}>
-          <FiMapPin className="w-3 h-3" />
+          <FiMapPin className="h-3 w-3" aria-hidden="true" />
           {link.name}
         </Link>
       ))}

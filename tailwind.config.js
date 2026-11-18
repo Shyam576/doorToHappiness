@@ -7,38 +7,75 @@ module.exports = {
             // Industry: Cultural/Adventure Travel — Style: Photography-Forward + Editorial Minimalism
             // Generated via UI UX Pro Max skill
             fontFamily: {
-                heading: ['Cormorant Garamond', 'Georgia', 'serif'],
+                heading: ['Fraunces', 'Georgia', 'serif'],
                 sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
             },
             colors: {
+                // DTH design system — warm ivory, deep forest, charcoal, muted sand, soft gold.
                 brand: {
-                    amber:       '#D97706',  // CTA — warm gold, Buddhist culture
-                    'amber-dark': '#B45309', // Primary — refined deep amber
-                    'amber-light': '#FEF3C7', // Light tint for backgrounds
-                    forest:      '#064E3B',  // Earthy accent — Bhutan nature
-                    'forest-mid': '#065F46',
-                    'forest-light': '#D1FAE5',
-                    cream:       '#FFFBEB',  // Warm page background
-                    'cream-deep': '#FEF3C7',
+                    ivory:   '#F7F5EF',
+                    forest:  '#183C32',
+                    charcoal:'#202522',
+                    sand:    '#D8C8AE',
+                    gold:    '#B99A64',
+                    // legacy keys kept so existing classes keep resolving
+                    amber:        '#8A6E3F',
+                    'amber-dark': '#6E562F',
+                    'amber-light': '#F2E9D6',
+                    'forest-mid': '#20453A',
+                    'forest-light': '#DDEAE3',
+                    cream:        '#F7F5EF',
+                    'cream-deep': '#EFECE3',
+                    ink:          '#202522',
                 },
+                // Gold — remapped over Tailwind's amber so every existing amber-* utility
+                // picks up the brand gold. 600+ keep >= 4.5:1 against white.
+                amber: {
+                    50:  '#FAF7F0',
+                    100: '#F2E9D6',
+                    200: '#E6D6B5',
+                    300: '#D8C8AE',
+                    400: '#C9AE7E',
+                    500: '#B99A64',
+                    600: '#8A6E3F',
+                    700: '#6E562F',
+                    800: '#54421F',
+                    900: '#3A2E16',
+                },
+                // Forest — replaces the old emerald accent.
+                emerald: {
+                    50:  '#F1F6F3',
+                    100: '#DDEAE3',
+                    200: '#BBD3C6',
+                    300: '#8DB4A1',
+                    400: '#5C8D75',
+                    500: '#3A6B56',
+                    600: '#2B5442',
+                    700: '#20453A',
+                    800: '#1C4338',
+                    900: '#183C32',
+                    950: '#0F2720',
+                },
+                // Warm charcoal / ivory neutrals.
                 stone: {
-                    50:  '#FAFAF9',
-                    100: '#F5F5F4',
-                    200: '#E7E5E4',
-                    300: '#D6D3D1',
-                    400: '#A8A29E',
-                    500: '#78716C',
-                    600: '#57534E',
-                    700: '#44403C',
-                    800: '#292524',
-                    900: '#1C1917',
+                    50:  '#F7F5EF',
+                    100: '#EFECE3',
+                    200: '#E2DDD0',
+                    300: '#CBC5B5',
+                    400: '#9C9788',
+                    500: '#6F6B60',
+                    600: '#54524A',
+                    700: '#3B3E39',
+                    800: '#2A2E2A',
+                    900: '#202522',
+                    950: '#151816',
                 },
             },
             boxShadow: {
-                'warm-sm':  '0 1px 3px rgba(180, 83, 9, 0.08), 0 1px 2px rgba(0,0,0,0.06)',
-                'warm':     '0 4px 12px rgba(180, 83, 9, 0.10), 0 2px 4px rgba(0,0,0,0.06)',
-                'warm-lg':  '0 10px 30px rgba(180, 83, 9, 0.12), 0 4px 8px rgba(0,0,0,0.08)',
-                'warm-xl':  '0 20px 50px rgba(180, 83, 9, 0.15), 0 8px 16px rgba(0,0,0,0.10)',
+                'warm-sm':  '0 1px 3px rgba(23, 21, 18, 0.08), 0 1px 2px rgba(23,21,18,0.05)',
+                'warm':     '0 4px 14px rgba(23, 21, 18, 0.09), 0 2px 4px rgba(23,21,18,0.05)',
+                'warm-lg':  '0 12px 32px rgba(23, 21, 18, 0.12), 0 4px 8px rgba(23,21,18,0.06)',
+                'warm-xl':  '0 24px 56px rgba(23, 21, 18, 0.16), 0 8px 16px rgba(23,21,18,0.08)',
                 'card':     '0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)',
                 'card-hover': '0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06)',
             },
@@ -68,8 +105,38 @@ module.exports = {
                 'slide-up': 'slideUp 0.3s ease-out',
                 'bounce-gentle': 'bounceGentle 2s infinite',
                 marquee: 'marquee 40s linear infinite',
+                'ken-burns': 'kenBurns 24s ease-out forwards',
+                'scroll-cue': 'scrollCue 2.4s ease-in-out infinite',
+                'page-in': 'pageIn 0.55s cubic-bezier(.2,.7,.2,1) both',
+                'rise': 'rise 1.1s cubic-bezier(.2,.7,.2,1) both',
+                'img-settle': 'imgSettle 2.2s cubic-bezier(.2,.7,.2,1) both',
+                'img-fade': 'imgFade 1.8s ease-out both',
             },
             keyframes: {
+                pageIn: {
+                    '0%': { opacity: '0', transform: 'translateY(10px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                rise: {
+                    '0%': { opacity: '0', transform: 'translateY(26px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                imgFade: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                imgSettle: {
+                    '0%': { opacity: '0.25', transform: 'scale(1.1)' },
+                    '100%': { opacity: '1', transform: 'scale(1)' },
+                },
+                kenBurns: {
+                    '0%': { transform: 'scale(1.12)' },
+                    '100%': { transform: 'scale(1.0)' },
+                },
+                scrollCue: {
+                    '0%': { transform: 'translateY(-100%)' },
+                    '60%, 100%': { transform: 'translateY(100%)' },
+                },
                 fadeIn: {
                     '0%': { opacity: '0', transform: 'translateY(10px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },

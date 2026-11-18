@@ -1,32 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Seo from '../../../components/Seo';
 import TourDestinationLinks from '../../../components/TourDestinationLinks';
 import { normalizeItinerary } from '../../../lib/package-card-utils';
 import { buildTourJsonLd } from '../../../lib/tour-jsonld';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { useRouter } from 'next/router';
-import { 
-  FiMapPin, 
-  FiCalendar, 
-  FiStar, 
-  FiCheck, 
-  FiX, 
-  FiClock,
-  FiUsers,
-  FiMusic,
-  FiCamera,
-  FiShare2,
-  FiChevronRight,
-  FiPlay
-} from 'react-icons/fi';
-import { 
-  HiOutlineColorSwatch
-} from 'react-icons/hi';
+import {
+  PackageDetailShell,
+  DetailSection,
+  Highlights,
+  DayTimeline,
+  Inclusions,
+  DetailList,
+  LeadParagraph,
+  makeShare,
+  toTimeline,
+  presentFacts,
+} from '../../../components/package/PackageDetail';
 import festivialTours from '../../../data/festivialTours.json';
-import StickyEnquireBar from '../../../components/StickyEnquireBar';
 
 interface DayItinerary {
-  day: number;
+  day: number | string;
   title: string;
   activities: string[];
 }
@@ -42,11 +35,13 @@ interface FestivalTour {
   category: string;
   highlights: string[];
   detailed_itinerary: DayItinerary[];
-  pricing?: {
-    budget?: number;
-    luxury?: number;
-    premium?: number;
-  };
+  festival_details?: Record<string, unknown>;
+  inclusions?: string[];
+  exclusions?: string[];
+  best_time?: string;
+  difficulty?: string;
+  group_size?: string;
+  accommodation?: string;
 }
 
 interface FestivalTourDetailsProps {
@@ -56,55 +51,25 @@ interface FestivalTourDetailsProps {
 const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
   tourData,
 }) => {
-  const router = useRouter();
-  const [activeTab, setActiveTab] = useState('overview');
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const handleShare = makeShare('Festival Tour', tourData?.title, tourData?.description || 'Check out this amazing festival tour in Bhutan!');
 
-  // Share function
-  const handleShare = async () => {
-    const shareData = {
-      title: tourData?.title || 'Festival Tour',
-      text: tourData?.description || 'Check out this amazing festival tour in Bhutan!',
-      url: window.location.href,
-    };
+  const facts = presentFacts([
+    { label: 'Festival dates', value: tourData.dates },
+    { label: 'Duration', value: tourData.duration },
+    { label: 'Route', value: tourData.route },
+    { label: 'Best time', value: tourData.best_time },
+    { label: 'Difficulty', value: tourData.difficulty },
+    { label: 'Group size', value: tourData.group_size },
+    { label: 'Accommodation', value: tourData.accommodation },
+  ]);
 
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.log('Error sharing:', err);
-        // Fallback to copying URL
-        navigator.clipboard.writeText(window.location.href);
-        alert('Link copied to clipboard!');
-      }
-    } else {
-      // Fallback for browsers that don't support Web Share API
-      navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
-    }
-  };
-
-  // Function to randomly select images from local images
-  const getRandomImages = (count: number) => {
-    const localImages = [
-      '/image1.jpeg',
-      '/image2.jpeg',
-      '/image3.jpeg',
-      '/image4.jpeg',
-      '/image5.jpeg',
-      '/image6.jpeg',
-      '/image7.jpeg',
-      '/image8.jpeg'
-    ];
-    
-    // Shuffle array and take the first 'count' images
-    const shuffled = [...localImages].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
-  };
-
-  const sampleImages = [
-    tourData.image,
-    ...getRandomImages(3) // Get 3 random images from the local images
+  const hasInclusions = !!(tourData.inclusions?.length || tourData.exclusions?.length);
+  const nav = [
+    { id: 'overview', label: 'Overview' },
+    ...(tourData.festival_details ? [{ id: 'festival', label: 'The festival' }] : []),
+    { id: 'itinerary', label: 'Schedule' },
+    { id: 'highlights', label: 'Highlights' },
+    ...(hasInclusions ? [{ id: 'inclusions', label: 'Inclusions' }] : []),
   ];
 
   return (
@@ -125,317 +90,41 @@ const FestivalTourDetails: React.FC<FestivalTourDetailsProps> = ({
         })}
       />
 
-      <div className="bg-gradient-to-b from-stone-50 to-white">
-        {/* Hero Section with Image Gallery */}
-        <div className="relative h-96 lg:h-[500px]">
-          <div className="grid grid-cols-1 lg:grid-cols-4 h-full">
-            {/* Main Image */}
-            <div className="lg:col-span-3 relative group cursor-pointer overflow-hidden rounded-lg">
-              <img
-                src={sampleImages[selectedImageIndex]}
-                alt={tourData.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              
-              {/* Festival Badge */}
-              <div className="absolute top-4 left-4">
-                <div className="bg-gradient-to-r from-amber-500 to-amber-700 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                  🎭 Festival Special
-                </div>
-              </div>
-            </div>
-            
-            {/* Thumbnail Gallery */}
-            <div className="hidden lg:flex flex-col gap-1 ml-2">
-              {sampleImages.slice(1, 4).map((img, index) => (
-                <div 
-                  key={index + 1}
-                  className="relative h-52 w-full cursor-pointer overflow-hidden rounded-lg group"
-                  onClick={() => setSelectedImageIndex(index + 1)}
-                >
-                  <img
-                    src={img}
-                    alt={`Gallery ${index + 1}`}
-                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+      <PackageDetailShell
+        eyebrow="Festival experience"
+        title={tourData.title}
+        image={tourData.image}
+        route={tourData.route}
+        duration={tourData.duration}
+        facts={facts}
+        nav={nav}
+        links={<TourDestinationLinks route={tourData.route} />}
+        onShare={handleShare}
+      >
+        <DetailSection id="overview" eyebrow="Overview" title={<>About this <em>festival</em></>}>
+          <LeadParagraph>{tourData.description}</LeadParagraph>
+        </DetailSection>
 
-          {/* Floating Action Buttons */}
-          <div className="absolute top-4 right-4">
-            <button 
-              onClick={handleShare}
-              className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
-            >
-              <FiShare2 className="w-5 h-5 text-stone-700" />
-            </button>
-          </div>
-        </div>
+        {tourData.festival_details && (
+          <DetailSection id="festival" eyebrow="The festival" title={<>Festival <em>details</em></>}>
+            <DetailList title="Good to know" data={tourData.festival_details} />
+          </DetailSection>
+        )}
 
-        {/* Content Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            {/* Header Info */}
-            <div className="p-6 lg:p-8 border-b border-stone-100">
-              <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center space-x-2 text-sm text-amber-600 font-medium mb-2">
-                    <FiMusic className="w-4 h-4" />
-                    <span>Festival Experience</span>
-                  </div>
-                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-stone-900 mb-4">{tourData.title}</h1>
-                  
-                  {/* Festival Dates Banner */}
-                  <div className="bg-gradient-to-r from-amber-100 to-amber-200 p-4 rounded-xl mb-4">
-                    <div className="flex items-center space-x-2 text-amber-800">
-                      <FiCalendar className="w-5 h-5" />
-                      <span className="font-semibold">Festival Dates: {tourData.dates}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Quick Info */}
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-stone-600">
-                    <div className="flex items-center space-x-2">
-                      <FiMapPin className="w-4 h-4 text-amber-500" />
-                      <span>{tourData.route}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <FiClock className="w-4 h-4 text-amber-500" />
-                      <span>{tourData.duration}</span>
-                    </div>
-                  </div>
-                  <TourDestinationLinks route={tourData.route} />
-                </div>
+        <DetailSection id="itinerary" eyebrow="Schedule" title={<>Festival <em>schedule</em></>}>
+          <DayTimeline items={toTimeline(tourData.detailed_itinerary)} />
+        </DetailSection>
 
-                {/* Booking Card */}
-                <div className="w-full lg:w-auto lg:min-w-[280px] bg-gradient-to-r from-amber-500 to-amber-700 text-white p-6 rounded-xl shadow-lg">
-                  <div className="text-center">
-                    <p className="text-lg font-semibold mb-2">Festival Experience</p>
-                    <p className="text-sm opacity-90 mb-2">Join this sacred celebration</p>
-                    <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
-                    <button 
-                      onClick={() => router.push('/contactus')}
-                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-stone-50 transition-colors duration-300"
-                    >
-                      Enquire Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <DetailSection id="highlights" eyebrow="Highlights" title={<>Festival <em>highlights</em></>}>
+          <Highlights items={tourData.highlights} />
+        </DetailSection>
 
-            {/* Navigation Tabs */}
-            <div className="border-b border-stone-100">
-              <nav className="flex space-x-8 px-6 lg:px-8">
-                {[
-                  { key: 'overview', label: 'Overview' },
-                  { key: 'itinerary', label: 'Festival Schedule' },
-                  { key: 'highlights', label: 'Festival Highlights' },
-                  { key: 'inclusions', label: 'What\'s Included' }
-                ].map((tab) => (
-                  <button
-                    key={tab.key}
-                    onClick={() => setActiveTab(tab.key)}
-                    className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
-                      activeTab === tab.key
-                        ? 'border-amber-500 text-amber-600'
-                        : 'border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </nav>
-            </div>
-
-            {/* Tab Content */}
-            <div className="p-6 lg:p-8">
-              {activeTab === 'overview' && (
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-stone-700 leading-relaxed mb-6">{tourData.description}</p>
-                  
-                  {/* Festival Experience Features */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose mb-8">
-                    <div className="text-center p-6 bg-amber-50 rounded-xl">
-                      <FiMusic className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-stone-900 mb-2">Sacred Performances</h3>
-                      <p className="text-sm text-stone-600">Witness traditional Cham dances and sacred musical performances</p>
-                    </div>
-                    <div className="text-center p-6 bg-amber-100 rounded-xl">
-                      <HiOutlineColorSwatch className="w-8 h-8 text-amber-800 mx-auto mb-3" />
-                      <h3 className="font-semibold text-stone-900 mb-2">Colorful Costumes</h3>
-                      <p className="text-sm text-stone-600">Marvel at elaborate traditional costumes and ancient masks</p>
-                    </div>
-                    <div className="text-center p-6 bg-amber-50 rounded-xl">
-                      <FiUsers className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-stone-900 mb-2">Local Celebration</h3>
-                      <p className="text-sm text-stone-600">Join locals in authentic festival celebrations and rituals</p>
-                    </div>
-                  </div>
-
-                  {/* Festival Facts */}
-                  <div className="bg-gradient-to-r from-amber-50 to-amber-100 p-6 rounded-xl not-prose mb-8">
-                    <h3 className="text-xl font-semibold text-stone-900 mb-4">Festival Facts</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                        <span className="text-sm text-stone-700">Ancient tradition dating back centuries</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-amber-700 rounded-full"></div>
-                        <span className="text-sm text-stone-700">Sacred Thongdrel blessing ceremony</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                        <span className="text-sm text-stone-700">Mask dances by monastery monks</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-amber-700 rounded-full"></div>
-                        <span className="text-sm text-stone-700">Limited access cultural experience</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Festival Statistics */}
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 not-prose">
-                    <div className="text-center p-4 bg-stone-50 rounded-lg">
-                      <div className="text-2xl font-bold text-amber-600">5-6</div>
-                      <div className="text-sm text-stone-600">Festival Days</div>
-                    </div>
-                    <div className="text-center p-4 bg-stone-50 rounded-lg">
-                      <div className="text-2xl font-bold text-amber-600">15+</div>
-                      <div className="text-sm text-stone-600">Performances</div>
-                    </div>
-                    <div className="text-center p-4 bg-stone-50 rounded-lg">
-                      <div className="text-2xl font-bold text-amber-600">3</div>
-                      <div className="text-sm text-stone-600">Sacred Sites</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'itinerary' && (
-                <div className="space-y-6">
-                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Festival Schedule & Daily Itinerary</h2>
-                  <div className="space-y-4">
-                    {tourData.detailed_itinerary?.map((day, index) => (
-                      <div key={index} className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
-                        <div className="p-6">
-                          <div className="flex items-start space-x-4">
-                            <div className="flex-shrink-0">
-                              <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-amber-700 text-white rounded-full flex items-center justify-center font-bold">
-                                {day.day}
-                              </div>
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="text-xl font-semibold text-stone-900 mb-2">{day.title}</h3>
-                              <ul className="space-y-2">
-                                {day.activities.map((activity, idx) => (
-                                  <li key={idx} className="flex items-start space-x-2 text-stone-700">
-                                    <FiChevronRight className="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" />
-                                    <span>{activity}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'highlights' && (
-                <div>
-                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Festival Highlights</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {tourData.highlights.map((highlight, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-4 bg-gradient-to-r from-amber-50 to-amber-100 rounded-lg hover:from-amber-100 hover:to-amber-200 transition-colors duration-200">
-                        <FiMusic className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                        <span className="text-stone-800 font-medium">{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'inclusions' && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Inclusions */}
-                  <div className="bg-green-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
-                      <FiCheck className="w-5 h-5 text-green-600 mr-2" />
-                      Festival Package Includes
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "VIP festival viewing positions",
-                        "Professional festival photography guide",
-                        "All accommodation in premium hotels",
-                        "Traditional Bhutanese breakfast & dinner",
-                        "Private festival transportation",
-                        "Festival permits and special access",
-                        "Cultural costume rental (optional)",
-                        "Expert festival commentary"
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-start space-x-3">
-                          <FiCheck className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-stone-700">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Exclusions */}
-                  <div className="bg-red-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
-                      <FiX className="w-5 h-5 text-red-600 mr-2" />
-                      Not Included
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "International flights to Bhutan",
-                        "Personal travel insurance",
-                        "Shopping and souvenirs",
-                        "Lunch meals during festival days",
-                        "Professional festival photography",
-                        "Alcoholic beverages",
-                        "Tips and gratuities"
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-start space-x-3">
-                          <FiX className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                          <span className="text-stone-700">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          {/* <div className="mt-8 bg-gradient-to-r from-amber-500 to-amber-700 rounded-2xl p-8 text-center text-white">
-            <h2 className="font-heading text-2xl font-bold mb-4">Don't Miss This Sacred Festival Experience!</h2>
-            <p className="text-lg opacity-90 mb-2">Join us for {tourData.dates}</p>
-            <p className="text-sm opacity-80 mb-6">Secure your spot for this once-in-a-lifetime cultural celebration</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-stone-50 transition-colors duration-300">
-                Book Festival Tour Now
-              </button>
-              <button className="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                Download Festival Guide
-              </button>
-            </div>
-          </div> */}
-        </div>
-      </div>
-
-      <StickyEnquireBar title={tourData.title} />
+        {hasInclusions && (
+          <DetailSection id="inclusions" eyebrow="Inclusions" title={<>What&apos;s <em>included</em></>}>
+            <Inclusions included={tourData.inclusions} excluded={tourData.exclusions} />
+          </DetailSection>
+        )}
+      </PackageDetailShell>
     </>
   );
 };

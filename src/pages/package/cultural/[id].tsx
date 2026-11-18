@@ -1,34 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Seo from '../../../components/Seo';
 import TourDestinationLinks from '../../../components/TourDestinationLinks';
 import { normalizeItinerary } from '../../../lib/package-card-utils';
 import { buildTourJsonLd } from '../../../lib/tour-jsonld';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { useRouter } from 'next/router';
-import { 
-  FiMapPin, 
-  FiCalendar, 
-  FiCheck, 
-  FiX, 
-  FiClock,
-  FiUsers,
-  FiAward,
-  FiCamera,
-  FiShare2,
-  FiChevronRight,
-  FiPlay
-} from 'react-icons/fi';
-import { 
-  HiOutlineColorSwatch
-} from 'react-icons/hi';
-import { 
-  HiOutlineBuildingLibrary
-} from 'react-icons/hi2';
+import {
+  PackageDetailShell,
+  DetailSection,
+  Highlights,
+  DayTimeline,
+  Inclusions,
+  DetailList,
+  LeadParagraph,
+  makeShare,
+  toTimeline,
+  presentFacts,
+} from '../../../components/package/PackageDetail';
 import culturalTours from '../../../data/culturalTours.json';
-import StickyEnquireBar from '../../../components/StickyEnquireBar';
 
 interface DayItinerary {
-  day: number;
+  day: number | string;
   title: string;
   activities: string[];
 }
@@ -40,19 +31,20 @@ interface CulturalTour {
   image: string;
   route: string;
   category: string;
-  rating: number;
+  rating?: number;
   duration: string;
   highlights: string[];
   detailed_itinerary: DayItinerary[];
-  pricing?: {
-    budget?: number;
-    luxury?: number;
-    premium?: number;
-  };
+  dates?: string;
   inclusions?: string[];
   exclusions?: string[];
-  best_time?: string[];
-  difficulty_level?: string;
+  group_size?: string;
+  accommodation?: string;
+  fitness_level?: string;
+  special_focus?: string;
+  cultural_experiences?: Record<string, unknown>;
+  trek_details?: Record<string, unknown>;
+  sustainability_features?: Record<string, unknown>;
 }
 
 interface CulturalTourDetailsProps {
@@ -62,55 +54,26 @@ interface CulturalTourDetailsProps {
 const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
   tourData,
 }) => {
-  const router = useRouter();
-  const [activeTab, setActiveTab] = useState('overview');
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const handleShare = makeShare('Cultural Tour', tourData?.title, tourData?.description || 'Check out this amazing cultural tour in Bhutan!');
 
-  // Share function
-  const handleShare = async () => {
-    const shareData = {
-      title: tourData?.title || 'Cultural Tour',
-      text: tourData?.description || 'Check out this amazing cultural tour in Bhutan!',
-      url: window.location.href,
-    };
+  const facts = presentFacts([
+    { label: 'Duration', value: tourData.duration },
+    { label: 'Route', value: tourData.route },
+    { label: 'Dates', value: tourData.dates },
+    { label: 'Group size', value: tourData.group_size },
+    { label: 'Accommodation', value: tourData.accommodation },
+    { label: 'Fitness level', value: tourData.fitness_level },
+    { label: 'Special focus', value: tourData.special_focus },
+  ]);
 
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.log('Error sharing:', err);
-        // Fallback to copying URL
-        navigator.clipboard.writeText(window.location.href);
-        alert('Link copied to clipboard!');
-      }
-    } else {
-      // Fallback for browsers that don't support Web Share API
-      navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
-    }
-  };
-
-  // Function to randomly select images from local images
-  const getRandomImages = (count: number) => {
-    const localImages = [
-      '/image1.jpeg',
-      '/image2.jpeg',
-      '/image3.jpeg',
-      '/image4.jpeg',
-      '/image5.jpeg',
-      '/image6.jpeg',
-      '/image7.jpeg',
-      '/image8.jpeg'
-    ];
-    
-    // Shuffle array and take the first 'count' images
-    const shuffled = [...localImages].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
-  };
-
-  const sampleImages = [
-    tourData.image,
-    ...getRandomImages(3) // Get 3 random images from the local images
+  const hasExperiences = !!(tourData.cultural_experiences || tourData.trek_details || tourData.sustainability_features);
+  const hasInclusions = !!(tourData.inclusions?.length || tourData.exclusions?.length);
+  const nav = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'highlights', label: 'Highlights' },
+    { id: 'itinerary', label: 'Itinerary' },
+    ...(hasExperiences ? [{ id: 'experiences', label: 'Experiences' }] : []),
+    ...(hasInclusions ? [{ id: 'inclusions', label: 'Inclusions' }] : []),
   ];
 
   return (
@@ -131,281 +94,45 @@ const CulturalTourDetails: React.FC<CulturalTourDetailsProps> = ({
         })}
       />
 
-      <div className="bg-gradient-to-b from-stone-50 to-white">
-        {/* Hero Section with Image Gallery */}
-        <div className="relative h-96 lg:h-[500px]">
-          <div className="grid grid-cols-1 lg:grid-cols-4 h-full">
-            {/* Main Image */}
-            <div className="lg:col-span-3 relative group cursor-pointer overflow-hidden rounded-lg">
-              <img
-                src={sampleImages[selectedImageIndex]}
-                alt={tourData.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+      <PackageDetailShell
+        eyebrow="Cultural experience"
+        title={tourData.title}
+        image={tourData.image}
+        route={tourData.route}
+        duration={tourData.duration}
+        facts={facts}
+        nav={nav}
+        links={<TourDestinationLinks route={tourData.route} />}
+        onShare={handleShare}
+      >
+        <DetailSection id="overview" eyebrow="Overview" title={<>About this <em>journey</em></>}>
+          <LeadParagraph>{tourData.description}</LeadParagraph>
+        </DetailSection>
+
+        <DetailSection id="highlights" eyebrow="Highlights" title={<>Tour <em>highlights</em></>}>
+          <Highlights items={tourData.highlights} />
+        </DetailSection>
+
+        <DetailSection id="itinerary" eyebrow="Itinerary" title={<>Day-by-day <em>itinerary</em></>}>
+          <DayTimeline items={toTimeline(tourData.detailed_itinerary)} />
+        </DetailSection>
+
+        {hasExperiences && (
+          <DetailSection id="experiences" eyebrow="Experiences" title={<>What you will <em>experience</em></>}>
+            <div className="space-y-12">
+              <DetailList title="Cultural experiences" data={tourData.cultural_experiences} />
+              <DetailList title="Trek details" data={tourData.trek_details} />
+              <DetailList title="Sustainability features" data={tourData.sustainability_features} />
             </div>
-            
-            {/* Thumbnail Gallery */}
-            <div className="hidden lg:flex flex-col gap-1 ml-2">
-              {sampleImages.slice(1, 4).map((img, index) => (
-                <div 
-                  key={index + 1}
-                  className="relative h-52 w-full cursor-pointer overflow-hidden rounded-lg group"
-                  onClick={() => setSelectedImageIndex(index + 1)}
-                >
-                  <img
-                    src={img}
-                    alt={`Gallery ${index + 1}`}
-                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          </DetailSection>
+        )}
 
-          {/* Floating Action Buttons */}
-          <div className="absolute top-4 right-4">
-            <button 
-              onClick={handleShare}
-              className="p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors"
-            >
-              <FiShare2 className="w-5 h-5 text-stone-700" />
-            </button>
-          </div>
-        </div>
-
-        {/* Content Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            {/* Header Info */}
-            <div className="p-6 lg:p-8 border-b border-stone-100">
-              <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center space-x-2 text-sm text-amber-600 font-medium mb-2">
-                    <HiOutlineBuildingLibrary className="w-4 h-4" />
-                    <span>Cultural Experience</span>
-                  </div>
-                  <h1 className="font-heading text-3xl lg:text-4xl font-bold text-stone-900 mb-4">{tourData.title}</h1>
-                  
-                  {/* Quick Info */}
-                  <div className="flex flex-wrap items-center gap-6 text-sm text-stone-600">
-                    <div className="flex items-center space-x-2">
-                      <FiMapPin className="w-4 h-4 text-amber-500" />
-                      <span>{tourData.route}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <FiClock className="w-4 h-4 text-amber-500" />
-                      <span>{tourData.duration}</span>
-                    </div>
-                  </div>
-                  <TourDestinationLinks route={tourData.route} />
-                </div>
-
-                {/* Booking Card */}
-                <div className="w-full lg:w-auto lg:min-w-[280px] bg-gradient-to-r from-amber-500 to-amber-700 text-white p-6 rounded-xl shadow-lg">
-                  <div className="text-center">
-                    <p className="text-lg font-semibold mb-2">Cultural Experience</p>
-                    <p className="text-sm opacity-90 mb-2">Discover Bhutan's rich heritage</p>
-                    <p className="text-xs opacity-75 mb-4">Contact us for more information</p>
-                    <button 
-                      onClick={() => router.push('/contactus')}
-                      className="w-full bg-white text-amber-600 font-semibold py-3 px-4 rounded-lg hover:bg-stone-50 transition-colors duration-300"
-                    >
-                      Enquire Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Navigation Tabs */}
-            <div className="border-b border-stone-100">
-              <nav className="flex space-x-8 px-6 lg:px-8">
-                {[
-                  { key: 'overview', label: 'Overview' },
-                  { key: 'itinerary', label: 'Itinerary' },
-                  { key: 'highlights', label: 'Highlights' },
-                  { key: 'inclusions', label: 'Inclusions' }
-                ].map((tab) => (
-                  <button
-                    key={tab.key}
-                    onClick={() => setActiveTab(tab.key)}
-                    className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
-                      activeTab === tab.key
-                        ? 'border-amber-500 text-amber-600'
-                        : 'border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </nav>
-            </div>
-
-            {/* Tab Content */}
-            <div className="p-6 lg:p-8">
-              {activeTab === 'overview' && (
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-stone-700 leading-relaxed mb-6">{tourData.description}</p>
-                  
-                  {/* Cultural Experience Features */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 not-prose mb-8">
-                    <div className="text-center p-6 bg-amber-50 rounded-xl">
-                      <HiOutlineBuildingLibrary className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-stone-900 mb-2">Ancient Monasteries</h3>
-                      <p className="text-sm text-stone-600">Explore sacred Buddhist temples and monasteries with centuries of history</p>
-                    </div>
-                    <div className="text-center p-6 bg-amber-100 rounded-xl">
-                      <HiOutlineColorSwatch className="w-8 h-8 text-amber-800 mx-auto mb-3" />
-                      <h3 className="font-semibold text-stone-900 mb-2">Traditional Arts</h3>
-                      <p className="text-sm text-stone-600">Witness authentic Bhutanese crafts, painting, and traditional arts</p>
-                    </div>
-                    <div className="text-center p-6 bg-green-50 rounded-xl">
-                      <FiUsers className="w-8 h-8 text-green-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-stone-900 mb-2">Local Culture</h3>
-                      <p className="text-sm text-stone-600">Immerse in authentic Bhutanese lifestyle and traditions</p>
-                    </div>
-                  </div>
-
-                  {/* Tour Statistics */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 not-prose">
-                    <div className="text-center p-4 bg-stone-50 rounded-lg">
-                      <div className="text-2xl font-bold text-amber-600">8-9</div>
-                      <div className="text-sm text-stone-600">Days</div>
-                    </div>
-                    <div className="text-center p-4 bg-stone-50 rounded-lg">
-                      <div className="text-2xl font-bold text-amber-600">12+</div>
-                      <div className="text-sm text-stone-600">Attractions</div>
-                    </div>
-                    <div className="text-center p-4 bg-stone-50 rounded-lg">
-                      <div className="text-2xl font-bold text-amber-600">5</div>
-                      <div className="text-sm text-stone-600">Cities</div>
-                    </div>
-                    <div className="text-center p-4 bg-stone-50 rounded-lg">
-                      <div className="text-2xl font-bold text-amber-600">4.8★</div>
-                      <div className="text-sm text-stone-600">Rating</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'itinerary' && (
-                <div className="space-y-6">
-                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Detailed Day-by-Day Itinerary</h2>
-                  <div className="space-y-4">
-                    {tourData.detailed_itinerary?.map((day, index) => (
-                      <div key={index} className="bg-stone-50 rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
-                        <div className="p-6">
-                          <div className="flex items-start space-x-4">
-                            <div className="flex-shrink-0">
-                              <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-amber-700 text-white rounded-full flex items-center justify-center font-bold">
-                                {day.day}
-                              </div>
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="text-xl font-semibold text-stone-900 mb-2">{day.title}</h3>
-                              <ul className="space-y-2">
-                                {day.activities.map((activity, idx) => (
-                                  <li key={idx} className="flex items-start space-x-2 text-stone-700">
-                                    <FiChevronRight className="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" />
-                                    <span>{activity}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'highlights' && (
-                <div>
-                  <h2 className="font-heading text-2xl font-bold text-stone-900 mb-6">Tour Highlights</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {tourData.highlights.map((highlight, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors duration-200">
-                        <FiAward className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                        <span className="text-stone-800 font-medium">{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'inclusions' && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Inclusions */}
-                  <div className="bg-green-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
-                      <FiCheck className="w-5 h-5 text-green-600 mr-2" />
-                      What's Included
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "Professional English-speaking guide",
-                        "All accommodation in luxury hotels",
-                        "Daily breakfast and dinner",
-                        "Private transportation",
-                        "All entrance fees and permits",
-                        "Cultural performances and workshops",
-                        "Airport transfers"
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-start space-x-3">
-                          <FiCheck className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-stone-700">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Exclusions */}
-                  <div className="bg-red-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-stone-900 mb-4 flex items-center">
-                      <FiX className="w-5 h-5 text-red-600 mr-2" />
-                      What's Not Included
-                    </h3>
-                    <ul className="space-y-3">
-                      {[
-                        "International airfare",
-                        "Travel insurance",
-                        "Personal expenses",
-                        "Lunch meals",
-                        "Alcoholic beverages",
-                        "Tips for guide and driver",
-                        "Visa fees"
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-start space-x-3">
-                          <FiX className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                          <span className="text-stone-700">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Call to Action
-          <div className="mt-8 bg-gradient-to-r from-amber-500 to-amber-700 rounded-2xl p-8 text-center text-white">
-            <h2 className="font-heading text-2xl font-bold mb-4">Ready to Experience Bhutan's Rich Culture?</h2>
-            <p className="text-lg opacity-90 mb-6">Join us on this transformative journey through the Heart of the Himalayas</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-amber-600 font-semibold py-3 px-8 rounded-lg hover:bg-stone-50 transition-colors duration-300">
-                Book This Cultural Tour
-              </button>
-              <button className="border border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                Request Information
-              </button>
-            </div> */}
-          {/* </div> */}
-        </div>
-      </div>
-
-      <StickyEnquireBar title={tourData.title} />
+        {hasInclusions && (
+          <DetailSection id="inclusions" eyebrow="Inclusions" title={<>What&apos;s <em>included</em></>}>
+            <Inclusions included={tourData.inclusions} excluded={tourData.exclusions} />
+          </DetailSection>
+        )}
+      </PackageDetailShell>
     </>
   );
 };

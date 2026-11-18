@@ -63,9 +63,9 @@ const New: React.FC<NewProps> = ({}) => {
                 <meta name="description" content="Profile page" />
             </Head>
             <div className="h-screen">
-            <div className="flex w-full m-auto mt-0 shadow-xl lg:w-4/12 md:w-10/12 md:mt-28 bg-base-200 rounded-xl" >
-                    <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+            <div className="mx-auto mt-12 w-[calc(100%-2rem)] max-w-md border border-stone-200 bg-white sm:mt-24" >
+                    <div className="mx-auto w-full max-w-sm px-4 pb-4 sm:px-6">
+                    <h1 className="m-10 mx-auto font-heading text-2xl font-medium text-center text-stone-900">Door to Happiness Holiday</h1>
                     {ApiResponse.success ? <p className="p-4 m-10 mx-auto font-bold text-center border text-md text-success rounded-xl border-success">{ApiResponse.message}</p> : (ApiResponse.message ? <p className="p-4 m-10 mx-auto font-bold text-center border rounded-xl border-error text-md text-error">{ApiResponse.message}</p> : null)}
                     {ApiResponse.password ? <p className="p-4 m-10 mx-auto font-bold text-center border text-md text-error rounded-xl border-error">Invalid password</p> : null}
                         <Formik
@@ -86,14 +86,14 @@ const New: React.FC<NewProps> = ({}) => {
                                                     }
                                                 </div>
                                             </label>
-                                            <Field placeholder="Enter new password" type={(open === false)? 'password' :'text'} name="newPassword" className={`w-full p-3 transition duration-200 rounded input`}/>
+                                            <Field placeholder="Enter new password" type={(open === false)? 'password' :'text'} name="newPassword" className={`w-full p-3 text-base transition duration-200 rounded input bg-white border border-stone-300 focus:border-emerald-700 focus:outline-none`}/>
                                             <label className="label">
                                                 {errors.newPassword ? <ErrorField error={errors.newPassword}/> : null}
                                                 {/* {ApiResponse.password ? <ErrorField error={ApiResponse.password}/> : null} */}
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="submit" disabled={isSubmitting} className="w-full mb-5 btn">
+                                    <button type="submit" disabled={isSubmitting} className="w-full mb-5 btn border-0 rounded-full bg-emerald-900 text-white text-[12px] uppercase tracking-[0.14em] hover:bg-emerald-800">
                                         Set new password
                                     </button>
                                 </Form>

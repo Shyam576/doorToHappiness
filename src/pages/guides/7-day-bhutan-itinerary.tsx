@@ -1,8 +1,10 @@
 import React from "react";
 import Seo from "../../components/Seo";
 import Link from "next/link";
-import { FiMap, FiClock } from "react-icons/fi";
-import { getTheme } from "../../styles/themes";
+import GuideLayout, { H2 } from "../../components/guides/GuideLayout";
+
+const linkCls =
+  "font-medium text-emerald-900 underline decoration-amber-500 decoration-2 underline-offset-4 hover:text-emerald-700";
 
 interface DayPlanProps {
   day: number;
@@ -10,30 +12,22 @@ interface DayPlanProps {
   children: React.ReactNode;
 }
 
-const DayPlan: React.FC<DayPlanProps> = ({ day, title, children }) => {
-  const theme = getTheme();
-  return (
-    <div className="flex gap-4 sm:gap-6 mb-8">
-      <div
-        className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full ${theme.primary} text-white flex items-center justify-center font-bold text-lg`}
-      >
-        {day}
-      </div>
-      <div className="flex-1 min-w-0">
-        <h3 className="text-xl sm:text-2xl font-bold text-stone-900 mb-2">
-          {title}
-        </h3>
-        <div className="text-stone-700 leading-relaxed space-y-2">
-          {children}
-        </div>
-      </div>
+const DayPlan: React.FC<DayPlanProps> = ({ day, title, children }) => (
+  <li className="grid gap-x-6 gap-y-2 border-t border-stone-300 py-8 first:border-t-0 sm:grid-cols-[5rem_1fr]">
+    <span className="font-heading text-5xl font-normal leading-none text-amber-600 sm:text-6xl" aria-hidden="true">
+      {String(day).padStart(2, "0")}
+    </span>
+    <div className="min-w-0">
+      <h3 className="font-heading text-2xl font-medium text-stone-900">
+        <span className="sr-only">Day {day}: </span>
+        {title}
+      </h3>
+      <div className="mt-3 text-[17px] leading-[1.8] text-stone-700">{children}</div>
     </div>
-  );
-};
+  </li>
+);
 
 const SevenDayItinerary = () => {
-  const theme = getTheme();
-
   return (
     <>
       <Seo
@@ -64,23 +58,27 @@ const SevenDayItinerary = () => {
         }}
       />
 
-      <article className="min-h-screen bg-white">
-        {/* Hero */}
-        <div className={`relative bg-gradient-to-r ${theme.gradient} py-20`}>
-          <div className="absolute inset-0 bg-black opacity-20"></div>
-          <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
-            <FiMap className="text-6xl mx-auto mb-6" />
-            <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6">
-              7-Day Bhutan Itinerary
-            </h1>
-            <p className="text-xl mb-8">Paro, Thimphu & Punakha</p>
-          </div>
-        </div>
-
-        <div className="max-w-4xl mx-auto px-4 py-12">
-          {/* Intro */}
-          <section className="mb-12">
-            <p className="text-lg text-stone-700 leading-relaxed mb-6">
+      <GuideLayout
+        slug="7-day-bhutan-itinerary"
+        eyebrow="Itineraries"
+        title={<>7-Day Bhutan <em>Itinerary</em></>}
+        intro="Paro, Thimphu & Punakha"
+        image="/homepagebg2.jpg"
+        focus="center 55%"
+        toc={[
+          { id: "overview", label: "The route" },
+          { id: "day-by-day", label: "Day-by-Day" },
+          { id: "make-it-your-own", label: "Make It Your Own" },
+        ]}
+        cta={{
+          heading: <>Want this itinerary <em>tailored to your dates?</em></>,
+          body: "Tell us when you're traveling and what you're interested in, and we'll turn this route into a private itinerary built around you.",
+          href: "/contactus",
+          label: "Plan My Bhutan Trip",
+        }}
+      >
+        <section id="overview" className="scroll-mt-28">
+            <p className="mb-10 font-heading text-xl leading-[1.6] text-stone-800 sm:text-2xl">
               This is the classic first-time route through Bhutan — the one
               most travelers take on their first visit, and the one we build
               the most private itineraries around. It covers Bhutan's three
@@ -91,40 +89,25 @@ const SevenDayItinerary = () => {
               without feeling rushed, and it's easy to extend if you want to
               add Bumthang, Gangtey, or a short trek.
             </p>
-            <div className="bg-stone-50 rounded-lg p-6 flex flex-wrap gap-6">
-              <div>
-                <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-1">
-                  Best for
-                </p>
-                <p className="text-stone-800 font-medium">
-                  First-time visitors
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-1">
-                  Route
-                </p>
-                <p className="text-stone-800 font-medium">
-                  Paro → Thimphu → Punakha → Paro
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-stone-500 uppercase tracking-wide mb-1">
-                  Pace
-                </p>
-                <p className="text-stone-800 font-medium">
-                  Relaxed, 1–2 activities per day
-                </p>
-              </div>
+          <dl className="mb-4 grid gap-6 border-y border-stone-300 py-6 sm:grid-cols-3">
+            <div>
+              <dt className="text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">Best for</dt>
+              <dd className="mt-2 font-heading text-lg text-stone-900">First-time visitors</dd>
             </div>
-          </section>
+            <div>
+              <dt className="text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">Route</dt>
+              <dd className="mt-2 font-heading text-lg text-stone-900">Paro → Thimphu → Punakha → Paro</dd>
+            </div>
+            <div>
+              <dt className="text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">Pace</dt>
+              <dd className="mt-2 font-heading text-lg text-stone-900">Relaxed, 1–2 activities per day</dd>
+            </div>
+          </dl>
+        </section>
 
-          {/* Day by day */}
-          <section className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-8 text-stone-900 flex items-center gap-3">
-              <FiClock className={theme.primaryText} /> Day-by-Day
-            </h2>
-
+        <section id="day-by-day" className="scroll-mt-28">
+          <H2 n="Day-by-Day">Seven days, three valleys</H2>
+          <ol className="mt-8">
             <DayPlan day={1} title="Arrival in Paro">
               <p>
                 Most Bhutan trips begin and end in Paro, and the flight in
@@ -132,14 +115,14 @@ const SevenDayItinerary = () => {
                 the afternoon acclimatizing with easy sightseeing:{" "}
                 <Link
                   href="/attractions/ta-dzong-national-museum-of-paro"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   the National Museum of Paro (Ta Dzong)
                 </Link>{" "}
                 and{" "}
                 <Link
                   href="/attractions/rinpung-dzong"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Rinpung Dzong
                 </Link>
@@ -152,7 +135,7 @@ const SevenDayItinerary = () => {
                 The reason many people visit Bhutan at all:{" "}
                 <Link
                   href="/attractions/taktshang-monastery-temple"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Taktshang Monastery, better known as Tiger's Nest
                 </Link>
@@ -168,7 +151,7 @@ const SevenDayItinerary = () => {
                 A short drive (around an hour) takes you to{" "}
                 <Link
                   href="/dzongkhag/thimphu"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Thimphu
                 </Link>
@@ -176,21 +159,21 @@ const SevenDayItinerary = () => {
                 without traffic lights. Spend the day visiting the giant{" "}
                 <Link
                   href="/attractions/buddha-dordenma-statue"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Buddha Dordenma statue
                 </Link>{" "}
                 overlooking the city,{" "}
                 <Link
                   href="/attractions/tashichho-dzong"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Tashichho Dzong
                 </Link>{" "}
                 (the seat of Bhutan's government), and the{" "}
                 <Link
                   href="/attractions/national-memorial-chorten"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   National Memorial Chorten
                 </Link>
@@ -198,7 +181,7 @@ const SevenDayItinerary = () => {
                 lines up, the{" "}
                 <Link
                   href="/attractions/weekend-market-centenary-farmers-market"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   weekend market
                 </Link>{" "}
@@ -211,7 +194,7 @@ const SevenDayItinerary = () => {
                 The drive to{" "}
                 <Link
                   href="/dzongkhag/punakha"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Punakha
                 </Link>{" "}
@@ -222,7 +205,7 @@ const SevenDayItinerary = () => {
                 Spend the afternoon at{" "}
                 <Link
                   href="/attractions/punakha-dzong"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Punakha Dzong
                 </Link>
@@ -236,7 +219,7 @@ const SevenDayItinerary = () => {
                 A gentle walk through rice fields leads to{" "}
                 <Link
                   href="/attractions/chimi-lhakhang-fertility-and-name-giving-temple"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Chimi Lhakhang
                 </Link>
@@ -244,7 +227,7 @@ const SevenDayItinerary = () => {
                 sites. Cross the{" "}
                 <Link
                   href="/attractions/punakha-suspension-bridge"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Punakha Suspension Bridge
                 </Link>{" "}
@@ -259,7 +242,7 @@ const SevenDayItinerary = () => {
                 Head back toward{" "}
                 <Link
                   href="/dzongkhag/paro"
-                  className={`${theme.primaryText} font-medium hover:underline`}
+                  className={linkCls}
                 >
                   Paro
                 </Link>
@@ -276,46 +259,24 @@ const SevenDayItinerary = () => {
                 Himalayas on the way out.
               </p>
             </DayPlan>
-          </section>
+          </ol>
+        </section>
 
-          {/* Make it your own */}
-          <section className="mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-6 text-stone-900">
-              Make It Your Own
-            </h2>
-            <p className="text-lg text-stone-700 leading-relaxed">
+        <section id="make-it-your-own" className="scroll-mt-28">
+          <H2 n="Your journey">Make It Your Own</H2>
+            <p className="text-[17px] leading-[1.8] text-stone-700">
               This route is a starting point, not a fixed package — it's
               easy to extend it toward Bumthang and Gangtey for a longer
               cultural trip, slow it down for a more relaxed pace, or add a
               short trek. Browse our{" "}
-              <Link href="/package" className={`${theme.primaryText} font-semibold hover:underline`}>
+              <Link href="/package" className={linkCls}>
                 existing Bhutan tour packages
               </Link>{" "}
               for ready-made options, or tell us your dates and interests and
               we'll build a private itinerary around this route.
             </p>
-          </section>
-
-          {/* CTA */}
-          <div
-            className={`bg-gradient-to-r ${theme.gradient} rounded-xl p-8 text-center text-white`}
-          >
-            <h2 className="font-heading text-2xl font-bold mb-4">
-              Want This Itinerary Tailored to Your Dates?
-            </h2>
-            <p className="text-lg mb-6">
-              Tell us when you're traveling and what you're interested in,
-              and we'll turn this route into a private itinerary built
-              around you.
-            </p>
-            <Link href="/contactus">
-              <button className={`${theme.primaryText} bg-white font-bold py-3 px-8 rounded-lg hover:bg-stone-100 transition-colors`}>
-                Plan My Bhutan Trip
-              </button>
-            </Link>
-          </div>
-        </div>
-      </article>
+        </section>
+      </GuideLayout>
     </>
   );
 };

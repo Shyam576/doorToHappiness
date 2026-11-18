@@ -12,6 +12,7 @@ import { AuthProvider } from "../context/AuthContext";
 import { Footer } from "../components/Footer";
 import { store } from "../store/store";
 import { NavBar } from "../components/NavBar";
+import { PageTransition } from "../components/motion/PageTransition";
 import { AdminNav } from "../components/AdminNav";
 import ChatWidget from "../components/ChatWidget";
 import "../components/styles/global.css";
@@ -66,14 +67,18 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               <AuthProvider>
                 <IoProvider>
                   <AdminNav />
-                  <Component {...pageProps} />
+                  <PageTransition>
+                    <Component {...pageProps} />
+                  </PageTransition>
                   <Footer />
                 </IoProvider>
               </AuthProvider>
             ) : (
               <IoProvider>
                 <NavBar />
-                <Component {...pageProps} />
+                <PageTransition>
+                    <Component {...pageProps} />
+                  </PageTransition>
                 <Footer />
                 <ChatWidget phoneNumber={process.env.NEXT_PUBLIC_PHONE_NO as string} />
               </IoProvider>

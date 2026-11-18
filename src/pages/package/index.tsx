@@ -1,27 +1,17 @@
 import React, { useState, useRef } from "react";
 import Seo from "../../components/Seo";
-import Image from "next/image";
-import { Container } from "../../components/Container";
+import Link from "next/link";
+import PageHero from "../../components/PageHero";
+import { Reveal } from "../../components/motion/Reveal";
+import { StaggerText } from "../../components/motion/StaggerText";
+import { Photo } from "../../components/Photo";
 import majorCitiesPackage from "../../data/majorCitiesPackage.json";
 import festivalTours from "../../data/festivialTours.json";
 import culturalTours from "../../data/culturalTours.json";
 import trekkingAdventure from "../../data/trekkingAdventure.json";
 import groupTours from "../../data/groupTours.json";
 import CityPackageCard from "../../components/citiesPackageCard";
-import {
-  FiArrowRight,
-  FiSearch,
-  FiMapPin,
-  FiCalendar,
-  FiUsers,
-  FiTrendingUp,
-  FiCamera,
-  FiAlertCircle,
-  FiCreditCard,
-  FiCheckCircle,
-  FiInfo,
-} from "react-icons/fi";
-import { getTheme } from "../../styles/themes";
+import { FiSearch } from "react-icons/fi";
 
 interface Tour {
   id: string;
@@ -46,9 +36,6 @@ interface AllTours {
 }
 
 function Index() {
-  // Get unified theme
-  const theme = getTheme();
-
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const allTours: AllTours = {
@@ -134,48 +121,128 @@ function Index() {
     ...filterTours(allTours.groupTours),
   ];
 
+  const categories = [
+    { id: "all", title: "All journeys", description: "Browse everything", image: "/homepagebg2.jpg", count: allTours.cityTours.length + allTours.festivalTours.length + allTours.culturalTours.length + allTours.adventureTours.length + allTours.groupTours.length },
+    { id: "city", title: "City tours", description: "From major cities", image: "/category1.jpg", count: allTours.cityTours.length },
+    { id: "festival", title: "Festivals", description: "Cultural celebrations", image: "/category2.jpg", count: allTours.festivalTours.length },
+    { id: "cultural", title: "Cultural", description: "Heritage & traditions", image: "/category3.jpg", count: allTours.culturalTours.length },
+    { id: "adventure", title: "Adventures", description: "Treks & outdoor", image: "/category4.jpg", count: allTours.adventureTours.length },
+    { id: "group", title: "Group tours", description: "Travel together", image: "/category5.jpg", count: allTours.groupTours.length },
+  ];
+
+  /** Lead package as a large feature, the rest as alternating image/text rows. */
+  const renderPackageList = (tours: any[]) => (
+    <div className="divide-y divide-stone-200">
+      {tours.map((tour: any, i: number) => (
+        <Reveal key={`${tour.id}-${tour.categoryType ?? tour.category}`} className="py-14 first:pt-0 last:pb-0 sm:py-20">
+          <CityPackageCard tour={tour} feature={i === 0} reverse={i % 2 === 1} />
+        </Reveal>
+      ))}
+    </div>
+  );
+
   const renderTourCards = (
     tours: any,
     category: any,
-    ref?: React.RefObject<HTMLDivElement>
+    ref?: React.RefObject<HTMLDivElement>,
+    index?: number
   ) => {
     if (tours.length === 0 && !searchTerm) return null;
 
     return (
-      <Container className="py-8" ref={ref}>
-        <div className="text-center mb-8">
-          <h3 className="text-2xl sm:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-l from-amber-600 to-amber-400 inline-block py-2 px-4 rounded-lg shadow-md">
-            {category}
-          </h3>
-          {searchTerm && tours.length > 0 && (
-            <p className="text-lg text-stone-600 mt-2">
-              Showing {tours.length} {category.toLowerCase()} matching "
-              {searchTerm}"
+      <section className="py-20 sm:py-28" ref={ref} aria-label={category}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="mb-14 flex items-end justify-between gap-6 border-b border-stone-300 pb-6">
+            <div>
+              {index !== undefined && (
+                <p className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">
+                  <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                  {String(index).padStart(2, "0")}
+                </p>
+              )}
+              <h2 className="font-heading text-3xl font-medium leading-[1.08] text-stone-900 sm:text-5xl"><StaggerText>{category}</StaggerText></h2>
+              {searchTerm && tours.length > 0 && (
+                <p className="mt-2 text-stone-600">
+                  Showing {tours.length} {category.toLowerCase()} matching &quot;{searchTerm}&quot;
+                </p>
+              )}
+            </div>
+            <p className="hidden text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-500 sm:block">
+              {tours.length} {tours.length === 1 ? "journey" : "journeys"}
             </p>
-          )}
-        </div>
+          </div>
 
-        {tours.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-            {tours.map((tour: any) => (
-              <div key={tour.id} className="h-full">
-                <CityPackageCard tour={tour} />
-              </div>
-            ))}
-          </div>
-        ) : searchTerm ? (
-          <div className="text-center py-8">
-            <h3 className="text-xl font-medium text-stone-600 mb-6">
-              No {category.toLowerCase()} found matching your search
-            </h3>
-          </div>
-        ) : null}
-      </Container>
+          {tours.length > 0 ? (
+            renderPackageList(tours)
+          ) : searchTerm ? (
+            <p className="py-8 text-lg text-stone-600">No {category.toLowerCase()} found matching your search</p>
+          ) : null}
+        </div>
+      </section>
     );
   };
 
+  const activeCategoryTitle: Record<string, string> = {
+    city: "Bhutan Tour Packages from Major Cities",
+    festival: "Bhutan Festival Tours",
+    cultural: "Bhutan Cultural Tours",
+    adventure: "Bhutan Treks & Adventures",
+    group: "Bhutan Group Tours",
+  };
+
+  const payTips: { heading: string; items: { title: string; body: React.ReactNode }[] }[] = [
+    {
+      heading: "Smart Tips for Hassle-Free Payments",
+      items: [
+        {
+          title: "Enable Your Cards for International Use",
+          body: "Before traveling, confirm with your bank (or via your mobile banking app) that your debit/credit cards are enabled for international transactions, including use in Bhutan.",
+        },
+        {
+          title: "Inform Your Bank About Your Travel Plans",
+          body: "Notify your bank of your travel dates and destination to prevent transaction declines and ensure smooth payments.",
+        },
+        {
+          title: "Check Card Network Compatibility",
+          body: (
+            <>
+              Ensure your card network — e.g. Visa, Mastercard, UnionPay, JCB, or American Express — is supported by banks in Bhutan.{" "}
+              <a
+                href="https://www.rma.org.bt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex min-h-[44px] items-center border-b border-amber-300 text-amber-200 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300"
+              >
+                Visit Royal Monetary Authority (RMA) →
+              </a>
+            </>
+          ),
+        },
+      ],
+    },
+    {
+      heading: "Key Things to Do Before You Pay",
+      items: [
+        {
+          title: "Be Aware of Transaction & Withdrawal Limits",
+          body: "Check your bank's transaction limit. At ATMs in Bhutan, follow on-screen instructions to note withdrawal limits per transaction.",
+        },
+        {
+          title: "Consult Merchants, Guides, or Banks",
+          body: "If a payment is declined, consult your merchant or guide for assistance. If the issue persists, contact the nearest bank.",
+        },
+        {
+          title: "Important Note for Regional (Indian) Tourists",
+          body: "Cards issued in India denominated in USD will not work in Bhutan due to FEMA regulations by the Reserve Bank of India. Please carry cards valid for India, Bhutan, and Nepal to avoid payment issues.",
+        },
+      ],
+    },
+  ];
+
+  const totalTours = categories[0].count;
+
   return (
-    <div className="bg-gradient-to-b from-stone-50 to-white">
+    <div className="bg-brand-ivory">
       <Seo
         title="Bhutan Tour Packages | Cultural, Trekking & Festival Tours"
         description="Browse curated Bhutan tour packages: cultural tours, trekking adventures, festival tours, and group tours from a licensed Bhutanese operator."
@@ -184,483 +251,232 @@ function Index() {
         ogDescription="Discover curated travel experiences to the Land of the Thunder Dragon — cultural, trekking, festival, and group tours."
       />
 
-      {/* Hero Section with Search */}
-      <div className="relative py-24 overflow-hidden bg-stone-900">
-        {/* Background Image Layer */}
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('/packagebg.jpg')" }}
-          aria-hidden="true"
-        />
-        
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
-            Bhutan Tour Packages
-          </h1>
-          <p className="text-xl text-white opacity-90 mb-8">
-            Discover curated travel experiences to the Land of the Thunder
-            Dragon
-          </p>
-          <div className="relative max-w-md mx-auto">
-            <input
-              type="text"
-              aria-label="Search tour packages"
-              placeholder="Search all packages..."
-              className="w-full py-4 px-6 bg-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-600 pr-12"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <FiSearch className="absolute right-6 top-1/2 transform -translate-y-1/2 text-stone-500 w-5 h-5" />
-          </div>
+      <PageHero
+        eyebrow="Holiday packages"
+        title={
+          <>
+            Bhutan Tour Packages, <em>made to measure.</em>
+          </>
+        }
+        intro="Discover curated travel experiences to the Land of the Thunder Dragon"
+        image="/packagebg.jpg"
+      >
+        <div className="relative w-full max-w-md">
+          <label htmlFor="package-search" className="sr-only">
+            Search tour packages
+          </label>
+          <input
+            id="package-search"
+            type="text"
+            placeholder="Search all packages..."
+            className="min-h-[52px] w-full rounded-full border border-white/40 bg-white/[0.12] py-4 pl-6 pr-12 text-white placeholder:text-white/70 backdrop-blur focus:border-white focus:outline-none focus:ring-2 focus:ring-amber-300"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <FiSearch className="pointer-events-none absolute right-5 top-1/2 h-5 w-5 -translate-y-1/2 text-white/80" aria-hidden="true" />
         </div>
-        </div>
-      </div>
+      </PageHero>
 
-      {/* Category Overview Section */}
+      {/* Category browser */}
       {!searchTerm && (
-        <Container className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-stone-800 mb-4">
-              Choose Your Perfect Bhutan Experience
-            </h2>
-            <p className="text-lg text-stone-600 max-w-3xl mx-auto">
-              From cultural immersion to mountain adventures, discover our
-              carefully curated tour categories designed for every type of
-              traveler.
+        <section className="border-b border-stone-200 py-16 sm:py-24" aria-labelledby="browse-heading">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <Reveal className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">
+                  <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                  Browse by style
+                </p>
+                <h2 id="browse-heading" className="font-heading text-4xl font-medium leading-[1.05] text-stone-900 sm:text-5xl">
+                  <StaggerText>Choose your perfect <em className="font-normal text-emerald-900">Bhutan experience.</em></StaggerText>
+                </h2>
+              </div>
+              <p className="max-w-md text-base leading-relaxed text-stone-600">
+                From cultural immersion to mountain adventures, discover our carefully curated tour categories designed for
+                every type of traveler.
+              </p>
+            </Reveal>
+
+            <div role="group" aria-label="Filter packages by category" className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-6">
+              {categories.map((category, ci) => {
+                const active = activeCategory === category.id;
+                return (
+                  <Reveal key={category.id} delay={ci * 90} className="w-40 flex-shrink-0 snap-start sm:w-auto">
+                  <button
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => scrollToCategory(category.id)}
+                    className="group block w-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-900 sm:w-auto"
+                  >
+                    <span className="relative block aspect-[4/5] overflow-hidden bg-stone-200">
+                      <Photo
+                        src={category.image}
+                        alt=""
+                        fallback="/backgroundbanner.jpg"
+                        className="h-full w-full"
+                        sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 160px"
+                        imgClassName="h-full w-full object-cover group-hover:scale-[1.06]"
+                      />
+                      {!active && (
+                        <span className="absolute inset-0 bg-emerald-950/20 transition-opacity duration-500 group-hover:opacity-0" aria-hidden="true" />
+                      )}
+                      <span className="absolute inset-0 bg-gradient-to-t from-emerald-950/70 via-transparent to-transparent" aria-hidden="true" />
+                      <span className="absolute bottom-3 left-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                        {category.count} {category.count === 1 ? "tour" : "tours"}
+                      </span>
+                    </span>
+                    <span className={`mt-3 block border-t-2 pt-3 ${active ? "border-emerald-900" : "border-transparent"}`}>
+                      <span className={`block font-heading text-xl font-medium ${active ? "text-emerald-900" : "text-stone-900"}`}>
+                        {category.title}
+                      </span>
+                      <span className="mt-0.5 block text-sm text-stone-500">{category.description}</span>
+                    </span>
+                  </button>
+                  </Reveal>
+                );
+              })}
+            </div>
+
+            <p className="mt-10 text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">
+              {totalTours} packages across {categories.length - 1} categories
             </p>
           </div>
-
-          {/* Category Navigation Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-6 mb-12">
-            {[
-              {
-                id: "all",
-                title: "All Tours",
-                count:
-                  allTours.cityTours.length +
-                  allTours.festivalTours.length +
-                  allTours.culturalTours.length +
-                  allTours.adventureTours.length +
-                  allTours.groupTours.length,
-                icon: FiSearch,
-                description: "Browse everything",
-                bgImage: "all", // Special flag for mixed images
-                gradient: "from-amber-500/70 to-amber-700/70",
-              },
-              {
-                id: "city",
-                title: "City Tours",
-                count: allTours.cityTours.length,
-                icon: FiMapPin,
-                description: "From major cities",
-                bgImage: "/category1.jpg",
-                gradient: "from-amber-600/70 to-amber-400/70",
-              },
-              {
-                id: "festival",
-                title: "Festivals",
-                count: allTours.festivalTours.length,
-                icon: FiCalendar,
-                description: "Cultural celebrations",
-                bgImage: "/category2.jpg",
-                gradient: "from-amber-400/70 to-red-400/70",
-              },
-              {
-                id: "cultural",
-                title: "Cultural",
-                count: allTours.culturalTours.length,
-                icon: FiCamera,
-                description: "Heritage & traditions",
-                bgImage: "/category3.jpg",
-                gradient: "from-amber-700/70 to-amber-500/70",
-              },
-              {
-                id: "adventure",
-                title: "Adventures",
-                count: allTours.adventureTours.length,
-                icon: FiTrendingUp,
-                description: "Treks & outdoor",
-                bgImage: "/category4.jpg",
-                gradient: "from-amber-600/70 to-amber-600/70",
-              },
-              {
-                id: "group",
-                title: "Group Tours",
-                count: allTours.groupTours.length,
-                icon: FiUsers,
-                description: "Travel together",
-                bgImage: "/category5.jpg",
-                gradient: "from-amber-400/70 to-amber-500/70",
-              },
-            ].map((category) => (
-              <div
-                key={category.id}
-                onClick={() => scrollToCategory(category.id)}
-                className={`cursor-pointer transform hover:scale-105 transition-all duration-300 rounded-2xl overflow-hidden relative group ${
-                  activeCategory === category.id
-                    ? "ring-4 ring-amber-400 shadow-2xl scale-105"
-                    : "hover:shadow-xl"
-                }`}
-              >
-                {/* Background Image - Mixed collage for "All Tours" */}
-                {category.bgImage === "all" ? (
-                  <div className="absolute inset-0 z-0 grid grid-cols-2 grid-rows-2 gap-0.5" aria-hidden="true">
-                    <div
-                      className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundImage: "url('/category1.jpg')" }}
-                    />
-                    <div
-                      className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundImage: "url('/category2.jpg')" }}
-                    />
-                    <div
-                      className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundImage: "url('/category3.jpg')" }}
-                    />
-                    <div
-                      className="bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundImage: "url('/category4.jpg')" }}
-                    />
-                  </div>
-                ) : category.bgImage ? (
-                  <div
-                    className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundImage: `url('${category.bgImage}')` }}
-                    aria-hidden="true"
-                  />
-                ) : null}
-                
-                {/* Gradient Overlay - Reduced opacity */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} z-5`}></div>
-                
-                {/* Content */}
-                <div className="relative z-10 p-6 text-white text-center">
-                  <category.icon className="w-8 h-8 mx-auto mb-3 drop-shadow-lg" />
-                  <h3 className="font-bold text-lg mb-1 drop-shadow-md">{category.title}</h3>
-                  <p className="text-sm opacity-95 mb-2 drop-shadow">
-                    {category.description}
-                  </p>
-                  <div className="bg-white bg-opacity-30 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium inline-block drop-shadow-md">
-                    {category.count} tours
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Quick Stats */}
-          <div className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-2xl p-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-3xl font-bold text-amber-600 mb-2">
-                  {allTours.cityTours.length +
-                    allTours.festivalTours.length +
-                    allTours.culturalTours.length +
-                    allTours.adventureTours.length +
-                    allTours.groupTours.length}
-                </div>
-                <div className="text-stone-600 font-medium">Total Packages</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-amber-600 mb-2">5</div>
-                <div className="text-stone-600 font-medium">Tour Categories</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-amber-600 mb-2">
-                  3-15
-                </div>
-                <div className="text-stone-600 font-medium">Days Duration</div>
-              </div>
-            </div>
-          </div>
-        </Container>
+        </section>
       )}
 
       {/* Filtered Tours View - Shows when category is selected */}
       {!searchTerm && activeCategory !== "all" && (
-        <Container className="py-8" ref={filteredToursRef}>
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-amber-100 to-amber-200 text-amber-800 rounded-full text-sm font-medium mb-4">
-              <FiCamera className="w-4 h-4 mr-2" />
-              Category Filter Active
+        <section className="py-20 sm:py-28" ref={filteredToursRef} aria-labelledby="filtered-heading">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <div className="mb-14 border-b border-stone-300 pb-6">
+              <p className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">
+                <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                Category filter active
+              </p>
+              <h2 id="filtered-heading" className="font-heading text-3xl font-medium leading-[1.08] text-stone-900 sm:text-5xl">
+                <StaggerText key={activeCategory}>{activeCategoryTitle[activeCategory]}</StaggerText>
+              </h2>
             </div>
-            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-stone-800 mb-4">
-              {activeCategory === "city" &&
-                "Bhutan Tour Packages from Major Cities"}
-              {activeCategory === "festival" && "Bhutan Festival Tours"}
-              {activeCategory === "cultural" && "Bhutan Cultural Tours"}
-              {activeCategory === "adventure" && "Bhutan Treks & Adventures"}
-              {activeCategory === "group" && "Bhutan Group Tours"}
-            </h2>
-            {/* <button
-              onClick={() => {
-                setActiveCategory('all');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="text-amber-600 hover:text-amber-800 font-medium underline"
-            >
-              ← Back to all categories
-            </button> */}
+            <div key={activeCategory} className="animate-page-in">
+              {renderPackageList(getFilteredTours())}
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-            {getFilteredTours().map((tour) => (
-              <div key={`${tour.id}-${tour.categoryType}`} className="h-full">
-                <CityPackageCard tour={tour} />
-              </div>
-            ))}
-          </div>
-        </Container>
+        </section>
       )}
 
       {/* Search Results View */}
       {searchTerm && (
-        <Container className="py-8">
-          <div className="text-center mb-8">
-            <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-stone-800">
-              Search Results
-            </h2>
-            <p className="text-lg text-stone-600 mt-2">
-              Found {allFilteredTours.length} packages matching "{searchTerm}"
-            </p>
-          </div>
+        <section className="py-20 sm:py-28" aria-labelledby="search-heading">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <div className="mb-14 border-b border-stone-300 pb-6">
+              <h2 id="search-heading" className="font-heading text-3xl font-medium leading-[1.08] text-stone-900 sm:text-5xl">
+                Search Results
+              </h2>
+              <p className="mt-3 text-lg text-stone-600">
+                Found {allFilteredTours.length} packages matching &quot;{searchTerm}&quot;
+              </p>
+            </div>
 
-          {allFilteredTours.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-10 lg:px-20">
-              {allFilteredTours.map((tour) => (
-                <div key={`${tour.id}-${tour.category}`} className="h-full">
-                  <CityPackageCard tour={tour} />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <h3 className="text-xl font-medium text-stone-600 mb-6">
-                No packages found matching your search
-              </h3>
-              <button
-                onClick={() => setSearchTerm("")}
-                className={`px-6 py-3 ${theme.primary} ${theme.primaryHover} text-white rounded-lg transition-all shadow-md`}
-              >
-                Clear Search
-              </button>
-            </div>
-          )}
-        </Container>
+            {allFilteredTours.length > 0 ? (
+              renderPackageList(allFilteredTours)
+            ) : (
+              <div className="py-8">
+                <p className="mb-6 text-xl text-stone-600">No packages found matching your search</p>
+                <button
+                  type="button"
+                  onClick={() => setSearchTerm("")}
+                  className="min-h-[44px] rounded-full bg-emerald-900 px-8 py-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-900"
+                >
+                  Clear Search
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
       )}
 
       {/* Category Views (hidden when searching or filtering) */}
       {!searchTerm && activeCategory === "all" && (
         <>
-          {/* Major Cities Packages */}
-          {renderTourCards(
-            allTours.cityTours,
-            "Bhutan Tour Packages from Major Cities",
-            cityToursRef
-          )}
-
-          {/* Festival Tours */}
-          {renderTourCards(
-            allTours.festivalTours,
-            "Bhutan Festival Tours",
-            festivalToursRef
-          )}
-
-          {/* Cultural Tours */}
-          {renderTourCards(
-            allTours.culturalTours,
-            "Bhutan Cultural Tours",
-            culturalToursRef
-          )}
-
-          {/* Adventure Tours */}
-          {renderTourCards(
-            allTours.adventureTours,
-            "Bhutan Treks & Adventures",
-            adventureToursRef
-          )}
-
-          {/* Group Tours */}
-          {renderTourCards(
-            allTours.groupTours,
-            "Bhutan Group Tours",
-            groupToursRef
-          )}
+          {renderTourCards(allTours.cityTours, "Bhutan Tour Packages from Major Cities", cityToursRef, 1)}
+          {renderTourCards(allTours.festivalTours, "Bhutan Festival Tours", festivalToursRef, 2)}
+          {renderTourCards(allTours.culturalTours, "Bhutan Cultural Tours", culturalToursRef, 3)}
+          {renderTourCards(allTours.adventureTours, "Bhutan Treks & Adventures", adventureToursRef, 4)}
+          {renderTourCards(allTours.groupTours, "Bhutan Group Tours", groupToursRef, 5)}
         </>
       )}
 
       {/* Payment Advisory Section */}
       {!searchTerm && (
-        <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 relative overflow-hidden">
-          {/* Animated background pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-indigo-500 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <section className="bg-emerald-950 py-24 text-white sm:py-32" aria-labelledby="payment-heading">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <Reveal className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+              <div className="lg:col-span-5">
+                <div className="lg:sticky lg:top-28">
+                  <p className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-300">
+                    <span className="h-px w-10 bg-amber-300" aria-hidden="true" />
+                    Important — please read
+                  </p>
+                  <h2 id="payment-heading" className="font-heading text-4xl font-medium leading-[1.05] sm:text-5xl">
+                    <StaggerText>Important <em className="font-normal text-amber-200">Payment Information</em></StaggerText>
+                  </h2>
+                  <p className="mt-5 text-base leading-relaxed text-white/75">
+                    Please read carefully to ensure a smooth payment experience during your Bhutan journey
+                  </p>
+                  <p className="mt-8 border-l-2 border-amber-300 pl-5 font-heading text-xl leading-snug text-white">
+                    Welcome to Bhutan – The Land of the Thunder Dragon!
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-white/70">
+                    We are delighted to have you in our beautiful country. To make your stay truly memorable and ensure a
+                    smooth payment experience, please take note of the following important guidelines:
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-14 lg:col-span-7">
+                {payTips.map((group) => (
+                  <div key={group.heading}>
+                    <h3 className="mb-2 border-b border-white/20 pb-4 font-heading text-2xl font-medium">{group.heading}</h3>
+                    <ol className="divide-y divide-white/10">
+                      {group.items.map((item, i) => (
+                        <li key={item.title} className="flex gap-6 py-6">
+                          <span className="w-8 flex-shrink-0 font-heading text-xl text-amber-300" aria-hidden="true">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <div>
+                            <h4 className="font-semibold text-white">{item.title}</h4>
+                            <p className="mt-2 text-[15px] leading-relaxed text-white/75">{item.body}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
-          
-          <Container>
-            <div className="max-w-5xl mx-auto">
-              {/* Header with Attention Badge */}
-              <div className="text-center mb-8">
-                {/* Important Badge */}
-                <div className="inline-flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 animate-bounce">
-                  <FiAlertCircle className="w-4 h-4" />
-                  IMPORTANT - PLEASE READ
-                </div>
-                
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full mb-4 shadow-lg animate-pulse">
-                  <FiCreditCard className="w-8 h-8 text-white" />
-                </div>
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-stone-800 mb-3">
-                  Important Payment Information
-                </h2>
-                <p className="text-lg text-stone-600">
-                  Please read carefully to ensure a smooth payment experience during your Bhutan journey
-                </p>
-              </div>
-
-              {/* Welcome Message */}
-              <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 border-l-4 border-indigo-500 transform hover:scale-[1.02] transition-transform duration-300">
-                <h3 className="text-2xl font-bold text-stone-800 mb-4 flex items-center">
-                  <span className="mr-3">🇧🇹</span>
-                  Welcome to Bhutan – The Land of the Thunder Dragon!
-                </h3>
-                <p className="text-stone-700 leading-relaxed">
-                  We are delighted to have you in our beautiful country. To make your stay truly memorable and ensure a smooth payment experience, please take note of the following important guidelines:
-                </p>
-              </div>
-
-              {/* Smart Tips Section */}
-              <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 transform hover:scale-[1.02] transition-transform duration-300">
-                <h3 className="text-xl font-bold text-stone-800 mb-6 flex items-center">
-                  <FiCheckCircle className="w-6 h-6 text-green-500 mr-3 animate-pulse" />
-                  Smart Tips for Hassle-Free Payments
-                </h3>
-                
-                <div className="space-y-6">
-                  {/* Tip 1 */}
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-indigo-600 font-bold">1</span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-stone-800 mb-2">Enable Your Cards for International Use</h4>
-                      <p className="text-stone-600">
-                        Before traveling, confirm with your bank (or via your mobile banking app) that your debit/credit cards are enabled for international transactions, including use in Bhutan.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Tip 2 */}
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-indigo-600 font-bold">2</span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-stone-800 mb-2">Inform Your Bank About Your Travel Plans</h4>
-                      <p className="text-stone-600">
-                        Notify your bank of your travel dates and destination to prevent transaction declines and ensure smooth payments.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Tip 3 */}
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-indigo-600 font-bold">3</span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-stone-800 mb-2">Check Card Network Compatibility</h4>
-                      <p className="text-stone-600 mb-3">
-                        Ensure your card network — e.g. Visa, Mastercard, UnionPay, JCB, or American Express — is supported by banks in Bhutan.
-                      </p>
-                      <a 
-                        href="https://www.rma.org.bt" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
-                      >
-                        Visit Royal Monetary Authority (RMA) →
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Key Things to Do Section */}
-              <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 transform hover:scale-[1.02] transition-transform duration-300">
-                <h3 className="text-xl font-bold text-stone-800 mb-6 flex items-center">
-                  <FiInfo className="w-6 h-6 text-blue-500 mr-3 animate-pulse" />
-                  Key Things to Do Before You Pay
-                </h3>
-                
-                <div className="space-y-6">
-                  {/* Point 1 */}
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-blue-600 font-bold">1</span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-stone-800 mb-2">Be Aware of Transaction & Withdrawal Limits</h4>
-                      <p className="text-stone-600">
-                        Check your bank&apos;s transaction limit. At ATMs in Bhutan, follow on-screen instructions to note withdrawal limits per transaction.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Point 2 */}
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-blue-600 font-bold">2</span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-stone-800 mb-2">Consult Merchants, Guides, or Banks</h4>
-                      <p className="text-stone-600">
-                        If a payment is declined, consult your merchant or guide for assistance. If the issue persists, contact the nearest bank.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Point 3 */}
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 mt-1">
-                      <span className="text-blue-600 font-bold">3</span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-stone-800 mb-2">Important Note for Regional (Indian) Tourists</h4>
-                      <p className="text-stone-600">
-                        Cards issued in India denominated in USD will not work in Bhutan due to FEMA regulations by the Reserve Bank of India. Please carry cards valid for India, Bhutan, and Nepal to avoid payment issues.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </Container>
-        </div>
+        </section>
       )}
 
       {/* Call to Action */}
       {!searchTerm && (
-        <div className="bg-gradient-to-r from-amber-500 to-amber-600 py-12 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-3xl font-bold text-white mb-6">
-              Ready for Your Bhutan Adventure?
+        <section className="bg-brand-ivory py-24 text-center sm:py-32" aria-labelledby="cta-heading">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+            <h2 id="cta-heading" className="mx-auto max-w-3xl font-heading text-4xl font-medium leading-[1.05] text-stone-900 sm:text-6xl">
+              <StaggerText>Ready for your <em className="font-normal text-emerald-900">Bhutan adventure?</em></StaggerText>
             </h2>
-            <p className="text-xl text-white mb-8">
+            <p className="mx-auto mt-6 max-w-xl text-lg text-stone-600">
               Contact our travel experts to customize your perfect trip
             </p>
-            <button
-              className={`bg-white ${theme.primaryText} font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-stone-100 transition-colors`}
+            <Link
+              href="/contactus"
+              className="mt-10 inline-flex min-h-[44px] items-center justify-center rounded-full bg-emerald-900 px-8 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-900"
             >
               Get a Custom Quote
-            </button>
+            </Link>
           </div>
-        </div>
+        </section>
       )}
-
     </div>
   );
 }

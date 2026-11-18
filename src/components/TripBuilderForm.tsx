@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FiArrowLeft, FiArrowRight, FiCheck } from "react-icons/fi";
-import { getTheme } from "../styles/themes";
 
 const TRIP_LENGTH_OPTIONS = ["4–5 days", "6–8 days", "9–12 days", "12+ days"];
 
@@ -18,6 +17,21 @@ const INTEREST_OPTIONS = [
 const TRAVEL_PARTY_OPTIONS = ["Couple", "Family", "Friends", "Solo"];
 
 const TOTAL_STEPS = 5;
+
+const STEP_LABELS = ["When", "How long", "Interests", "Company", "Details"];
+
+const inputCls =
+  "block w-full min-h-[48px] border-0 border-b border-stone-400 bg-transparent px-0 py-3 text-base text-stone-900 placeholder:text-stone-400 transition-colors focus:border-emerald-900 focus:outline-none focus:ring-0 focus-visible:border-emerald-900 focus-visible:shadow-[0_1px_0_0_#183C32]";
+const labelCls = "mb-1 block text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600";
+const questionCls = "font-heading text-3xl font-medium leading-tight text-stone-900 sm:text-4xl";
+const optionCls = (on: boolean) =>
+  `flex min-h-[52px] items-center justify-between gap-3 border px-4 py-3 text-left text-base font-medium transition-[background-color,border-color,color] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-900 ${
+    on
+      ? "border-emerald-900 bg-emerald-900 text-white"
+      : "border-stone-300 bg-transparent text-stone-800 hover:border-emerald-900"
+  }`;
+const primaryBtn =
+  "inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-emerald-900 px-8 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-900 disabled:cursor-not-allowed disabled:opacity-70";
 
 interface TripBuilderData {
   travelMonth: string;
@@ -52,7 +66,6 @@ const formatMonthLabel = (value: string) => {
 };
 
 const TripBuilderForm: React.FC = () => {
-  const theme = getTheme();
   const [step, setStep] = useState(0);
   const [data, setData] = useState<TripBuilderData>(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -166,52 +179,60 @@ const TripBuilderForm: React.FC = () => {
 
   if (submitStatus === "success") {
     return (
-      <div className="text-center py-8 sm:py-12">
-        <div className={`inline-flex items-center justify-center w-14 h-14 rounded-full ${theme.primaryLight} mb-4`}>
-          <FiCheck className={`w-7 h-7 ${theme.primaryText}`} />
-        </div>
-        <h3 className="text-xl sm:text-2xl font-bold text-stone-800 mb-2">
-          Thanks — your Bhutan trip request is in!
+      <div className="animate-page-in py-6 sm:py-10" role="status">
+        <span className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-900 text-amber-200">
+          <FiCheck className="h-7 w-7" aria-hidden="true" />
+        </span>
+        <h3 className="font-heading text-3xl font-medium leading-tight text-stone-900 sm:text-4xl">
+          Thanks — your Bhutan trip <em className="font-normal text-emerald-900">request is in!</em>
         </h3>
-        <p className="text-stone-600 mb-6 text-sm sm:text-base max-w-md mx-auto">
+        <p className="mt-5 max-w-md text-base leading-relaxed text-stone-600">
           Our team will review your preferences and reach out on WhatsApp or
           email within 24 hours with a tailored itinerary.
         </p>
-        <button
-          onClick={startOver}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold ${theme.primary} ${theme.primaryHover} text-white transition`}
-        >
+        <button type="button" onClick={startOver} className={`${primaryBtn} mt-8`}>
           Plan another trip
         </button>
       </div>
     );
   }
 
+  const errId = "tb-step-error";
+  const OptionMark = ({ on }: { on: boolean }) => (
+    <FiCheck className={`h-4 w-4 shrink-0 transition-opacity duration-300 ${on ? "opacity-100" : "opacity-0"}`} aria-hidden="true" />
+  );
+
   return (
     <div>
       {/* Progress indicator */}
-      <div className="flex items-center gap-2 mb-6 sm:mb-8" aria-hidden="true">
-        {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-          <div
-            key={i}
-            className={`h-1.5 flex-1 rounded-full transition-colors ${
-              i <= step ? theme.primary : "bg-stone-200"
-            }`}
-          />
+      <ol className="mb-8 grid grid-cols-5 gap-2 sm:mb-10" aria-label="Progress">
+        {STEP_LABELS.map((label, i) => (
+          <li key={label} aria-current={i === step ? "step" : undefined}>
+            <div className="h-0.5 w-full overflow-hidden bg-stone-300">
+              <div
+                className={`h-full w-full origin-left bg-emerald-900 transition-transform duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${i <= step ? "scale-x-100" : "scale-x-0"}`}
+              />
+            </div>
+            <span
+              className={`mt-2 hidden text-[11px] font-semibold uppercase tracking-[0.16em] sm:block ${
+                i === step ? "text-emerald-900" : "text-stone-500"
+              }`}
+            >
+              <span className="mr-1 text-amber-600">0{i + 1}</span>
+              {label}
+            </span>
+          </li>
         ))}
-      </div>
-      <p className="text-xs font-medium text-stone-500 uppercase tracking-wide mb-4">
-        Step {step + 1} of {TOTAL_STEPS}
+      </ol>
+      <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.24em] text-amber-600">
+        Step {step + 1} of {TOTAL_STEPS} <span className="text-stone-500">· {STEP_LABELS[step]}</span>
       </p>
 
       <form onSubmit={handleSubmit}>
         {step === 0 && (
-          <div>
-            <label
-              htmlFor="travelMonth"
-              className="block text-lg sm:text-xl font-bold text-stone-800 mb-4"
-            >
-              When do you want to visit?
+          <div className="animate-page-in">
+            <label htmlFor="travelMonth" className={`${questionCls} mb-6 block`}>
+              When do you want to <em className="font-normal text-emerald-900">visit?</em>
             </label>
             <input
               type="month"
@@ -222,21 +243,19 @@ const TripBuilderForm: React.FC = () => {
                 setData((prev) => ({ ...prev, travelMonth: e.target.value }))
               }
               min={new Date().toISOString().slice(0, 7)}
-              className="w-full sm:w-64 px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+              aria-invalid={stepError && step === 0 ? true : undefined}
+              aria-describedby={stepError ? errId : undefined}
+              className={`${inputCls} sm:max-w-xs`}
             />
           </div>
         )}
 
         {step === 1 && (
-          <div>
-            <p className="text-lg sm:text-xl font-bold text-stone-800 mb-4">
-              How long?
+          <div className="animate-page-in">
+            <p className={`${questionCls} mb-6`}>
+              How <em className="font-normal text-emerald-900">long?</em>
             </p>
-            <div
-              role="radiogroup"
-              aria-label="Trip length"
-              className="grid grid-cols-2 gap-3"
-            >
+            <div role="radiogroup" aria-label="Trip length" aria-describedby={stepError ? errId : undefined} className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {TRIP_LENGTH_OPTIONS.map((option) => (
                 <button
                   key={option}
@@ -246,13 +265,10 @@ const TripBuilderForm: React.FC = () => {
                   onClick={() =>
                     setData((prev) => ({ ...prev, tripLength: option }))
                   }
-                  className={`px-4 py-3 rounded-lg border-2 text-sm sm:text-base font-medium text-left transition-colors ${
-                    data.tripLength === option
-                      ? `${theme.primaryBorder} ${theme.primaryLight} ${theme.primaryText}`
-                      : "border-stone-300 text-stone-700 hover:border-amber-300"
-                  }`}
+                  className={optionCls(data.tripLength === option)}
                 >
                   {option}
+                  <OptionMark on={data.tripLength === option} />
                 </button>
               ))}
             </div>
@@ -260,11 +276,12 @@ const TripBuilderForm: React.FC = () => {
         )}
 
         {step === 2 && (
-          <div>
-            <p className="text-lg sm:text-xl font-bold text-stone-800 mb-4">
-              What interests you?
+          <div className="animate-page-in">
+            <p className={`${questionCls} mb-2`}>
+              What <em className="font-normal text-emerald-900">interests</em> you?
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <p className="mb-6 text-sm text-stone-600">Choose as many as you like.</p>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {INTEREST_OPTIONS.map((interest) => {
                 const checked = data.interests.includes(interest);
                 return (
@@ -273,14 +290,12 @@ const TripBuilderForm: React.FC = () => {
                     type="button"
                     role="checkbox"
                     aria-checked={checked}
+                    aria-describedby={stepError ? errId : undefined}
                     onClick={() => toggleInterest(interest)}
-                    className={`px-4 py-3 rounded-lg border-2 text-sm sm:text-base font-medium text-left transition-colors ${
-                      checked
-                        ? `${theme.primaryBorder} ${theme.primaryLight} ${theme.primaryText}`
-                        : "border-stone-300 text-stone-700 hover:border-amber-300"
-                    }`}
+                    className={optionCls(checked)}
                   >
                     {interest}
+                    <OptionMark on={checked} />
                   </button>
                 );
               })}
@@ -289,15 +304,11 @@ const TripBuilderForm: React.FC = () => {
         )}
 
         {step === 3 && (
-          <div>
-            <p className="text-lg sm:text-xl font-bold text-stone-800 mb-4">
-              Who are you travelling with?
+          <div className="animate-page-in">
+            <p className={`${questionCls} mb-6`}>
+              Who are you <em className="font-normal text-emerald-900">travelling with?</em>
             </p>
-            <div
-              role="radiogroup"
-              aria-label="Travel party"
-              className="grid grid-cols-2 gap-3"
-            >
+            <div role="radiogroup" aria-label="Travel party" aria-describedby={stepError ? errId : undefined} className="grid grid-cols-2 gap-3">
               {TRAVEL_PARTY_OPTIONS.map((option) => (
                 <button
                   key={option}
@@ -307,13 +318,10 @@ const TripBuilderForm: React.FC = () => {
                   onClick={() =>
                     setData((prev) => ({ ...prev, travelParty: option }))
                   }
-                  className={`px-4 py-3 rounded-lg border-2 text-sm sm:text-base font-medium text-left transition-colors ${
-                    data.travelParty === option
-                      ? `${theme.primaryBorder} ${theme.primaryLight} ${theme.primaryText}`
-                      : "border-stone-300 text-stone-700 hover:border-amber-300"
-                  }`}
+                  className={optionCls(data.travelParty === option)}
                 >
                   {option}
+                  <OptionMark on={data.travelParty === option} />
                 </button>
               ))}
             </div>
@@ -321,65 +329,62 @@ const TripBuilderForm: React.FC = () => {
         )}
 
         {step === 4 && (
-          <div className="space-y-4">
-            <p className="text-lg sm:text-xl font-bold text-stone-800 mb-2">
-              Almost there — how should we reach you?
+          <div className="animate-page-in space-y-6">
+            <p className={`${questionCls} mb-2`}>
+              Almost there — <em className="font-normal text-emerald-900">how should we reach you?</em>
             </p>
             <div>
-              <label
-                htmlFor="tb-name"
-                className="block text-sm font-medium text-stone-700 mb-1"
-              >
-                Full Name <span className="text-red-500">*</span>
+              <label htmlFor="tb-name" className={labelCls}>
+                Full Name <span className="text-red-700">*</span>
               </label>
               <input
                 type="text"
                 id="tb-name"
+                autoComplete="name"
                 value={data.name}
                 onChange={(e) =>
                   setData((prev) => ({ ...prev, name: e.target.value }))
                 }
                 required
-                className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                aria-describedby={stepError ? errId : undefined}
+                className={inputCls}
                 placeholder="Your name"
               />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <label
-                  htmlFor="tb-phone"
-                  className="block text-sm font-medium text-stone-700 mb-1"
-                >
-                  WhatsApp Number <span className="text-red-500">*</span>
+                <label htmlFor="tb-phone" className={labelCls}>
+                  WhatsApp Number <span className="text-red-700">*</span>
                 </label>
                 <input
                   type="tel"
                   id="tb-phone"
+                  autoComplete="tel"
                   value={data.phone}
                   onChange={(e) =>
                     setData((prev) => ({ ...prev, phone: e.target.value }))
                   }
                   required
-                  className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                  aria-describedby={stepError ? errId : undefined}
+                  className={inputCls}
                   placeholder="+1 234 567 8900"
                 />
               </div>
               <div>
-                <label
-                  htmlFor="tb-email"
-                  className="block text-sm font-medium text-stone-700 mb-1"
-                >
-                  Email <span className="text-red-500">*</span>
+                <label htmlFor="tb-email" className={labelCls}>
+                  Email <span className="text-red-700">*</span>
                 </label>
                 <input
                   type="email"
                   id="tb-email"
+                  autoComplete="email"
                   value={data.email}
                   onChange={(e) =>
                     setData((prev) => ({ ...prev, email: e.target.value }))
                   }
                   required
-                  className="w-full px-4 py-3 bg-white border border-stone-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-base"
+                  aria-describedby={stepError ? errId : undefined}
+                  className={inputCls}
                   placeholder="your@email.com"
                 />
               </div>
@@ -388,45 +393,37 @@ const TripBuilderForm: React.FC = () => {
         )}
 
         {stepError && (
-          <p className="mt-4 text-sm text-red-600">{stepError}</p>
+          <p key={stepError} id={errId} role="alert" className="mt-5 animate-page-in text-sm font-medium text-red-700">
+            {stepError}
+          </p>
         )}
 
         {submitStatus === "error" && (
-          <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-lg text-sm sm:text-base">
+          <div role="alert" className="mt-5 animate-page-in border-l-2 border-red-700 bg-red-50 px-4 py-3 text-sm text-red-800 sm:text-base">
             There was an error submitting your request. Please try again, or
             reach us on WhatsApp directly.
           </div>
         )}
 
-        <div className="flex items-center justify-between mt-6 sm:mt-8">
+        <div className="mt-8 flex items-center justify-between sm:mt-10">
           {step > 0 ? (
             <button
               type="button"
               onClick={goBack}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold text-stone-600 hover:text-stone-800 transition"
+              className="inline-flex min-h-[48px] items-center gap-2 px-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-stone-600 transition-colors hover:text-emerald-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-900"
             >
-              <FiArrowLeft /> Back
+              <FiArrowLeft aria-hidden="true" /> Back
             </button>
           ) : (
             <span />
           )}
 
           {step < TOTAL_STEPS - 1 ? (
-            <button
-              type="button"
-              onClick={goNext}
-              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold text-white transition ${theme.primary} ${theme.primaryHover}`}
-            >
-              Next <FiArrowRight />
+            <button type="button" onClick={goNext} className={primaryBtn}>
+              Next <FiArrowRight aria-hidden="true" />
             </button>
           ) : (
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold text-white transition ${theme.primary} ${theme.primaryHover} ${
-                isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-              }`}
-            >
+            <button type="submit" disabled={isSubmitting} className={primaryBtn}>
               {isSubmitting ? "Sending..." : "Create My Bhutan Trip"}
             </button>
           )}

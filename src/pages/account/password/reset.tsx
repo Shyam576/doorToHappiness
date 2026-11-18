@@ -46,9 +46,9 @@ const Reset: React.FC<ResetProps> = ({}) => {
                 <title>Recover password</title>
                 <meta name="description" content="Profile page" />
             </Head>
-            <div className="flex w-full m-auto mt-0 shadow-xl lg:w-4/12 md:w-10/12 md:mt-28 bg-base-200 rounded-xl" >
-                    <div className="mx-auto w-96">
-                    <p className="m-10 mx-auto text-lg font-bold text-center">PoProstuWitold</p>
+            <div className="mx-auto mt-12 w-[calc(100%-2rem)] max-w-md border border-stone-200 bg-white sm:mt-24" >
+                    <div className="mx-auto w-full max-w-sm px-4 pb-4 sm:px-6">
+                    <h1 className="m-10 mx-auto font-heading text-2xl font-medium text-center text-stone-900">Door to Happiness Holiday</h1>
                         {ApiResponse
                         ? 
                         <>
@@ -69,13 +69,13 @@ const Reset: React.FC<ResetProps> = ({}) => {
                                         <label className="label">
                                                 <span className="font-semibold label-text">Recovery Email</span>
                                             </label>
-                                            <Field placeholder="Enter your email" type="email" name="email" className={`w-full p-3 transition duration-200 rounded input`}/>
+                                            <Field placeholder="Enter your email" type="email" name="email" className={`w-full p-3 text-base transition duration-200 rounded input bg-white border border-stone-300 focus:border-emerald-700 focus:outline-none`}/>
                                             <label className="label">
                                                 {errors.email ? <ErrorField error={errors.email}/> : null}
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="submit" disabled={isSubmitting} className="w-full mb-5 btn">
+                                    <button type="submit" disabled={isSubmitting} className="w-full mb-5 btn border-0 rounded-full bg-emerald-900 text-white text-[12px] uppercase tracking-[0.14em] hover:bg-emerald-800">
                                         Reset password
                                     </button>
                                 </Form>
@@ -84,15 +84,15 @@ const Reset: React.FC<ResetProps> = ({}) => {
                         }
                     </div>
             </div>    
-            <div className="flex w-full m-auto mt-8 lg:w-4/12 md:w-10/12">
+            <div className="mx-auto mb-24 mt-8 flex w-[calc(100%-2rem)] max-w-md justify-center">
                 {ApiResponse ?
-                    <Link href="/" className="m-auto mb-10 text-xl shadow-xl btn btn-ghost btn-sm rounded-btn lg:m-0 btn-primary btn-outline">
+                    <Link href="/" className="m-auto mb-10 text-base btn btn-ghost btn-sm rounded-full lg:m-0 text-emerald-900 border border-emerald-900 hover:bg-emerald-900 hover:text-white">
                         <>
                         <FiArrowLeft/> Back to main site
                         </>
                     </Link>
                 :
-                    <Link href="/login" className="m-auto mb-10 text-xl shadow-xl btn btn-ghost btn-sm rounded-btn lg:m-0 btn-primary btn-outline">
+                    <Link href="/login" className="m-auto mb-10 text-base btn btn-ghost btn-sm rounded-full lg:m-0 text-emerald-900 border border-emerald-900 hover:bg-emerald-900 hover:text-white">
                         <>
                             <FiArrowLeft/> Back to login
                         </>

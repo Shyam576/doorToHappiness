@@ -1,0 +1,1327 @@
+{
+ "generated": "2026-11-18",
+ "credits": [
+  {
+   "file": "/images/culture/bumthang-pass-prayer-flags-2-23710576582.webp",
+   "title": "Bumthang Pass Prayer Flags 2 (23710576582).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bumthang_Pass_Prayer_Flags_2_(23710576582).jpg",
+   "author": "Chuck Moravec",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "culture:prayerflags#1"
+   ],
+   "original_size": "4000x3000",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/culture/pele-la-pass-on-the-nubding-to-wandue-phodrang-highway-b.webp",
+   "title": "Pele La pass on the Nubding to Wandue Phodrang highway - Bhutan - panoramio (2).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pele_La_pass_on_the_Nubding_to_Wandue_Phodrang_highway_-_Bhutan_-_panoramio_(2).jpg",
+   "author": "David Broad",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "used_for": [
+    "culture:prayerflags#3"
+   ],
+   "original_size": "4288x2848",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/destinations/chhukha/chukha-bhutan-2004-a.webp",
+   "title": "Chukha Bhutan-2004-a.JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chukha_Bhutan-2004-a.JPG",
+   "author": "Chris Fynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "district:chhukha"
+   ],
+   "original_size": "2272x1704",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/destinations/trashigang/stupas-rangjung-trashigang-bhutan.webp",
+   "title": "Stupas Rangjung Trashigang Bhutan.JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Stupas_Rangjung_Trashigang_Bhutan.JPG",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "used_for": [
+    "district:trashigang"
+   ],
+   "original_size": "2848x2136",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/destinations/tsirang/dzong-at-damphu-tsirang-bhutan.webp",
+   "title": "Dzong at Damphu Tsirang Bhutan.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Dzong_at_Damphu_Tsirang_Bhutan.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "district:tsirang"
+   ],
+   "original_size": "4754x1790",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/festivals/masked-buddhist-dance.webp",
+   "title": "Masked Buddhist Dance.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Masked_Buddhist_Dance.jpg",
+   "author": "Sabine Blankevoort",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "fest:cham-dance#0"
+   ],
+   "original_size": "4240x2826",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/festivals/paro-tshechu.webp",
+   "title": "Paro Tshechu.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Paro_Tshechu.jpg",
+   "author": "Nimlham",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "fest:paro-tsechu#0"
+   ],
+   "original_size": "3264x2448",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/festivals/thimphu-tsechu-2014-10-04-a.webp",
+   "title": "Thimphu Tsechu 2014-10-04 a.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Thimphu_Tsechu_2014-10-04_a.jpg",
+   "author": "Cfynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "fest:thimphu-tsechu#0"
+   ],
+   "original_size": "7360x4912",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/bhutan-paro-dzong-100-gje.webp",
+   "title": "Bhutan-Paro-Dzong-100-gje.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bhutan-Paro-Dzong-100-gje.jpg",
+   "author": "Gerd Eichmann",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:paro-rinpung#2"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/bumthang-jakar-dzong-12-2015-gje.webp",
+   "title": "Bumthang-Jakar Dzong-12-2015-gje.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bumthang-Jakar_Dzong-12-2015-gje.jpg",
+   "author": "Gerd Eichmann",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:jakar-dzong#5"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/chele-la-pass-paro-during-lgfc-bhutan-2019-05.webp",
+   "title": "Chele La Pass - Paro - during LGFC - Bhutan 2019 (05).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chele_La_Pass_-_Paro_-_during_LGFC_-_Bhutan_2019_(05).jpg",
+   "author": "Vinayaraj",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:chele-la#4"
+   ],
+   "original_size": "4608x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/druk-wangyal-108-chortens-at-dochula-on-thimphu-punakha.webp",
+   "title": "Druk Wangyal - 108 Chortens at Dochula on Thimphu-Punakha Highway - Bhutan - panoramio (2).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Druk_Wangyal_-_108_Chortens_at_Dochula_on_Thimphu-Punakha_Highway_-_Bhutan_-_panoramio_(2).jpg",
+   "author": "David Broad",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "used_for": [
+    "gal:dochula#2"
+   ],
+   "original_size": "4288x2848",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/haa-valley-ha-during-lgfc-bhutan-2019-117.webp",
+   "title": "Haa valley, Ha - during LGFC - Bhutan 2019 (117).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Haa_valley,_Ha_-_during_LGFC_-_Bhutan_2019_(117).jpg",
+   "author": "Vinayaraj",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:haa-valley#3"
+   ],
+   "original_size": "4608x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/phobjikha-valley-gangteng-monastery-15843416102.webp",
+   "title": "Phobjikha Valley, Gangteng Monastery (15843416102).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Phobjikha_Valley,_Gangteng_Monastery_(15843416102).jpg",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "gal:phobjikha#0"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/punakha-dzong-bhutan-03.webp",
+   "title": "Punakha Dzong, Bhutan 03.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Punakha_Dzong,_Bhutan_03.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:punakha-dzong#0"
+   ],
+   "original_size": "5117x2761",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/punakha-dzong-bhutan-05.webp",
+   "title": "Punakha Dzong, Bhutan 05.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Punakha_Dzong,_Bhutan_05.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:punakha-dzong#1"
+   ],
+   "original_size": "4893x3262",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/tashichho-dzong-bhutan-12.webp",
+   "title": "Tashichho Dzong, Bhutan 12.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tashichho_Dzong,_Bhutan_12.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:thimphu-tashichho#0"
+   ],
+   "original_size": "5306x3532",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/trongsa-dzong-2001-a.webp",
+   "title": "Trongsa Dzong 2001 a.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Trongsa_Dzong_2001_a.jpg",
+   "author": "Christopher Fynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "gal:trongsa-dzong#2"
+   ],
+   "original_size": "4200x3300",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/gallery/view-of-the-paro-valley-from-the-tiger-s-nest-trail-bhut.webp",
+   "title": "View of the Paro Valley from the Tiger's Nest trail, Bhutan - panoramio.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_the_Paro_Valley_from_the_Tiger%27s_Nest_trail,_Bhutan_-_panoramio.jpg",
+   "author": "David Broad",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "used_for": [
+    "gal:paro-valley#4"
+   ],
+   "original_size": "4288x2848",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/homepage/paro-taktsang-goemba-tiger-s-nest-15221622304.webp",
+   "title": "Paro, Taktsang Goemba (Tiger's Nest) (15221622304).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Paro,_Taktsang_Goemba_(Tiger%27s_Nest)_(15221622304).jpg",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "hero:pool#3"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/homepage/taktsang-monastery-bhutan-06.webp",
+   "title": "Taktsang Monastery, Bhutan 06.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Taktsang_Monastery,_Bhutan_06.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "hero:pool#8"
+   ],
+   "original_size": "4875x3250",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/bumthang/around-jakar-jambay-lhakhang-15845859155.webp",
+   "title": "Around Jakar, Jambay Lhakhang (15845859155).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Around_Jakar,_Jambay_Lhakhang_(15845859155).jpg",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:bumthang:1"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/bumthang/around-jakar-ngang-lhakhang-15659835649.webp",
+   "title": "Around Jakar, Ngang Lhakhang (15659835649).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Around_Jakar,_Ngang_Lhakhang_(15659835649).jpg",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:bumthang:9"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/bumthang/bumthang-jakar-dzong-02-2015-gje.webp",
+   "title": "Bumthang-Jakar Dzong-02-2015-gje.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bumthang-Jakar_Dzong-02-2015-gje.jpg",
+   "author": "Gerd Eichmann",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:bumthang:0"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/bumthang/bumthang-kurjey-lhakhang-02-2015-gje.webp",
+   "title": "Bumthang-Kurjey Lhakhang-02-2015-gje.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bumthang-Kurjey_Lhakhang-02-2015-gje.jpg",
+   "author": "Gerd Eichmann",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:bumthang:2"
+   ],
+   "original_size": "4511x2954",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/bumthang/bumthang-tamshing-lhakhang-02-2015-gje.webp",
+   "title": "Bumthang-Tamshing Lhakhang-02-2015-gje.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bumthang-Tamshing_Lhakhang-02-2015-gje.jpg",
+   "author": "Gerd Eichmann",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:bumthang:3"
+   ],
+   "original_size": "5033x3160",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/bumthang/membartsho-the-burning-lake-in-tang-valley-central-bhuta.webp",
+   "title": "Membartsho, the Burning Lake, in Tang Valley, central Bhutan.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Membartsho,_the_Burning_Lake,_in_Tang_Valley,_central_Bhutan.jpg",
+   "author": "Doctor 17",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:bumthang:4",
+    "place:bumthang:8"
+   ],
+   "original_size": "3872x2592",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/bumthang/ura-mang-gi-lhakhang.webp",
+   "title": "Ura Mang gi Lhakhang.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ura_Mang_gi_Lhakhang.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:bumthang:7"
+   ],
+   "original_size": "4928x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/chhukha/chukha-dzong.webp",
+   "title": "Chukha Dzong.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chukha_Dzong.jpg",
+   "author": "C. J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:chhukha#1"
+   ],
+   "original_size": "6000x4000",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/dagana/dagapela-main-road-view.webp",
+   "title": "Dagapela main road view.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Dagapela_main_road_view.jpg",
+   "author": "Leovdvxxx",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:dagana#4"
+   ],
+   "original_size": "1600x1200",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/dagana/view-of-drujegang-village-in-2009.webp",
+   "title": "View of Drujegang village in 2009.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Drujegang_village_in_2009.jpg",
+   "author": "Leovdvxxx",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:dagana#1"
+   ],
+   "original_size": "1600x1200",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/gasa/gasa-dzong.webp",
+   "title": "Gasa Dzong.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gasa_Dzong.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:gasa:0"
+   ],
+   "original_size": "7244x4765",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/gasa/jigme-dorji-national-park-bhutan.webp",
+   "title": "Jigme Dorji National Park, Bhutan.JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jigme_Dorji_National_Park,_Bhutan.JPG",
+   "author": "Andrewgrandison",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "pool:gasa#3"
+   ],
+   "original_size": "5328x1613",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/haa/haa-dzong-bhutan.webp",
+   "title": "Haa-Dzong Bhutan.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Haa-Dzong_Bhutan.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:haa:2"
+   ],
+   "original_size": "3150x1613",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/haa/lhakhang-karpo-ha-during-lgfc-bhutan-2019-11.webp",
+   "title": "Lhakhang Karpo, Ha - during LGFC - Bhutan 2019 (11).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lhakhang_Karpo,_Ha_-_during_LGFC_-_Bhutan_2019_(11).jpg",
+   "author": "Vinayaraj",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:haa:0"
+   ],
+   "original_size": "4608x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/haa/lhakhang-nagpo-ha-bhutan.webp",
+   "title": "Lhakhang Nagpo Ha Bhutan.JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lhakhang_Nagpo_Ha_Bhutan.JPG",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:haa:1"
+   ],
+   "original_size": "4928x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/lhuentse/entrance-gate-to-lhuentse-dzong.webp",
+   "title": "Entrance gate to Lhuentse Dzong.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Entrance_gate_to_Lhuentse_Dzong.jpg",
+   "author": "muddum27",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:lhuentse:0"
+   ],
+   "original_size": "2048x1536",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/lhuentse/khoma-weaver-15223675234.webp",
+   "title": "Khoma, weaver (15223675234).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Khoma,_weaver_(15223675234).jpg",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:lhuentse:1"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/mongar/distrikt-mongar-korela-pass-2400-m-nn.webp",
+   "title": "Distrikt Mongar - Korela Pass 2400 m.\u00fc.NN..JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Distrikt_Mongar_-_Korela_Pass_2400_m.%C3%BC.NN..JPG",
+   "author": "Franzfoto",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "pool:mongar#3"
+   ],
+   "original_size": "5472x3080",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/mongar/drametse-lhakhang-15658416298.webp",
+   "title": "Drametse Lhakhang (15658416298).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Drametse_Lhakhang_(15658416298).jpg",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:mongar:1"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/mongar/stupa-am-flu-kurichu.webp",
+   "title": "Stupa am Flu\u00df Kurichu.JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Stupa_am_Flu%C3%9F_Kurichu.JPG",
+   "author": "Franzfoto",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:lhuentse:4",
+    "place:mongar:7"
+   ],
+   "original_size": "5472x3080",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/mongar/yagang-lhakhang-mongar.webp",
+   "title": "Yagang Lhakhang, Mongar.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Yagang_Lhakhang,_Mongar.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:mongar:3"
+   ],
+   "original_size": "4928x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/bhutan-paro-136-taktshang-tigernest-gje.webp",
+   "title": "Bhutan-Paro-136-Taktshang-Tigernest-gje.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bhutan-Paro-136-Taktshang-Tigernest-gje.jpg",
+   "author": "Gerd Eichmann",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:paro:0"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/bhutanese-farmhouse-soe-yaksa.webp",
+   "title": "Bhutanese Farmhouse Soe Yaksa.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bhutanese_Farmhouse_Soe_Yaksa.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:paro:20"
+   ],
+   "original_size": "3456x2592",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/chele-la-pass-paro-during-lgfc-bhutan-2019-01.webp",
+   "title": "Chele La Pass - Paro - during LGFC - Bhutan 2019 (01).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chele_La_Pass_-_Paro_-_during_LGFC_-_Bhutan_2019_(01).jpg",
+   "author": "Vinayaraj",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:paro:8"
+   ],
+   "original_size": "4608x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/druk-chhoeding.webp",
+   "title": "Druk chhoeding.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Druk_chhoeding.jpg",
+   "author": "Kinleyg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "used_for": [
+    "place:paro:17"
+   ],
+   "original_size": "4000x3000",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/drukgyel-dzong.webp",
+   "title": "Drukgyel Dzong.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Drukgyel_Dzong.jpg",
+   "author": "No machine-readable author provided. Greenmnm69 assumed (based on copyright claims).",
+   "license": "CC BY 2.5",
+   "license_url": "https://creativecommons.org/licenses/by/2.5",
+   "used_for": [
+    "place:paro:14"
+   ],
+   "original_size": "1600x1200",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/dungtse-lhakhang-paro.webp",
+   "title": "Dungtse Lhakhang, Paro.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Dungtse_Lhakhang,_Paro.jpg",
+   "author": "Tashidor",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:paro:13"
+   ],
+   "original_size": "2448x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/gate-at-chuzom-bhutan-01.webp",
+   "title": "Gate at Chuzom, Bhutan 01.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gate_at_Chuzom,_Bhutan_01.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:paro:2"
+   ],
+   "original_size": "4629x3086",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/paro-airport-views-from-road-to-chelela-during-lgfc-bhut.webp",
+   "title": "Paro airport views- from road to Chelela - during LGFC - Bhutan 2019 (17).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Paro_airport_views-_from_road_to_Chelela_-_during_LGFC_-_Bhutan_2019_(17).jpg",
+   "author": "Vinayaraj",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:paro:9"
+   ],
+   "original_size": "4608x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/paro-national-museum-ta-dzong-15221606394.webp",
+   "title": "Paro, National Museum, Ta Dzong (15221606394).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Paro,_National_Museum,_Ta_Dzong_(15221606394).jpg",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:paro:3"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/paro-weekend-market-1-23737528251.webp",
+   "title": "Paro Weekend Market 1 (23737528251).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Paro_Weekend_Market_1_(23737528251).jpg",
+   "author": "Chuck Moravec",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:paro:11"
+   ],
+   "original_size": "4000x3000",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/rinpung-dzong-bhutan-01.webp",
+   "title": "Rinpung Dzong, Bhutan 01.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Rinpung_Dzong,_Bhutan_01.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:paro:4"
+   ],
+   "original_size": "3347x2231",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/tachog-lhakhang-dzong-near-paro-during-lgfc-bhutan-2019.webp",
+   "title": "Tachog Lhakhang Dzong near Paro - during LGFC - Bhutan 2019(1).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tachog_Lhakhang_Dzong_near_Paro_-_during_LGFC_-_Bhutan_2019(1).jpg",
+   "author": "Vinayaraj",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:paro:1"
+   ],
+   "original_size": "4211x2844",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/paro/view-of-dobji-dzong.webp",
+   "title": "View of Dobji Dzong.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_Dobji_Dzong.jpg",
+   "author": "Bhutaneseofbhutan",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:paro:18"
+   ],
+   "original_size": "4032x3024",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/punakha/bridge-across-the-pho-chhu-bhutan.webp",
+   "title": "Bridge Across the Pho Chhu, Bhutan.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bridge_Across_the_Pho_Chhu,_Bhutan.jpg",
+   "author": "Zachary Collier",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:punakha:2"
+   ],
+   "original_size": "4752x3168",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/punakha/bridge-to-khamsum-yulley-namgyal-chorten-punakha-valley.webp",
+   "title": "Bridge to Khamsum Yulley Namgyal Chorten Punakha Valley - Bhutan - panoramio.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bridge_to_Khamsum_Yulley_Namgyal_Chorten_Punakha_Valley_-_Bhutan_-_panoramio.jpg",
+   "author": "David Broad",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "used_for": [
+    "place:punakha:3"
+   ],
+   "original_size": "4288x2848",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/punakha/chimi-lhakhang-bhutan-01.webp",
+   "title": "Chimi Lhakhang, Bhutan 01.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chimi_Lhakhang,_Bhutan_01.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:punakha:1"
+   ],
+   "original_size": "2385x1590",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/punakha/punakha-dzong-bhutan-02.webp",
+   "title": "Punakha Dzong, Bhutan 02.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Punakha_Dzong,_Bhutan_02.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:punakha:0"
+   ],
+   "original_size": "3488x1759",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/samdrup-jongkhar/at-the-core-of-manas-national-park.webp",
+   "title": "At the core of Manas National Park.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:At_the_core_of_Manas_National_Park.jpg",
+   "author": "Chandrashekhar",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:samdrup-jongkhar:4",
+    "place:sarpang:2"
+   ],
+   "original_size": "2816x2112",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/samdrup-jongkhar/bhutan-s-mandarin-export-success-at-samdrup-jongkhar.webp",
+   "title": "Bhutan's Mandarin Export Success at Samdrup Jongkhar.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bhutan%27s_Mandarin_Export_Success_at_Samdrup_Jongkhar.jpg",
+   "author": "Donvikro",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:samdrup-jongkhar:2"
+   ],
+   "original_size": "3876x2907",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/samdrup-jongkhar/indo-bhutan-gate-samdrup-jongkhar.webp",
+   "title": "Indo-Bhutan Gate, Samdrup Jongkhar.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Indo-Bhutan_Gate,_Samdrup_Jongkhar.jpg",
+   "author": "BhuyanBhaskar",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "used_for": [
+    "pool:samdrup-jongkhar#7"
+   ],
+   "original_size": "3763x2665",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/samtse/bhutan-gate-phuentsholing-during-lgfc-bhutan-2019-1.webp",
+   "title": "Bhutan gate Phuentsholing during LGFC - Bhutan 2019 (1).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bhutan_gate_Phuentsholing_during_LGFC_-_Bhutan_2019_(1).jpg",
+   "author": "Vinayaraj",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:samtse:2"
+   ],
+   "original_size": "4608x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/samtse/gomtu-border-gate-with-india-2009.webp",
+   "title": "Gomtu border gate with India 2009.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gomtu_border_gate_with_India_2009.jpg",
+   "author": "Leovdvxxx",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:samtse:3"
+   ],
+   "original_size": "2603x1935",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/samtse/one-and-only-buddhist-monastery-at-pemaling-gewog-in-sam.webp",
+   "title": "One and only Buddhist Monastery at Pemaling Gewog in Samtse Bhutan.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:One_and_only_Buddhist_Monastery_at_Pemaling_Gewog_in_Samtse_Bhutan.jpg",
+   "author": "Karma Nidup",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:samtse:0"
+   ],
+   "original_size": "4608x3072",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/sarpang/monastery-in-the-centre-of-town.webp",
+   "title": "Monastery in the centre of town.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Monastery_in_the_centre_of_town.jpg",
+   "author": "NaljorpaBoy",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:sarpang#7"
+   ],
+   "original_size": "3024x3024",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/sarpang/royal-manas-national-park-bhutan.webp",
+   "title": "Royal Manas National Park Bhutan.JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Royal_Manas_National_Park_Bhutan.JPG",
+   "author": "Sujithkr",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:sarpang:0",
+    "place:zhemgang:4"
+   ],
+   "original_size": "3264x1840",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/sarpang/steet-of-old-houses-near-the-referral-hospital.webp",
+   "title": "Steet of old houses near the referral hospital.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Steet_of_old_houses_near_the_referral_hospital.jpg",
+   "author": "NaljorpaBoy",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:sarpang#2"
+   ],
+   "original_size": "4032x3024",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/sarpang/view-of-moutains-from-gelephu-cropped.webp",
+   "title": "View of moutains from Gelephu (cropped).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:View_of_moutains_from_Gelephu_(cropped).jpg",
+   "author": "MoutainBoy",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:sarpang#3"
+   ],
+   "original_size": "3395x485",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/thimphu/buddha-dordenma-statue-and-around-thimphu-during-lgfc-bh.webp",
+   "title": "Buddha Dordenma Statue and around \u2013 Thimphu during LGFC - Bhutan 2019 (148).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Buddha_Dordenma_Statue_and_around_%E2%80%93_Thimphu_during_LGFC_-_Bhutan_2019_(148).jpg",
+   "author": "Vinayaraj",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:thimphu-buddha#0",
+    "place:thimphu:0"
+   ],
+   "original_size": "4608x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/thimphu/centenary-farmers-market-thimphu.webp",
+   "title": "Centenary Farmers Market, Thimphu.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Centenary_Farmers_Market,_Thimphu.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:thimphu:3"
+   ],
+   "original_size": "5142x3423",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/thimphu/changangkha-lhakhang-2019-07-28.webp",
+   "title": "Changangkha Lhakhang 2019-07-28.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Changangkha_Lhakhang_2019-07-28.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:thimphu:5"
+   ],
+   "original_size": "5466x5467",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/thimphu/entrance-of-national-memorial-chorten-thimphu.webp",
+   "title": "Entrance of National Memorial Chorten, Thimphu.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Entrance_of_National_Memorial_Chorten,_Thimphu.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:thimphu:2"
+   ],
+   "original_size": "4730x3153",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/thimphu/takins-at-motithang-takin-preserve-bhutan.webp",
+   "title": "Takins at Motithang Takin Preserve, Bhutan.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Takins_at_Motithang_Takin_Preserve,_Bhutan.jpg",
+   "author": "Ktatpong",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:thimphu:4"
+   ],
+   "original_size": "4896x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/thimphu/tashichho-dzong-bhutan-01.webp",
+   "title": "Tashichho Dzong, Bhutan 01.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tashichho_Dzong,_Bhutan_01.jpg",
+   "author": "Bernard Gagnon",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:thimphu:1"
+   ],
+   "original_size": "4595x3063",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trashigang/brokpa-cultural-dance.webp",
+   "title": "Brokpa Cultural Dance.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Brokpa_Cultural_Dance.jpg",
+   "author": "Tridivadurjoy",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:trashigang:1"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trashigang/trashigang-dzong-rear-2008-01-02.webp",
+   "title": "Trashigang Dzong-rear-2008-01-02.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Trashigang_Dzong-rear-2008-01-02.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "used_for": [
+    "place:trashigang:0"
+   ],
+   "original_size": "2848x2136",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trashigang/trashigang-upper-market-bhutan-2008-01-02.webp",
+   "title": "Trashigang upper market-Bhutan-2008-01-02.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Trashigang_upper_market-Bhutan-2008-01-02.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "used_for": [
+    "place:trashigang:4"
+   ],
+   "original_size": "2848x2136",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trashiyangtse/bridge-to-bumdeling-sanctuary.webp",
+   "title": "Bridge to Bumdeling Sanctuary.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bridge_to_Bumdeling_Sanctuary.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:trashiyangtse#1"
+   ],
+   "original_size": "4928x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trashiyangtse/chorten-kora-trashi-yangtse-bhutan-3413932258.webp",
+   "title": "Chorten Kora, Trashi Yangtse, Bhutan (3413932258).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chorten_Kora,_Trashi_Yangtse,_Bhutan_(3413932258).jpg",
+   "author": "muddum27",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:trashiyangtse:0"
+   ],
+   "original_size": "2048x1536",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trashiyangtse/tashi-yangtse-dzong.webp",
+   "title": "Tashi Yangtse Dzong.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Tashi_Yangtse_Dzong.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:trashiyangtse:1"
+   ],
+   "original_size": "4928x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trashiyangtse/trashigang-gom-kora-tempel-02.webp",
+   "title": "Trashigang - Gom Kora Tempel 02.JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Trashigang_-_Gom_Kora_Tempel_02.JPG",
+   "author": "Franzfoto",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:trashiyangtse:4"
+   ],
+   "original_size": "4784x3644",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trashiyangtse/trashiyangtse.webp",
+   "title": "Trashiyangtse.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Trashiyangtse.jpg",
+   "author": "Dr Vikramjit Kakati",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:trashiyangtse:6"
+   ],
+   "original_size": "4745x3148",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trongsa/chendebji-chorten-15221785034.webp",
+   "title": "Chendebji Chorten (15221785034).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chendebji_Chorten_(15221785034).jpg",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "used_for": [
+    "place:trongsa:2"
+   ],
+   "original_size": "5184x3456",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/trongsa/trongtsa-ta-dzong.webp",
+   "title": "Trongtsa Ta Dzong.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Trongtsa_Ta_Dzong.jpg",
+   "author": "Christpher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:trongsa:1"
+   ],
+   "original_size": "7200x4800",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/tsirang/buddhist-prayer-hall-damphu-bhutan.webp",
+   "title": "Buddhist Prayer Hall Damphu Bhutan.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Buddhist_Prayer_Hall_Damphu_Bhutan.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "place:tsirang:0"
+   ],
+   "original_size": "4928x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/wangdue-phodrang/gangtey-gompa-bhutan.webp",
+   "title": "Gangtey Gompa Bhutan.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gangtey_Gompa_Bhutan.jpg",
+   "author": "Prof Ranga Sai",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:wangdue-phodrang:0"
+   ],
+   "original_size": "3473x2158",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/wangdue-phodrang/khewang-lhakhang-phobjika-2019-08-19.webp",
+   "title": "Khewang Lhakhang, Phobjika 2019-08-19.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Khewang_Lhakhang,_Phobjika_2019-08-19.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "place:wangdue-phodrang:6"
+   ],
+   "original_size": "8256x5160",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/wangdue-phodrang/phobjikha-valley-black-neck-crane-bird-migration-sanctua.webp",
+   "title": "Phobjikha Valley, Black Neck Crane bird migration sanctuary - panoramio (1).jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Phobjikha_Valley,_Black_Neck_Crane_bird_migration_sanctuary_-_panoramio_(1).jpg",
+   "author": "David Broad",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0",
+   "used_for": [
+    "place:wangdue-phodrang:2"
+   ],
+   "original_size": "4283x1481",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/wangdue-phodrang/wangdi-phodrang-dzong.webp",
+   "title": "Wangdi Phodrang Dzong.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Wangdi_Phodrang_Dzong.jpg",
+   "author": "Kuenzang tobgay1999",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "gal:wangdue#4",
+    "place:wangdue-phodrang:4"
+   ],
+   "original_size": "4032x3024",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/zhemgang/bridges-at-panbang-2019-12-13.webp",
+   "title": "Bridges at Panbang 2019-12-13.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bridges_at_Panbang_2019-12-13.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:zhemgang#0"
+   ],
+   "original_size": "8256x5504",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/places/zhemgang/ngangla-trong-lhakhang-panbang-dungkhag-2019-12-13.webp",
+   "title": "Ngangla Trong Lhakhang, Panbang Dungkhag 2019-12-13.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ngangla_Trong_Lhakhang,_Panbang_Dungkhag_2019-12-13.jpg",
+   "author": "Christopher J. Fynn",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "pool:zhemgang#1"
+   ],
+   "original_size": "8256x5504",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/trekking/gangkhar-puensum-landscape.webp",
+   "title": "Gangkhar puensum landscape.JPG",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Gangkhar_puensum_landscape.JPG",
+   "author": "Gradythebadger",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "used_for": [
+    "trek:snowman#2"
+   ],
+   "original_size": "4896x3264",
+   "retrieved": "2026-11-18"
+  },
+  {
+   "file": "/images/trekking/jhomolhari.webp",
+   "title": "Jhomolhari.jpg",
+   "source": "Wikimedia Commons",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Jhomolhari.jpg",
+   "author": "L Shyamal",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "used_for": [
+    "trek:jomolhari#5"
+   ],
+   "original_size": "3456x2304",
+   "retrieved": "2026-11-18"
+  }
+ ]
+}

@@ -2,138 +2,233 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 import logo from "../../public/logo.svg";
 
 const NAV_LINKS = [
-  { href: "/",              label: "Home",            match: (p: string) => p === "/" },
-  { href: "/package",       label: "Packages",        match: (p: string) => p.startsWith("/package") },
-  { href: "/dzongkhag",     label: "Dzongkhags",      match: (p: string) => p.startsWith("/dzongkhag") },
+  { href: "/dzongkhag",     label: "Destinations",    match: (p: string) => p.startsWith("/dzongkhag") || p.startsWith("/attractions") },
+  { href: "/package",       label: "Holiday Packages", match: (p: string) => p.startsWith("/package") },
   { href: "/sacred-places", label: "Heritage Places", match: (p: string) => p.startsWith("/sacred-places") },
   { href: "/guides",        label: "Travel Guides",   match: (p: string) => p.startsWith("/guides") },
-  { href: "/contactus",     label: "Contact Us",      match: (p: string) => p.startsWith("/contactus") },
-  { href: "/faq",           label: "FAQ",             match: (p: string) => p.startsWith("/faq") },
+  { href: "/about",         label: "About Us",        match: (p: string) => p.startsWith("/about") },
+  { href: "/contactus",     label: "Contact",         match: (p: string) => p.startsWith("/contactus") },
+];
+
+// Extra links that live in the full-screen menu only (kept reachable on mobile).
+const MENU_EXTRA_LINKS = [
+  { href: "/faq", label: "FAQ" },
+  { href: "/plan-your-trip", label: "Trip Cost Calculator" },
 ];
 
 export const NavBar: React.FC = () => {
   const router = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Add shadow on scroll
+  // The home page opens on a full-bleed photo, so the bar starts transparent there.
+  const isHome = router.pathname === "/";
+  const overHero = isHome && !isScrolled && !isMenuOpen;
+
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on route change
+  // Close the menu on route change.
   useEffect(() => {
-    const close = () => setIsMobileMenuOpen(false);
+    const close = () => setIsMenuOpen(false);
     router.events.on("routeChangeStart", close);
     return () => router.events.off("routeChangeStart", close);
   }, [router.events]);
 
+  // Lock page scroll and support Escape while the full-screen menu is open.
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isMenuOpen]);
+
+  const linkTone = (active: boolean) =>
+    overHero
+      ? active
+        ? "text-white"
+        : "text-white/80 hover:text-white"
+      : active
+      ? "text-emerald-900"
+      : "text-stone-600 hover:text-emerald-900";
+
   return (
-    <nav
-      className={`sticky top-0 z-50 bg-white transition-shadow duration-200 ${
-        isScrolled ? "shadow-md" : "shadow-sm"
-      } border-b border-stone-200`}
+    <header
+      className={`${isHome ? "fixed inset-x-0" : "sticky"} top-0 z-50 transition-all duration-500 ${
+        overHero
+          ? "bg-transparent"
+          : isMenuOpen
+          ? "bg-emerald-950"
+          : "bg-brand-ivory/95 backdrop-blur-md border-b border-stone-200/80 shadow-warm-sm"
+      }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 sm:h-20">
+      <nav
+        aria-label="Primary"
+        className={`container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-10 transition-all duration-500 ${
+          overHero ? "h-20 sm:h-24" : "h-16 sm:h-[4.5rem]"
+        }`}
+      >
+        {/* Brand */}
+        <Link
+          href="/"
+          className="relative z-10 flex items-center rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+          aria-label="Door To Happiness Holidays — home"
+        >
+          <Image
+            src={logo}
+            alt="Door To Happiness Holidays"
+            height={64}
+            className={`w-auto transition-all duration-500 ${
+              overHero || isMenuOpen ? "brightness-0 invert" : ""
+            } ${overHero ? "h-11 sm:h-14" : "h-9 sm:h-11"}`}
+          />
+        </Link>
 
-        {/* ── Left: Hamburger + Logo ── */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setIsMobileMenuOpen((v) => !v)}
-            className="lg:hidden p-2 rounded-lg text-stone-600 hover:text-amber-700 hover:bg-amber-50 transition-colors duration-150 cursor-pointer"
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen
-              ? <AiOutlineClose size={22} />
-              : <AiOutlineMenu size={22} />}
-          </button>
-
-          <Link href="/" className="flex items-center gap-2 group outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-md">
-            <Image
-              src={logo}
-              alt="Door To Happiness Holidays"
-              height={64}
-              className="w-auto h-9 sm:h-14 transition-transform duration-300 group-hover:scale-105"
-            />
-          </Link>
-        </div>
-
-        {/* ── Right: Desktop nav links ── */}
-        <div className="hidden lg:flex items-center gap-1">
+        {/* Desktop links */}
+        <div className="hidden xl:flex items-center gap-1">
           {NAV_LINKS.map(({ href, label, match }) => {
             const active = match(router.pathname);
             return (
               <Link
                 key={href}
                 href={href}
-                className={`relative px-3 py-2 text-sm font-medium rounded-md transition-colors duration-150 ${
+                aria-current={active ? "page" : undefined}
+                className={`group relative whitespace-nowrap px-3 py-2 text-[12px] font-medium uppercase tracking-[0.14em] transition-colors duration-300 ${linkTone(
                   active
-                    ? "text-amber-700"
-                    : "text-stone-600 hover:text-amber-700 hover:bg-amber-50"
-                }`}
+                )}`}
               >
                 {label}
-                {active && (
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-amber-500" />
-                )}
+                <span
+                  className={`absolute left-3.5 right-3.5 bottom-1 h-px origin-left bg-current transition-transform duration-300 ${
+                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
               </Link>
             );
           })}
 
-          {/* CTA Button */}
           <Link
-            href="/contactus"
-            className="ml-3 px-4 py-2 text-sm font-semibold text-white rounded-lg bg-amber-600 hover:bg-amber-700 transition-colors duration-150 shadow-sm hover:shadow-warm cursor-pointer"
+            href="/plan-your-trip"
+            className={`ml-4 inline-flex items-center whitespace-nowrap rounded-full px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ${
+              overHero
+                ? "bg-white text-emerald-950 hover:bg-amber-200"
+                : "bg-emerald-900 text-white hover:bg-emerald-800"
+            }`}
           >
-            Book a Tour
+            Plan Your Trip
           </Link>
         </div>
-      </div>
 
-      {/* ── Mobile dropdown ── */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-stone-200 bg-white shadow-lg">
-          <div className="px-3 py-3 space-y-1">
-            {NAV_LINKS.map(({ href, label, match }) => {
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen((v) => !v)}
+          className={`xl:hidden relative z-10 flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
+            overHero || isMenuOpen ? "text-white hover:bg-white/10" : "text-stone-800 hover:bg-stone-100"
+          }`}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+        >
+          <span className="relative block h-3.5 w-6" aria-hidden="true">
+            <span
+              className={`absolute left-0 h-px w-6 bg-current transition-all duration-300 ${
+                isMenuOpen ? "top-1.5 rotate-45" : "top-0"
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-1.5 h-px w-6 bg-current transition-opacity duration-300 ${
+                isMenuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute left-0 h-px w-6 bg-current transition-all duration-300 ${
+                isMenuOpen ? "top-1.5 -rotate-45" : "top-3"
+              }`}
+            />
+          </span>
+        </button>
+      </nav>
+
+      {/* Full-screen mobile menu */}
+      <div
+        id="mobile-menu"
+        aria-hidden={!isMenuOpen}
+        className={`xl:hidden fixed inset-0 z-0 bg-emerald-950 pt-24 transition-all duration-500 ${
+          isMenuOpen ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex h-full flex-col justify-between overflow-y-auto px-6 pb-10">
+          <ul className="space-y-1">
+            {NAV_LINKS.map(({ href, label, match }, i) => {
               const active = match(router.pathname);
               return (
+                <li
+                  key={href}
+                  className={`transition-all duration-500 ${
+                    isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                  }`}
+                  style={{ transitionDelay: isMenuOpen ? `${120 + i * 55}ms` : "0ms" }}
+                >
+                  <Link
+                    href={href}
+                    tabIndex={isMenuOpen ? 0 : -1}
+                    onClick={() => setIsMenuOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex items-baseline justify-between border-b border-white/10 py-4 font-heading text-4xl ${
+                      active ? "text-amber-300" : "text-white hover:text-amber-200"
+                    }`}
+                  >
+                    {label}
+                    <span className="text-xs font-sans tracking-widest text-white/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="mt-8 space-y-6">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm uppercase tracking-[0.14em] text-white/60">
+              {MENU_EXTRA_LINKS.map(({ href, label }) => (
                 <Link
                   key={href}
                   href={href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
-                    active
-                      ? "bg-amber-50 text-amber-700 font-semibold"
-                      : "text-stone-700 hover:bg-stone-50 hover:text-amber-700"
-                  }`}
+                  tabIndex={isMenuOpen ? 0 : -1}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="hover:text-white"
                 >
-                  {active && (
-                    <span className="w-1 h-1 rounded-full bg-amber-500 mr-2 flex-shrink-0" />
-                  )}
                   {label}
                 </Link>
-              );
-            })}
-            <div className="pt-2 pb-1">
-              <Link
-                href="/contactus"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center w-full px-4 py-3 rounded-lg text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 transition-colors duration-150"
-              >
-                Book a Tour
-              </Link>
+              ))}
             </div>
+            <Link
+              href="/plan-your-trip"
+              tabIndex={isMenuOpen ? 0 : -1}
+              onClick={() => setIsMenuOpen(false)}
+              className="flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-emerald-950 hover:bg-amber-200"
+            >
+              Plan Your Trip
+            </Link>
           </div>
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   );
 };

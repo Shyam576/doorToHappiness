@@ -66,7 +66,7 @@ const NewsletterManagement: React.FC = () => {
     <Container className="py-8">
       <div className="max-w-6xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-stone-900 mb-2">
+          <h1 className="text-3xl font-semibold text-stone-900 mb-2">
             Newsletter Subscribers
           </h1>
           <p className="text-stone-600">
@@ -122,7 +122,7 @@ const NewsletterManagement: React.FC = () => {
         <div className="mt-6">
           <button
             onClick={fetchSubscribers}
-            className="bg-amber-700 hover:bg-amber-800 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
+            className="bg-emerald-900 hover:bg-emerald-800 text-white font-medium py-2 px-4 rounded-full transition duration-200"
           >
             Refresh Data
           </button>

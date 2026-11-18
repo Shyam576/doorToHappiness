@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-import { Container } from '../components/Container';
+import { Reveal } from '../components/motion/Reveal';
+import Link from 'next/link';
 
 const Unsubscribe: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -64,87 +65,96 @@ const Unsubscribe: React.FC = () => {
         <meta name="description" content="Unsubscribe from our newsletter" />
       </Head>
 
-      <Container className="py-16 min-h-screen bg-stone-50">
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-stone-900 mb-4">
-              Unsubscribe from Newsletter
-            </h1>
-            <p className="text-stone-600">
-              We're sorry to see you go! Enter your email address below to unsubscribe from our newsletter.
-            </p>
-          </div>
+      <main className="min-h-[60vh] bg-brand-ivory py-20 sm:py-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
+            <Reveal className="lg:col-span-6">
+              <p className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-amber-600">
+                <span className="h-px w-10 bg-amber-500" aria-hidden="true" />
+                Newsletter
+              </p>
+              <h1 className="font-heading text-4xl font-medium leading-[1.05] text-stone-900 sm:text-6xl">
+                Unsubscribe from <em className="font-normal text-emerald-900">newsletter</em>
+              </h1>
+              <p className="mt-6 max-w-md text-base leading-relaxed text-stone-600">
+                We're sorry to see you go! Enter your email address below to unsubscribe from our newsletter.
+              </p>
+            </Reveal>
 
-          <form onSubmit={handleUnsubscribe} className="space-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-stone-700 mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={isUnsubscribing}
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors ${
-                  status === 'error'
-                    ? 'border-red-400 focus:ring-red-500'
-                    : status === 'success'
-                    ? 'border-green-400 focus:ring-green-500'
-                    : 'border-stone-300 focus:ring-amber-700'
-                } ${isUnsubscribing ? 'opacity-50 cursor-not-allowed' : ''}`}
-              />
+            <div className="lg:col-span-6">
+              <form onSubmit={handleUnsubscribe} className="space-y-8 border-t border-stone-300 pt-8">
+                <div>
+                  <label htmlFor="email" className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-600">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isUnsubscribing}
+                    className={`mt-2 min-h-[52px] w-full border-0 border-b bg-transparent px-1 text-base text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-0 ${
+                      status === 'error'
+                        ? 'border-b-2 border-red-500'
+                        : status === 'success'
+                        ? 'border-b-2 border-green-600'
+                        : 'border-stone-400 focus:border-emerald-900'
+                    } ${isUnsubscribing ? 'cursor-not-allowed opacity-50' : ''}`}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isUnsubscribing || !email.trim()}
+                  className={`inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-8 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors sm:w-auto ${
+                    isUnsubscribing
+                      ? 'cursor-not-allowed bg-stone-300 text-stone-500'
+                      : status === 'success'
+                      ? 'bg-green-700 text-white hover:bg-green-800'
+                      : 'bg-emerald-900 text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50'
+                  }`}
+                >
+                  {isUnsubscribing ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Unsubscribing...
+                    </span>
+                  ) : status === 'success' ? (
+                    'Unsubscribed!'
+                  ) : (
+                    'Unsubscribe'
+                  )}
+                </button>
+
+                {message && (
+                  <div
+                    role="status"
+                    className={`border-l-2 p-4 text-sm ${
+                      status === 'success'
+                        ? 'border-green-600 bg-green-50 text-green-800'
+                        : 'border-red-500 bg-red-50 text-red-800'
+                    }`}
+                  >
+                    {message}
+                  </div>
+                )}
+              </form>
+
+              <p className="mt-8 text-sm text-stone-600">
+                Changed your mind? You can always{' '}
+                <Link href="/" className="font-medium text-emerald-900 underline decoration-amber-500 decoration-2 underline-offset-4 hover:text-emerald-700">
+                  subscribe again
+                </Link>{' '}
+                from our homepage.
+              </p>
             </div>
-
-            <button
-              type="submit"
-              disabled={isUnsubscribing || !email.trim()}
-              className={`w-full font-bold py-3 px-4 rounded-lg transition ${
-                isUnsubscribing
-                  ? 'bg-stone-400 text-stone-200 cursor-not-allowed'
-                  : status === 'success'
-                  ? 'bg-green-600 hover:bg-green-700 text-white'
-                  : 'bg-red-600 hover:bg-red-700 text-white'
-              }`}
-            >
-              {isUnsubscribing ? (
-                <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Unsubscribing...
-                </span>
-              ) : status === 'success' ? (
-                'Unsubscribed!'
-              ) : (
-                'Unsubscribe'
-              )}
-            </button>
-
-            {message && (
-              <div className={`p-4 rounded-lg text-sm ${
-                status === 'success'
-                  ? 'bg-green-50 text-green-800 border border-green-200'
-                  : 'bg-red-50 text-red-800 border border-red-200'
-              }`}>
-                {message}
-              </div>
-            )}
-          </form>
-
-          <div className="mt-8 text-center">
-            <p className="text-sm text-stone-500 mb-4">
-              Changed your mind? You can always{' '}
-              <a href="/" className="text-amber-800 hover:text-amber-800 font-medium">
-                subscribe again
-              </a>{' '}
-              from our homepage.
-            </p>
           </div>
         </div>
-      </Container>
+      </main>
     </>
   );
 };

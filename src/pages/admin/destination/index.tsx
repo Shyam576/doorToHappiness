@@ -412,8 +412,8 @@ const EditPopularDestinationsPage = () => {
           ))}
         </div>
 
-        <div className="border-2 border-dashed border-blue-200 rounded-lg p-4 bg-blue-50">
-          <h4 className="text-md font-medium text-blue-800 mb-3">
+        <div className="border-2 border-dashed border-amber-200 rounded-lg p-4 bg-amber-50">
+          <h4 className="text-md font-medium text-amber-700 mb-3">
             Add New {field.label} Item
           </h4>
 
@@ -504,7 +504,7 @@ const EditPopularDestinationsPage = () => {
             className={`px-4 py-2 rounded-md ${
               !field.itemFields?.every((f) => newNestedArrayItem[f.name])
                 ? "bg-stone-300 cursor-not-allowed"
-                : "bg-blue-600 text-white hover:bg-blue-700"
+                : "bg-stone-900 text-white hover:bg-stone-900"
             }`}
           >
             Add {field.label} Item
@@ -710,7 +710,7 @@ const EditPopularDestinationsPage = () => {
                     setNewArrayItem({ ...newArrayItem, [fullName]: "" });
                   }
                 }}
-                className="bg-blue-500 text-white px-4 rounded-r"
+                className="bg-stone-900 text-white px-4 rounded-r"
               >
                 Add
               </button>
@@ -795,7 +795,7 @@ const EditPopularDestinationsPage = () => {
         <title>Edit Popular Destinations - Admin</title>
       </Head>
 
-      <h1 className="text-3xl font-bold mb-6">Edit Popular Destinations</h1>
+      <h1 className="text-3xl font-semibold mb-6">Edit Popular Destinations</h1>
 
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4">
@@ -861,7 +861,7 @@ const EditPopularDestinationsPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 disabled:bg-stone-400"
+              className="bg-emerald-900 text-white px-6 py-2 rounded hover:bg-emerald-800 disabled:bg-stone-400"
             >
               {loading
                 ? "Saving..."
@@ -926,7 +926,7 @@ const EditPopularDestinationsPage = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <button
                         onClick={() => handleEdit(item)}
-                        className="text-blue-600 hover:text-blue-900 mr-4"
+                        className="text-amber-700 hover:text-amber-700 mr-4"
                       >
                         Edit
                       </button>

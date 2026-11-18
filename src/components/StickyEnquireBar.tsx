@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getTheme } from "../styles/themes";
 
 interface StickyEnquireBarProps {
   title: string;
@@ -11,16 +10,28 @@ interface StickyEnquireBarProps {
 // this a mobile visitor has to scroll past the entire itinerary to find it.
 const StickyEnquireBar: React.FC<StickyEnquireBarProps> = ({ title }) => {
   const router = useRouter();
-  const theme = getTheme();
+  const [phase, setPhase] = useState<"idle" | "pre" | "in">("idle");
+  useEffect(() => {
+    // Server/no-JS render stays visible; after mount, drop below the edge and slide up.
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    setPhase("pre");
+    let id2 = 0;
+    const id = requestAnimationFrame(() => {
+      id2 = requestAnimationFrame(() => setPhase("in"));
+    });
+    return () => {
+      cancelAnimationFrame(id);
+      cancelAnimationFrame(id2);
+    };
+  }, []);
 
   return (
-    <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-stone-200 shadow-[0_-4px_12px_rgba(0,0,0,0.08)] px-4 py-3 flex items-center gap-3">
-      <p className="flex-1 min-w-0 text-sm font-semibold text-stone-800 truncate">
-        {title}
-      </p>
+    <div className={`fixed inset-x-0 bottom-0 z-40 flex ${phase === "pre" ? "translate-y-full" : phase === "in" ? "translate-y-0 transition-transform duration-[700ms] ease-[cubic-bezier(.2,.7,.2,1)]" : ""} items-center gap-4 border-t border-stone-200 bg-brand-ivory/[0.96] px-4 py-3 backdrop-blur lg:hidden`}>
+      <p className="min-w-0 flex-1 truncate font-heading text-base font-medium text-stone-900">{title}</p>
       <button
+        type="button"
         onClick={() => router.push("/contactus")}
-        className={`flex-shrink-0 px-5 py-3 rounded-lg text-sm font-bold text-white ${theme.primary} ${theme.primaryHover} transition`}
+        className="min-h-[44px] flex-shrink-0 rounded-full bg-emerald-900 px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-900"
       >
         Enquire Now
       </button>

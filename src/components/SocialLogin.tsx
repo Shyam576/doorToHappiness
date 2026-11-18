@@ -10,7 +10,7 @@ interface SocialLoginProps {
 export const SocialLogin: React.FC<SocialLoginProps> = ({ provider, url, className }) => {
     return (
         <a href={url} className={`${className} mb-4 flex-1 w-full font-bold text-white border-0 btn focus:outline-none focus:shadow-outline 
-                       ${provider === 'Facebook' ? 'bg-blue-800 hover:bg-blue-900 ' : ''}
+                       ${provider === 'Facebook' ? 'bg-[#1877F2] hover:bg-[#166FE5] ' : ''}
                         ${provider === 'Google' ? 'bg-red-700 hover:bg-red-800 ' : ''}
        `}>
         {provider === 'Google' ? <BsGoogle/> : null}
