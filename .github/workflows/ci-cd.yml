@@ -1,0 +1,68 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm run build
+        env:
+          NEXT_PUBLIC_PHONE_NO: "9771234567"
+
+  # Runs only after build-and-test succeeds, and only for a push to main
+  # (i.e. after a PR has been merged) — never for a pull_request event.
+  deploy:
+    needs: build-and-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production over SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+            cd /var/www/doorToHappiness
+            git pull origin main
+            rm -rf .next
+            npm install
+            npm run build
+            pm2 restart doortohappiness-app
+
+      - name: Verify site is up
+        run: |
+          sleep 5
+          status=$(curl -s -o /dev/null -w "%{http_code}" https://dthholiday.com/)
+          echo "https://dthholiday.com/ returned $status"
+          if [ "$status" != "200" ]; then
+            echo "Deployment verification failed: site did not return 200"
+            exit 1
+          fi
