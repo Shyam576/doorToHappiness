@@ -25,7 +25,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
   phoneNumber,
   fallbackMessage = "I have a question and couldn't find the answer on your site",
 }) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [messages, setMessages] = useState<ChatMessage[]>([])
 

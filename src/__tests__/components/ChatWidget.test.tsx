@@ -17,16 +17,27 @@ jest.mock('../../data/faq.json', () => [
   },
 ])
 
+// The widget starts closed so it doesn't cover page content (especially the
+// hero/CTA on mobile) before a visitor asks for it. Tests open it via the
+// launcher button first, same as a real visitor would.
+function openWidget() {
+  fireEvent.click(screen.getByRole('button', { name: /chat with us/i }))
+}
+
 describe('ChatWidget', () => {
-  it('is open by default, with suggested questions and an input visible', () => {
+  it('starts closed, and opens via the launcher with suggested questions and an input visible', () => {
     render(<ChatWidget phoneNumber="9771234567" />)
     expect(screen.getByRole('button', { name: /chat with us/i })).toBeInTheDocument()
+    expect(screen.queryByRole('textbox')).not.toBeInTheDocument()
+
+    openWidget()
     expect(screen.getByRole('textbox')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'What is the national language of Bhutan?' })).toBeInTheDocument()
   })
 
   it('closes on the close button and reopens on the launcher', () => {
     render(<ChatWidget phoneNumber="9771234567" />)
+    openWidget()
 
     fireEvent.click(screen.getByRole('button', { name: /close chat/i }))
     expect(screen.queryByRole('textbox')).not.toBeInTheDocument()
@@ -37,6 +48,7 @@ describe('ChatWidget', () => {
 
   it('replies to a plain greeting instead of bouncing it to WhatsApp', () => {
     render(<ChatWidget phoneNumber="9771234567" />)
+    openWidget()
 
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'hi' } })
     fireEvent.click(screen.getByRole('button', { name: /^send$/i }))
@@ -47,6 +59,7 @@ describe('ChatWidget', () => {
 
   it('answers a suggested question with its real FAQ answer', () => {
     render(<ChatWidget phoneNumber="9771234567" />)
+    openWidget()
     fireEvent.click(screen.getByRole('button', { name: 'Do I need a visa to visit Bhutan?' }))
 
     expect(screen.getByText('Indian nationals do not require a visa to visit Bhutan.')).toBeInTheDocument()
@@ -54,6 +67,7 @@ describe('ChatWidget', () => {
 
   it('answers a typed, differently-phrased question via fuzzy matching', () => {
     render(<ChatWidget phoneNumber="9771234567" />)
+    openWidget()
 
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'can i drink the tap water there' } })
     fireEvent.click(screen.getByRole('button', { name: /^send$/i }))
@@ -65,6 +79,7 @@ describe('ChatWidget', () => {
 
   it('falls back to a WhatsApp handoff, pre-filled with the question, when nothing matches confidently', () => {
     render(<ChatWidget phoneNumber="9771234567" />)
+    openWidget()
 
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: 'random gibberish about spaceships and aliens' },
@@ -81,8 +96,9 @@ describe('ChatWidget', () => {
     )
   })
 
-  it('always offers a direct WhatsApp link, even before asking anything', () => {
+  it('always offers a direct WhatsApp link once opened, even before asking anything', () => {
     render(<ChatWidget phoneNumber="9771234567" />)
+    openWidget()
 
     const preferWhatsApp = screen.getByRole('link', { name: /prefer whatsapp/i })
     expect(preferWhatsApp).toHaveAttribute('href', expect.stringContaining('https://wa.me/9771234567'))

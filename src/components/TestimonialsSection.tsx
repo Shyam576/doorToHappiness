@@ -16,7 +16,7 @@ interface Testimonial {
 const reviews = testimonials as Testimonial[];
 
 const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }) => (
-  <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md w-[280px] sm:w-[340px] flex-shrink-0">
+  <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md w-[280px] sm:w-[340px] flex-shrink-0 snap-center">
     <div className="flex mb-3 sm:mb-4">
       {[...Array(5)].map((_, i) => (
         <svg
@@ -74,9 +74,11 @@ const TestimonialsSection: React.FC = () => {
       {/* Auto-scrolling marquee: the review list is rendered twice back-to-back
           and the track animates from 0 to -50%, so the loop point is invisible.
           Paused on hover/focus so visitors can read or click a card in peace,
-          and replaced with manual horizontal scrolling for prefers-reduced-motion. */}
-      <div className="group overflow-hidden motion-reduce:overflow-x-auto">
-        <div className="flex gap-6 sm:gap-8 w-max animate-marquee group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] motion-reduce:animate-none">
+          and replaced with manual horizontal scrolling for prefers-reduced-motion.
+          Below sm: touch has no hover state to pause the marquee, so it's disabled
+          there in favor of a manually swipeable, snap-to-card strip instead. */}
+      <div className="group overflow-x-auto snap-x snap-mandatory scrollbar-hide sm:overflow-hidden sm:snap-none motion-reduce:overflow-x-auto motion-reduce:snap-none">
+        <div className="flex gap-6 sm:gap-8 w-max animate-none sm:animate-marquee sm:group-hover:[animation-play-state:paused] sm:group-focus-within:[animation-play-state:paused] motion-reduce:animate-none">
           <div className="flex gap-6 sm:gap-8">
             {reviews.map((testimonial, index) => (
               <TestimonialCard key={index} testimonial={testimonial} />
